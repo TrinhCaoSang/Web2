@@ -1,0 +1,105 @@
+<!-- Phần thống kê -->
+            <div class="admin__content--statistics__content">
+              <div class="statistics__content--body__top">
+                <h1 class="statistics__title">Thống kê tổng quát</h1>
+              </div>
+              <div class="statistics__content--body__content">
+                <div class="statistics__content--body__box">
+                  <h2 class="statistics__box--title">Tổng thu nhập</h2>
+                  <p class="statistics__box--content">0</p>
+                </div>
+                <div class="statistics__content--body__box">
+                  <h2 class="statistics__box--title">Sản phẩm</h2>
+                  <p class="statistics__box--content">0</p>
+                </div>
+                <div class="statistics__content--body__box">
+                  <h2 class="statistics__box--title">Danh mục sản phẩm</h2>
+                  <p class="statistics__box--content">0</p>
+                </div>
+                <div class="statistics__content--body__box">
+                  <h2 class="statistics__box--title">Thành viên</h2>
+                  <p class="statistics__box--content">0</p>
+                </div>
+                <div class="statistics__content--body__box">
+                  <h2 class="statistics__box--title">Đơn hàng chưa xử lý</h2>
+                  <p class="statistics__box--content">0</p>
+                </div>
+                <div class="statistics__content--body__box">
+                  <h2 class="statistics__box--title">Đơn hàng đã xử lý</h2>
+                  <p class="statistics__box--content">0</p>
+                </div>
+                <!-- Thêm thống kê nếu có-->
+              </div> 
+              <div class="statistics__content--body__detail">
+                <h1 class="statistics__title--bottom">Thống kê doanh thu từng loại</h1>
+                <form class="statistics__form">
+                  <label for="fromDate">Từ ngày:</label>
+                  <input type="date" id="fromDate">
+                  <label for="toDate">Đến ngày:</label>
+                  <input type="date" id="toDate">
+                  <button class="statistics__form--btn">Lọc</button>
+                </form>
+              </div>             
+            </div>
+
+
+
+<!-- Phần khuyến mãi-->
+            <div class="admin__content--discount__content">
+              <div class="discount__content--top">
+                <h1 class="discount__title">QUẢN LÝ MÃ KHUYẾN MÃI</h1>
+                
+                <form class="discount__form">
+                  <div class="form-group">
+                    <label for="form__discountId">Mã khuyến mãi:</label>
+                    <input type="text" id="form__discountId" name="discountId">
+                  </div>
+                  <div class="form-group">
+                    <label for="form__programName">Tên chương trình:</label>
+                    <input type="text" id="form__programName" name="programName">
+                  </div>
+                  <div class="form-group">
+                    <label for="form__percentageReduction">Phần trăm giảm:</label>
+                    <input type="text" id="form__percentageReduction" name="percentageReduction">
+                  </div>
+                  <div class="form-group">
+                    <label for="form__costCondition">Điều kiện (>x):</label>
+                    <input type="text" id="form__costCondition" name="costCondition">
+                  </div>
+                  <div class="form-group">
+                    <label for="form__dayStart">Ngày bắt đầu:</label>
+                    <input type="date" id="form__dayStart" name="dayStart">
+                  </div>
+                  <div class="form-group">
+                    <label for="form__dayEnd">Ngày kết thúc:</label>
+                    <input type="date" id="form__dayEnd" name="dayEnd">
+                  </div>
+                </form>
+                
+                <div class="button__container">
+                  <button class="discount__form--add">Thêm</button>
+                  <button class="discount__form--change">Sửa</button>
+                </div>
+
+              </div>
+              <table>
+                <tr>
+                  <th class="table--top">Mã khuyến mãi</th>
+                  <th class="table--top">Chương trình</th>
+                  <th class="table--top">Phần trăm KM</th>
+                  <th class="table--top">Điều kiện</th>
+                  <th class="table--top">Ngày băt đầu</th>
+                  <th class="table--top">Ngày kết thúc</th>
+                  <th class="table--top">Tình trạng</th>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <th class="text__align--left">sale giảm giá 3/3</th>
+                  <th>20%</th>
+                  <th>1500000</th>
+                  <th>03/03/2024</th>
+                  <th>04/03/2024</th>
+                  <th class="text__align--left">Không còn hiệu lực</th>
+                </tr>
+              </table>
+            </div>
