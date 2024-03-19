@@ -5,17 +5,17 @@
   }
   
   body {
-    font-family: "Mulish", sans-serif;
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #eee;
   }
   
-  .container {
+  /* .container {
     width: 100vw;
   }
-  
+   */
   /* Start: Task */
   .admin__taskbar {
     width: 280px;
@@ -448,7 +448,7 @@
     margin-top: 80px;
   } */
   .discount__title{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 30px;
     font-weight: bold;
@@ -557,16 +557,16 @@
     background-color: black;
   }
   .statistics__title{
-    color: white;
+    color: #333;
     text-transform: uppercase;
-    font-size: 29px;
+    font-size: 30px;
     font-weight: bold;
   }
   .statistics__content--body__content{
     display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      padding: 40px 40px 0px 40px;
+      padding: 30px 30px 0px 30px;
       width: 100%;
   }
   .statistics__content--body__box{
@@ -705,5 +705,13 @@
     align-items: center;
     display: inline-flex;
   }
+
   /* End: Content */
+
+
+  .selected{
+    background-color: rgba(128, 128, 128, 0.285);
+    color: black;
+    border-radius: 15px;
+  }
   

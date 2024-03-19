@@ -142,7 +142,7 @@
     font-size: 20px;
 }
 .input_search button{
-    background-color: black;
+    background-color: #333;
     height: 43.5px;
     width: 43px;
     border-top-right-radius: 5px;

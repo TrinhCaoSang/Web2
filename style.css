@@ -37,10 +37,12 @@ body{
 
 .header__top span {
   color: #fff;
-  margin-right: 20px;
+  margin-right: 30px;
+
 }
 
 .header__top--container {
+  
   display: flex !important;
   justify-content: space-between;
   align-items: center;
@@ -617,5 +619,11 @@ body{
   z-index: 9999 !important;
 }
 
-
+.dashboard-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 20px;
+  gap: 20px;
+}
 

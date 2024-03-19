@@ -4,11 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trek - Quản lý cửa hàng</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link rel="stylesheet" href= "../../../components\HomeAdmin\HomeAdmin.css" />
+    <link rel="stylesheet" href="../../../fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="../../../components/fonts.css">
+    <link rel="stylesheet" href="../../../style.css">
+
+    <link rel="stylesheet" href="../../../components/HomeAdmin/HomeAdmin.css">
+    <link rel="stylesheet" href="../../../components/AdminProduct/AdminProduct.css">
+    <link rel="stylesheet" href="../../../components/ManageUserList/ManageUserList.css" />
+    <link rel="stylesheet" href="../../../components/AdminProduct/adminProduct.css" />
 
     <script defer src= "../../../components\HomeAdmin\HomeAdmin.js"></script>
   </head>
@@ -19,7 +22,7 @@
           <div class="admin__taskbar--header__content">
             <div>
               <img
-                src="../../database/images/logo/trek_logo_shield.png"
+                src="../../../database/images/logo/trek_logo_shield.png"
                 alt=""
               />
             </div>
@@ -30,22 +33,22 @@
         <div class="hr"></div>
         <ul class="admin__taskbar--body__list">
 
-          <li class="admin__taskbar--body__item active">
-            <a href="">
+          <li class="admin__taskbar--body__item ">
+            <a href="" id="linkHome">
               <i class="fa-solid fa-house-chimney"></i>
               <p>Trang chủ</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="">
+            <a href="" id="linkProduct">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="">
+            <a href="" id="linkPromotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>
@@ -108,13 +111,13 @@
       </div>
       <div class="admin__content">
         <div class="admin__content--body">
-          <div class="admin__content--body__top">
+          <!-- <div class="admin__content--body__top">
             <div class="admin__content--body__filter"></div>
-          </div>
+          </div> -->
           <div class="admin__content--body__content">
             <!--  NEW CODE ! -->
             
-            <div class="admin__content--statistics__content">
+            <div class="admin__content--statistics__content" id="statisticsContent">
                 <div class="statistics__content--body__top">
                   <h1 class="statistics__title">Thống kê tổng quát</h1>
                 </div>
@@ -157,8 +160,103 @@
                 </div>             
               </div>
 
+
+               <!-- Sản phẩm -->
+              <!-- <div class="admin__content" id="manageProduct"> -->
+                <div class="admin-product" id="manageProduct">
+                  <div class="tools">
+                    <div class="filter">
+                      <form class="admin__content--body__filter" id="product-filter-form">
+                        <h1>Lọc sản phẩm</h1>
+                        <p>* Lưu ý: Định dạng dữ liệu ngày được hiển thị là dạng dd/mm/yyyy</p>
+                        <div class="admin__content--body__filter--gr1">
+                          <div class="body__filter--nameClient" id="">
+                            <p>Tên Sản phẩm</p>
+                            <input id="productName" type="text" placeholder="Nhập tên sản phẩm" />
+                          </div>
+                          <div class="body__filter--idClient" id="">
+                            <p>Mã Sản Phẩm</p>
+                            <input id="productCode" type="text" placeholder="Nhập mã sản phẩm" />
+                          </div>
+                          <div class="body__filter--status" id="">
+                            <p>Loại sản phẩm</p>
+                            <select name="category" id="categorySelect">
+                              <option value="all">Tất cả</option>
+                              <option value="mountain">Mountain</option>
+                              <option value="road">Road</option>
+                              <option value="touring">Touring</option>
+                              <option value="kids">Kid</option>
+                            </select>
+                          </div>
+                        </div>
+        
+                        <div class="admin__content--body__filter--gr1">
+                          <div class="body__filter--status" id="">
+                            <p>Loại ngày</p>
+                            <select name="cateDate" id="cateDateSelect">
+                              <option value="">Chọn loại ngày</option>
+                              <option value="dateCreate">Ngày tạo</option>
+                              <option value="dateUpdate">Ngày cập nhật</option>
+                            </select>
+                          </div>
+                          <div class="body__filter--datefrom" id="dateFrom">
+                            <label>Từ ngày</label>
+                            <input type="date" />
+                          </div>
+                          <div class="body__filter--dateto" id="dateTo">
+                            <label>Đến ngày</label>
+                            <input type="date" />
+                          </div>
+                        </div>
+        
+                        <div class="add-product">
+                          <button id="add-product-btn">Thêm Sản Phẩm</button>
+                        </div>
+                        <div class="cancel-block">
+                          <button id="cancel">Hủy</button>
+                        </div>
+                        <div class="body__filter--actions">
+                          <button type="reset" class="product--reset__btn">Reset</button>
+                          <button type="submit" class="product--filter__btn" id="filter-submit-btn">Lọc</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+        
+                  <div class="add-product-container" id="add-product-container"></div>
+                  <div class="table__wrapper">
+                    <table id="content-product">
+                      <thead class="menu">
+                        <tr>
+                          <th>Mã SP</th>
+                          <th>Ảnh</th>
+                          <th>Tên Sản Phẩm</th>
+                          <th>Phân loại</th>
+                          <th>Ngày cập nhật</th>
+                          <th>Ngày tạo</th>
+                          <th>Giá</th>
+                          <th>Sửa</th>
+                          <th>Xóa</th>
+                        </tr>
+                      </thead>
+                      <tbody class="content" id="content">
+                        <tr>
+                          <th class="image"><img src="/" alt="" /></th>
+                          <th class="name">Fuel EXe 9.9 XX AXS T-TYPE</th>
+                          <th class="date-update">14/11/2023 20:00</th>
+                          <th class="date-creat">14/11/2023 20:00</th>
+                          <th class="copy" id="copy">Copy</th>
+                          <th class="edit">Sửa</th>
+                          <th class="delete">Xóa</th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              <!-- </div> -->
+
             <!-- Phần khuyến mãi-->
-            <div class="admin__content--discount__content">
+            <div class="admin__content--discount__content" id="promotionsContent">
               <div class="discount__content--top">
                 <h1 class="discount__title">QUẢN LÝ MÃ KHUYẾN MÃI</h1>
                 
@@ -192,6 +290,7 @@
                 <div class="button__container">
                   <button class="discount__form--add">Thêm</button>
                   <button class="discount__form--change">Sửa</button>
+                  <button class="discount__form--add">Xóa</button>
                 </div>
 
               </div>

@@ -1,23 +1,23 @@
 const DUMMY_PRODUCTS = [
     {
-      name: 'Procaliber 9.7 [2023]',
+      name: 'Procaliber 9.7 [2024]',
       imgSrc: 'database\\images\\productImgs\\Procaliber97_24_WHT_Primary-571x379.jpg',
       price: '105.000.000 VND',
       dataColors: ['#ffffff', '#000000'],
       ID: 'fwjog',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Fuel EX 5 Gen 6 [2023]',
-      imgSrc: 'database\\images\\productImgs\\FueL_EX5-2023_gen6_Hero-571x379.jpg',
+      name: 'Fuel EX 5 Gen 6 [2024]',
+      imgSrc: 'database\\images\\productImgs\\FueL_EX5-2024_gen6_Hero-571x379.jpg',
       price: '65.000.000 VND',
       dataColors: ['#303030', '#000000'],
       ID: '0vptf',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Domane AL 4 Gen 3',
@@ -26,8 +26,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#383838', '#000000'],
       ID: '1v6at',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Checkpoint ALR 4',
@@ -36,18 +36,18 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#81d742', '#000000'],
       ID: 'z6dnl',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Domane SL 6 [2023] Gen 4',
+      name: 'Domane SL 6 [2024] Gen 4',
       imgSrc: 'database\\images\\productImgs\\Domane-SL-6-23-BLK_Hero-571x379.jpg',
       price: '110.000.000 VND',
       dataColors: ['#000000', '#474747'],
       ID: '26yno',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Émonda ALR 5',
@@ -56,8 +56,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#95c1d9', '#eb867d'],
       ID: 'nf75f',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Supercaliber SLR 9.9 X0 AXS Gen 2',
@@ -66,8 +66,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#681d18', '#000000'],
       ID: '8adfs',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Supercaliber SL 9.6 Gen 2',
@@ -76,18 +76,19 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#1e73be', '#000000'],
       ID: 'sh0u0',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
+      
       name: 'Roscoe 6',
       imgSrc: 'database\\images\\productImgs\\Roscoe6_Hero-571x379.jpg',
       price: '23.900.000 VND',
       dataColors: ['#000000', '#dd3333'],
       ID: '2ifcg',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Émonda SL 6 AXS',
@@ -96,18 +97,18 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#021521', '#4f4f4f'],
       ID: 'hp1pa',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Verve 2 Disc [2023]',
+      name: 'Verve 2 Disc [2024]',
       imgSrc: 'database\\images\\productImgs\\Verve2_23_BLU_Hero-571x379.jpg',
       price: '16.900.000 VND',
       dataColors: ['#1e73be', '#b2b2b2'],
       ID: 'd6fvi',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'FX 2 Disc  Stagger',
@@ -116,38 +117,38 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#ed2700', '#000000'],
       ID: '1t6ce',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Roscoe 24 [2023]',
+      name: 'Roscoe 24 [2024]',
       imgSrc: 'database\\images\\productImgs\\Roscoe24-571x379.jpg',
       price: '18.000.000 VND',
       dataColors: ['#000000', '#00d69d'],
       ID: 'wbl5q',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Roscoe 20 [2023]',
+      name: 'Roscoe 20 [2024]',
       imgSrc: 'database\\images\\productImgs\\Roscoe20_Hero-571x379.jpg',
       price: '19.000.000 VND',
       dataColors: ['#000000', '#00d69d'],
       ID: '09p9s',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Precaliber 24 8SP Boy’s [2023]',
+      name: 'Precaliber 24 8SP Boy’s [2024]',
       imgSrc: 'database\\images\\productImgs\\Precaliber248speed_23_36965_A_Primary-571x379.jpg',
       price: '8.500.000 VND',
       dataColors: ['#757575', '#dd9933'],
       ID: '8m88h',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Checkpoint ALR 5',
@@ -156,108 +157,108 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#0b1b49', '#b7382a'],
       ID: '1x2bj',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Domane SL 7 eTap [2023] Gen 4',
+      name: 'Domane SL 7 eTap [2024] Gen 4',
       imgSrc: 'database\\images\\productImgs\\Domane-SL-6-eTap-23-Hero-571x379.jpg',
       price: '179.000.000 VND',
       dataColors: ['#ffffff', '#6b1e16'],
       ID: 'amfrm',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Verve 1 Disc [2023]',
+      name: 'Verve 1 Disc [2024]',
       imgSrc: 'database\\images\\productImgs\\Verve1_23_36811_A_Primary-571x379.jpg',
       price: '13.500.000 VND',
       dataColors: ['#000000', '#967801'],
       ID: '5pmvq',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Verve 2 Disc Lowstep [2023]',
+      name: 'Verve 2 Disc Lowstep [2024]',
       imgSrc: 'database\\images\\productImgs\\Verve2DiscLowStep_23_GRN_Hero-571x379.jpg',
       price: '16.900.000 VND',
       dataColors: ['#40ceb2', '#003b42'],
       ID: 'qcumb',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Verve 1 Disc Lowstep [2023]',
+      name: 'Verve 1 Disc Lowstep [2024]',
       imgSrc: 'database\\images\\productImgs\\Verve1DiscLowStep_23_Red_Hero-571x379.jpg',
       price: '13.500.000 VND',
       dataColors: ['#dd3333', '#353535'],
       ID: 'limev',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Precaliber 16 [2023]',
-      imgSrc: 'database\\images\\productImgs\\PreCaliber16_2023_GRN-571x379.jpg',
+      name: 'Precaliber 16 [2024]',
+      imgSrc: 'database\\images\\productImgs\\PreCaliber16_2024_GRN-571x379.jpg',
       price: '6.500.000 VND',
       dataColors: ['#d5f44b', '#004863'],
       ID: '7rwfc',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Domane AL 3 Disc 2023',
+      name: 'Domane AL 3 Disc 2024',
       imgSrc: 'database\\images\\productImgs\\Domane_AL3_Disc_23.-571x379.jpg',
       price: '29.900.000 VND',
       dataColors: ['#606060', '#bf2b2b'],
       ID: 'hribg',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Dual Sport 3 [2023] Gen 5',
-      imgSrc: 'database\\images\\productImgs\\DS3_2023_GRN-571x379.jpg',
+      name: 'Dual Sport 3 [2024] Gen 5',
+      imgSrc: 'database\\images\\productImgs\\DS3_2024_GRN-571x379.jpg',
       price: '20.900.000 VND',
       dataColors: ['#173a01', '#84561a'],
       ID: 'm9q49',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Dual Sport 2 [2023] Gen 5',
-      imgSrc: 'database\\images\\productImgs\\DS2_2023_BLU-571x379.jpg',
+      name: 'Dual Sport 2 [2024] Gen 5',
+      imgSrc: 'database\\images\\productImgs\\DS2_2024_BLU-571x379.jpg',
       price: '17.900.000 VND',
       dataColors: ['#4f4f4f', '#000000'],
       ID: 'sfar9',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Dual Sport 1 [2023] Gen 5',
-      imgSrc: 'database\\images\\productImgs\\DS1_2023_GRY-571x379.jpg',
+      name: 'Dual Sport 1 [2024] Gen 5',
+      imgSrc: 'database\\images\\productImgs\\DS1_2024_GRY-571x379.jpg',
       price: '14.900.000 VND',
       dataColors: ['#4f4f4f', '#000000'],
       ID: 'rtuso',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Domane SL 5 [2023] Gen 4',
+      name: 'Domane SL 5 [2024] Gen 4',
       imgSrc: 'database\\images\\productImgs\\Domane_SL5_23_Gen-571x379.jpg',
       price: '89.000.000 VND',
       dataColors: ['#161616', '#dd3333'],
       ID: 'dimsi',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Top Fuel 8',
@@ -266,8 +267,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#00285e', '#00285e'],
       ID: 'xq3ld',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Procaliber 9.8 [2022]',
@@ -276,68 +277,68 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#6b0707', '#dd3333'],
       ID: 'ninws',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Domane SL 6 eTap [2023] Gen 4',
+      name: 'Domane SL 6 eTap [2024] Gen 4',
       imgSrc: 'database\\images\\productImgs\\Domane-SL-6-eTap-23-Hero-571x379.jpg',
       price: '125.000.000 VND',
       dataColors: ['#9b231f', '#ffffff'],
       ID: '0htwb',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Madone SL 7 eTap [2023]',
+      name: 'Madone SL 7 eTap [2024]',
       imgSrc: 'database\\images\\productImgs\\Madone-SL-7-eTap_Primary-571x379.jpg',
       price: '185.000.000 VND',
       dataColors: ['#4d6087', '#000000'],
       ID: 'tvmsp',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Madone SLR 7  Gen 6 [2023]',
+      name: 'Madone SLR 7  Gen 6 [2024]',
       imgSrc: 'database\\images\\productImgs\\MadoneSLR7Gen6_23_BLK_Primary-571x379.jpg',
       price: '199.000.000 VND',
       dataColors: ['#000000', '#000000'],
       ID: '0ko1l',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Marlin 8  2023',
+      name: 'Marlin 8  2024',
       imgSrc: 'database\\images\\productImgs\\Marlin8_23_GREY_Primary-571x379.jpg',
       price: '29.900.000 VND',
       dataColors: ['#4c4c4c', '#000000'],
       ID: 'dpf84',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Marlin 7 2023',
+      name: 'Marlin 7 2024',
       imgSrc: 'database\\images\\productImgs\\Marlin7_23_36967_B_Primary-571x379.jpg',
       price: '21.900.000 VND',
       dataColors: ['#18a4ac', '#000000'],
       ID: 'awpt0',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Marlin 6 2023',
+      name: 'Marlin 6 2024',
       imgSrc: 'database\\images\\productImgs\\Marlin6_23_BLU-571x379.jpg',
       price: '17.900.000 VND',
       dataColors: ['#212857', '#303be0'],
       ID: 'mkddt',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Supercaliber 9.9 AXS',
@@ -346,18 +347,18 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#2d2d2d', '#bcb5ad'],
       ID: 'sif5y',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'X-Caliber 9 [2022-2023]',
+      name: 'X-Caliber 9 [2022-2024]',
       imgSrc: 'database\\images\\productImgs\\XCaliber9_22_35112_A_Primary-571x379.jpg',
       price: '41.900.000 VND',
       dataColors: ['#1e73be', '#999999'],
       ID: 'lki6k',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Top Fuel 5',
@@ -366,8 +367,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#dd9933', '#262626'],
       ID: 'leqn3',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Fuel EX 5  2022',
@@ -376,8 +377,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#000000', '#565656'],
       ID: 'i5b4e',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Slash 7 2022',
@@ -386,8 +387,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#083802', '#b54029'],
       ID: '8f3zz',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Madone SLR 7 eTap [2022]',
@@ -396,8 +397,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#ff3a3a', '#f2ff00'],
       ID: 'n9sjp',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Speed Concept SLR 6 eTap',
@@ -406,8 +407,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#ff0000', '#000000'],
       ID: '8zxeb',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Procaliber 9.7 [2022]',
@@ -416,18 +417,18 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#0092e8', '#00127c'],
       ID: 'x6wjz',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Speed Concept SLR 7',
-      imgSrc: 'database\\images\\productImgs\\Speed-Concept-SLR-7_2023-571x379.jpg',
+      imgSrc: 'database\\images\\productImgs\\Speed-Concept-SLR-7_2024-571x379.jpg',
       price: '225.000.000 VND',
       dataColors: ['#000000', '#232323'],
       ID: 'tncod',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'FX 3 Disc',
@@ -436,8 +437,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#7c0000', '#ff0800'],
       ID: 'poewt',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Supercaliber 9.7',
@@ -446,8 +447,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#383838', '#cc0000'],
       ID: 'clmxg',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Madone SL 7 eTap [2022]',
@@ -456,8 +457,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#080054', '#00b7ef'],
       ID: 'wb11x',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Émonda SL 6 [2022]',
@@ -466,8 +467,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#464f3d', '#464f3d'],
       ID: 'dpmvu',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Checkpoint SL 5',
@@ -476,18 +477,18 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#d10000', '#d10000'],
       ID: 'wl5cm',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Domane SL 5 [2023] Gen 3',
+      name: 'Domane SL 5 [2024] Gen 3',
       imgSrc: 'database\\images\\productImgs\\DomaneSL5_22_35298_A_Primary-571x379.jpg',
       price: '89.000.000 VND',
       dataColors: ['#383838', '#895700'],
       ID: 'kb0vp',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Procaliber 9.8 [2021]',
@@ -496,8 +497,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#ff7f00', '#000000'],
       ID: 'sjcy8',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Madone SL 6 Disc [2022]',
@@ -506,28 +507,28 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#f20000', '#f20000'],
       ID: '3mzug',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'X-Caliber 8 [2022-2023]',
+      name: 'X-Caliber 8 [2022-2024]',
       imgSrc: 'database\\images\\productImgs\\XCaliber8_23_Primary_BLU-571x376.jpg',
       price: '30.900.000 VND',
       dataColors: ['#240e87', '#ffffff'],
       ID: '4nudz',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Procaliber 9.6 [2022-2023]',
+      name: 'Procaliber 9.6 [2022-2024]',
       imgSrc: 'database\\images\\productImgs\\Procaliber96_22_35113_B_Primary-571x379.jpg',
       price: '79.900.000 VND',
       dataColors: ['#daf722', '#0a0a0a'],
       ID: 'cwhow',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Supercaliber 9.6',
@@ -536,8 +537,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#d10000', '#d10000'],
       ID: 'i2m3e',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'FX 2 Disc',
@@ -546,8 +547,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#ed2700', '#ed2700'],
       ID: 'y2zd6',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'FX1 Stagger Disc 2022',
@@ -556,8 +557,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#e5dcb3', '#2d1d00'],
       ID: 'vxy9b',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'FX 1 Disc',
@@ -566,8 +567,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#d10000', '#d8b682'],
       ID: 'bnrsc',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Marlin 6 2022',
@@ -576,18 +577,18 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#424242', '#dd003b'],
       ID: 'kj6e5',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Precaliber 24 8SP SUS Girl’s [2023]',
+      name: 'Precaliber 24 8SP SUS Girl’s [2024]',
       imgSrc: 'database\\images\\productImgs\\Precaliber248speedSuspension_23_36846_D_Primary-571x379.jpg',
       price: '9.500.000 VND',
       dataColors: ['#00c7ce', '#8224e3'],
       ID: 'd2g3f',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Domane AL 2 Disc',
@@ -596,8 +597,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#00439b', '#e5e5e5'],
       ID: 'etw02',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Marlin 5',
@@ -606,8 +607,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#00e5ed', '#d1f200'],
       ID: '6e42j',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: '520 Grando',
@@ -616,8 +617,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#0f335b', '#0f335b'],
       ID: '6h1rz',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Dual Sport 4 2021',
@@ -626,8 +627,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#2b2b2b', '#2b2b2b'],
       ID: 'fu2j5',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'FX Sport 4',
@@ -636,8 +637,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#1e1e1e', '#c1c1c1'],
       ID: 'x42kz',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Roscoe 7',
@@ -646,8 +647,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#000000', '#4f3c00'],
       ID: 'qbi80',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Top Fuel 9.9 X01',
@@ -656,8 +657,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#000000', '#828282'],
       ID: 'lij6h',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Émonda ALR 4 Disc',
@@ -666,18 +667,18 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#dd3333', '#ffcb23'],
       ID: '3k2fc',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Procaliber 9.5[2022-2023]',
+      name: 'Procaliber 9.5[2022-2024]',
       imgSrc: 'database\\images\\productImgs\\Procaliber95_21_33258_B_Primary-571x379.jpg',
       price: '65.000.000 VND',
       dataColors: ['#dd3333', '#ffd800'],
       ID: 'jw27j',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Verve 1 Disc Lowstep',
@@ -686,8 +687,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#fff9ef', '#ffb656'],
       ID: 'g2aee',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Émonda SL 7 eTap',
@@ -696,8 +697,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#212121', '#000000'],
       ID: '0iaob',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Émonda SL 5 Disc',
@@ -706,8 +707,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#00053d', '#0925c1'],
       ID: 'ccvld',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Émonda SL 6 Pro',
@@ -716,8 +717,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#313933', '#313933'],
       ID: '7mnol',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Crockett 4 Disc',
@@ -726,8 +727,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#000000', '#cccccc'],
       ID: 'fe7rx',
       type: 'road',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Marlin 4',
@@ -736,8 +737,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#1e73be', '#ffffff'],
       ID: 'qekns',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Supercaliber 9.9 XX1',
@@ -746,8 +747,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#2d2d2d', '#bcb5ad'],
       ID: '8zgya',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Supercaliber 9.8 GX',
@@ -756,8 +757,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#2d2d2d', '#bcb5ad'],
       ID: 'k5c7v',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'Fuel EX 9.7',
@@ -766,48 +767,48 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#04afed', '#12e2db'],
       ID: 'k0ek3',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Precaliber 20 7SP Girl’s [2023]',
+      name: 'Precaliber 20 7SP Girl’s [2024]',
       imgSrc: 'database\\images\\productImgs\\Precaliber207speed_23_36268_D_Primary-571x379.jpg',
       price: '7.900.000 VND',
       dataColors: ['#42d6d6', '#4c00db'],
       ID: 't3w90',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Precaliber 20 SS Boy’s [2023]',
+      name: 'Precaliber 20 SS Boy’s [2024]',
       imgSrc: 'database\\images\\productImgs\\Precaliber20_23_36271_B_Primary-571x379.jpg',
       price: '6.900.000 VND',
       dataColors: ['#dd3333', '#081438'],
       ID: 'i1dos',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Precaliber 24 8SP SUS Boy’s [2023]',
+      name: 'Precaliber 24 8SP SUS Boy’s [2024]',
       imgSrc: 'database\\images\\productImgs\\Precaliber248speedSuspension_23_36846_A_Primary-571x379.jpg',
       price: '9.500.000 VND',
       dataColors: ['#424242', '#eeee22'],
       ID: '70efo',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
-      name: 'Precaliber 20 7SP Boys’ [2023]',
+      name: 'Precaliber 20 7SP Boys’ [2024]',
       imgSrc: 'database\\images\\productImgs\\Precaliber207speed_23_36268_B_Primary-571x379.jpg',
       price: '7.900.000 VND',
       dataColors: ['#f75238', '#000544'],
       ID: 'p8zz7',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: '520',
@@ -816,8 +817,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#d10000', '#d10000'],
       ID: 'u9tkw',
       type: 'touring',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: 'MT-201',
@@ -826,8 +827,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#000000', '#a3a3a3'],
       ID: 'dtfkr',
       type: 'kids',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     },
     {
       name: '820 WSD',
@@ -836,8 +837,8 @@ const DUMMY_PRODUCTS = [
       dataColors: ['#03c8ee', '#000000'],
       ID: 'l6f1z',
       type: 'mountain',
-      dateCreate: '2023-01-01T00:00:00.000Z',
-      dateUpdate: '2023-01-01T00:00:00.000Z'
+      dateCreate: '2024-01-01T00:00:00.000Z',
+      dateUpdate: '2024-01-01T00:00:00.000Z'
     }
   ];
   

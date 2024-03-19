@@ -51,7 +51,7 @@ scrollEvents.forEach(event => {
     });
 
     if (window.innerHeight + 300 > section4.getBoundingClientRect().top) {
-      section4.classList.add('active');
+     section4.classList.add('active');
     }
   });
 });
