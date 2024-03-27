@@ -631,6 +631,245 @@
   }
   /* End Statistics */
 
+   /* Employee */
+.admin__content--employee__content{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.employee__content--top{
+  /* border: 1px solid black; */
+  background-color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.employee__title{
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #333;
+  color:white;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 10%;
+  /*border: 1px solid red; */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.employee__form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.form-group label {
+  margin-right: 10px;
+  font-weight: bold;
+  width: 150px;
+}
+
+.form-group input {
+  padding: 5px;
+  width: 250px;
+}
+
+.form-group select {
+  padding: 5px;
+  width: 250px;
+}
+
+.button__container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  width: calc(50% - 200px);
+  margin-left: 35%;
+  flex-wrap: wrap;
+}
+
+.employee__form--add,
+.employee__form--change,
+.employee__form--remove,
+.employee__form--search {
+  width: 70px;
+  height: 30px;
+  font-size: 16px; 
+  margin: 5px;
+}
+.employee__form--issueAnAcc,
+.employee__form--authority,
+.employee__form--lockAcc{
+  width: 90px;
+  height: 40px;
+  font-size: 16px; 
+  margin: 5px;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.text__align--left {
+  text-align: left;
+}
+
+.table--top {
+  background-color: #333;
+  color:white;
+}
+
+/* End Employee */
+
+/* Customer */
+.admin__content--customer__content{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.customer__content--top{
+  /* border: 1px solid black; */
+  background-color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.customer__title{
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #333;
+  color:white;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 10%;
+  /*border: 1px solid red; */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.customer__form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.customer__form--add,
+.customer__form--change,
+.customer__form--remove,
+.customer__form--search
+{
+  width: 70px;
+  height: 30px;
+  font-size: 16px; 
+  margin: 5px;
+}
+
+/* End customer */
+
+/*Authority*/
+.mainAuthority{
+  position: absolute;
+  top: 0;
+  background-color: white;
+  /* border: 1px solid; */
+}
+
+.mainAuthority__title{
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #333;
+  color:white;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  /*border: 1px solid red; */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.mainAuthority__content{
+  background-color: white;
+}
+
+.authority__form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.authority__list{
+  margin-top: 10px;
+}
+
+.mainAuthority__btn{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.authority__form--add, 
+.authority__form--change, 
+.authority__form--remove{
+  width: 70px;
+  height: 30px;
+  font-size: 16px; 
+  margin: 5px;
+}
+/* End authority */
+
   .admin__content--body__addProduct{
     width: 100%;
     height: 100%;
