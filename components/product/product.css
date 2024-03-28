@@ -51,8 +51,8 @@
 }
 #mountain{
     border-radius: 5px;
-    border: 1px solid black;
-    background-color: rgb(14, 18, 18);
+    /* border: 1px solid black; */
+    background-color: gray;
     height: 40px;
     width: 200px;
     margin: 5px;
@@ -66,12 +66,12 @@
 }
 #mountain h3{
     margin-top: 7px;
-    color: white;
+    color: #333;
 }
 #road{
     border-radius: 5px;
-    border: 1px solid black;
-    background-color: rgb(14, 18, 18);
+    /* border: 1px solid black; */
+    background-color: gray;
     height: 40px;
     width: 200px;
     margin: 5px;
@@ -85,12 +85,12 @@
 }
 #road h3{
     margin-top: 7px;
-    color: white;
+    color: #333;
 }
 #kids{
     border-radius: 5px;
-    border: 1px solid black;
-    background-color: rgb(14, 18, 18);
+    /* border: 1px solid black; */
+    background-color: gray;
     height: 40px;
     width: 200px;
     margin: 5px;
@@ -104,12 +104,12 @@
 }
 #kids h3{
     margin-top: 7px;
-    color: white;
+    color: #333;
 }
 #touring{
     border-radius: 5px;
-    border: 1px solid black;
-    background-color: rgb(14, 18, 18);
+    /* border: 1px solid black; */
+    background-color: gray;
     height: 40px;
     width: 200px;
     margin: 5px;
@@ -123,7 +123,7 @@
 }
 #touring h3{
     margin-top: 7px;
-    color: white;
+    color: #333;
 }
 .input_search{
     width: 600px;
@@ -134,10 +134,7 @@
     width: 80%;
     height: 80%;
     padding: 20px;
- 
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    
+    border-radius: 5px;
     background-color: rgb(241, 237, 237);
     font-size: 20px;
 }
@@ -151,18 +148,19 @@
 #btnSubmit .fa-solid{
     font-size: 20px;
     color: whitesmoke;
+    
 }
 .divproduct{
     width: 50%;
     height: 300px;
     margin:20px;
-    border: 2px solid black;
+    border: 0px solid black;
     border-radius: 5px;
     overflow: hidden;
 }
 #content{
     float: left;
-    width: 1000px;
+    width: 1150px;
     display: flex;
     justify-content: center;
 }
@@ -170,17 +168,32 @@
     width: 100%;
     height: 80%;
     position: relative;
+    cursor: pointer;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
 }
+
+
+.divproduct #img-product img {
+    transition: transform 0.3s ease;
+  }
+  
+  .divproduct #img-product img:hover {
+    transform: scale(1.1);
+  }
+  
 #img-product img{
     width: 100%;
     height: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
 }
 #mota-product p{
     font-weight: bold;
     font-size: 20px;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 15px;
+    margin-left: 20px;
+    
+    
 }
 
 #mota-product{
@@ -189,18 +202,49 @@
 }
 #datmua{
     width: 100%;
-    height: 20%;
+    height: 10%;
     color: whitesmoke;
-    background-color: black;
+    
     position: absolute;
     text-align: center;
     z-index: 1;
     bottom: 0;
     left: 0;
+    cursor: pointer;
 }
 #datmua h3{
-    margin-top: 10px;
+    margin-top: 5px;
 }
+
+#content .divproduct h3 {
+    opacity: 0; 
+    display: none;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5)); 
+    background-size: 100% 200%; 
+    background-position: bottom;
+    transition: background-position 3s ease; 
+}
+
+#content .divproduct:hover h3 {
+    opacity: 1; 
+    transform: translateY(0); 
+    display: block;
+    background-color: rgba(0, 0, 0, 0.633);
+    background-size: 100% 100%; 
+    background-position: top; 
+ 
+}
+
+.divproduct p{
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.divproduct p:hover{
+    color: rgba(255, 0, 0, 0.727);
+    transform: scale(1.05);
+
+}
+
 #img-product .fa-solid{
     position: absolute;
     z-index: 1;
@@ -212,10 +256,13 @@
     text-align: center;
 }
 .pagination a{
-    color: whitesmoke;
+    color: rgba(245, 245, 245, 0.999);
     text-decoration: none;
     padding: 8px 15px;
     display: inline-block;
+    background-color: rgba(128, 128, 128, 0.56);
+    margin: 0 5px;
+    border-radius: 3px;
 }
 .pagination a#active{
     background-color: black;
@@ -223,7 +270,7 @@
     border-radius: 5px;
 }
 .pagination a:hover:not(#active){
-    background-color: gray;
+    background-color: black;
     border-radius: 5px;
 }
 

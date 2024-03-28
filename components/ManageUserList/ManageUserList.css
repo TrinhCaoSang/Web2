@@ -40,6 +40,8 @@
 .body__filter--nameClient p,
 .body__filter--idClient p,
 .body__filter--status p,
+.body__filter--idNumber p,
+.body__filter--idPrice p,
 .body__filter--nameProduct p,
 .body__filter--idProduct p,
 .body__filter--type p {
@@ -51,6 +53,8 @@
 .body__filter--nameClient input,
 .body__filter--idClient input,
 .body__filter--status select,
+.body__filter--idNumber input,
+.body__filter--idPrice input,
 .body__filter--nameProduct input,
 .body__filter--idProduct input,
 .body__filter--type select {

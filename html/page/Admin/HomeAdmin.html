@@ -34,28 +34,28 @@
         <ul class="admin__taskbar--body__list">
 
           <li class="admin__taskbar--body__item ">
-            <a href="" id="linkHome">
+            <a href="" id="link_Home">
               <i class="fa-solid fa-house-chimney"></i>
               <p>Trang chủ</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="linkProduct">
+            <a href="" id="link_Product">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="linkPromotions">
+            <a href="" id="link_Promotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="">
+            <a href="" id="link_staff">
               <i class="fa-solid fa-user"></i>
               <p>Nhân viên</p>
             </a>
@@ -70,7 +70,7 @@
 
 
           <li class="admin__taskbar--body__item">
-            <a href="">
+            <a href="" id="link_client">
               <i class="fa-solid fa-handshake"></i>
               <p>Khách hàng</p>
             </a>
@@ -175,6 +175,7 @@
                             <p>Tên Sản phẩm</p>
                             <input id="productName" type="text" placeholder="Nhập tên sản phẩm" />
                           </div>
+                          
                           <div class="body__filter--idClient" id="">
                             <p>Mã Sản Phẩm</p>
                             <input id="productCode" type="text" placeholder="Nhập mã sản phẩm" />
@@ -188,6 +189,15 @@
                               <option value="touring">Touring</option>
                               <option value="kids">Kid</option>
                             </select>
+                          </div>
+                          <div class="body__filter--idNumber" id="">
+                            <p>Số lượng</p>
+                            <input id="productCode" type="text" placeholder="Nhập số lượng sản phẩm" />
+                          </div>
+
+                          <div class="body__filter--idPrice" id="">
+                            <p>Đơn giá</p>
+                            <input id="productCode" type="text" placeholder="Nhập đơn giá sản phẩm" />
                           </div>
                         </div>
         
@@ -318,7 +328,7 @@
             </div>
 
             <!--Nhân viên-->
-            <div class="admin__content--employee__content">
+            <div class="admin__content--employee__content" id="staff">
               <div class="employee__content--top">
                 <h1 class="employee__title">QUẢN LÝ NHÂN VIÊN</h1>
 
@@ -371,6 +381,7 @@
                 <div class="mainAuthority">
                   <div class="mainAuthority__title">
                     <h2>Quản lý phân quyền</h2>
+                    <button class="closeButton"><i class="fas fa-times"></i></button>
                   </div>
                   <div class="mainAuthority__content">
                     <form action="" class="authority__form">
@@ -425,7 +436,7 @@
             </div>
 
             <!--Khách hàng-->
-            <div class="admin__content--customer__content">
+            <div class="admin__content--customer__content" id="client">
               <div class="customer__content--top">
                 <h1 class="customer__title">QUẢN LÝ KHÁCH HÀNG</h1>
               
