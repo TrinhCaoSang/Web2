@@ -8,9 +8,9 @@ toggleMenuIcon.addEventListener("click", (e) => {
 
 
 //Hiện form phân quyền
-const passWordAuthorityBtn = document.querySelector('.employee__form--passWordAuthority');
+const authorityBtn = document.querySelector('.employee__form--authority');
 const mainAuthority = document.querySelector('.mainAuthority');
-passWordAuthorityBtn.addEventListener('click', function() {
+authorityBtn.addEventListener('click', function() {
     mainAuthority.style.display = 'block'; // Hiển thị bảng phân quyền khi nút được click
 });
 
