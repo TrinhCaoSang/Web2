@@ -776,7 +776,283 @@ tr:hover {
 }
 
 /* End Employee */
+/* bill */
 
+.bill_content--model--ctpn label input:checked + .slider{
+  background-color: rgb(94, 94, 243);
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  position: absolute;
+  transition: 0.4s;
+  border-radius: 999px;
+}
+.bill_content--model--ctpn label input:checked + .slider:before{
+  left: 30px;
+}
+.bill_content--model--ctpn label .slider:before{
+  content: "";
+	background-color: #fff;
+	height: 26px;
+	bottom: 4px;
+	left: 4px;
+	position: absolute;
+	transition: 0.4s;
+	width: 26px;
+	border-radius: 999px;
+}
+.bill_content--model--ctpn label input{
+  display: none;
+}
+.bill_content--model--ctpn label{
+  margin-left: 100px;
+  cursor: pointer;
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+  vertical-align: middle;
+}
+
+.bill_content--model--ctpn label .slider {
+  background-color: #ccc;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  position: absolute;
+  transition: 0.4s;
+  border-radius: 999px;
+}
+.bill_content--model--ctpn .printbtn {
+  position: absolute;
+  width: 200px;
+  font-size: 16pt;
+  background-color: #000;
+  color: #fff;
+  height:40px;
+  border: 2px solid #000;
+  line-height: 30px;
+  top: 53%;
+  right: 40px;
+  cursor: pointer;
+}
+.bill_content--model--ctpn p{
+  font-size: 14pt;
+  margin-bottom: 10px;
+  margin-left: 25px;
+}
+.admin__content--bill__content{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.bill__content--top{
+  /* border: 1px solid black; */
+  background-color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.bill__title{
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  padding: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  /*border: 1px solid red; */
+}
+
+.bill__form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.body__filter--field.body__filter--orderDate {
+  width: 25%;
+}
+
+.body__filter--actions--bill{
+  margin-left: 140%;
+  width: 100%;
+}
+.body__filter--actions--bill button {
+  border: none;
+  height: 40px;
+  min-width: 80px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 5px 10px;
+  font-weight: 600;
+}
+.body__filter--field.body__filter--orderDate input[type="date"]{
+  width: 90%;
+  height: 35px;
+  font-size: 12pt;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+.admin__content--body__filter--gr1{
+  width: 65vw;
+}
+
+.bill--model--ctpn{
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+}
+.bill_content--model--ctpn{
+  overflow: auto;
+  position: absolute;
+  top: 5%;
+  padding: 0 2% 2% 2%;
+  width: 68.8%;
+  height: 90vh;
+  background-color: white;
+}
+.bill__content--ctpn{
+  position: fixed;
+  top:0;
+  z-index: 100;
+}
+
+.bill--model--ctpn .close{
+  position: absolute;
+  right: 0px;
+  top: -10px;
+  font-size: 40pt;
+  background: none;
+  outline: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+.bill--model--ctpn .close:hover{
+  color: red;
+}
+/* end bill */
+/* Receipt */
+.button__container--receipt {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 12%;
+}
+.receipt--model--ctpn{
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+}
+.receipt_content--model--ctpn{
+  position: absolute;
+  top: 10%;
+  width: 68.8%;
+  height: 100vh;
+}
+.receipt__content--ctpn{
+  position: fixed;
+  top:0;
+  z-index: 100;
+}
+.receipt--model--ctpn .close{
+  position: absolute;
+  right: 0px;
+  top: -10px;
+  font-size: 40pt;
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.receipt--model--ctpn .close:hover{
+  color: red;
+}
+.receipt--model--ctpn table .table--col{
+  background-color: white;
+  color: black;
+} 
+.admin__content--receipt__content{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.receipt__content--top{
+  /* border: 1px solid black; */
+  background-color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.receipt__title{
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #333;
+  color:white;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 10%;
+  /*border: 1px solid red; */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.receipt__form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.receipt__form--add,
+.receipt__form--change,
+.receipt__form--remove,
+.receipt__form--search
+{
+  width: 70px;
+  height: 30px;
+  font-size: 16px; 
+  margin: 5px;
+}
 /* Customer */
 .admin__content--customer__content{
   position: absolute;
