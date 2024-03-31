@@ -1,29 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trek - Quản lý cửa hàng</title>
-    <link rel="stylesheet" href="../../../fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="../../../components/fonts.css">
-    <link rel="stylesheet" href="../../../style.css">
-
-    <link rel="stylesheet" href="../../../components/HomeAdmin/HomeAdmin.css">
-    <link rel="stylesheet" href="../../../components/AdminProduct/AdminProduct.css">
-    <link rel="stylesheet" href="../../../components/ManageUserList/ManageUserList.css" />
-    <link rel="stylesheet" href="../../../components/AdminProduct/adminProduct.css" />
-
-    <script defer src= "../../../components\HomeAdmin\HomeAdmin.js"></script>
-  </head>
-  <body>
-    <div class="container">
+<div class="container">
       
       <div class="admin__taskbar">
         <div class="admin__taskbar--header">
           <div class="admin__taskbar--header__content">
             <div>
               <img
-                src="../../../database/images/logo/trek_logo_shield.png"
+                src="public/database/images/logo/trek_logo_shield.png"
                 alt=""
               />
             </div>
@@ -738,5 +720,3 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
