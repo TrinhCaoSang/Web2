@@ -1,3 +1,10 @@
+<head>
+    <title>Trek - Quản lý cửa hàng</title>
+    <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
+    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
+    <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
+    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
+<head>
 <div class="container">
 <div class="admin__taskbar">
         <div class="admin__taskbar--header">
