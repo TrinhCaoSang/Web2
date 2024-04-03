@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="../../../components/fonts.css">
+    <link rel="stylesheet" href="./cart.css">
+    <link rel="stylesheet" href="../../../components/menu/menu.css">
+    <link rel="stylesheet" href="../../../components/login/login.css">
+    <link rel="stylesheet" href="reponsive.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="dialog" id="dialog">
+        <div class="container" id="container">
+          <i class="dialog-close fa-solid fa-xmark"></i>
+          <h1 class="dialog-title">Xác nhận thanh toán</h1>
+          <p class="dialog-message">Vui lòng kiểm tra thông tin thanh toán của bạn trước khi xác nhận:</p>
+          <div class="payment-details">
+            <div class="form-field">
+              <label for="name">Tên người mua</label>
+              <input type="text" id="customername" />
+              <p id="customerNameMessage"></p>
+            </div>
+            <div class="form-field">
+              <label for="address">Địa chỉ giao hàng</label>
+              <input type="text" id="customeraddress" />
+              <p id="customerAddressMessage"></p>
+            </div>
+  
+            <p class="dialog-totalPrice"><strong id="totalPricePay">Tổng số tiền:</strong></p>
+          </div>
+          <button id="confirmButton">Xác nhận thanh toán</button>
+        </div>
+      </div>
+
+
+      <header>
+        <div class="header__container">
+          <div class="header__top">
+            <div class="header__top-item--left">
+              <div class="header__top-item user-welcome active">
+                <p>Xin chào,</p>
+                <p></p>
+              </div>
+            </div>
+          </div>
+  
+          <!-- =========== END: HEADER TOP =========== -->
+  
+          <!-- =========== START: HEADER BOTTOM =========== -->
+  
+          <div class="header__bottom">
+            <div class="header__bottom--logo">
+              <a href="../../../index.html">TREK</a>
+            </div>
+            <div class="header__bottom--list">
+              <ul>
+                <li>
+                  <a href="../../../html/page/product/product.html">ALL</a>
+                </li>
+                <li>
+                  <a href="../../../html/page/product/product.html">MOUNTAIN</a>
+                </li>
+                <li>
+                  <a href="../../../html/page/product/product.html">ROAD</a>
+                </li>
+                <li>
+                  <a href="../../../html/page/product/product.html">TOURING</a>
+                </li>
+                <li>
+                  <a href="../../../html/page/product/product.html">KIDS</a>
+                </li>
+              </ul>
+            </div>
+  
+            <div class="header__bottom--extention">
+              <div class="header__bottom--extention-item header__bottom--extention-user">
+                <i class="fa-solid fa-user"></i>
+                <ul class="header__bottom--user__list">
+                  <li class="adminManager__item" style="display: block">
+                    <button class="adminManager">
+                      <i class="fa-solid fa-hammer"></i>
+                      <p>Quản lý</p>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="logout">
+                      <i class="fa-solid fa-door-open"></i>
+                      <p>Đăng xuất</p>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+  
+            <div class="header__bottom--hide-menu">
+              <i class="fa-solid fa-bars"></i>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="order_status">
+          <table id="order_status_table">
+            <thead>
+              <tr>
+                <th>Giỏ hàng</th>
+                <th>Đang chờ xử lý</th>
+                <th>Đang giao</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+  
+        <div class="cart-info_container">
+          <table class="menu" id="menu">
+            <thead>
+              <tr>
+                <th>Hình ảnh</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số Lượng</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+  
+            <tbody class="cart-info" id="cart-info"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <footer id="footer">
+        <div class="totalPrice" id="totalPriceContainer">
+          <h3>Thanh toán</h3>
+          <span id="totalPriceId">0 VND</span>
+        </div>
+        <div class="footerButton">
+          <button id="selectAllButton">Chọn tất cả</button>
+  
+          <button id="buy">Mua</button>
+          <button id="delete">Xóa</button>
+        </div>
+      </footer>
+
+      <div class="toast" id="toast">
+        <h2>Chưa có sản phẩm nào trong giỏ hàng</h2>
+      </div>
+
+      <div class="overlay"></div>
+
+      <div class="modal">
+        <header class="modal__header">
+          <h1>Xóa dữ liệu</h1>
+        </header>
+        <div class="modal__content">
+          <p>Bạn có muốn xóa dữ liệu này không?</p>
+        </div>
+        <div class="modal__footer">
+          <button class="modal__footer--delete">Chắc chắn</button>
+          <button class="modal__footer--exit">Không</button>
+        </div>
+      </div>
+
+
+      <div class="hide__menu">
+        <button class="hide__menu--close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h1>TREK</h1>
+        <div class="hide__menu--list__extention">
+          <div class="header__bottom--extention-item header__bottom--extention-user active-down" id="userLowDeviceBtn">
+            <i class="fa-solid fa-user"></i>
+            <span>Tài khoản</span>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--down fa-solid fa-caret-down"></i>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
+          </div>
+          <div class="hide__menu--user__list">
+            <div class="hide__menu--list__type adminManager__item" style="display: none"><button>Quản lý</button></div>
+            <div class="hide__menu--list__type logout__item"><button>Đăng xuất</button></div>
+          </div>
+  
+          <div class="header__bottom--extention-item header__bottom--extention-cate">
+            <i class="fa-solid fa-table-columns"></i>
+            <span>Danh mục</span>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--down fa-solid fa-caret-down"></i>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
+          </div>
+          <div class="hide__menu--list__types">
+            <div class="hide__menu--list__type"><a href="../../../html/page/product/product.html">ALL</a></div>
+            <div class="hide__menu--list__type"><a href="../../../html/page/product/product.html">MOUNTAIN</a></div>
+            <div class="hide__menu--list__type"><a href="../../../html/page/product/product.html">ROAD</a></div>
+            <div class="hide__menu--list__type"><a href="../../../html/page/product/product.html">TOURING</a></div>
+            <div class="hide__menu--list__type"><a href="../../../html/page/product/product.html">KIDS</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay"></div>
+
+      <script type="module" src="../../../database/products.js"></script>
+      <script type="module" src="../../../components/menu/menu.js"></script>
+      <script type="module" src="cart.js"></script>
+</body>
+</html>
