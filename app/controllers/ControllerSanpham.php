@@ -55,21 +55,7 @@
               $this->view($this->list_product, $dataID);
             }
            }
-        public function save(){
-            if(isset($_POST['save'])){
-                //Lấy dữ liệu từ View
-                $Mahang=$_POST['productId'];
-                $Maloai=$_POST['type_Id'];
-                $Hinhanh=$_POST['product_imgs'];
-                $Tenhang=$_POST['productName'];
-                $Dongia=$_POST['product_price'];
-                $Soluong=$_POST['quantity'];
-                if($this->product->UpdateData($Mahang,$Maloai,$Hinhanh,$Tenhang,$Dongia,$Soluong)){
-                    echo '<script>changeURL()</script>';
-                    $this->index();
-                }
-            }
-        }
+        
         public function delete(){
             $id = $_GET['id'];
             $this->product->deleteProduct( $id );

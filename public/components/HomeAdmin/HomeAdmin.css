@@ -295,7 +295,7 @@
     height: 100vh;
     left: 280px;
     top: 64px;
-    background-color: #eee;
+    /* background-color: #eee; */
     transition: all 0.5s;
   }
   
@@ -471,13 +471,44 @@
     justify-content: center;
   }
   
+  .image-container {
+    width: 250px; /* Độ rộng của container */
+    height: 100px; /* Chiều cao của container */
+    border: 1px solid #ccc; /* Viền xám */
+    position: relative; /* Đặt vị trí của container là relative */
+    overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài */
+    display: inline-block; /* Hiển thị như một phần tử inline-block */
+    margin-top: 10px;
+    margin-left: 160px;
+}
+.file-input-label {
+  opacity: 0;
+}
+
+.image-container img {
+    width: 100%; /* Chiều rộng của hình ảnh sẽ là 100% của container */
+    height: auto; /* Chiều cao tự động điều chỉnh để không bị méo */
+    position: absolute; /* Đặt vị trí của hình ảnh là tuyệt đối */
+    top: 50%; /* Canh từ trên xuống dưới */
+    left: 50%; /* Canh từ trái sang phải */
+    transform: translate(-50%, -50%); /* Dịch chuyển hình ảnh về trung tâm */
+    max-width: 100%; /* Chiều rộng tối đa là 100% của khung */
+    max-height: 100%; /* Chiều cao tối đa là 100% của khung */
+}
+
+
   .form-group {
     display: flex;
     align-items: center;
     margin-top: 10px;
+    
+  
   }
   
   .form-group label {
+    min-height: 20px; /* Đặt giá trị min-height cho label */
+    display: inline-block; /* Đảm bảo label không bị chiếm toàn bộ chiều rộng */
+    vertical-align: top; 
     margin-right: 10px;
     font-weight: bold;
     width: 150px;
@@ -494,13 +525,28 @@
     text-align: center;
     margin-top: 10px;
   }
-  
-  .discount__form--add,
+  #imagePreview {
+    display: none;
+    max-width: 100%;
+    max-height: 50px;
+    margin-top: 10px;
+}
+
+  .discount__form--add{
+    width: 70px;
+    height: 30px;
+    font-size: 16px; 
+    margin: 5px;
+    background-color: #d5231d;
+    color: white;
+  }
   .discount__form--change {
     width: 70px;
     height: 30px;
     font-size: 16px; 
     margin: 5px;
+    background-color: #0ee836;
+    color: white;
   }
   
   table {
@@ -731,6 +777,7 @@
 table {
   border-collapse: collapse;
   width: 100%;
+  
 }
 
 th, td {
@@ -749,7 +796,7 @@ tr:hover {
 }
 
 .text__align--left {
-  text-align: left;
+  text-align: center;
 }
 
 .table--top {
@@ -956,12 +1003,42 @@ tr:hover {
 /* Receipt */
 .button__container--receipt {
   display: flex;
-  justify-content: center;
-  text-align: center;
+  
   margin-top: 10px;
   padding-bottom: 10px;
-  margin-left: 12%;
+  
+  justify-content:center;
+  
 }
+#add-btn{
+  width: 70px;
+  background-color: green;
+  color: white;
+}
+#add-btn2 {
+  white-space: nowrap; /* Ngăn chữ tràn ra khỏi nút */
+  overflow: hidden; /* Ẩn phần chữ vượt quá kích thước của nút */
+  text-overflow: ellipsis; /* Hiển thị dấu chấm (...) khi chữ vượt quá kích thước của nút */
+  min-width: 100px; 
+  background-color: #006266;
+  color: white;
+}
+#add-btn1{
+  width: 70px;
+  background-color: green;
+  color: white;
+}
+#add-btn3 {
+  width: 70px;
+  background-color: rgb(222, 18, 18);
+  color: white;
+}
+#add-btn4{
+  width: 80px;
+  background-color: rgb(222, 18, 18);
+  color: white;
+}
+  
 .receipt--model--ctpn{
   position: fixed;
   display: flex;
@@ -1094,8 +1171,11 @@ tr:hover {
   align-items: center;
   justify-content: center;
 }
-
 .customer__form--add,
+.customer__form--add1,
+.customer__form--add2,
+.customer__form--add3,
+.customer__form--add4,
 .customer__form--change,
 .customer__form--remove,
 .customer__form--search
@@ -1249,4 +1329,57 @@ tr:hover {
     color: black;
     border-radius: 15px;
   }
+.error-message {
+    text-align: left;
+    margin-left: 475px;
+    width: 50%;
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+.error-message-soLuong{
+  text-align: left;
+    margin-left: 475px;
+    width: 50%;
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+
+.btn-edit{
+  text-align: center;
+  background-color: #006266;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 100%;
+}
+
+.btn-delete{
+  background-color: #EA2027;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 100%;
+}
+.btn-info{
+  background-color: #47d712;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 100%;
+}
+
   
