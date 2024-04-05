@@ -58,7 +58,7 @@
     }
    }
 
-   //////////////////////////////////////////////////////////
+ 
    public function save(){
     if(isset($_POST['save'])){
         //Lấy dữ liệu từ View
@@ -74,14 +74,12 @@
         }
     }
 }
-//////////////////////////////////////////////////////////////
 public function delete(){
   $id = $_GET['id'];
   $this->coupon->deleteProduct( $id );
   header('Location: index.php?controller=phieunhap');
 }
 
-////////////////////////////////////////////////////////////
 public function add_product(){
   if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addProduct'])){
        $MaHang = $_POST['MaHang'];
