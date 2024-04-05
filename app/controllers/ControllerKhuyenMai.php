@@ -3,6 +3,7 @@
 
         private $khuyenmaiModel;
         private $listKM;
+        private $id;
 
 
         public function __construct()
@@ -10,12 +11,13 @@
             $this->loadModel('KhuyenMai');
             $this->khuyenmaiModel=new ModelKhuyenMai;
             $this->khuyenmaiModel->connect();
+            $this->listKM=$this->khuyenmaiModel->getAllData();
         }
 
         protected function view(array $data=[],$dataID){
-            foreach($data as $key=>$value){
-                $$key=$value;
-            }
+            // foreach($data as $key=>$value){
+            //     $$key=$value;
+            // }
             return include("./app/views/admin/ViewKhuyenMai.php");
         }
     
@@ -24,8 +26,6 @@
     
         }
         public function index(){
-            //Lấy data từ model
-            $this->listKM=$this->khuyenmaiModel->getAllData();
             return $this->view($this->listKM,0);
         }
 
@@ -38,22 +38,17 @@
                 $phantramGG=$_POST['percentageReduction'];
                 $dieukien=$_POST['costCondition'];
                 if($this->khuyenmaiModel->InsertData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien)){
-                    echo "<script> alert('Thêm mới thành công.')</script>";
-                    // header('location:index.php?controller=khuyenmai&action=index');
-                    $this->index();
-                }
-                else{
-                    echo "<script> alert('Thêm thất bại.')</script>";
+                    //header('location:index.php?controller=khuyenmai&action=index');
+                    echo "<script>alert('Thêm mới thành công');</script>";
+                    echo '<meta http-equiv="refresh" content="0;URL=\'index.php?controller=khuyenmai&action=index\'">'; // Chuyển hướng sau 0 giây
                 }
             }   
         }
         public function edit(){
             if(isset($_GET['id'])){
-                $id=$_GET['id'];
-                $dataID=$this->khuyenmaiModel->getDataID($id);   
+                $this->id=$_GET['id'];
+                $dataID=$this->khuyenmaiModel->getDataID($this->id);   
             }
-            // require_once('./app/views/admin/ViewKhuyenMai.php');
-            $this->listKM=$this->khuyenmaiModel->getAllData();
             $this->view($this->listKM,$dataID);
         }
         public function save(){
@@ -65,26 +60,41 @@
                 $ngayketthuc=$_POST['dayEnd'];
                 $phantramGG=$_POST['percentageReduction'];
                 $dieukien=$_POST['costCondition'];
+                $i=0;
+                foreach($this->listKM as $value){
+                    if($value['MaKM']==$this->id){
+                        $this->listKM[$i]['MaKM']=$makm;
+                        $this->listKM[$i]['TenCT']=$tenct;
+                        $this->listKM[$i]['NgayBDKM']=$ngaybatdau;
+                        $this->listKM[$i]['NgayKTKM']=$ngayketthuc;
+                        $this->listKM[$i]['PhanTramGG']=$phantramGG;
+                        $this->listKM[$i]['dieukien']=$dieukien;
+                    }
+                    $i++;
+                }
                 if($this->khuyenmaiModel->UpdateData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien)){
-                    echo '<script>changeURL()</script>';
-                    $this->index();
+                    echo "<script>alert('Sửa thành công');</script>";
+                    echo '<meta http-equiv="refresh" content="0;URL=\'index.php?controller=khuyenmai&action=index\'">'; // Chuyển hướng sau 0 giây
                 }
             }
         }
         public function delete(){
-            // if(isset($_GET['id'])){
-            //     $id=$_GET['id'];
-            //     $tblTable="thanhvien";
-
-            //     if($db->Delete($id,$tblTable)){
-            //         header('location:index.php?controller=thanh-vien&action=list');
-            //     }
-            // }
-            // else{
-            //     header('location:index.php?controller=thanh-vien&action=list');
-            // }
-            // //require_once('Views/thanhvien/delete_user.php');
-            // break;
+            if(isset($_GET['id'])){
+                $this->id=$_GET['id'];
+                $i=0;
+                if($this->khuyenmaiModel->Delete($this->id)){
+                    echo '<script>changeURL()</script>';
+                    foreach($this->listKM as $value){
+                        if($value['MaKM']==$this->id){
+                            unset($this->listKM[$i]);
+                            break;
+                        }
+                        $i++;
+                    }
+                    echo "<script>alert('Xóa thành công');</script>";
+                    echo '<meta http-equiv="refresh" content="0;URL=\'index.php?controller=khuyenmai&action=index\'">'; // Chuyển hướng sau 0 giây
+                }
+            }
         }
         public function search(){
             $key="";
