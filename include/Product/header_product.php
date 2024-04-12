@@ -10,7 +10,6 @@
 
     <link rel="stylesheet" href="public/style.css" />
     <link rel="stylesheet" href="public/components/product/product.css" />
-
     <link rel="stylesheet" href="public/components/menu/menu.css" />
     <link rel="stylesheet" href="public/components/login/login.css" />
     <link rel="stylesheet" href="public/components/popup/popUp.css" />

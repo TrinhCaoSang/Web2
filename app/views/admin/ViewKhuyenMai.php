@@ -1,3 +1,15 @@
+<head>
+    <title>Trek - Quản lý cửa hàng</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/Web2/public/style.css">
+    <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
+    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
+    <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
+    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
+<head>
 <div class="container">
 <div class="admin__taskbar">
         <div class="admin__taskbar--header">
