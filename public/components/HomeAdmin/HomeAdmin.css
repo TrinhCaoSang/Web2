@@ -438,15 +438,16 @@
     top: 0;
     bottom: 0;
   }
-  /*.discount__content--top{
+  .discount__content--top{
+    background-color: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
-    height: 10%;
-    margin-top: 80px;
-  } */
+
+  }
   .discount__title{
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
@@ -462,6 +463,8 @@
     width: 100%;
     height: 10%;
     /*border: 1px solid red; */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
   }
   
   .discount__form{
@@ -469,6 +472,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
   }
   
   .form-group {
@@ -492,6 +496,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    padding-bottom: 10px;
     margin-top: 10px;
   }
   
@@ -676,35 +681,18 @@
   width: 100%;
 }
 
-.form-group {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.form-group label {
-  margin-right: 10px;
-  font-weight: bold;
-  width: 150px;
-}
-
-.form-group input {
-  padding: 5px;
-  width: 250px;
-}
-
 .form-group select {
   padding: 5px;
   width: 250px;
 }
 
-.button__container {
+.employee__btn {
   display: flex;
   justify-content: center;
   text-align: center;
   margin-top: 10px;
   padding-bottom: 10px;
-  width: 45%;
+  width: 35%;
   /* margin-left: 35%; */
   flex-wrap: wrap;
 }
@@ -726,53 +714,6 @@
   font-size: 16px; 
   margin: 5px;
   text-align: center;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-
-.text__align--left {
-  text-align: left;
-}
-
-.table--top {
-  background-color: #333;
-  color:white;
-}
-.mainAuthority{
-  display: none;
-}
-.closeButton{
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
-  align-items: center;
-  margin-left: 130px;
-  color: red;
-  border: 2px;
-}
-.closeButton:hover {
-  border-color: rgba(0, 0, 0, 0.6); /* Khi hover, viền màu đen tối */
-}
-.closeButton:active {
-  filter: brightness(70%); /* Giảm độ sáng xuống 80% khi nút được click */
 }
 
 /* End Employee */
@@ -873,6 +814,8 @@ tr:hover {
   width: 100%;
   height: auto;
   /*border: 1px solid red; */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .bill__form{
@@ -1109,14 +1052,52 @@ tr:hover {
 /* End customer */
 
 /*Authority*/
-.mainAuthority{
-  position: absolute;
+
+.mainAuthority {
+  background-color: #fefefe;
+  margin: 6% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.modal--authority {
+  display: none;
+  position: fixed;
+  z-index: 11;
+  left: 0;
   top: 0;
-  background-color: white;
-  /* border: 1px solid; */
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.mainAuthority__title{
+body.modal-open {
+  overflow: hidden; /* Ẩn thanh cuộn của trang dưới */
+}
+.close_authority {
+  color: #fa1f1f;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0px 10px;
+}
+.close_authority:hover,
+.close_authority:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mainAuthority__title{  
+  position: relative;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
   font-weight: bold;
@@ -1144,6 +1125,15 @@ tr:hover {
   justify-content: center;
 }
 
+.style--authority label{
+  margin-bottom: 10px;
+  width: 180px;
+}
+
+.style--authority select{
+  margin-bottom: 10px;
+}
+
 .authority__list{
   margin-top: 10px;
 }
@@ -1157,7 +1147,7 @@ tr:hover {
 }
 
 .authority__form--add, 
-.authority__form--change, 
+.authority__form--save, 
 .authority__form--remove{
   width: 70px;
   height: 30px;

@@ -19,18 +19,25 @@ function close_receipt(){
   document.getElementById("model--bill").style.display = "flex";
  }
 
-//Hiện form phân quyền
-const authorityBtn = document.querySelector('.employee__form--authority');
-const mainAuthority = document.querySelector('.mainAuthority');
-authorityBtn.addEventListener('click', function() {
-    mainAuthority.style.display = 'block'; // Hiển thị bảng phân quyền khi nút được click
-});
+//Hiện modal quản lý phân quyền
 
-//Ẩn bảng phân quyền
-const closeButton = document.querySelector('.closeButton');
-closeButton.addEventListener('click', function() {
-    mainAuthority.style.display = 'none'; // Ẩn bảng phân quyền khi nút được click
-});
+var modalAuthority = document.getElementById("modal--authority");
+var authorityBtn = document.getElementById("authority--Btn");
+var closeAuhtorityBtn = document.getElementsByClassName("close_authority")[0];
+
+authorityBtn.onclick = function() {
+  modalAuthority.style.display = "block";
+  document.body.classList.add("modal-open"); // Thêm lớp modal-open để ẩn thanh cuộn của trang dưới
+}
+closeAuhtorityBtn.onclick = function() {
+  modalAuthority.style.display = "none";
+  document.body.classList.remove("modal-open"); // Xóa lớp modal-open để ẩn thanh cuộn của trang dưới
+}
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
 
 
 

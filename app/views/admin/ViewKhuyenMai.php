@@ -206,9 +206,9 @@
                           <th class="text__align--left"><?php echo $value['tinhtrang'];?></th>
                           <th>
                             <div class="button__container">
-                              <a href="index.php?controller=khuyenmai&action=edit&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Sửa</button></a>
+                              <a onclick="return confirm('Bạn có chắc chắn muốn sửa không?')" href="index.php?controller=khuyenmai&action=edit&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Sửa</button></a>
                               <!-- <button class="discount__form--add">Sửa</button> -->
-                              <button class="discount__form--add">Xóa</button>
+                              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="index.php?controller=khuyenmai&action=delete&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Xóa</button></a>
                             </div>
                           </th>
                           </tr>
