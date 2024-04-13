@@ -1,5 +1,10 @@
 <head>
     <title>Trek - Quản lý cửa hàng</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/Web2/public/style.css">
     <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
@@ -201,9 +206,9 @@
                           <th class="text__align--left"><?php echo $value['tinhtrang'];?></th>
                           <th>
                             <div class="button__container">
-                              <a href="index.php?controller=khuyenmai&action=edit&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Sửa</button></a>
+                              <a onclick="return confirm('Bạn có chắc chắn muốn sửa không?')" href="index.php?controller=khuyenmai&action=edit&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Sửa</button></a>
                               <!-- <button class="discount__form--add">Sửa</button> -->
-                              <button class="discount__form--add">Xóa</button>
+                              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="index.php?controller=khuyenmai&action=delete&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Xóa</button></a>
                             </div>
                           </th>
                           </tr>

@@ -82,5 +82,20 @@
             }
             return $num;
         }
+        //Pagination
+        public function pagination($start,$limit){
+            $sql="SELECT * FROM mathang ORDER BY MaHang DESC LIMIT $start,$limit";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            $this->createJson();
+            return $data;
+        }
     }
 ?>

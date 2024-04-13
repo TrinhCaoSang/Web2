@@ -142,152 +142,129 @@
                 </div>
             </form>
         </div>
-        <div style="background-color:none;width: 80%;float: left;margin-left: 30px;margin-top: 10%;height: 90%;">
-        <?php
-                  $count = count($data);
-                  for ($i = 0; $i < $count-1; $i++){
-                  
-         ?> 
-        <div id="content">
-              <div class="divproduct">
-                <div id="img-product">
-                  <i class="fa-solid fa-cart-plus"></i>
-                  <?php 
-                  echo '<img src="data:image/jpeg;base64,'.base64_encode($data[$i]['Hinhanh']).'">';
-                  ?>
-                  <div id="datmua">
-                    <h3>Mua ngay</h3>
+        <div id="container_content">
+        </div>
+        <div id="product-detail_model">
+        <!-- <div class="overlay-container">
+          <div class="overlay-container-top">
+              <div class="overlay-container-title">
+                  <div class="overlay-prev" id="close-toggler">
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                      Trở về
                   </div>
-                </div>
-                <div id="mota-product">
-                  <p><?php echo $data[$i]['TenHang'] ?> <br>
-                    Price: <?php echo $data[$i]['DonGia'] ?></p>
-                </div>
               </div>
-              <div class="divproduct">
-                <div id="img-product">
-                  <i class="fa-solid fa-cart-plus"></i>
-                  <?php 
-                  echo '<img src="data:image/jpeg;base64,'.base64_encode($data[++$i]['Hinhanh']).'">';
-                  ?>
-                  <div id="datmua">
-                    <h3>Mua ngay</h3>
+              <div class="overlay-container-btn">
+                  
+                  <a href="../cart/cart.html">
+
+                      <i class="fa-solid fa-cart-shopping"></i>
+                  </a>
+              </div>
+          </div>
+          <div class="overlay-body">
+              <div class="overlay-body-left">
+                  <img src="" alt="" class="#overlay-img" id="imgdetail">
+              </div>
+
+              <div class="overlay-body-right">
+                  <h1 class="name" id="name"></h1>
+                  <p>
+                      This is the best selling series is impressive on rapid urban commutes or taking a detour on a
+                      rural
+                      lane:
+                      the powerful Upstreets5's wide range of available configurations enable riders to create their
+                      their
+                      own Trek bike adventures
+                  </p>
+                  <span id="overlay-price">Price:</span>
+                  <div class="quantityBtn">
+                      <h3>Số lượng</h3>
+                      <button id="decrement">-</button>
+                      <label id="quantity">1</label>
+                      <button id="increment">+</button>
                   </div>
-                </div>
-                <div id="mota-product">
-                  <p><?php echo $data[++$i]['TenHang'] ?> <br>
-                    Price: <?php echo $data[++$i]['DonGia'] ?></p>
-                </div>
-              </div>     
-            <div style="clear:both"></div>
-            </div>
-               <?php 
-                  } 
-               ?>
-         </div> 
+                  <div class="overlay-right-btn">
+                      <button id="overlay-add-cart">
+                          <i class="fa-solid fa-cart-plus"></i>
+                          <p>
+                              Thêm vào giỏ hàng
+                          </p>
+                      </button>
+                  </div>
+              </div>
+          </div> 
+      </div>-->
+</div>
         </div>
-      </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+  
+          function show_detail(product) {
+            $.ajax({
+              url : "index.php?controller=product&action=detail",
+              method: "POST",
+              data: {
+                product: product
+              },
+              success: function(data){
+                $("#product-detail_model").html(data);
+                document.getElementById("product-detail_model").style.display = "flex";
+              },
+              error: function(xhr,status,error){
+                console.error("Error: " , error);
+              }
+            });
+          }
+          $(document).on("click",".divproduct", function(){
+            var product = $(this).attr("id");
+            show_detail(product);
+          })
+          function fetch_data(page) {
+            $.ajax({
+              url : "index.php?controller=product&action=page",
+              method: "POST",
+              data: {
+                page: page
+              },
+              success: function(data){
+                
+                $("#container_content").html(data);
+              },
+              error: function(xhr,status,error){
+                console.error("Error: " , error);
+              }
+            });
+          }
+          fetch_data();
+          
+          $(document).on("click",".page-item", function(){
+            var page = $(this).attr("id");
+            fetch_data(page);
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          })
+          // $(document).on("click","#img-product", function(){
+          //   document.getElementById("product-detail_model").style.display = "flex";
+          // })
+          $(document).on("click","#close-toggler", function(){
+            document.getElementById("product-detail_model").style.display = "none";
+          })
 
-    <!-- <div style="clear:both"></div> -->
-      <div class="pagination">
-        <a href=""id="active">&lt;&lt;</a>
-        <a href="" >1</a>
-        <a href="" >2</a>
-        <a href="" >3</a>
-        <a href="" >4</a>
-        <a href="" id="active">&gt;&gt;</a>
-      </div>
+          function quantitydown() {
+            if(document.getElementById('quantity').value > 1)
+            {
+                document.getElementById('quantity').value--;
+            }
+          }
 
-
-    <div class="section--4-container">
-        <div class="section section--4 grid wide">
-          <h1>Thể thao là cuộc sống, chúng tôi sẽ nâng cao cuộc sống của bạn bằng xe đạp!</h1>
-          <button>ĐĂNG KÝ MUA NGAY HÔM NAY!</button>
-        </div>
-      </div><div class="footer-container">
-        <div class="footer--section grid wide">
-          <div class="row">
-            <div class="footer-item footer-item--logo col c-12 m-12 l-2">TREK</div>
-  
-            <div class="footer-item footer-item--produce col c-6 m-6 l-2">
-              <h1>Sản phẩm</h1>
-              <ul>
-                <li>
-                  <a href="">Mountain</a>
-                </li>
-                <li>
-                  <a href="">Road</a>
-                </li>
-                <li>
-                  <a href="">Touring</a>
-                </li>
-                <li>
-                  <a href="">Electric</a>
-                </li>
-                <li>
-                  <a href="">Kids</a>
-                </li>
-              </ul>
-            </div>
-  
-            <div class="footer-item footer-item--company col c-6 m-6 l-2">
-              <h1>Về chúng tôi</h1>
-              <ul>
-                <li>
-                  <a href="">Lịch sử hình thành</a>
-                </li>
-                <li>
-                  <a href="">Về TREK</a>
-                </li>
-              </ul>
-            </div>
-  
-            <div class="footer-item footer-item--help col c-6 m-6 l-2">
-              <h1>Hỗ trợ</h1>
-              <ul>
-                <li>
-                  <a href="">FAQs</a>
-                </li>
-                <li>
-                  <a href="">Thông tin bảo mật</a>
-                </li>
-                <li>
-                  <a href="">Chính sách chung</a>
-                </li>
-                <li>
-                  <a href="">Tra cứu đơn hàng</a>
-                </li>
-              </ul>
-            </div>
-  
-            <div class="footer-item footer-contact col c-6 m-6 l-2">
-              <h1>Liên hệ chúng tôi</h1>
-              <ul>
-                <li>Địa chỉ: 801 West Madison Street, Waterloo WI 53594</li>
-                <li>Hotline: 1-800-585-8735</li>
-              </ul>
-            </div>
-          </div>
-  
-          <div class="footer-socials">
-            <a href="">
-              <i class="fa-brands fa-square-facebook"></i>
-            </a>
-            <a href="">
-              <i class="fa-brands fa-square-instagram"></i>
-            </a>
-            <a href="">
-              <i class="fa-brands fa-square-youtube"></i>
-            </a>
-            <a href="">
-              <i class="fa-brands fa-square-x-twitter"></i>
-            </a>
-          </div>
-  
-          <div class="footer-copyright">
-            <p>Copyright © 2023 TREK. All rights reserved.</p>
-          </div>
-        </div>
-      </div>
+          function quantityup() {
+                  document.getElementById('quantity').value++;
+          }
+        
+        
+        </script>
+    
 </body>
 </html>

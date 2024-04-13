@@ -86,8 +86,8 @@
             return $this->execute($sql);
         }
         //Phương thức xóa
-        public function Delete($id,$table){
-            $sql="DELETE FROM $table WHERE id='$id'";
+        public function Delete($id){
+            $sql="DELETE FROM khuyenmai WHERE MaKM='$id'";
             return $this->execute($sql);
         }
         //Phương thức tìm kiếm dữ liệu theo từ khóa

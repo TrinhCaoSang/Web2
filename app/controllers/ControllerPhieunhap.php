@@ -36,6 +36,7 @@
       $list_ncc = $this->coupon->getAllNcc();
       $list_loaisp = $this->coupon->getAllLoaisp();
 
+<<<<<<< HEAD
       return $this->view([
           'list_coupon' => $this->list_coupon,
           'list_ncc'=> $list_ncc,
@@ -161,11 +162,42 @@ public function save(){
   }
 }
 public function deletePN(){
+=======
+ 
+   public function save(){
+    if(isset($_POST['save'])){
+        //Lấy dữ liệu từ View
+        $Mahang=$_POST['productId'];
+        $Maloai=$_POST['type_Id'];
+        $Hinhanh=$_POST['product_imgs'];
+        $Tenhang=$_POST['productName'];
+        $Dongia=$_POST['product_price'];
+        $Soluong=$_POST['quantity'];
+        if($this->coupon->UpdateData($Mahang,$Maloai,$Hinhanh,$Tenhang,$Dongia,$Soluong)){
+            echo '<script>changeURL()</script>';
+            $this->index();
+        }
+    }
+}
+public function delete(){
+>>>>>>> b415c7d608ddd57a573520d4594d359b7b5b4dbb
   $id = $_GET['id'];
   $this->coupon->deletePN($id);
   header('Location: index.php?controller=phieunhap');
 }
 
+<<<<<<< HEAD
+=======
+public function add_product(){
+  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addProduct'])){
+       $MaHang = $_POST['MaHang'];
+       $MaLoai = $_POST['MaLoai'];
+       
+//Xử lý tải lên hình ảnh
+       $target_dir = "public/database/images/productImgs/";
+       $target_file = $target_dir . basename($_FILES["Hinhanh"]["name"]);
+       move_uploaded_file($_FILES["Hinhanh"]["tmp_name"], $target_file);
+>>>>>>> b415c7d608ddd57a573520d4594d359b7b5b4dbb
 
 public function getDataForTable(){
   $data = $this->coupon->getDataForTable();
