@@ -121,10 +121,63 @@
                   <input type="text" id="form__receipt" name="receipt" >
                 </div>
                 <div id="maPN-error" class="error-message"></div>
+                <div class="form-group">
+                  <label for="form__receipt--NCC">Mã nhà cung cấp:</label>
+                  <select id="form__receipt--MANCC" name="receipt--NCC">
+                         <?php foreach($list_ncc as $ncc): ?>
+                         <option value="<?= $ncc['MaNCC'] ?>"><?= $ncc['MaNCC'] ?></option>
+                         <?php endforeach; ?>
+                 </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="form__receipt--TENNCC">Tên nhà cung cấp:</label>
+                  <input type="text" id="form__receipt--TENNCC" name="receipt--TENCC"  disabled>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
+                  <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" onchange="updateMaSPByLoaiSP(this.value)">
+                    <?php foreach($list_loaisp as $loaisp): ?>
+                    <option value="<?= $loaisp['MaLoai']?>" > <?= $loaisp['TenLoai'] ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="form__receipt-MaSP">Mã sản phẩm:</label>
+                  <select id="form__receipt--MaSP" name="receipt--MASP">
+                  <?php
+                        $list_maHang = $this->coupon->getAllMathang(); 
+                        foreach($list_maHang as $maHang) {
+                        echo "<option value='{$maHang['MaHang']}'>{$maHang['MaHang']}</option>";
+                  }
+                  ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="form__receipt--TenSP">Tên sản phẩm:</label>
+                  <input type="text" id="form__receipt--TenSP" name="receipt--LoaiSP" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="form__receipt--Gia">Giá:</label>
+                  <input type="text" id="form__receipt--Gia" name="receipt--gia" disabled>
+                </div>
+                <div class="form-group">
+                   <label for="form__receipt--soluong">Số lượng:</label>
+                   <input type="number" id="form__receipt--soluong" name="receipt--soluong" oninput="calculateTotal()">
+                  </div>
+                  <div id="soLuong-error" class="error-message-soLuong"></div>
+                <div class="form-group">
+                  <label for="form__receipt--tong">Tổng:</label>
+                  <input type="text" id="form__receipt--tong" name="receipt--tong" disabled value="">
+                </div>
+                
               </form>
               <div class="button__container--receipt">
                 <button type="button" class="customer__form--add1" id="add-btn1">Thêm</button>
-                <button type="button" class="customer__form--add2" id="add-btn2">Thêm chi tiết</button>
+                <button type="button" class="customer__form--add2" id="add-btn2">Xem chi tiết</button>
               </div>
               
             </div>
@@ -133,10 +186,10 @@
               <tr>
                 <th class="table--top">STT</th>
                 <th class="table--top">Mã phiếu nhập</th>
-                
+                <!-- <th class="table--top">Mã nhà cung cấp</th> -->
                 <th class="table--top">Tổng giá trị</th>
                 <th class="table--top">Ngày nhập</th>
-                
+                <th class="table--top">Sửa</th>
                 <th class="table--top">Xóa</th>
               </tr>
               </thead>
@@ -160,7 +213,9 @@
                 <td class="text__align--left"><?php echo $row['ThanhTienPN'] . '.VND';?></td>
                 <td class="text__align--left"><?php echo $row['NgayNhapFormatted']; ?></td>
                 
-                
+                <td>
+                      <a href="index.php?controller=phieunhap&action=editPN&id=<?php echo $row['MaPN'];?>"><button class="btn btn-edit">Sửa</button></a>
+                </td>
 
                 <td>
                   <a onclick="return Del('<?php echo $row['MaPN']; ?>')" href="index.php?controller=phieunhap&action=deletePN&id=<?php echo $row['MaPN'];?>"><button class="btn btn-delete">Xóa</button></a>
@@ -190,8 +245,14 @@
   document.querySelector('.customer__form--add1').addEventListener('click', function(event) {
     event.preventDefault(); 
     var maPN = document.getElementById('form__receipt').value;
-    
+    var maNCC = document.getElementById('form__receipt--MANCC').value;
+    var maHang = document.getElementById('form__receipt--MaSP').value;
+    var TenHang =document.getElementById('form__receipt--TenSP').value;
+    var donGiaPN = document.getElementById('form__receipt--Gia').value;
+    var tenNCC =document.getElementById('form__receipt--TENNCC').value;
     var ngayNhap = getCurrentDate(); 
+    var soLuong = document.getElementById('form__receipt--soluong').value;
+    var thanhTien = document.getElementById('form__receipt--tong').value;
 
     var maPNPattern = /^[PN]{2}\d{2}$/; // Mẫu yêu cầu: 2 chữ cái và sau đó là 2 số
 
@@ -207,6 +268,22 @@
         
         return;
     }
+    if (soLuong.trim() === '') {
+        document.getElementById('soLuong-error').textContent = '*Bạn chưa nhập số lượng';
+        document.getElementById('soLuong-error').style.display = 'block';
+        return;
+    }
+    if (parseInt(soLuong) === 0) {
+        document.getElementById('soLuong-error').textContent = '*Số lượng phải lớn hơn 0 !';
+        document.getElementById('soLuong-error').style.display = 'block';
+        return;
+    }
+    if (parseInt(soLuong) < 0) {
+        document.getElementById('soLuong-error').textContent = '*Số lượng không được âm !';
+        document.getElementById('soLuong-error').style.display = 'block';
+        return;
+    
+    }
     alert('Đã thêm phiếu nhập mới thành công!');
     setTimeout(function(){
         window.location.reload();
@@ -216,7 +293,7 @@
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'receipt=' + maPN + '&ngayNhap=' + ngayNhap  
+        body: 'receipt=' + maPN + '&receipt--NCC=' + maNCC +'&receipt--TENCC='+ tenNCC +'&receipt--MASP=' + maHang +'&receipt--LoaiSP='+ TenHang +'&ngayNhap=' + ngayNhap + '&receipt--gia=' + donGiaPN + '&receipt--soluong=' + soLuong + '&receipt--tong=' + thanhTien
     })
     .then(response => response.json())
     .then(data => {        
@@ -231,6 +308,26 @@
         console.error('Error:', error);
     });
 
+});
+
+document.getElementById('form__receipt--soluong').addEventListener('input', function() {
+    var soLuongValue = this.value;
+    if (soLuongValue.trim() !== '') {
+        if (parseInt(soLuongValue) === 0) { // Kiểm tra nếu số lượng là 0 hoặc âm
+            document.getElementById('soLuong-error').textContent = '*Số lượng phải lớn hơn 0!';
+            document.getElementById('soLuong-error').style.display = 'block';
+        } 
+        else if(parseInt(soLuongValue) < 0){
+            document.getElementById('soLuong-error').textContent = '*Số lượng không được là số âm!';
+            document.getElementById('soLuong-error').style.display = 'block';
+        }
+        else {
+            document.getElementById('soLuong-error').style.display = 'none';
+        }
+    } else {
+        document.getElementById('soLuong-error').textContent = '*Bạn chưa nhập số lượng';
+        document.getElementById('soLuong-error').style.display = 'block';
+    }
 });
 
 document.getElementById('form__receipt').addEventListener('input', function() {
@@ -257,14 +354,6 @@ document.getElementById('form__receipt').addEventListener('input', function() {
           var newUrl = "http://localhost/Web2/index.php?controller=phieunhap&action=save"; // Đường dẫn URL mới
           window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
         }
-function getCurrentDate() {
-    var currentDate = new Date();
-    var day = currentDate.getDate();
-    var month = currentDate.getMonth() + 1;
-    var year = currentDate.getFullYear();
-    var formattedDate = year + '-' + month + '-' + day;
-    return formattedDate;
-}
 
 
 </script>

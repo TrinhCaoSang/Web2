@@ -52,13 +52,9 @@ class ModelSanpham {
     public function getAllData(){
         $sql="SELECT * FROM mathang";
         $this->execute($sql);
-        if($this->num_rows()==0){
-            $data=0;
-        }
-        else{
-            while($datas=$this->getData()){
-                $data[]=$datas;
-            }
+        $data = [];
+        while ($datas = $this->getData()){
+            $data[]=$datas;
         }
         return $data;
     }
@@ -73,14 +69,6 @@ class ModelSanpham {
         }
         return $num;
     }
- //Phương thức thêm dữ liệu
-//     public function InsertData($mahang,$maloai,$hinhanh,$tenhang,$dongia,$soluong){
-//              $sql="INSERT INTO mathang(MaHang,MaLoai, Hinhanh, TenHang, DonGia, SoLuong) 
-//              VALUES('$mahang','$maloai','$hinhanh','$tenhang','$dongia','$soluong')";
-//              return $this->execute($sql);
-// }
-
- //Phương thức sửa dữ liệu
  public function UpdateData($mahang,$maloai,$hinhanh,$tenhang,$dongia,$soluong){
     $sql="UPDATE mathang SET MaHang='$mahang',MaLoai='$maloai',Hinhanh='$hinhanh',TenHang='$tenhang',
     DonGia=$dongia,SoLuong=$soluong

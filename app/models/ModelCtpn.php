@@ -1,5 +1,5 @@
 <?php 
-   class ModelPhieunhap{
+   class ModelCtpn{
     private $hostname='localhost';
     private $username='root';
     private $pass='';
@@ -37,7 +37,7 @@
         return $data;
     }
     public function getDataID($id){
-        $sql="SELECT * FROM phieunhap WHERE MaPN='$id'";
+        $sql="SELECT * FROM chitietphieunhap WHERE MaPN='$id'";
         $this->execute($sql);
         if($this->num_rows()!=0){
             $data=mysqli_fetch_array($this->result);
@@ -48,7 +48,7 @@
     }
 
     public function getAllData(){
-        $sql="SELECT * FROM phieunhap";
+        $sql="SELECT * FROM chitietphieunhap";
         $this->execute($sql);
         $data = [];
         while ($datas = $this->getData()){
@@ -66,11 +66,7 @@
         return $num;
     }
 
-    public function UpdateData($MaPN, $MaNCC, $NgayNhap, $ThanhTien){
-        $sql="UPDATE phieunhap SET MaPN='$MaPN',MaNCC='$MaNCC',NgayNhap='$NgayNhap',ThanhTien=$ThanhTien
-        WHERE MaPN='$MaPN";
-        return $this->execute($sql);
-    }
+    
 
      public function getAllNCC(){
         $sql = "SELECT * FROM nhacungcap";
@@ -81,6 +77,17 @@
         }
         return $data;
      }
+     public function getMaPN(){
+        $sql = "SELECT * FROM phieunhap";
+        $this->execute($sql);
+        $data = [];
+        while ($row = $this->getData()){
+              $data[]=$row;
+        }
+        return $data;
+        
+     }
+   
      public function getAllLoaiSP(){
         $sql = "SELECT * FROM loaihang";
         $this->execute($sql);
@@ -91,28 +98,43 @@
         return $data;
      }
 
-     public function getNCCName($MaNCC){
+    //  public function getNCCName($MaNCC){
+    //     $sql = "SELECT TenNCC FROM nhacungcap WHERE MaNCC='$MaNCC'";
+    //     $this->execute($sql);
+    //     if($this->num_rows() != 0){
+    //         $data = mysqli_fetch_array($this->result);
+    //     } 
+    //     else {
+    //         $data = 0;
+    //     }
+    //     return $data;
+    // }
+    public function getNCCName($MaNCC){
         $sql = "SELECT TenNCC FROM nhacungcap WHERE MaNCC='$MaNCC'";
         $this->execute($sql);
-        if($this->num_rows() != 0){
-            $data = mysqli_fetch_array($this->result);
-        } 
-        else {
-            $data = 0;
+        if($this->result){
+            if($this->num_rows() != 0){
+                $data = mysqli_fetch_array($this->result);
+            } 
+            else {
+                $data = 0;
+            }
         }
         return $data;
     }
     public function getTenSP($MaHang){
-         $sql = "SELECT TenHang FROM mathang WHERE MaHang ='$MaHang'";
-         $this->execute($sql);
-         if($this->num_rows() != 0){
-            $data = mysqli_fetch_array($this->result);
-        } 
-        else {
-            $data = 0;
+        $sql = "SELECT TenHang FROM mathang WHERE MaHang ='$MaHang'";
+        $this->execute($sql);
+        if($this->result){
+            if($this->num_rows() != 0){
+               $data = mysqli_fetch_array($this->result);
+           } 
+           else {
+               $data = 0;
+           }
         }
         return $data;
-    }
+   }
     public function getGiaSP($MaHang){
         $sql = "SELECT DonGia FROM mathang WHERE MaHang ='$MaHang'";
         $this->execute($sql);
@@ -133,6 +155,16 @@
         }
         return $data;
     }
+    
+    // public function getListMaPN() {
+    //     $sql = "SELECT MaPN FROM phieunhap";
+    //     $this->execute($sql);
+    //     $data = [];
+    //     while ($row = $this->getData()){
+    //         $data[] = $row['MaPN'];
+    //     }
+    //     return $data;
+    // }
     
     
     public function getMathangInfo($MaHang){
@@ -165,7 +197,7 @@
         return $data;
     }    
     public function addPhieuNhap($maPN, $NgayNhap, $thanhTien) {
-        $sql = "INSERT INTO phieunhap(MaPN,NgayNhap,ThanhTienPN) 
+        $sql = "INSERT INTO phieunhap(MaPN,MaNCC,NgayNhap,ThanhTienPN) 
                 VALUES ('$maPN', '$NgayNhap', '$thanhTien')";
         $result_phieunhap = $this->execute($sql);
         return $result_phieunhap;
@@ -177,6 +209,7 @@
         $result_ctpn = $this->execute($sql);
         return $result_ctpn;
     }
+    
     
     
 
@@ -221,25 +254,13 @@
     }
 
     
-    public function deletePN($id){
-        // Xóa tất cả các bản ghi liên quan từ bảng chitietphieunhap
-        $sqlDeleteChitiet = "DELETE FROM chitietphieunhap WHERE MaPN = '$id'";
+    public function deleteCTPN($MaPN, $MaHang){
+        // Xóa bản ghi từ bảng chitietphieunhap dựa trên MaPN và MaHang
+        $sqlDeleteChitiet = "DELETE FROM chitietphieunhap WHERE MaPN = '$MaPN' AND MaHang = '$MaHang' LIMIT 1";
         $resultDeleteChitiet = $this->execute($sqlDeleteChitiet);
-    
-       
-        if ($resultDeleteChitiet) {
-            $sqlDeletePhieunhap = "DELETE FROM phieunhap WHERE MaPN = '$id'";
-            $resultDeletePhieunhap = $this->execute($sqlDeletePhieunhap);
-            
-            if ($resultDeletePhieunhap) {
-                return true; 
-            } else {
-                return false; 
-            }
-        } else {
-            return false; 
-        }
+        return $resultDeleteChitiet;
     }
+    
     public function getDataByMaPN($id) {
         $sql = "SELECT MaPN, MaNCC, ThanhTienPN FROM phieunhap WHERE MaPN = '$id'";
         $this->execute($sql);
@@ -247,12 +268,18 @@
         return $data;
     }
     
-    public function UpdateDataPN($MaPN,$MaNCC,$NgayNhap,$ThanhTienPN){
-        $sql="UPDATE phieunhap SET MaPN='$MaPN',MaNCC='$MaNCC',NgayNhap='$NgayNhap',ThanhTienPN='$ThanhTienPN'
+    public function UpdateData($MaPN, $MaNCC,$TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN){
+        $sql="UPDATE chitietphieunhap SET MaPN='$MaPN',MaNCC='$MaNCC',TenNCC='$TenNCC',MaHang='$MaHang',TenHang='$TenHang',DonGiaPN='$DonGiaPN', SoLuong='$SoLuong',  ThanhTienCTPN=$ThanhTienCTPN
         WHERE MaPN='$MaPN'";
         return $this->execute($sql);
     }
-
+    
+    public function getCTPNByMaPNMaHang($MaPN, $MaHang){
+        $sql = "SELECT * FROM chitietphieunhap WHERE MaPN = '$MaPN' AND MaHang = '$MaHang'";
+        $result = $this->execute($sql);
+        $data = $this->getData();
+        return $data;
+    }
     
     
    }
