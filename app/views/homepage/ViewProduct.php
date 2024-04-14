@@ -14,10 +14,6 @@
     <link rel="stylesheet" href="/Web2/public/components/search.css">
     <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
     <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
-    <script type="module" defer src="/Web2/public/script.js"></script>
-    <script type="module" defer src="/Web2/public/components/login/login.js"></script>
-    <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
-    <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
   </head>
   <body style="margin: 0 auto;">
     <div class="header">

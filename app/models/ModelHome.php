@@ -1,5 +1,5 @@
 <?php
-    class ModelProduct{
+     class ModelHome{
         private $hostname='localhost';
         private $username='root';
         private $pass='';
@@ -26,19 +26,6 @@
             return $this->conn;
         }
 
-        // public function createJson(){
-        //     $mysqli = new mysqli($this->hostname,$this->username,$this->pass,$this->dbname);
-        //     mysqli_set_charset($this->conn,'utf8');
-        //     $sql="SELECT * FROM mathang";
-        //     $result = $mysqli->query($sql);
-        //     while($product = $result->fetch_assoc()){
-        //         $product["Hinhanh"] = base64_encode($product["Hinhanh"]);
-        //         $products[] = $product;
-        //     }
-            
-        //     $json_data = json_encode($products, JSON_PRETTY_PRINT);
-        //     file_put_contents('data.json', $json_data);
-        // }
 
         //Thực thi câu lệnh truy vấn
         public function execute($sql){
@@ -58,23 +45,9 @@
 
         
         //Phương thức lấy toàn bộ dữ liệu
-        public function getAllData(){
-            $sql="SELECT * FROM mathang";
-            $this->execute($sql);
-            if($this->num_rows()==0){
-                $data=0;
-            }
-            else{
-                while($datas=$this->getData()){
-                    $data[]=$datas;
-                }
-            }
-            // $this->createJson();
-            return $data;
-        }
-
-        public function getProductType($type){
-            $sql="SELECT * FROM mathang WHERE MaLoai = $type";
+        public function getAllData($type){
+            $sql="SELECT * FROM mathang WHERE MaLoai =$type";
+            echo $sql;
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -96,21 +69,6 @@
                 $num=0;
             }
             return $num;
-        }
-        //Pagination
-        public function pagination($start,$limit){
-            $sql="SELECT * FROM mathang ORDER BY MaHang DESC LIMIT $start,$limit";
-            $this->execute($sql);
-            if($this->num_rows()==0){
-                $data=0;
-            }
-            else{
-                while($datas=$this->getData()){
-                    $data[]=$datas;
-                }
-            }
-            // $this->createJson();
-            return $data;
         }
     }
 ?>

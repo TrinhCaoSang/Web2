@@ -4,7 +4,6 @@
         private $productModel;
         private $listProduct;
 
-
         public function __construct()
         {
             $this->loadModel('Product');
@@ -25,8 +24,16 @@
         }
         public function index(){
             //Lấy data từ model
+            
+            if(isset($_GET['type']) != 'all' && isset($_GET['type']) ){
+                $type = $_GET['type'];
+                echo $type;
+                $this->listProduct=$this->productModel->getProductType($type);
+                return;
+                // return $this->view($this->listProduct,0);
+            }
             $this->listProduct=$this->productModel->getAllData();
-            return $this->view($this->listProduct,0);
+            // return $this->view($this->listProduct,0);
         }
 
         public function detail(){
@@ -98,7 +105,7 @@
                 $count = $count -1;
                 $lastproduct = '
                 <div id="content">
-                <div onclick=showinfo_product("'.$data[$i]["MaHang"].'") class="divproduct">
+                <div id="'.$data[$count]["MaHang"].'" class="divproduct">
                     <div id="img-product">
                         <i class="fa-solid fa-cart-plus"></i>
                         <img src="data:image/jpeg;base64,'.base64_encode($data[$count]["Hinhanh"]).'">
