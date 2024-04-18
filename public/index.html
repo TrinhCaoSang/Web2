@@ -389,6 +389,7 @@
             <h1>Tạo tài khoản</h1>
   
             <form>
+              <!--<form method="post" action="">-->
               <div class="register__info--input register__info--input__full-name">
                 <label for="registerName">Tên đầy đủ</label>
                 <input type="text" name="" id="registerName" class="register__info--input-name" placeholder="Nhập tên của bạn" />
@@ -431,6 +432,29 @@
   
               <input type="submit" class="register__info--submit" value="Đăng ký" />
             </form>
+
+            <!--<div id="showerror"></div>
+          <script>
+            $(document).ready(function() {
+                $('form').submit(function(e) {
+                    e.preventDefault(); // Ngăn chặn sự kiện submit mặc định của form
+
+                    // Kiểm tra điều kiện
+                    var registerName = $("#registerName").val();
+                    var registerEmail = $("#registerEmail").val();
+                    var registerPassword = $("#registerPassword").val();
+
+                    if (registerName == "" || registerEmail == "" || registerPassword == "") {
+                        alert("Vui lòng điền đầy đủ thông tin vào các trường.");
+                        return false;
+                    } else {
+                        // Nếu các điều kiện đều đúng, có thể gửi form đi
+                        alert('Bạn đã click đăng ký');
+                        $('form').unbind('submit').submit(); // Gửi form đi
+                    }
+                });
+            });
+          </script>-->
   
             <div class="signin" style="display: none">
                 <p>Bạn đã có tài khoản?</p>
