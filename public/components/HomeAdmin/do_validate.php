@@ -1,38 +1,32 @@
-// Lấy thông tin username và email
 <?php
-$registerName = isset($_POST['registerName']) ? $_POST['registerName'] : false;
-$registerEmail = isset($_POST['registerEmail']) ? $_POST['registerEmail'] : false;
-$registerPassword = isset($_POST['registerPassword']) ? $_POST['registerPassword'] : false; 
 
-if (!$registerName && !$registerEmail &&!$registerPassword){
-    die ('{error:"bad_request"}');
-}
- 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $registerName = $_POST['registerName'];
+        $registerEmail = $_POST['registerEmail'];
+        $registerPassword = $_POST['registerPassword']; 
 
-$conn = mysqli_connect('localhost', 'localhost', 'username', 'test') or die ('{error:"bad_request"}');
- 
-$error = array(
-    'error' => 'success',
-    'registerName' => '',
-    'registerEmail' => '',
-    'registerPassword' => '',
-);
- 
-if ($registerEmail)
-{
-    $query = mysqli_query($conn, "SELECT COUNT(*) AS count FROM member WHERE username = '" . mysqli_real_escape_string($conn, $registerEmail) . "'"); 
-    if ($query){
-        $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
-        if ((int)$row['count'] > 0){
-            $error['username'] = 'Tên đăng nhập đã tồn tại';
+        // Kết nối cơ sở dữ liệu
+        $conn = mysqli_connect("localhost", "GLstarsky", "baohuy", "GLstarsky") or die ('{error:"bad_request"}');
+        $strSQL = "SELECT * FROM GLstarsky.member WHERE 1";
+
+        // Kiểm tra sự tồn tại của username
+        $query = mysqli_query($conn, "SELECT COUNT(*) AS count FROM GLstarsky.member WHERE registerEmail = '" . mysqli_real_escape_string($conn, $registerEmail) . "'");
+        if ($query) {
+            $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
+            if ((int)$row['count'] > 0) {
+                die (json_encode(['error' => 'Email đã tồn tại, vui lòng nhập email khác.']));
+            }
+        } else {
+            die ('{error:"bad_request"}');
+        }
+
+        // Tiến hành thêm dữ liệu vào cơ sở dữ liệu
+        $query = mysqli_query($conn, "INSERT INTO GLstarsky.member (registerName, registerEmail, registerPassword) VALUES ('$registerName', '$registerEmail', '$registerPassword')");
+
+        if (!$query) {
+            die (json_encode(['error' => 'Có lỗi xảy ra khi thêm dữ liệu.']));
+        } else {
+            die (json_encode(['success' => 'Đăng ký thành công.']));
         }
     }
-    else{
-        die ('{error:"bad_request"}');
-    }
-}
- 
-$query = mysqli_query($conn, "insert into member(registerName, registerEmail, registerPassword) value ('$registerName','$registerEmail','$registerPassword')");
-
-die (json_encode($error));
 ?>
