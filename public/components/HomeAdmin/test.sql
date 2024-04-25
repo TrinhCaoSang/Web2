@@ -1,7 +1,11 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-CREATE TABLE IF NOT EXISTS `member` (
+CREATE DATABASE IF NOT EXISTS `user`;
+
+USE `user`;
+
+CREATE TABLE IF NOT EXISTS `user_account` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `registerName` varchar(30) DEFAULT NULL,
     `registerEmail` varchar(255) DEFAULT NULL,
@@ -9,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `member` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
-INSERT INTO `member` (`id`, `username`, `email`) VALUES
+INSERT INTO `user_account` (`id`, `registerName`, `registerEmail`, `registerPassword`) VALUES
 (1, 'U1', 'thehalfheart@gmail.com', 'thehalfheart'),
 (2, 'U2', 'freetuts.net@gmail.com', 'freetuts'),
 (3, 'U3', 'kingston@gmail.com', 'kingston'),

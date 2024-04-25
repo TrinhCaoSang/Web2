@@ -6,11 +6,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $registerPassword = $_POST['registerPassword']; 
 
         // Kết nối cơ sở dữ liệu
-        $conn = mysqli_connect("localhost", "GLstarsky", "baohuy", "GLstarsky") or die ('{error:"bad_request"}');
-        $strSQL = "SELECT * FROM GLstarsky.member WHERE 1";
+        $conn = mysqli_connect("localhost", "GLstarsky", "baohuy", "user") or die ('{error:"bad_request"}');
+        $strSQL = "SELECT * FROM user.user_account WHERE 1";
 
         // Kiểm tra sự tồn tại của username
-        $query = mysqli_query($conn, "SELECT COUNT(*) AS count FROM GLstarsky.member WHERE registerEmail = '" . mysqli_real_escape_string($conn, $registerEmail) . "'");
+        $query = mysqli_query($conn, "SELECT COUNT(*) AS count FROM user.user_account WHERE registerEmail = '" . mysqli_real_escape_string($conn, $registerEmail) . "'");
         if ($query) {
             $row = mysqli_fetch_array($query, MYSQLI_ASSOC);
             if ((int)$row['count'] > 0) {
@@ -19,9 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             die ('{error:"bad_request"}');
         }
-
+        
         // Tiến hành thêm dữ liệu vào cơ sở dữ liệu
-        $query = mysqli_query($conn, "INSERT INTO GLstarsky.member (registerName, registerEmail, registerPassword) VALUES ('$registerName', '$registerEmail', '$registerPassword')");
+        $query = mysqli_query($conn, "INSERT INTO user.user_account(registerName, registerEmail, registerPassword) VALUES ('$registerName', '$registerEmail', '$registerPassword')");
 
         if (!$query) {
             die (json_encode(['error' => 'Có lỗi xảy ra khi thêm dữ liệu.']));

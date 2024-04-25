@@ -527,6 +527,39 @@
             <p></p>
           </div>
 
+          <!-- <script>
+            $(document).ready(function() {
+                $('#loginForm').submit(function(event) {
+                    event.preventDefault();
+  
+                    $('#loginError').text('');
+  
+                    var loginEmail = $('#loginEmail').val();
+                    var loginPassword = $('#loginPassword').val();
+  
+                    $.ajax({
+                        url: 'components/HomeAdmin/process_login.php',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            loginEmail: loginEmail,
+                            loginPassword: loginPassword
+                        },
+                        success: function(result) {
+                            if (result.hasOwnProperty('error')) {
+                                $('#loginError').text(result.error); 
+                            } //else if (result.hasOwnProperty('success')) {
+                            //    window.location.href = 'dashboard.php';
+                            //}
+                        },
+                        error: function(xhr, status, error) {
+                            alert('AJAX request failed: ' + error);
+                        }
+                    });
+                });
+            });
+        </script> -->
+
           <div class="forgot__password">
             <a href="#">Bạn quên mật khẩu?</a>
           </div>
