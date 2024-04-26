@@ -14,10 +14,6 @@
     <link rel="stylesheet" href="/Web2/public/components/search.css">
     <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
     <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
-    <script type="module" defer src="/Web2/public/script.js"></script>
-    <script type="module" defer src="/Web2/public/components/login/login.js"></script>
-    <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
-    <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
   </head>
   <body>
     <!-- =========== START: HEADER =========== -->
@@ -121,8 +117,6 @@
         <video src="/Web2/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
         <video src="/Web2/public/database/images/sliderVideos/NF24 US Video Marquee_1080p.mp4" muted></video>
         <video src="/Web2/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
-        
-
         <ul class="dots">
           <li class="active"></li>
           <li></li>
@@ -219,7 +213,6 @@
       </div>
       <div class="product reverse">
         <div class="left">
-
           <div class="image"><img src="/Web2/public/database/images/productImgs/road.webp" alt=""></div>
         </div>
         <div class="right">
@@ -240,7 +233,6 @@
       </div>
       <div class="product">
         <div class="left">
-
           <div class="image"><img src="/Web2/public/database/images/productImgs/touring.webp" alt=""></div>
         </div>
         <div class="right">
@@ -262,7 +254,6 @@
       </div>
       <div class="product reverse">
         <div class="left">
-
           <div class="image"><img src="/Web2/public/database/images/productImgs/kid.webp" alt=""></div>
         </div>
         <div class="right">

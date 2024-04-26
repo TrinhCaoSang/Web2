@@ -358,7 +358,6 @@
                   <label for="form__employeePosition">Chức vụ:</label>
                   <select id="form__employeePosition" name="employeePosition">
                     <option value="" disabled selected hidden>Chọn chức vụ</option>
-                    <option value="other">Khác</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -373,39 +372,99 @@
                 <button class="employee__form--remove">Xóa</button>
                 <button class="employee__form--search">Tìm kiếm</button>
                 <button class="employee__form--issueAnAcc">Cấp tài khoản</button>
-                <button class="employee__form--authority" id="authority--Btn">Quản lý phân quyền</button>
+                <button class="employee__form--authority" id="link_authorization">Quản lý phân quyền</button>
                 <button class="employee__form--lockAcc">Khóa tài khoản</button>
               </div>
+            </div>
+            <table>
+              <tr>
+                <th class="table--top">STT</th>
+                <th class="table--top">Mã nhân viên</th>
+                <th class="table--top">Họ đệm</th>
+                <th class="table--top">Tên</th>
+                <th class="table--top">Giới tính</th>
+                <th class="table--top">Chức vụ</th>
+                <th class="table--top">Tài khoản</th>
+              </tr>
+              <tr>
+                <th>0</th>
+                <th>000</th>
+                <th class="text__align--left">Admin</th>
+                <th class="text__align--left"></th>
+                <th class="text__align--left"></th>
+                <th class="text__align--left">Admin</th>
+                <th class="text__align--left">Hiệu lực</th>
+              </tr>
+            </table>
+          </div>
 
-              <!--Phân quyền-->
-              <div id="modal--authority" class="modal--authority">
-                <div class="mainAuthority">
-                  <div class="mainAuthority__title">
-                    <h2>Quản lý phân quyền</h2>
-                    <span class="close_authority">&times;</span>
+          <!--Phân quyền-->
+          <div class="admin__content--authority__content" id="authorization">
+            <div class="authority__content--top">
+              <div class="authority__title">
+                <h2>Quản lý phân quyền</h2>
+                <div class="authority__textName">
+                  <label style="margin-right: 15px;" for="name_authority">Tên chức vụ:</label>
+                  <input type="text" id="name_authority" name="authority"
+                    style="width: 50%; height: 30px; padding: 5px;"></input>
+                </div>
+              </div>
+              <table>
+                <thead>
+                  <tr class="authority-headTable">
+                    <th class="authority-stt">STT</th>
+                    <th class="authority-name">Tên</th>
+                    <th class="authority-editBtn">Sửa</th>
+                    <th class="authority-deleteBtn">Xóa</th>
+                  </tr>
+                </thead>
+                <tbody id="authority_list">
+                  <tr>
+                    <td class="authority-sttData">0</td>
+                    <td class="authority-nameData">admin</td>
+                    <td>
+                      <i id="authority_change" class="fa-regular fa-pen-to-square authority-editBtnData"></i>
+                    </td>
+                    <td>
+                      <i id="authority_remove" class="fa-solid fa-xmark authority-deleteBtnData" style="color: #f31616;"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="authority__list--Btn">
+                <button class="authority__Btn--add" id="authority_add">Thêm</button>
+                <button class="authority__Btn--exit" id="authority_exit">Thoát</button>
+              </div>
+
+              <!--CheckBox-->
+              <div id="authority__modal--content" class="authority__modal--content">
+                <div class="authority__modal--checkBox">
+                  <div class="checkBox__top">
+                    <h2>Tùy Chỉnh</h2>
                   </div>
-                  <div class="mainAuthority__content">
-                    <form action="" class="authority__form">
-                      <div class="form-group">
-                        <label for="form__authority">Tên chức vụ:</label>
-                        <input type="text" id="form__authority" name="authority"></input>
+                  <div class="checkBox__content">
+                    <form action="" class="checkBox__content--form">
+                      <div class="checkBox__content--name">
+                        <p id="checkBox-nameLabel">Tên</p>
                       </div>
-                      <div class="authority__list">
-                        <div>
-                          <table>
+                      <div class="checkBox__content--list">
+                        <table>
+                          <thead>
                             <tr>
-                              <th>
-                                <div class="form-group style--authority">
-                                  <label for="authority__list--name">Danh sách chức vụ:</label>
-                                  <select id="authority__list--name" name="nameAuthority">
-                                    <option value="admin">Admin</option>
-                                  </select>
-                                </div>
-                              </th>
+                              <th></th>
                               <th>Xem</th>
                               <th>Thêm</th>
                               <th>Sửa</th>
                               <th>Xóa</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th>Quản lý phân quyền</th>
+                              <td><label><input type="checkbox"></label></td>
+                              <td><label><input type="checkbox"></label></td>
+                              <td><label><input type="checkbox"></label></td>
+                              <td><label><input type="checkbox"></label></td>
                             </tr>
                             <tr>
                               <th>Quản lý phiếu nhập</th>
@@ -456,41 +515,20 @@
                               <td><label><input type="checkbox"></label></td>
                               <td><label><input type="checkbox"></label></td>
                             </tr>
-                          </table>
-                        </div>
+                          </tbody>
+                        </table>
                       </div>
                     </form>
                   </div>
-                  <div class="mainAuthority__btn">
-                    <button class="authority__form--add">Thêm</button>
-                    <button class="authority__form--save">Lưu</button>
-                    <button class="authority__form--remove">Xóa</button>
+                  <div class="checkBox__Btn">
+                    <button class="checkBox__Btn--save">Lưu</button>
+                    <button class="checkBox__Btn--exit">Thoát</button>
                   </div>
                 </div>
-                <!--End-->
               </div>
             </div>
-            <table>
-              <tr>
-                <th class="table--top">STT</th>
-                <th class="table--top">Mã nhân viên</th>
-                <th class="table--top">Họ đệm</th>
-                <th class="table--top">Tên</th>
-                <th class="table--top">Giới tính</th>
-                <th class="table--top">Chức vụ</th>
-                <th class="table--top">Tài khoản</th>
-              </tr>
-              <tr>
-                <th>1</th>
-                <th>000</th>
-                <th class="text__align--left">Admin</th>
-                <th class="text__align--left"></th>
-                <th class="text__align--left"></th>
-                <th class="text__align--left">Admin</th>
-                <th class="text__align--left">Hiệu lực</th>
-              </tr>
-            </table>
           </div>
+          <!--End-->
 
           <!--Khách hàng-->
           <div class="admin__content--customer__content" id="client">
@@ -604,7 +642,12 @@
                 </div>
               </form>
               <table>
+
                 <tr>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b81e7879e9b003c21dad7578375b64f16dd96ea8
                   <th class="table--top">Ngày tạo</th>
                   <th class="table--top">Mã khách hàng</th>
                   <th class="table--top">Giá đơn hàng</th>
@@ -618,6 +661,10 @@
                   <th class="text__align--left" style="text-decoration: underline;color: rgb(115, 198, 0);"
                     onclick="show_bill()">Xem chi tiết</th>
                   <th class="text__align--left">Chưa xử lý</th>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b81e7879e9b003c21dad7578375b64f16dd96ea8
                 </tr>
               </table>
               <div class="bill--model--ctpn" id="model--bill" style="display: none;">
