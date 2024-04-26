@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="/Web2/public/components/search.css">
     <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
     <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
+    <script type="module" defer src="/Web2/public/script.js"></script>
+    <script type="module" defer src="/Web2/public/components/login/login.js"></script>
+    <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
+    <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
   </head>
   <body>
     <!-- =========== START: HEADER =========== -->
@@ -66,16 +70,16 @@
                 <a href="index.php?controller=product&action=index&type=all">ALL</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=mountain">MOUNTAIN</a>
+                <a href="index.php?controller=product&action=index&type=mt">MOUNTAIN</a>
               </li>
               <li>
-                <a href="product.php">ROAD</a>
+                <a href="index.php?controller=product&action=index&type=rd">ROAD</a>
               </li>
               <li>
-                <a href="product.php">TOURING</a>
+                <a href="index.php?controller=product&action=index&type=tr">TOURING</a>
               </li>
               <li>
-                <a href="product.php">KIDS</a>
+                <a href="index.php?controller=product&action=index&type=kid">KIDS</a>
               </li>
             </ul>
           </div>
@@ -114,9 +118,9 @@
         </div>
       </div>
       <div class="header__slider">
-        <video src="/public/database/images/sliderVideos/RBHFFG Marquee Summer 2021.mp4" muted></video>
-        <video src="/public/database/images/sliderVideos/NF24 US Video Marquee_1080p.mp4" muted></video>
-        <video src="/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
+        <video src="/Web2/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
+        <video src="/Web2/public/database/images/sliderVideos/NF24 US Video Marquee_1080p.mp4" muted></video>
+        <video src="/Web2/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
         
 
         <ul class="dots">
@@ -194,8 +198,7 @@
     <div class="info_container">
       <div class="product">
         <div class="left">
-
-          <div class="image"><img src="/public/database/images/productImgs/mountain-3.jpg" alt=""></div>
+          <div class="image"><img src="/Web2/public/database/images/productImgs/mountain-3.jpg" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Mountain</div>
@@ -217,7 +220,7 @@
       <div class="product reverse">
         <div class="left">
 
-          <div class="image"><img src="/public/database/images/productImgs/road.webp" alt=""></div>
+          <div class="image"><img src="/Web2/public/database/images/productImgs/road.webp" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Road</div>
@@ -238,7 +241,7 @@
       <div class="product">
         <div class="left">
 
-          <div class="image"><img src="/public/database/images/productImgs/touring.webp" alt=""></div>
+          <div class="image"><img src="/Web2/public/database/images/productImgs/touring.webp" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Touring</div>
@@ -260,7 +263,7 @@
       <div class="product reverse">
         <div class="left">
 
-          <div class="image"><img src="/public/database/images/productImgs/kid.webp" alt=""></div>
+          <div class="image"><img src="/Web2/public/database/images/productImgs/kid.webp" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Kid</div>

@@ -7,10 +7,6 @@
 
         private $conn=NULL;
         private $result=NULL;
-
-
-
-
         public function connect(){
             $this->conn=new mysqli($this->hostname,$this->username,$this->pass,$this->dbname);
             if(!$this->conn){
@@ -25,20 +21,6 @@
            
             return $this->conn;
         }
-
-        // public function createJson(){
-        //     $mysqli = new mysqli($this->hostname,$this->username,$this->pass,$this->dbname);
-        //     mysqli_set_charset($this->conn,'utf8');
-        //     $sql="SELECT * FROM mathang";
-        //     $result = $mysqli->query($sql);
-        //     while($product = $result->fetch_assoc()){
-        //         $product["Hinhanh"] = base64_encode($product["Hinhanh"]);
-        //         $products[] = $product;
-        //     }
-            
-        //     $json_data = json_encode($products, JSON_PRETTY_PRINT);
-        //     file_put_contents('data.json', $json_data);
-        // }
 
         //Thực thi câu lệnh truy vấn
         public function execute($sql){
@@ -69,12 +51,11 @@
                     $data[]=$datas;
                 }
             }
-            // $this->createJson();
             return $data;
         }
 
-        public function getProductType($type){
-            $sql="SELECT * FROM mathang WHERE MaLoai = $type";
+        public function getAllDataType($type){
+            $sql="SELECT * FROM mathang WHERE MaLoai = '$type'";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -84,7 +65,21 @@
                     $data[]=$datas;
                 }
             }
-            $this->createJson();
+            return $data;
+        }
+
+        public function getProductType($type){
+            $sql="SELECT tenhang FROM mathang WHERE MaLoai = '$type'";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            print_r($data);
             return $data;
         }
         //Phương thức đếm số bản ghi
@@ -109,7 +104,86 @@
                     $data[]=$datas;
                 }
             }
-            // $this->createJson();
+            return $data;
+        }
+
+        public function pagination2($type,$start,$limit){
+            $sql="SELECT * FROM mathang WHERE MaLoai = '$type' ORDER BY MaHang DESC LIMIT $start,$limit";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            return $data;
+        }
+        public function pagination3($product_name,$start,$limit){
+            $sql="SELECT * FROM mathang WHERE TenHang LIKE '%$product_name%' ORDER BY MaHang DESC LIMIT $start,$limit";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            return $data;
+        }
+
+        public function pagination4($product,$price_to,$price_form,$typecb,$start,$limit){
+            $product = "%" . $product . "%";
+            $sql="SELECT * FROM mathang 
+            WHERE  TenHang LIKE '$product' AND ( DonGia BETWEEN $price_to AND $price_form )";
+            if($typecb != "MaLoai" && $typecb != "all"){
+                $sql .= " AND MaLoai = '$typecb'";
+            }
+            $sql .= " ORDER BY MaHang DESC LIMIT $start,$limit";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            return $data;
+        }
+        public function advanced_search($product,$price_to,$price_form,$typecb){
+            $product = "%" . $product . "%";
+            $sql="SELECT * FROM mathang 
+            WHERE  TenHang LIKE '$product' AND ( DonGia BETWEEN $price_to AND $price_form )";
+            if($typecb != "MaLoai" && $typecb != "all"){
+                $sql .= " AND MaLoai = '$typecb'";
+            }
+            $sql .= " ORDER BY MaHang";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            return $data;
+        }
+        public function basic_search($product_name){
+            $sql ="SELECT * FROM mathang WHERE TenHang LIKE '%$product_name%' ORDER BY MaHang DESC";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+
             return $data;
         }
     }
