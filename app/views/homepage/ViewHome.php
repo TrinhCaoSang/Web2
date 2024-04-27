@@ -14,12 +14,7 @@
     <link rel="stylesheet" href="/Web2/public/components/search.css">
     <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
     <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
-
-    <script type="module" defer src="/Web2/public/script.js"></script>
-    <script type="module" defer src="/Web2/public/components/login/login.js"></script>
-    <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
-    <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
-    <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body>
     <!-- =========== START: HEADER =========== -->
@@ -72,16 +67,16 @@
                 <a href="index.php?controller=product&action=index&type=all">ALL</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=mt">MOUNTAIN</a>
+                <a href="index.php?controller=product&action=index&type=mountain">MOUNTAIN</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=rd">ROAD</a>
+                <a href="product.php">ROAD</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=tr">TOURING</a>
+                <a href="product.php">TOURING</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=kid">KIDS</a>
+                <a href="product.php">KIDS</a>
               </li>
             </ul>
           </div>
@@ -120,9 +115,11 @@
         </div>
       </div>
       <div class="header__slider">
-        <video src="/Web2/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
-        <video src="/Web2/public/database/images/sliderVideos/NF24 US Video Marquee_1080p.mp4" muted></video>
-        <video src="/Web2/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
+        <video src="/public/database/images/sliderVideos/RBHFFG Marquee Summer 2021.mp4" muted></video>
+        <video src="/public/database/images/sliderVideos/NF24 US Video Marquee_1080p.mp4" muted></video>
+        <video src="/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
+        
+
         <ul class="dots">
           <li class="active"></li>
           <li></li>
@@ -198,7 +195,8 @@
     <div class="info_container">
       <div class="product">
         <div class="left">
-          <div class="image"><img src="/Web2/public/database/images/productImgs/mountain-3.jpg" alt=""></div>
+
+          <div class="image"><img src="/public/database/images/productImgs/mountain-3.jpg" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Mountain</div>
@@ -219,7 +217,8 @@
       </div>
       <div class="product reverse">
         <div class="left">
-          <div class="image"><img src="/Web2/public/database/images/productImgs/road.webp" alt=""></div>
+
+          <div class="image"><img src="/public/database/images/productImgs/road.webp" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Road</div>
@@ -239,7 +238,8 @@
       </div>
       <div class="product">
         <div class="left">
-          <div class="image"><img src="/Web2/public/database/images/productImgs/touring.webp" alt=""></div>
+
+          <div class="image"><img src="/public/database/images/productImgs/touring.webp" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Touring</div>
@@ -260,7 +260,8 @@
       </div>
       <div class="product reverse">
         <div class="left">
-          <div class="image"><img src="/Web2/public/database/images/productImgs/kid.webp" alt=""></div>
+
+          <div class="image"><img src="/public/database/images/productImgs/kid.webp" alt=""></div>
         </div>
         <div class="right">
           <div class="type">Kid</div>
@@ -430,6 +431,57 @@
               <input type="submit" class="register__info--submit" value="Đăng ký" />
             </form>
   
+            <div id="showerror"></div>
+          <script>
+              $('form').submit(function(event) {
+                  event.preventDefault();
+                  
+                  $('#showerror').html('');
+                  
+                  var registerName = $('#registerName').val();
+                  var registerEmail = $('#registerEmail').val();
+                  var registerPassword = $('#registerPassword').val();
+
+                  if ($.trim(registerName) === '') {
+                      alert('Bạn chưa nhập họ và tên');
+                      return false;
+                  }
+
+                  if ($.trim(registerEmail) === '') {
+                      alert('Bạn chưa nhập email');
+                      return false;
+                  }
+
+                  if ($.trim(registerPassword) === '') {
+                      alert('Bạn chưa nhập mật khẩu');
+                      return false;
+                  }
+
+                  $.ajax({
+                      url: 'components/HomeAdmin/do_validate.php',
+                      type: 'post',
+                      dataType: 'json',
+                      data: {
+                          registerName: registerName,
+                          registerEmail: registerEmail,
+                          registerPassword: registerPassword
+                      },
+                      success: function(result) {
+                          if (result.hasOwnProperty('error')) {
+                            $('#showerror').html(result.error);
+                          } else if (result.hasOwnProperty('success')) {
+                              $('#showerror').html('Đăng ký thành công, bây giờ bạn có thể đăng nhập tài khoản để bắt đầu chuyến hành trình!');
+                          }
+                      },
+                      error: function(xhr, status, error) {
+                          alert('AJAX request failed: ' + error);
+                      }
+                  });
+
+                  return false;
+              });
+          </script>
+
             <div class="signin" style="display: none">
                 <p>Bạn đã có tài khoản?</p>
                 <button>Đăng nhập</button>
@@ -528,6 +580,40 @@
                 Đăng nhập với Facebook
               </button>
             </form>
+
+            <script>
+          $(document).ready(function() {
+              $('#loginForm').submit(function(event) {
+                  event.preventDefault();
+
+                  $('#loginError').text('');
+
+                  var loginEmail = $('#loginEmail').val();
+                  var loginPassword = $('#loginPassword').val();
+
+                  $.ajax({
+                      url: 'components/HomeAdmin/process_login.php',
+                      type: 'post',
+                      dataType: 'json',
+                      data: {
+                          loginEmail: loginEmail,
+                          loginPassword: loginPassword
+                      },
+                      success: function(result) {
+                          if (result.hasOwnProperty('error')) {
+                              $('#loginError').text(result.error); 
+                          } //else if (result.hasOwnProperty('success')) {
+                          //    window.location.href = 'dashboard.php';
+                          //}
+                      },
+                      error: function(xhr, status, error) {
+                          alert('AJAX request failed: ' + error);
+                      }
+                  });
+              });
+          });
+      </script>
+
             <div class="register__again" style="display: none">
               <p>Bạn chưa có tài khoản?</p>
               <button>Đăng ký</button>
