@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +19,7 @@
     <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
     <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script href="/Web2/public/components/login/login.js"></script> 
   </head>
   <body>
     <!-- =========== START: HEADER =========== -->
@@ -82,23 +87,39 @@
           </div>
   
           <div class="header__bottom--extention">
-            <div class="header__bottom--extention-item header__bottom--extention-user">
-              <i class="fa-solid fa-user"></i>
-              <ul class="header__bottom--user__list">
-                <li class="adminManager__item" style="display: none">
-                  <button class="adminManager">
-                    <i class="fa-solid fa-hammer"></i>
-                    <p>Quản lý</p>
-                  </button>
-                </li>
-                <li>
-                  <button class="logout">
-                    <i class="fa-solid fa-door-open"></i>
-                    <p>Đăng xuất</p>
-                  </button>
-                </li>
-              </ul>
-            </div>
+            <?php
+            if (isset($_SESSION['user_id'])) {
+                ?>
+                <div class="header__bottom--extention-item header__bottom--extention-user">
+                    <div class="user-box"></div>
+                    <ul class="header__bottom--user__list">
+                        <li class="adminManager__item">
+                            <button class="adminManager">
+                                <i class="fa-solid fa-hammer"></i>
+                                <p>Quản lý</p>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="logout">
+                                <i class="fa-solid fa-door-open"></i>
+                                <p>Đăng xuất</p>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            <?php } else { ?>
+                <div class="header__bottom--extention-item header__bottom--extention-user">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            <?php } ?>
+        </div>
+
+        <script>
+            var isLoggedIn = <?php echo isset($_SESSION['user_id']) ? 'true' : 'false'; ?>;
+            if (isLoggedIn) {
+                var userName = "<?php echo isset($_SESSION['register_Name']) ? $_SESSION['register_Name'] : ''; ?>";
+            }
+        </script>
   
             <a href="cart.php">
               <div class="header__bottom--extention-item header__bottom--extention-cart">
@@ -285,7 +306,14 @@
     <div class="section--4-container">
       <div class="section section--4 grid wide">
         <h1>Thể thao là cuộc sống, chúng tôi sẽ nâng cao cuộc sống của bạn bằng xe đạp!</h1>
+        <?php
+            if (!isset($_SESSION['user_id'])) {
+                ?>
         <button>ĐĂNG KÝ MUA NGAY HÔM NAY!</button>
+              <?php
+            }
+            ?>
+            
       </div>
     </div>
     <div class="footer-container">
@@ -387,7 +415,7 @@
   
             <h1>Tạo tài khoản</h1>
   
-            <form>
+            <form method="post" action="">
               <div class="register__info--input register__info--input__full-name">
                 <label for="registerName">Tên đầy đủ</label>
                 <input type="text" name="" id="registerName" class="register__info--input-name" placeholder="Nhập tên của bạn" />
@@ -433,6 +461,11 @@
   
             <div id="showerror"></div>
           <script>
+              function isValidEmail(email) {
+                  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                  return emailPattern.test(email);
+                }       
+
               $('form').submit(function(event) {
                   event.preventDefault();
                   
@@ -452,13 +485,18 @@
                       return false;
                   }
 
+                  if (!isValidEmail(registerEmail)) {
+                      alert('Địa chỉ email không hợp lệ');
+                      return false;
+                  }
+
                   if ($.trim(registerPassword) === '') {
                       alert('Bạn chưa nhập mật khẩu');
                       return false;
                   }
 
                   $.ajax({
-                      url: 'components/HomeAdmin/do_validate.php',
+                      url: 'index.php?controller=dkdn&action=register',
                       type: 'post',
                       dataType: 'json',
                       data: {
@@ -480,8 +518,7 @@
 
                   return false;
               });
-          </script>
-
+          </script>  
             <div class="signin" style="display: none">
                 <p>Bạn đã có tài khoản?</p>
                 <button>Đăng nhập</button>
@@ -499,7 +536,7 @@
           <div class="login__info">
             <h1>Đăng nhập</h1>
   
-            <form >
+            <form method="post" action="">
               <div class="login__info--input login__info--input__full-email">
                 <label for="loginEmail">Địa chỉ email</label>
                 <input type="email" class="login__info--input-email" id="loginEmail" placeholder="Nhập email của bạn" />
@@ -580,7 +617,6 @@
                 Đăng nhập với Facebook
               </button>
             </form>
-
             <script>
           $(document).ready(function() {
               $('#loginForm').submit(function(event) {
@@ -592,7 +628,7 @@
                   var loginPassword = $('#loginPassword').val();
 
                   $.ajax({
-                      url: 'components/HomeAdmin/process_login.php',
+                      url: 'index.php?controller=dkdn&action=login',
                       type: 'post',
                       dataType: 'json',
                       data: {
@@ -612,7 +648,7 @@
                   });
               });
           });
-      </script>
+      </script>  
 
             <div class="register__again" style="display: none">
               <p>Bạn chưa có tài khoản?</p>

@@ -87,3 +87,38 @@ btnCloseGlobal.addEventListener('click', e => {
   hideFormRegLogin();
 });
 // ============================= End: HIDE FORM
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (isLoggedIn) {
+        var userBox = document.querySelector(".user-box");
+        userBox.textContent = userName;
+            userBox.classList.add("dropdown-toggle");
+
+         userBox.addEventListener("click", function() {
+          var userDropdown = document.querySelector(".header__bottom--user__list");
+          userDropdown.classList.toggle("show");
+            });
+        }
+
+    var logoutBtn = document.querySelector(".logout");
+    logoutBtn.addEventListener("click", function() {
+        $.ajax({
+            url: 'index.php?controller=dkdn&action=logout',
+            type: 'POST',
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                        window.location.href = './views/homepage/ViewHome.php';
+                    } else {
+                        alert(response.error);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+

@@ -52,7 +52,7 @@ class Modeldkdn{
     }
 
     public function checkLogin($loginEmail, $loginPassword) {
-        $query = mysqli_query($this->conn, "SELECT id, registerPassword FROM user_account WHERE registerEmail = '" . mysqli_real_escape_string($this->conn, $loginEmail) . "'");
+        $query = mysqli_query($this->conn, "SELECT id, registerName, registerPassword FROM user_account WHERE registerEmail = '" . mysqli_real_escape_string($this->conn, $loginEmail) . "'");
         if (!$query) {
             die (json_encode(['error' => 'Có lỗi xảy ra khi thực hiện truy vấn.']));
         }
@@ -63,12 +63,15 @@ class Modeldkdn{
 
         $row = mysqli_fetch_assoc($query);
         $userId = $row['id'];
+        $registerName = $row['registerName'];
         $registerPassword = $row['registerPassword'];
 
         if ($loginPassword === $registerPassword) {
             session_start();
             $_SESSION['user_id'] = $userId; 
-            die (json_encode(['success' => 'Đăng nhập thành công.']));
+            $_SESSION['register_Name'] = $registerName;
+            echo '<script> alert("Đăng nhập thành công")</script>';
+            echo '<meta http-equiv=refresh content="0;url=./views/homepage/ViewHome.php"/>';
         } else {
             die (json_encode(['error' => 'Mật khẩu không chính xác.']));
         }

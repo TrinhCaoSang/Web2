@@ -1,3 +1,10 @@
+<script>
+         function changeURL(){
+          var newUrl = "http://localhost/Web2/index.php?controller=dkdn&action=index"; // Đường dẫn URL mới
+          window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
+        }
+</script>
+
 <?php
 
 require_once 'Modeldkdn.php';
@@ -8,6 +15,10 @@ class ControllerDkdn {
     public function __construct() {
         $this->model = new Modeldkdn();
         $this->model->connect();
+    }
+
+    public function index() {
+        include 'ViewHome.php';
     }
 
     public function register() {
@@ -40,6 +51,15 @@ class ControllerDkdn {
             $this->model->checkLogin($loginEmail, $loginPassword);
         }
     }
+
+    public function logout() {
+        session_start();
+        session_unset();
+        session_destroy();
+    
+        echo json_encode(['success' => true]);
+    }
 }
+
 
 ?>
