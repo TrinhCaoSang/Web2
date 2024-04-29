@@ -194,6 +194,7 @@
                         </tr>
                         
                         <?php
+                          //include('\app\controllers\ControllerKhuyenMai.php');
                           foreach($data as $value){
                         ?>
                           <tr>
@@ -203,7 +204,13 @@
                           <th><?php echo $value['dieukien'];?></th>
                           <th><?php echo $value['NgayBDKM'];?></th>
                           <th><?php echo $value['NgayKTKM'];?></th>
-                          <th class="text__align--left"><?php echo $value['tinhtrang'];?></th>
+                          <th class="text__align--left"><?php if(ControllerKhuyenMai::checkTinhTrang($value)==1){
+                            echo 'Còn hiệu lực';
+                          }
+                          elseif(ControllerKhuyenMai::checkTinhTrang($value)==0){
+                            echo 'Hết hiệu lực';
+                          };
+                          ?></th>
                           <th>
                             <div class="button__container">
                               <a onclick="return confirm('Bạn có chắc chắn muốn sửa không?')" href="index.php?controller=khuyenmai&action=edit&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Sửa</button></a>
@@ -223,12 +230,12 @@
       </div>
       <script>
         function changeURL() {
-            var newUrl = "http://localhost/Web2/index.php?controller=khuyenmai&action=insert"; // Đường dẫn URL mới
+            var newUrl = "http://localhost/DoAnWeb2/Web2/index.php?controller=khuyenmai&action=insert"; // Đường dẫn URL mới
             window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
         }
 
         function changeURL2(){
-          var newUrl = "http://localhost/Web2/index.php?controller=khuyenmai&action=save"; // Đường dẫn URL mới
+          var newUrl = "http://localhost/DoAnWeb2/Web2/index.php?controller=khuyenmai&action=save"; // Đường dẫn URL mới
           window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
         }
       </script>

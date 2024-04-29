@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="/public/components/fonts.css">
-    <link rel="stylesheet" href="/public/html/page/cart/cart.css">
-    <link rel="stylesheet" href="/public/components/menu/menu.css">
-    <link rel="stylesheet" href="/public/components/login/login.css">
-    <link rel="stylesheet" href="/public/html/page/cart/reponsive.css">
+    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/Web2/public/html/page/cart/cart.css">
+    <link rel="stylesheet" href="/Web2/public/components/menu/menu.css">
+    <link rel="stylesheet" href="/Web2/public/components/login/login.css">
+    <link rel="stylesheet" href="/Web2/public/html/page/cart/reponsive.css">
     <title>Document</title>
 </head>
 <body>
@@ -91,6 +91,7 @@
         </div>
   
         <div class="cart-info_container">
+        <form action="index.php?controller=cart&action=update" method="post">
           <table class="menu" id="menu">
             <thead>
               <tr>
@@ -103,18 +104,51 @@
             </thead>
   
             <tbody class="cart-info" id="cart-info">
-              <tr>
-                <th>Hình ảnh</th>
-                <th>Tên Sản Phẩm</th>
-                <th>Đơn giá</th>
-                <th>Số Lượng</th>
-                <th>Thao Tác</th>
+                <?php
+                    foreach($products as $product){
+                ?>
+               <tr>
+                <th><img src="data:image/jpeg;base64,<?php echo base64_encode($product['Hinhanh'])?>"></th>            
+                <th><?php echo $product['TenHang'] ?></th>
+                <th><?php echo $product['DonGia'] ?></th>
+                <th>
+                    <input type="text" name="qty[<?php echo $product['MaHang'] ?>]" value="<?php echo $product['qty'] ?>">
+                </th>
+                <th><a href="index.php?controller=cart&action=delete&id=<?php echo $product['MaHang'] ?>">Xóa</a></th>
               </tr>
+              <?php
+                }
+              ?>
             </tbody>
           </table>
+            <p align="left">
+                <a href="index.php?controller=cart&action=destroy">Xóa tất cả</a>
+                <a href="index.php?controller=product&action=index">Tiếp tục mua</a>
+                <button>Cập nhật</button>
+                <button onclick="return flase;">Đặt hàng</button>
+            </p>
+          </form>
+         
+          <div class="form-order">
+            <form action="index.php?controller=order&action=store" method="post">
+                <label>Tên khách hàng</label>
+                <input type="text" name="customer_name">
+                <br>
+                <label>Email khách hàng</label>
+                <input type="text" name="customer_email">
+                <br>
+                <label>Số điện thoại</label>
+                <input type="text" name="customer_phone">
+                <br>
+                <label>&nbsp;</label>
+                <button>Gửi đơn hàng</button>
+                <br>
+            </form>
+          </div>
+
         </div>
       </div>
-      <footer id="footer">
+      <!-- <footer id="footer">
         <div class="totalPrice" id="totalPriceContainer">
           <h3>Thanh toán</h3>
           <span id="totalPriceId">0 VND</span>
@@ -125,7 +159,7 @@
           <button id="buy">Mua</button>
           <button id="delete">Xóa</button>
         </div>
-      </footer>
+      </footer> -->
 
       <div class="toast" id="toast">
         <h2>Chưa có sản phẩm nào trong giỏ hàng</h2>
@@ -186,4 +220,17 @@
       <script type="module" src="/public/components/menu/menu.js"></script>
       <script type="module" src="cart.js"></script>
 </body>
+
+<style>
+    .form-order{
+        width: 200px;
+        float: left;
+    }
+    .form-order input{
+        padding: 5px;
+        width: 200px;
+        margin-bottom: 10px;
+
+    }
+</style>
 </html>

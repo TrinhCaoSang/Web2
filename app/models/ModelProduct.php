@@ -72,6 +72,17 @@
             $this->createJson();
             return $data;
         }
+        //Phương thức lấy data cần sửa
+        public function getDataID($id){
+            $sql="SELECT * FROM mathang WHERE MaHang='$id'";
+            $this->execute($sql);
+            if($this->num_rows()!=0){
+                $data=mysqli_fetch_array($this->result);
+            }else{
+                $data=0;
+            }
+            return $data;
+        }
         //Phương thức đếm số bản ghi
         public function num_rows(){
             if($this->result){

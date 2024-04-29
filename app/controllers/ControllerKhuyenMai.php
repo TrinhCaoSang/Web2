@@ -37,6 +37,7 @@
                 $ngayketthuc=$_POST['dayEnd'];
                 $phantramGG=$_POST['percentageReduction'];
                 $dieukien=$_POST['costCondition'];
+                
                 if($this->khuyenmaiModel->InsertData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien)){
                     //header('location:index.php?controller=khuyenmai&action=index');
                     echo "<script>alert('Thêm mới thành công');</script>";
@@ -78,6 +79,20 @@
                 }
             }
         }
+
+        public static function checkTinhTrang($khuyenmai){
+            $currentDate = date("Y-m-d");
+            if($khuyenmai['NgayBDKM']<$khuyenmai['NgayKTKM']&$currentDate<$khuyenmai['NgayKTKM']){
+                return 1;
+            }
+            elseif($khuyenmai['NgayBDKM']<$khuyenmai['NgayKTKM']&$currentDate>$khuyenmai['NgayKTKM']){
+                return 0;
+            }
+            else{
+                echo "<script>alert('Lỗi định dạng ngày');</script>";
+            }
+        }
+
         public function delete(){
             if(isset($_GET['id'])){
                 $this->id=$_GET['id'];
@@ -96,18 +111,11 @@
                 }
             }
         }
-        public function search(){
-            $key="";
-            // $listKM=$this->khuyenmaiModel->SearchData("khuyenmai",$key);
-            // return $this->view('frontend.products.show',[
-            //     'promotion'=>$listKM,
-            // ]);
-        }
     }
 ?>
 <script>
          function changeURL(){
-          var newUrl = "http://localhost/Web2/index.php?controller=khuyenmai&action=index"; // Đường dẫn URL mới
+          var newUrl = "http://localhost/DoAnWeb2/Web2/index.php?controller=khuyenmai&action=index"; // Đường dẫn URL mới
           window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
         }
 </script>

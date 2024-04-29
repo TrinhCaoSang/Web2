@@ -73,7 +73,7 @@
 
 
         //Phương thức thêm dữ liệu
-        public function InsertData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien){
+        public function InsertData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien,){
             $sql="INSERT INTO khuyenmai(MaKM,TenCT,NgayBDKM,NgayKTKM,PhanTramGG,dieukien) 
             VALUES('$makm','$tenct','$ngaybatdau','$ngayketthuc','$phantramGG','$dieukien')";
             return $this->execute($sql);

@@ -64,12 +64,14 @@
                                     <button id="increment" onclick=quantityup()>+</button>
                                 </div>
                                 <div class="overlay-right-btn">
-                                    <button id="overlay-add-cart">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    <p>
-                                    Thêm vào giỏ hàng
-                                    </p>
-                                    </button>
+                                    <a href="index.php?controller=cart&action=store&id='.$item['MaHang'].' "id="overlay-add-cart">
+                                        <button >
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        <p>
+                                        Thêm vào giỏ hàng
+                                        </p>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +100,7 @@
                 $count = $count -1;
                 $lastproduct = '
                 <div id="content">
-                <div onclick=showinfo_product("'.$data[$i]["MaHang"].'") class="divproduct">
+                <div onclick=showinfo_product("'.$data[$count]["MaHang"].'") class="divproduct">
                     <div id="img-product">
                         <i class="fa-solid fa-cart-plus"></i>
                         <img src="data:image/jpeg;base64,'.base64_encode($data[$count]["Hinhanh"]).'">

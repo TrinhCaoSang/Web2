@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product</title>
@@ -18,7 +18,7 @@
     <script type="module" defer src="/Web2/public/components/login/login.js"></script>
     <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
     <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
-  </head>
+  <!-- </head> -->
   <body style="margin: 0 auto;">
     <div class="header">
         <!-- =========== START: HEADER TOP =========== -->
