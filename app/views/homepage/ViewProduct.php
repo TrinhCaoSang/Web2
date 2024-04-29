@@ -14,11 +14,15 @@
     <link rel="stylesheet" href="/Web2/public/components/search.css">
     <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
     <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
+<<<<<<< HEAD
     <script type="module" defer src="/Web2/public/script.js"></script>
     <script type="module" defer src="/Web2/public/components/login/login.js"></script>
     <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
     <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
   <!-- </head> -->
+=======
+  </head>
+>>>>>>> 2dd8d62762797c2aa7b411682bb57c2e5e23753a
   <body style="margin: 0 auto;">
     <div class="header">
         <!-- =========== START: HEADER TOP =========== -->
@@ -58,15 +62,17 @@
     
           <div class="header__bottom">
           <div class="header__bottom--logo">
-              <a href="index.php">TREK</a>
+              <a href="index.php?controller=home">TREK</a>
             </div>
             <div class="header__search--extension">
               <form>
                 <div class="input_search">
-                  <input type="search" autocomplete="off">
-                  <button type="submit" id="btnSubmit">
+                  <input type="search" autocomplete="off" id="content_search-basic">
+                  <button type="button" id="btnSubmit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
+                </div>
+                <div id="container_search">
                 </div>
               </form>
             </div>
@@ -106,7 +112,7 @@
         </div>
         </div><div class="container">
         <div class="leftmenu">
-            <form>
+            <!-- <form>
                 <h2>Lọc đơn giản</h2>
                 <div id="locdongian">
                     <h3>Nhập khoảng giá</h3>
@@ -115,30 +121,37 @@
                     <input type="text" id="giaden"> <br>
                     <input type="submit" id="chon" value="Chọn">
                 </div>
-            </form>
+            </form> -->
             <br>
-            <form>
+            <form id="container-loc" style="margin-top:-25px;">
                 <h2>Lọc nâng cao</h2>
                 <div id="locnangcao">
-                    <select id="khoanggia">
-                        <option value="a">10tr-50tr</option>
-                        <option value="b">50tr-100tr</option>
-                        <option value="c">100tr-300tr</option>
-                    </select>
-                    <br>
+                    <div id="container-search_name">
+                      <h3>Tên sản phẩm</h3>
+                      <input type="text" id="search_name" placeholder="Nhập tên sản phẩm">
+                    </div >
+                    <div style="margin-top:10px;">
+                        <h3>Giá từ</h3>
+                        <input type="number" id="giatu" style="padding-left:5px;" placeholder="VNĐ" >
+                        <h3>Đến</h3>
+                        <input type="number" id="giaden" style="padding-left:5px;" placeholder="VNĐ"> <br>
+                    </div>
+                    <h3  style="margin-top:10px;">Thể loại</h3>
+                    <div id="all">
+                      <input class="type" type="radio" name="loaixe" value="all" checked><h3>Tất cả</h3> <br>
+                    </div>
                     <div id="mountain">
-                      <input type="checkbox" name="loaixe" value="mountain"><h3>Mountain</h3> <br>
+                      <input class="type" type="radio" name="loaixe" value="mt"><h3>Mountain</h3> <br>
                     </div>
                     <div id="road">
-                      <input type="checkbox" name="loaixe" value="road"><h3>Road</h3><br>
+                      <input class="type" type="radio" name="loaixe" value="rd"><h3>Road</h3><br>
                     </div>
                     <div id="kids">
-                      <input type="checkbox" name="loaixe" value="kids"><h3>Kids</h3><br>
+                      <input class="type" type="radio" name="loaixe" value="kid"><h3>Kids</h3><br>
                     </div>
                     <div id="touring">
-                      <input type="checkbox" name="loaixe" value="touring"><h3>Touring</h3><br>
+                      <input class="type" type="radio" name="loaixe" value="tr"><h3>Touring</h3><br>
                     </div>
-                      <input type="submit" id="chon" value="Chọn">
                 </div>
             </form>
         </div>
@@ -198,7 +211,34 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
-  
+          
+
+          function show_search(content) {
+            $.ajax({
+              url : "index.php?controller=product&action=search",
+              method: "POST",
+              data: {
+                content: content
+              },
+              success: function(data){
+                $("#container_search").html(data);
+                // document.getElementById("product-detail_model").style.display = "flex";
+              },
+              error: function(xhr,status,error){
+                console.error("Error: " , error);
+              }
+            });
+          }
+          $(document).on("keyup","#content_search-basic",function(){
+            var content = $(this).val();
+            if(content === '') return $("#container_search").html('');
+            show_search(content);
+          })
+          $(document).on("click","#btnSubmit", function(){
+            var content = $("#content_search-basic").val();
+            fetch_data(1,content);
+          })
+
           function show_detail(product) {
             $.ajax({
               url : "index.php?controller=product&action=detail",
@@ -215,19 +255,81 @@
               }
             });
           }
+          $(document).on("click",".div_search", function(){
+            var product = $(this).attr("id");
+            show_detail(product);
+          })
           $(document).on("click",".divproduct", function(){
             var product = $(this).attr("id");
             show_detail(product);
           })
-          function fetch_data(page) {
+          var select_type='';
+          var search ='';
+          var price_to = 0;
+          var price_form = Number.MAX_SAFE_INTEGER;
+          $(document).on("keyup","#search_name",function(){
+            search = $(this).val();
+            fetch_data2(search,price_to,price_form,select_type);
+          })
+          $(document).on("keyup","#giatu",function(){
+            price_to = parseInt($(this).val())
+            if(!isNaN(price_to)){
+              fetch_data2(search,price_to,price_form,select_type);
+            }else{
+              price_to = 0;
+              fetch_data2(search,price_to,price_form,select_type);
+            }
+          })
+          
+          $(document).on("keyup","#giaden",function(){
+            price_form = parseInt($(this).val());
+            if(!isNaN(price_form) && price_form >= price_to){
+              fetch_data2(search,price_to,price_form,select_type);
+            }else{
+              price_form = Number.MAX_SAFE_INTEGER;
+              fetch_data2(search,price_to,price_form,select_type);
+            }
+          })
+
+          $(document).on("change",".type",function(){
+            select_type = $(this).val();
+            fetch_data2(search,price_to,price_form,select_type);
+          })
+
+          function fetch_data2(product,price_to,price_form,typecb,page) {
             $.ajax({
               url : "index.php?controller=product&action=page",
               method: "POST",
               data: {
-                page: page
+                product: product,
+                price_to : price_to,
+                price_form: price_form,
+                typecb: typecb,
+                page: page,
               },
               success: function(data){
-                
+                $("#container_content").html(data);
+              },
+              error: function(xhr,status,error){
+                console.error("Error: " , error);
+              }
+            });
+          }
+
+          function fetch_data(page,content,product,price,typecb) {
+            var type = "<?php echo $_GET['type']; ?>";
+            $.ajax({
+              url : "index.php?controller=product&action=page",
+              method: "POST",
+              data: {
+                page: page,
+                type: type,
+                content: content,
+                product: product,
+                price: price,
+                typecb: typecb,
+              },
+              success: function(data){
                 $("#container_content").html(data);
               },
               error: function(xhr,status,error){
@@ -239,15 +341,14 @@
           
           $(document).on("click",".page-item", function(){
             var page = $(this).attr("id");
-            fetch_data(page);
+            fetch_data2(search,price_to,price_form,select_type,page);
+            // fetch_data(page);
             window.scrollTo({
               top: 0,
               behavior: "smooth"
             });
           })
-          // $(document).on("click","#img-product", function(){
-          //   document.getElementById("product-detail_model").style.display = "flex";
-          // })
+
           $(document).on("click","#close-toggler", function(){
             document.getElementById("product-detail_model").style.display = "none";
           })
