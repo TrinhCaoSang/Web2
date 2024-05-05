@@ -51,11 +51,11 @@
         public function page(){
             $limit = 6;
             $page = 0;
-            $data;
-            $product;
-            $price_to;
-            $price_form;
-            $typecb;
+            $data='';
+            $product='';
+            $price_to=0;
+            $price_form=0;
+            $typecb='';
             $output = '';
             if(isset($_POST["product"]) && $_POST["product"] != ''){
                 $product = $_POST["product"];
@@ -237,14 +237,12 @@
                                     <button id="increment" onclick=quantityup()>+</button>
                                 </div>
                                 <div class="overlay-right-btn">
-                                    <a href="index.php?controller=cart&action=store&id='.$item['MaHang'].' "id="overlay-add-cart">
-                                        <button >
-                                        <i class="fa-solid fa-cart-plus"></i>
-                                        <p>
-                                        Thêm vào giỏ hàng
-                                        </p>
-                                        </button>
-                                    </a>
+                                    <button id="addtocart" value="'.$item['MaHang'].'">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    <p>
+                                    Thêm vào giỏ hàng
+                                    </p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -254,98 +252,5 @@
             }
             echo $output;
         }
-<<<<<<< HEAD
-
-        public function page(){
-            $limit = 8;
-            $page = 0;
-            $output = '';
-            if(isset($_POST["page"])){
-                $page =  $_POST["page"];
-            }else{
-                $page = 1;
-            }
-            $start = ($page - 1)*$limit;
-            $data = $this->productModel->pagination($start,$limit);
-            $count = count($data);
-            $output = '';
-            $lastproduct = '';
-            if($count % 2 != 0) {
-                $count = $count -1;
-                $lastproduct = '
-                <div id="content">
-                <div onclick=showinfo_product("'.$data[$count]["MaHang"].'") class="divproduct">
-                    <div id="img-product">
-                        <i class="fa-solid fa-cart-plus"></i>
-                        <img src="data:image/jpeg;base64,'.base64_encode($data[$count]["Hinhanh"]).'">
-                        <div id="datmua">
-                            <h3>Mua ngay</h3>
-                        </div>
-                    </div>
-                    <div id="mota-product"><p>'
-                        .$data[$count]['TenHang'] . '<br>' 
-                        .'Price: ' . $data[$count]['DonGia'] . '</p>
-                    </div>
-                    </div><div class="divproduct"></div>
-                </div>';
-            }
-            for ($i = 0; $i <= $count-1; $i++){
-                // <div onclick=showinfo_product("'.$data[$i]["MaHang"].'") class="divproduct">
-                $output .= '
-                <div id="content">
-                <div id="'.$data[$i]["MaHang"].'" class="divproduct">
-                    <div id="img-product">
-                        <i class="fa-solid fa-cart-plus"></i>
-                        <img src="data:image/jpeg;base64,'.base64_encode($data[$i]["Hinhanh"]).'">
-                        <div id="datmua">
-                            <h3>Mua ngay</h3>
-                        </div>
-                    </div>
-                    <div id="mota-product"><p>'
-                        .$data[$i]['TenHang'] . '<br>' 
-                        .'Price: ' . $data[$i]['DonGia'] . '</p>
-                    </div>
-                </div>
-                <div id="'.$data[++$i]["MaHang"].'" class="divproduct">
-                    <div id="img-product">
-                        <i class="fa-solid fa-cart-plus"></i>
-                        <img src="data:image/jpeg;base64,'.base64_encode($data[$i]['Hinhanh']).'">
-                        <div id="datmua">
-                            <h3>Mua ngay</h3>
-                        </div>
-                    </div>
-                    <div id="mota-product"><p>'
-                        .$data[$i]['TenHang'] . '<br>' 
-                        .'Price: ' . $data[$i]['DonGia'] . '</p>
-                    </div>
-                </div>
-                </div>
-                ';
-            }
-            $output .= $lastproduct;
-            $this->listProduct=$this->productModel->getAllData();
-            $total_record = count($this->listProduct);
-            $total_page = ceil($total_record/$limit);
-            $output .= '<ul class="pagination">';
-            if($page > 1){
-                $previous = $page - 1;
-                $output .= '<li class="page-item" id="'.$previous.'">&lt;&lt;</li>';
-            }
-            for($i=1; $i<=$total_page;$i++){
-                $active_class = "";
-                if($i == $page){
-                    $active_class = "-active";
-                }
-                $output .= '<li class="page-item'.$active_class.'" id="'.$i.'">'.$i.'</li>';
-            }
-            if($page < $total_page){
-                $page++;
-                $output .= '<li class="page-item" id="'.$page.'">&gt;&gt;</li>';
-            }
-            $output .='</ul>';
-            echo $output;
-        }
-=======
->>>>>>> 2dd8d62762797c2aa7b411682bb57c2e5e23753a
     }
 ?>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
-    <link rel="stylesheet" href="/Web2/public/html/page/cart/cart.css">
-    <link rel="stylesheet" href="/Web2/public/components/menu/menu.css">
-    <link rel="stylesheet" href="/Web2/public/components/login/login.css">
-    <link rel="stylesheet" href="/Web2/public/html/page/cart/reponsive.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/html/page/cart/cart.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/menu/menu.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/login/login.css">
+    <!-- <link rel="stylesheet" href="/Web2/public/html/page/cart/reponsive.css"> -->
     <title>Document</title>
 </head>
 <body>
@@ -34,19 +34,19 @@
             <div class="header__bottom--list">
               <ul>
                 <li>
-                  <a href="product.php">ALL</a>
+                  <a href="index.php?controller=product&action=index&type=all">ALL</a>
                 </li>
                 <li>
-                  <a href="product.php">MOUNTAIN</a>
+                  <a href="index.php?controller=product&action=index&type=mountain">MOUNTAIN</a>
                 </li>
                 <li>
-                  <a href="product.php">ROAD</a>
+                  <a href="index.php?controller=product&action=index&type=road">ROAD</a>
                 </li>
                 <li>
-                  <a href="product.php">TOURING</a>
+                  <a href="index.php?controller=product&action=index&type=touring">TOURING</a>
                 </li>
                 <li>
-                  <a href="product.php">KIDS</a>
+                  <a href="index.php?controller=product&action=index&type=kids">KIDS</a>
                 </li>
               </ul>
             </div>
@@ -82,9 +82,10 @@
           <table id="order_status_table">
             <thead>
               <tr>
-                <th>Giỏ hàng</th>
-                <th>Đang chờ xử lý</th>
-                <th>Đang giao</th>
+                <th id="cart"><a href="index.php?controller=cart&action=index">Giỏ hàng</a></th>
+                <th id="dangchoxuly" >Đang chờ xử lý</th> 
+                <th id="dalienlac" >Đã liên lạc</th>
+                <th id="dagiao" >Đã giao</th>
               </tr>
             </thead>
           </table>
@@ -95,10 +96,12 @@
           <table class="menu" id="menu">
             <thead>
               <tr>
+                <th><input type="checkbox" id="checkall"></th>
                 <th>Hình ảnh</th>
                 <th>Tên Sản Phẩm</th>
                 <th>Đơn giá</th>
                 <th>Số Lượng</th>
+                <th>Thành tiền</th>
                 <th>Thao Tác</th>
               </tr>
             </thead>
@@ -108,58 +111,51 @@
                     foreach($products as $product){
                 ?>
                <tr>
-                <th><img src="data:image/jpeg;base64,<?php echo base64_encode($product['Hinhanh'])?>"></th>            
-                <th><?php echo $product['TenHang'] ?></th>
-                <th><?php echo $product['DonGia'] ?></th>
-                <th>
+                <td><input type="checkbox" class="checkbox"  value="<?php echo $product['MaHang'] ?>"></td>
+                <td><img src="data:image/jpeg;base64,<?php echo base64_encode($product['Hinhanh'])?>"></td>            
+                <td><?php echo $product['TenHang'] ?></td>
+                <td><?php echo number_format($product['DonGia']) ?></td>
+                <td>
                     <input type="text" name="qty[<?php echo $product['MaHang'] ?>]" value="<?php echo $product['qty'] ?>">
-                </th>
-                <th><a href="index.php?controller=cart&action=delete&id=<?php echo $product['MaHang'] ?>">Xóa</a></th>
+                </td>
+                <td id="thanhtien"><?php echo number_format($product['DonGia']*$product['qty']) ?></td>
+                <td><a href="index.php?controller=cart&action=delete&id=<?php echo $product['MaHang'] ?>">Xóa</a></td>
+                
               </tr>
               <?php
                 }
               ?>
             </tbody>
           </table>
-            <p align="left">
-                <a href="index.php?controller=cart&action=destroy">Xóa tất cả</a>
-                <a href="index.php?controller=product&action=index">Tiếp tục mua</a>
+            <p align="left">  
+                <button><a href="index.php?controller=cart&action=destroy">Xóa tất cả</a></button>
                 <button>Cập nhật</button>
-                <button onclick="return flase;">Đặt hàng</button>
             </p>
           </form>
-         
-          <div class="form-order">
-            <form action="index.php?controller=order&action=store" method="post">
-                <label>Tên khách hàng</label>
-                <input type="text" name="customer_name">
-                <br>
-                <label>Email khách hàng</label>
-                <input type="text" name="customer_email">
-                <br>
-                <label>Số điện thoại</label>
-                <input type="text" name="customer_phone">
-                <br>
-                <label>&nbsp;</label>
-                <button>Gửi đơn hàng</button>
-                <br>
-            </form>
-          </div>
 
         </div>
       </div>
-      <!-- <footer id="footer">
+      <footer id="footer">
+
+        <!-- <div class="voucher">
+          <h3>Voucher</h3>
+          <select id='selectvoucher'>
+            <option value='none'>Chọn Voucher</option>
+          </select>
+          
+        </div> -->
+
         <div class="totalPrice" id="totalPriceContainer">
           <h3>Thanh toán</h3>
           <span id="totalPriceId">0 VND</span>
         </div>
         <div class="footerButton">
-          <button id="selectAllButton">Chọn tất cả</button>
-  
+          <button id="selectAllButton" onclick="activateCheckbox()">Chọn tất cả</button>
+          
           <button id="buy">Mua</button>
-          <button id="delete">Xóa</button>
+          <!-- <button id="delete">Xóa</button> -->
         </div>
-      </footer> -->
+      </footer>
 
       <div class="toast" id="toast">
         <h2>Chưa có sản phẩm nào trong giỏ hàng</h2>
@@ -213,24 +209,178 @@
           </div>
         </div>
       </div>
-
-      <div class="overlay"></div>
-
-      <script type="module" src="/public/database/products.js"></script>
-      <script type="module" src="/public/components/menu/menu.js"></script>
-      <script type="module" src="cart.js"></script>
+      <!-- <script type="module" src="/public/database/products.js"></script>
+      <script type="module" src="/public/components/menu/menu.js"></script> -->
+      <script src="\DoAnWeb\Web2\app\views\admin\cart.js"></script>
 </body>
 
-<style>
-    .form-order{
-        width: 200px;
-        float: left;
-    }
-    .form-order input{
-        padding: 5px;
-        width: 200px;
-        margin-bottom: 10px;
 
-    }
-</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+      // Khi trạng thái của checkbox thay đổi
+      // $('#cart-info input[type="checkbox"]').change(function(){
+      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
+      //     $.ajax({
+      //         url: 'index.php?controller=cart&action=checkkm',
+      //         type: 'post',
+      //         data:{products: getProductList()}, // Gửi dữ liệu từ bảng HTML
+      //         success: function(response){
+      //             $('.voucher').html(response); // Hiển thị kết quả từ tệp PHP
+      //         }
+      //     });
+      // });
+      // $('#checkall').change(function(){
+      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
+      //     $.ajax({
+      //         url: 'index.php?controller=cart&action=checkkm',
+      //         type: 'post',
+      //         data:{products: getProductList()}, // Gửi dữ liệu từ bảng HTML
+      //         success: function(response){
+      //             $('.voucher').html(response); // Hiển thị kết quả từ tệp PHP
+      //         }
+      //     });
+      // });
+      // $('#selectAllButton').click(function(){
+      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
+      //     $.ajax({
+      //         url: 'index.php?controller=cart&action=checkkm',
+      //         type: 'post',
+      //         data:{products: getProductList()}, // Gửi dữ liệu từ bảng HTML
+      //         success: function(response){
+      //             $('.voucher').html(response); // Hiển thị kết quả từ tệp PHP
+      //         }
+      //     });
+      // });
+      // $(document).on('change', '#selectvoucher',function(){
+      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
+      //     $.ajax({
+      //         url: 'index.php?controller=cart&action=changTongTien',
+      //         type: 'post',
+      //         data:{makm: document.getElementById('selectvoucher').value,
+      //               tongtien:parseFloat(document.getElementById('totalPriceId').textContent.replace(/[^\d.-]/g, ''))
+      //         }, // Gửi dữ liệu từ bảng HTML
+      //         success: function(response){
+      //             $('#totalPriceId').html(response); // Hiển thị kết quả từ tệp PHP
+      //         }
+      //     });
+      // });
+      $('#buy').click(function(){
+        console.log("OK")
+          // Gửi dữ liệu đến tệp PHP bằng Ajax
+          if(getProductList().length===0){
+            alert('Bạn chưa chọn sản phẩm muốn mua!');
+            return;
+          }
+          $.ajax({
+              url: 'index.php?controller=cart&action=insert',
+              type: 'post',
+              data:{
+                products: getProductList(),
+                tongtien:parseFloat(document.getElementById('totalPriceId').textContent.replace(/[^\d.-]/g, ''))
+              }, // Gửi dữ liệu từ bảng HTML
+              success: function(response){
+                alert('Đặt hàng thành công');
+                window.location.reload();
+              }
+          });
+      });
+    
+      $('#dangchoxuly').click(function(){
+          // Gửi dữ liệu đến tệp PHP bằng Ajax
+          $.ajax({
+              url: 'index.php?controller=cart&action=showTinhTrang',
+              type: 'post',
+              data:{
+                condition:'dangchoxuly'
+              }, // Gửi dữ liệu từ bảng HTML
+              success: function(response){
+                $('.cart-info_container').html(response);
+                document.getElementById("footer").style.display = "none";
+              }
+          });
+      });
+
+      $('#dalienlac').click(function(){
+          // Gửi dữ liệu đến tệp PHP bằng Ajax
+          $.ajax({
+              url: 'index.php?controller=cart&action=showTinhTrang',
+              type: 'post',
+              data:{
+                condition:'dalienlac'
+              }, // Gửi dữ liệu từ bảng HTML
+              success: function(response){
+                $('.cart-info_container').html(response);
+                document.getElementById("footer").style.display = "none";
+              }
+          });
+      });
+
+      $('#dagiao').click(function(){
+          // Gửi dữ liệu đến tệp PHP bằng Ajax
+          $.ajax({
+              url: 'index.php?controller=cart&action=showTinhTrang',
+              type: 'post',
+              data:{
+                condition:'dagiao'
+              }, // Gửi dữ liệu từ bảng HTML
+              success: function(response){
+                $('.cart-info_container').html(response);
+                document.getElementById("footer").style.display = "none";
+              }
+          });
+      });
+
+      $(document).on('click', '.xoadonhang',function(){  
+        var value = $(this).data('value');
+        //Gửi dữ liệu đến tệp PHP bằng Ajax
+          $.ajax({
+              url: 'index.php?controller=cart&action=xoa',
+              type: 'post',
+              data:{
+                donhangcanxoa:value.split("#")
+              },
+              success: function(response){
+                alert("Xóa thành công");
+                $('.cart-info_container').html(response);
+              }
+          });
+      });
+
+      $(document).on('click', '.suadonhang',function(){  
+        var value1 = $(this).data('value');
+        //Gửi dữ liệu đến tệp PHP bằng Ajax
+          $.ajax({
+              url: 'index.php?controller=cart&action=sua',
+              type: 'post',
+              data:{
+                donhangcansua:value1.split("#"),
+                soluong:parseInt(document.getElementById(value1).value)
+              },
+              success: function(response){
+                alert("Sửa thành công");
+                $('.cart-info_container').html(response);
+              }
+          });
+      });
+
+      $(document).on('click', '#deleteall',function(){  
+        //Gửi dữ liệu đến tệp PHP bằng Ajax
+          $.ajax({
+              url: 'index.php?controller=cart&action=xoahoadon',
+              type: 'post',
+              data:{
+                makh:'kh1'
+              },
+              success: function(response){
+                $('.cart-info_container').html(response);
+              }
+          });
+      });
+
+      
+  });
+
+</script>
+
 </html>
