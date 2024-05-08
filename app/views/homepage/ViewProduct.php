@@ -379,7 +379,7 @@
                 type: 'post',
                 data:{
                   soluong: document.getElementById('quantity').value,
-                  id:document.getElementById('addtocart').value
+                  id:document.getElementById('addtocart').value.split("#")
                 }, // Gửi dữ liệu từ bảng HTML
                 success: function(response){
                   alert("Thêm thành công");

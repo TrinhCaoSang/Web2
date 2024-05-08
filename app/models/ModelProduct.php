@@ -197,5 +197,32 @@
 
             return $data;
         }
+        public function getAllDataCTKM(){
+            $sql="SELECT * FROM ctkm";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+
+            return $data;
+        }
+        public function getAllDataKM(){
+            $sql="SELECT * FROM khuyenmai";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            return $data;
+        }
     }
 ?>

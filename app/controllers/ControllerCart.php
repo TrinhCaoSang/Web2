@@ -4,6 +4,7 @@
         protected $modelProduct;
         protected $modelKhuyenMai;
         protected $modelCart;
+        protected $listKM;
         public function __construct()
         {
             require('app\models\ModelProduct.php');
@@ -16,6 +17,7 @@
             
             $this->modelKhuyenMai=new ModelKhuyenMai;
             $this->modelKhuyenMai->connect();
+            $this->listKM=$this->modelKhuyenMai->getAllData();
 
             $this->modelCart=new ModelCart;
             $this->modelCart->connect();
@@ -39,7 +41,9 @@
         }
 
         public function store(){
-            $productId=$_POST['id'] ?? null;
+            $phantramgg=0;
+            $productId=$_POST['id'][0] ?? null;
+            $makm=$_POST['id'][1];
             $productQty=intval($_POST['soluong']);
             $product=$this->modelProduct->getDataID($productId);
             if (!isset($_SESSION['order_count'])) {
@@ -49,13 +53,20 @@
             // print_r($product);
             // session_destroy();
             // $_SESSION['cart'][$productId]=$product;
+            foreach($this->listKM as $km){
+                if($km['MaKM']==$makm && ControllerKhuyenMai::checkTinhTrang($km)==1 && $product['DonGia']>=$km['dieukien']){
+                    $product['DonGia']=(100-$km['PhanTramGG'])*$product['DonGia']/100;
+                }
+            }
             if(empty($_SESSION['cart'])||!array_key_exists($productId,$_SESSION['cart'])){
                 // echo 'Sản phẩm chưa có trong giỏ hàng';
                 $product['qty']=$productQty;
+                $product['MaKM']=$makm;
                 $_SESSION['cart'][$productId]=$product;
             }else{
                 // echo 'Sản phẩm đã có trong giỏ hàng';
                 $product['qty']=$_SESSION['cart'][$productId]['qty']+$productQty;
+                $product['MaKM']=$makm;
                 $_SESSION['cart'][$productId]=$product;
             }
 
@@ -142,9 +153,11 @@
             $this->modelCart->InsertDataHD($mahd,$makh,$ngayxuat,$tongtien,$tinhtrang);
             //Thêm chi tiết hóa đơn vào database
             foreach($listProducts as $pd){
-                $this->modelCart->InsertDataCTHD($mahd,$pd['MaHang'],$pd['DonGia'],$pd['qty'],$pd['DonGia']*$pd['qty']);
+                $this->modelCart->InsertDataCTHD($mahd,$pd['MaHang'],$pd['DonGia'],$pd['qty'],$pd['DonGia']*$pd['qty'],$pd['MaKM']);
+                unset($_SESSION['cart'][$pd['MaHang']]);
             }
-            $this->destroy();
+            // $this->destroy();
+            
         }
 
         public function xoa(){
