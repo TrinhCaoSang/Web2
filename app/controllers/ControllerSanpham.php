@@ -19,87 +19,134 @@
             return include("./app/views/admin/ViewSanPham.php");
         }
     
-        protected function loadModel($modelPath){
+        protected function loadModel(){
             return require ("./app/models/ModelSanpham.php");
     
         }
         public function index(){
-            //Lấy data từ model
+          $list_loaisp = $this->product->getAllLoaisp();
+          $list_maHang = $this->product->getAllMatHang();
+         
+          $list_product = $this->product->getAllData();
+          $soSanPhamTrenTrang = 4; 
+          $totalRows = count($list_product); 
+          $totalPages = ceil($totalRows / $soSanPhamTrenTrang); 
+      
+          
+          $page = isset($_GET['page']) ? $_GET['page'] : 1;
+          $start = ($page - 1) * $soSanPhamTrenTrang;
+          $currentProducts = array_slice($list_product, $start, $soSanPhamTrenTrang);
+
+          if ($page > $totalPages) {
+            $page = $totalPages;
+          }
+      
+          return $this->view([
+            'list_product' => $currentProducts,
+            'list_loaisp' => $list_loaisp,
+            'list_maHang' => $list_maHang,
+            'totalPages' => $totalPages,
+            'currentPage' => $page
+          ], 0);
+      }
+      
+        public function getAllMathang(){
+            $list_mathang = $this->product->getAllMathang();
+            return $list_mathang;
+          }
+          public function getMathangInfo() {
+            if(isset($_POST['MaHang'])) {
+                $MaHang = $_POST['MaHang'];
+                $mathangInfo = $this->product->getMathangInfo($MaHang);
+                ob_get_clean();  
+                echo json_encode($mathangInfo);
+                exit();
+            }
+          }
+          
+          public function getMaSPByLoaiSP() {
+            if(isset($_POST['MaLoai'])) {
+              $MaLoai = $_POST['MaLoai'];
+              $list_maHang = $this->product->getMaSPByLoaiSP($MaLoai); // Lấy danh sách mã sản phẩm theo loại sản phẩm
+              ob_get_clean();
+              echo json_encode($list_maHang);
+              exit();
+            }
+          }
+
+          public function edit_pro(){
+            if(isset($_GET['id'])){
+                $id=$_GET['id'];
+                $dataID=$this->product->getDataID($id);   
+            }
             $this->list_product=$this->product->getAllData();
-            return $this->view($this->list_product,0);
-        }
-
-        
-        public function edit(){
-            if(isset($_GET['id']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
-              //Lấy dữ liệu từ View
-           
-              $Mahang = $_POST['MaHang'];
-              $Maloai = $_POST['MaLoai'];
-              $Hinhanh = $_POST['Hinhanh'];
-              $Tenhang = $_POST['TenHang'];
-              $Dongia = $_POST['DonGia'];
-              $Soluong = $_POST['SoLuong'];
-           
-              if($this->product->UpdateData($Mahang,$Maloai,$Hinhanh,$Tenhang,$Dongia,$Soluong)){
-                 echo "<script> alert('Cập nhật thành công')</script>";
-                 $this->index();
-              } else {
-                 echo "<script> alert('Cập nhật thất bại.') </script>";
-              }
-            } else if (isset($_GET['id'])) {
-              $id = $_GET['id'];
-              $dataID = $this->product->getDataID($id);
+            $this->view($this->list_product,$dataID);
+            
+          }
+          public function getTenSP() {
+  
+            if(isset($_POST['MaHang'])) {
               
-              $this->list_product = $this->product->getAllData();
-              $this->view($this->list_product, $dataID);
+                $MaHang = $_POST['MaHang'];
+                $TenHang = $this->product->getTenSP($MaHang);
+                
+                ob_clean();  
+                
+                echo $TenHang['TenHang'];
+                
+                exit();
+                
             }
-           }
-        public function save(){
-            if(isset($_POST['save'])){
-                //Lấy dữ liệu từ View
-                $Mahang=$_POST['productId'];
-                $Maloai=$_POST['type_Id'];
-                $Hinhanh=$_POST['product_imgs'];
-                $Tenhang=$_POST['productName'];
-                $Dongia=$_POST['product_price'];
-                $Soluong=$_POST['quantity'];
-                if($this->product->UpdateData($Mahang,$Maloai,$Hinhanh,$Tenhang,$Dongia,$Soluong)){
-                    echo '<script>changeURL()</script>';
-                    $this->index();
-                }
+          }
+          public function getGiaSP() {
+  
+            if(isset($_POST['MaHang'])) {
+              
+                $MaHang = $_POST['MaHang'];
+          
+                $DonGia = $this->product->getGiaSP($MaHang);
+                
+                ob_clean();    
+                
+                echo $DonGia['DonGia'];
+                exit();
+            }
+          }
+        public function deleteProduct(){
+          
+          $MaHang = $_GET['MaHang'];
+          $this->product->deleteProduct($MaHang);
+          header('Location: index.php?controller=sanpham');
+      }
+      public function addSanpham() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $MaHang = $_POST['receipt--MaSP'];
+            $MaLoai = $_POST['receipt--LoaiSP'];
+            $Hinhanh = $_POST['file-upload'] ;
+            $TenHang = $_POST['receipt--TenHang'];
+            $DonGia = $_POST['receipt--price'];
+            $SoLuong = 0;
+    
+            $result = $this->product->addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong);
+            if ($result) {
+                $response = ['success' => true, 'message' => 'Dữ liệu đã được thêm thành công'];
+            } else {
+                $response = ['success' => false, 'message' => 'Có lỗi xảy ra khi thêm dữ liệu'];
             }
         }
-        public function delete(){
-            $id = $_GET['id'];
-            $this->product->deleteProduct( $id );
-            header('Location: index.php?controller=sanpham');
-        }
-        
-        public function add_product(){
-             if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addProduct'])){
-                  $MaHang = $_POST['MaHang'];
-                  $MaLoai = $_POST['MaLoai'];
-                  
-//Xử lý tải lên hình ảnh
-                  $target_dir = "public/database/images/productImgs/";
-                  $target_file = $target_dir . basename($_FILES["Hinhanh"]["name"]);
-                  move_uploaded_file($_FILES["Hinhanh"]["tmp_name"], $target_file);
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+    
+    
+    
+  
 
-                  
-                  $TenHang = $_POST['TenHang'];
-                  $DonGia = $_POST['DonGia'];
-                  $SoLuong = $_POST['SoLuong'];
-
-                  $this->product->addProduct($MaHang, $MaLoai, $target_file, $TenHang, $DonGia, $SoLuong);
-             }
-             header('Location: index.php?controller=sanpham');
-        }
     }
 ?>
 <script>
          function changeURL(){
-          var newUrl = "http://localhost/Web2/index.php?controller=sanpham&action=index"; // Đường dẫn URL mới
-          window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
+          var newUrl = "http://localhost/Web2/index.php?controller=sanpham&action=index"; 
+          window.history.pushState("", "", newUrl); 
         }
 </script>

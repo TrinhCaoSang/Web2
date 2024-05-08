@@ -295,7 +295,7 @@
     height: 100vh;
     left: 280px;
     top: 64px;
-    background-color: #eee;
+    /* background-color: #eee; */
     transition: all 0.5s;
   }
   
@@ -471,13 +471,46 @@
     justify-content: center;
   }
   
+  .image-container {
+    width: 250px; 
+    height: 150px;
+    border: 1px solid #ccc;
+    position: relative; 
+    overflow: hidden; 
+    display: flex; 
+    margin-top: 10px;
+    margin-left: 160px;
+    justify-content: center;
+    align-items: center;
+}
+.file-input-label {
+  opacity: 0;
+}
+
+.image-container img {
+    width: 100%; /* Chiều rộng của hình ảnh sẽ là 100% của container */
+    height: auto; /* Chiều cao tự động điều chỉnh để không bị méo */
+    position: absolute; /* Đặt vị trí của hình ảnh là tuyệt đối */
+    top: 50%; /* Canh từ trên xuống dưới */
+    left: 50%; /* Canh từ trái sang phải */
+    transform: translate(-50%, -50%); /* Dịch chuyển hình ảnh về trung tâm */
+    max-width: 100%; /* Chiều rộng tối đa là 100% của khung */
+    max-height: 100%; /* Chiều cao tối đa là 100% của khung */
+}
+
+
   .form-group {
     display: flex;
     align-items: center;
     margin-top: 10px;
+    
+  
   }
   
   .form-group label {
+    min-height: 20px; /* Đặt giá trị min-height cho label */
+    display: inline-block; /* Đảm bảo label không bị chiếm toàn bộ chiều rộng */
+    vertical-align: top; 
     margin-right: 10px;
     font-weight: bold;
     width: 150px;
@@ -488,19 +521,32 @@
     width: 250px;
   }
   
-  .button__container {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 10px;
-  }
   
-  .discount__form--add,
-  .discount__form--change {
+  #imagePreview {
+    display: none;
+    max-width: 100%;
+    max-height: 50px;
+    margin-top: 10px;
+}
+
+  .discount__form--add{
     width: 70px;
     height: 30px;
     font-size: 16px; 
     margin: 5px;
+    background-color: #d5231d;
+    border-radius: 5px;
+
+    color: white;
+  }
+  .discount__form--change {
+    width: 80px;
+    height: 30px;
+    font-size: 16px; 
+    margin: 5px;
+    background-color: #0ee836;
+    color: white;
+    border-radius: 5px;
   }
   
   table {
@@ -701,12 +747,8 @@
 .button__container {
   display: flex;
   justify-content: center;
-  text-align: center;
   margin-top: 10px;
-  padding-bottom: 10px;
-  width: 45%;
-  /* margin-left: 35%; */
-  flex-wrap: wrap;
+
 }
 
 .employee__form--add,
@@ -731,13 +773,14 @@
 table {
   border-collapse: collapse;
   width: 100%;
+  
 }
 
 th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #3333;
   padding: 8px;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 th {
@@ -749,7 +792,7 @@ tr:hover {
 }
 
 .text__align--left {
-  text-align: left;
+  text-align: center;
 }
 
 .table--top {
@@ -949,6 +992,21 @@ tr:hover {
   color: black;
   cursor: pointer;
 }
+.product-image-container {
+ 
+  position: relative; /* Thiết lập vị trí tương đối */
+  z-index: 1; 
+}
+
+.product-image {
+  width: 100px; 
+  /* height: 100px;  */
+  object-fit: cover; 
+  overflow: hidden;
+}
+.product-name-column{
+  width: 200px;
+}
 .bill--model--ctpn .close:hover{
   color: red;
 }
@@ -956,11 +1014,61 @@ tr:hover {
 /* Receipt */
 .button__container--receipt {
   display: flex;
-  justify-content: center;
-  text-align: center;
   margin-top: 10px;
   padding-bottom: 10px;
-  margin-left: 12%;
+  justify-content: center;
+}
+  
+
+#update-btn{
+  width: 80px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+}
+#add-btn{
+  width: 70px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+
+}
+#add-btn2 {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  min-width: 100px; 
+  background-color: #006266;
+  color: white;
+}
+.change{
+  cursor: pointer;
+}
+#add-btn1{
+  width: 70px;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+#add-btn3 {
+  width: 70px;
+  background-color: rgb(222, 18, 18);
+  color: white;
+}
+#add-btn4{
+  width: 80px;
+  background-color: rgb(222, 18, 18);
+  color: white;
+  border-radius: 10px;
+
+}
+.customer__form--update{
+  width: 100px;
+  background-color: green;
+  color: white;
+  height: 30px;
+  font-size: 16px; 
+  margin: 5px;
 }
 .receipt--model--ctpn{
   position: fixed;
@@ -1061,6 +1169,33 @@ tr:hover {
   top: 0;
   bottom: 0;
 }
+.customer__form--add{
+  width: 70px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+
+  
+}
+.customer__form--change{
+  background-color: #006266;
+  width: 70px;
+  color: white;
+  border-radius: 10px;
+
+}
+.customer__form--remove{
+  width: 70px;
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+
+}
+th:nth-child(3),
+th:nth-child(6) {
+  box-sizing: border-box;
+  width: calc(100% + 40px); /* Thiết lập độ rộng của cột Tên khách hàng và Địa chỉ */
+}
 
 .customer__content--top{
   /* border: 1px solid black; */
@@ -1094,16 +1229,22 @@ tr:hover {
   align-items: center;
   justify-content: center;
 }
-
 .customer__form--add,
+.customer__form--add1,
+.customer__form--add2,
+.customer__form--add3,
+.customer__form--add4,
+
 .customer__form--change,
 .customer__form--remove,
+.customer__form--update,
 .customer__form--search
 {
   width: 70px;
   height: 30px;
   font-size: 16px; 
   margin: 5px;
+  cursor: pointer;
 }
 
 /* End customer */
@@ -1249,4 +1390,57 @@ tr:hover {
     color: black;
     border-radius: 15px;
   }
+.error-message {
+    text-align: left;
+    margin-left: 475px;
+    width: 50%;
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+.error-message-soLuong{
+  text-align: left;
+    margin-left: 475px;
+    width: 50%;
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+
+.btn-edit{
+  text-align: center;
+  background-color: #006266;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 100%;
+}
+
+.btn-delete{
+  background-color: #EA2027;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 100%;
+}
+.btn-info{
+  background-color: #47d712;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 15px;
+  width: 100%;
+}
+
   

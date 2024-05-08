@@ -148,7 +148,7 @@
   width: calc(100% - 40px);
   left: 120px;
   top: 64px;
-  background-color: #eee;
+  /* background-color: #eee; */
   transition: all 0.5s;
 }
 

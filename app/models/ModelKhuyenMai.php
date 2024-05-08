@@ -73,7 +73,7 @@
 
 
         //Phương thức thêm dữ liệu
-        public function InsertData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien){
+        public function InsertData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien,){
             $sql="INSERT INTO khuyenmai(MaKM,TenCT,NgayBDKM,NgayKTKM,PhanTramGG,dieukien) 
             VALUES('$makm','$tenct','$ngaybatdau','$ngayketthuc','$phantramGG','$dieukien')";
             return $this->execute($sql);
@@ -86,8 +86,8 @@
             return $this->execute($sql);
         }
         //Phương thức xóa
-        public function Delete($id,$table){
-            $sql="DELETE FROM $table WHERE id='$id'";
+        public function Delete($id){
+            $sql="DELETE FROM khuyenmai WHERE MaKM='$id'";
             return $this->execute($sql);
         }
         //Phương thức tìm kiếm dữ liệu theo từ khóa
