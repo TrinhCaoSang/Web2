@@ -104,6 +104,38 @@
             }
             return $data;
         }
+        public function getAllDataCTKM($makm){
+            $sql="SELECT * FROM ctkm WHERE MaKM='$makm'";
+            $this->execute($sql);
+            if($this->num_rows()==0){
+                $data=0;
+            }
+            else{
+                while($datas=$this->getData()){
+                    $data[]=$datas;
+                }
+            }
+            return $data;
+        }
+        public function UpdateCTKM($makm,$maloai){
+            $sql="UPDATE khuyenmai SET MaKM='$makm',MaLoai='$maloai'
+            WHERE MaKM='$makm'";
+            return $this->execute($sql);
+        }
+        public function InsertCTKM($makm,$maloai){
+            $sql="INSERT INTO ctkm(MaKM,MaLoai) 
+            VALUES('$makm','$maloai')";
+            return $this->execute($sql);
+        }
+        public function DeleteCTKM($makm,$maloai){
+            $sql="DELETE FROM ctkm WHERE MaKM='$makm' AND MaLoai='$maloai'";
+            return $this->execute($sql);
+        }
+
+
+
+
+
 
     }
 

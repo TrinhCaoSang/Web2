@@ -111,11 +111,111 @@
                 }
             }
         }
+
+        public function showchitiet(){
+            $makm=$_POST['makm'];
+            print_r($makm);
+            $listCTKM=$this->khuyenmaiModel->getAllDataCTKM($makm);
+            $result='<div class="bill_content--model--ctpn" style="height: 30vh;">
+            <button class="close" onclick="close_bill()">×</button>
+            <h1 class="bill__title">CHI TIẾT KHUYẾN MÃI</h1>
+            <table>
+              <tr>
+                <th class="table--top">Mountain</th>
+                <th class="table--top">Road</th>
+                <th class="table--top">Kids</th>
+                <th class="table--top">Touring</th>
+              </tr>
+              <tr>
+                <th><input type="checkbox" id="checkbox_mt"></th>
+                <th><input type="checkbox" id="checkbox_rd"></th>
+                <th><input type="checkbox" id="checkbox_kid"></th>
+                <th><input type="checkbox" id="checkbox_tr"></th>
+              </tr>
+            </table>
+            <button id="luu" value="'.$makm.'">Lưu</button>
+          </div>';
+            echo $result;
+
+            foreach($listCTKM as $ctkm){
+                if($ctkm['MaKM']==$makm){
+                    if($ctkm['MaLoai']=='kid'){
+                        echo ' <script>document.getElementById("checkbox_kid").checked=true</script>';
+                    }
+                    if($ctkm['MaLoai']=='mt'){
+                        echo ' <script>document.getElementById("checkbox_mt").checked=true</script>';
+                    }
+                    if($ctkm['MaLoai']=='rd'){
+                        echo ' <script>document.getElementById("checkbox_rd").checked=true</script>';
+                    }
+                    if($ctkm['MaLoai']=='tr'){
+                        echo ' <script>document.getElementById("checkbox_tr").checked=true</script>';
+                    }
+                }
+            }
+    
+        }
+        public function checkMaLoai($makm,$maloai){
+            $listCTKM=$this->khuyenmaiModel->getAllDataCTKM($makm);
+            foreach($listCTKM as $ctkm){
+                if($ctkm['MaLoai']==$maloai){
+                    return 0;
+                }
+            }
+            return 1;
+        }
+        public function luu(){
+            $makm=$_POST['makm'];
+            $moutain=$_POST['mountain'];
+            $kids=$_POST['kids'];
+            $road=$_POST['road'];
+            $touring=$_POST['touring'];
+            $listCTKM=$this->khuyenmaiModel->getAllDataCTKM($makm);
+            if($listCTKM==0){
+                if($moutain!=null){
+                    $this->khuyenmaiModel->InsertCTKM($makm,$moutain);
+                }
+                if($kids!=null){
+                    $this->khuyenmaiModel->InsertCTKM($makm,$kids);
+                }
+                if($road!=null){
+                    $this->khuyenmaiModel->InsertCTKM($makm,$road);
+                }
+                if($touring!=null){
+                    $this->khuyenmaiModel->InsertCTKM($makm,$touring);
+                }
+            }else{
+                if($moutain==null){
+                    $this->khuyenmaiModel->DeleteCTKM($makm,'mt');
+                }
+                elseif($moutain=='mt'&&$this->checkMaLoai($makm,'mt')==1){
+                    $this->khuyenmaiModel->InsertCTKM($makm,'mt');
+                }
+                if($road==null){
+                    $this->khuyenmaiModel->DeleteCTKM($makm,'rd');
+                }
+                elseif($road=='rd'&&$this->checkMaLoai($makm,'rd')==1){
+                    $this->khuyenmaiModel->InsertCTKM($makm,'rd');
+                }
+                if($kids==null){
+                    $this->khuyenmaiModel->DeleteCTKM($makm,'kid');
+                }
+                elseif($kids=='kid'&&$this->checkMaLoai($makm,'kid')==1){
+                    $this->khuyenmaiModel->InsertCTKM($makm,'kid');
+                }
+                if($touring==null){
+                    $this->khuyenmaiModel->DeleteCTKM($makm,'tr');
+                }
+                elseif($touring=='tr'&&$this->checkMaLoai($makm,'tr')==1){
+                    $this->khuyenmaiModel->InsertCTKM($makm,'tr');
+                }
+            }
+        }
     }
 ?>
 <script>
          function changeURL(){
-          var newUrl = "http://localhost/DoAnWeb2/Web2/index.php?controller=khuyenmai&action=index"; // Đường dẫn URL mới
+          var newUrl = "http://localhost/DoAnWeb/Web2/index.php?controller=khuyenmai&action=index"; // Đường dẫn URL mới
           window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
         }
 </script>

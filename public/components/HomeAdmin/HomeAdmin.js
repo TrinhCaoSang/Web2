@@ -198,22 +198,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //Hiện modal checkBox phân quyền
-const checkBoxModal = document.getElementById('authority__modal--content');
-const checkBoxBtnOpen = document.getElementById('authority_change');
-const checkBoxBtnClose = document.querySelector('.checkBox__Btn--exit');
-const body = document.body;
+// const checkBoxModal = document.getElementById('authority__modal--content');
+// const checkBoxBtnOpen = document.getElementById('authority_change');
+// const checkBoxBtnClose = document.querySelector('.checkBox__Btn--exit');
+// const body = document.body;
 
-function openModal() {
-  body.classList.add('modal-open');
-  checkBoxModal.style.display = 'block';
-}
-function closeModal() {
-  body.classList.remove('modal-open');
-  checkBoxModal.style.display = 'none';
-}
+// function openModal() {
+//   body.classList.add('modal-open');
+//   checkBoxModal.style.display = 'block';
+// }
+// function closeModal() {
+//   body.classList.remove('modal-open');
+//   checkBoxModal.style.display = 'none';
+// }
 
-checkBoxBtnOpen.addEventListener('click', openModal);
-checkBoxBtnClose.addEventListener('click', closeModal);
+// checkBoxBtnOpen.addEventListener('click', openModal);
+// checkBoxBtnClose.addEventListener('click', closeModal);
 //End
 
 

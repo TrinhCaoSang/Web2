@@ -248,52 +248,6 @@
 <script>
   $(document).ready(function(){
       // Khi trạng thái của checkbox thay đổi
-      // $('#cart-info input[type="checkbox"]').change(function(){
-      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
-      //     $.ajax({
-      //         url: 'index.php?controller=cart&action=checkkm',
-      //         type: 'post',
-      //         data:{products: getProductList()}, // Gửi dữ liệu từ bảng HTML
-      //         success: function(response){
-      //             $('.voucher').html(response); // Hiển thị kết quả từ tệp PHP
-      //         }
-      //     });
-      // });
-      // $('#checkall').change(function(){
-      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
-      //     $.ajax({
-      //         url: 'index.php?controller=cart&action=checkkm',
-      //         type: 'post',
-      //         data:{products: getProductList()}, // Gửi dữ liệu từ bảng HTML
-      //         success: function(response){
-      //             $('.voucher').html(response); // Hiển thị kết quả từ tệp PHP
-      //         }
-      //     });
-      // });
-      // $('#selectAllButton').click(function(){
-      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
-      //     $.ajax({
-      //         url: 'index.php?controller=cart&action=checkkm',
-      //         type: 'post',
-      //         data:{products: getProductList()}, // Gửi dữ liệu từ bảng HTML
-      //         success: function(response){
-      //             $('.voucher').html(response); // Hiển thị kết quả từ tệp PHP
-      //         }
-      //     });
-      // });
-      // $(document).on('change', '#selectvoucher',function(){
-      //     // Gửi dữ liệu đến tệp PHP bằng Ajax
-      //     $.ajax({
-      //         url: 'index.php?controller=cart&action=changTongTien',
-      //         type: 'post',
-      //         data:{makm: document.getElementById('selectvoucher').value,
-      //               tongtien:parseFloat(document.getElementById('totalPriceId').textContent.replace(/[^\d.-]/g, ''))
-      //         }, // Gửi dữ liệu từ bảng HTML
-      //         success: function(response){
-      //             $('#totalPriceId').html(response); // Hiển thị kết quả từ tệp PHP
-      //         }
-      //     });
-      // });
       $('#buy').click(function(){
         console.log("OK")
           // Gửi dữ liệu đến tệp PHP bằng Ajax

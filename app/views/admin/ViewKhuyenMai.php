@@ -2,13 +2,13 @@
     <title>Trek - Quản lý cửa hàng</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
-    <link rel="stylesheet" href="/Web2/public/style.css">
-    <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
-    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
-    <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
-    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/style.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/HomeAdmin/HomeAdmin.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/AdminProduct/AdminProduct.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/ManageUserList/ManageUserList.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/AdminProduct/adminProduct.css" />
 <head>
 <div class="container">
 <div class="admin__taskbar">
@@ -16,7 +16,7 @@
           <div class="admin__taskbar--header__content">
             <div>
               <img
-                src="/Web2/public/database/images/logo/trek_logo_shield.png"
+                src="/DoAnWeb/Web2/public/database/images/logo/trek_logo_shield.png"
                 alt=""
               />
             </div>
@@ -35,14 +35,14 @@
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=sanpham&action=index" id="linkProduct">
+            <a href="" id="linkProduct">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=khuyenmai&action=index" id="linkPromotions">
+            <a href="" id="linkPromotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>
@@ -191,6 +191,7 @@
                         <th class="table--top">Ngày kết thúc</th>
                         <th class="table--top">Tình trạng</th>
                         <th class="table--top">Chức năng</th>
+                        <th class="table--top">Chi tiết</th>
                         </tr>
                         
                         <?php
@@ -218,25 +219,115 @@
                               <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="index.php?controller=khuyenmai&action=delete&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Xóa</button></a>
                             </div>
                           </th>
+                          <th class="text__align--left" id="xemchitiet" value-data="<?php echo $value['MaKM']   ?>" style="text-decoration: underline;color: rgb(115, 198, 0);" onclick="show_bill()">Xem chi tiết</th>
                           </tr>
                         <?php
                           };
                         ?>
                     </table>
                     </div>
-                </div>
+                    </div>
+                    
+                <div class="bill--model--ctpn" id="model--bill" style="display: none;">
+                  <div class="bill_content--model--ctpn" style="height: 30vh;">
+                    <button class="close" onclick="close_bill()">×</button>
+                    <h1 class="bill__title">CHI TIẾT KHUYẾN MÃI</h1>
+                    <table>
+                      <tr>
+                        <th class="table--top">Mountain</th>
+                        <th class="table--top">Road</th>
+                        <th class="table--top">Kids</th>
+                        <th class="table--top">Touring</th>
+                      </tr>
+                      <tr>
+                        <th><input type="checkbox" id="checkbox_mt"></th>
+                        <th><input type="checkbox" id="checkbox_rd"></th>
+                        <th><input type="checkbox" id="checkbox_kid"></th>
+                        <th><input type="checkbox" id="checkbox_tr"></th>
+                      </tr>
+                    </table>
+                    <button id="luu" value="makm">Lưu</button>
+                  </div>
+                </div> 
+              </div>
             </div>
         </div>
       </div>
-      <script>
-        function changeURL() {
-            var newUrl = "http://localhost/DoAnWeb2/Web2/index.php?controller=khuyenmai&action=insert"; // Đường dẫn URL mới
-            window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
-        }
+     
 
-        function changeURL2(){
-          var newUrl = "http://localhost/DoAnWeb2/Web2/index.php?controller=khuyenmai&action=save"; // Đường dẫn URL mới
-          window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
-        }
-      </script>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  function close_bill() {
+    document.getElementById("model--bill").style.display = "none";
+  }
+  function show_bill() {
+    document.getElementById("model--bill").style.display = "flex";
+  }
+  function changeURL() {
+      var newUrl = "http://localhost/DoAnWeb/Web2/index.php?controller=khuyenmai&action=insert"; // Đường dẫn URL mới
+      window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
+  }
+
+  function changeURL2(){
+    var newUrl = "http://localhost/DoAnWeb/Web2/index.php?controller=khuyenmai&action=save"; // Đường dẫn URL mới
+    window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
+  }
+
+  $(document).ready(function(){
+    $(document).on('click', '#xemchitiet',function(){ 
+        var value = $(this).attr('value-data');
+        //Gửi dữ liệu đến tệp PHP bằng Ajax
+          $.ajax({
+              url: 'index.php?controller=khuyenmai&action=showchitiet',
+              type: 'post',
+              data:{
+                makm:value
+              },
+              success: function(response){
+                $('#model--bill').html(response);
+              }
+          });
+    });
+
+    $(document).on('click', '#luu',function(){ 
+        // var value = $(this).attr('value-data');
+        //Gửi dữ liệu đến tệp PHP bằng Ajax
+        var mt=null;
+        var rd=null;
+        var kid=null;
+        var tr=null;
+        if(document.getElementById('checkbox_mt').checked==true){
+          mt="mt";
+        }
+        if(document.getElementById('checkbox_rd').checked==true){
+          rd="rd";
+        }
+        if(document.getElementById('checkbox_kid').checked==true){
+          kid="kid";
+        }
+        if(document.getElementById('checkbox_tr').checked==true){
+          tr="tr";
+        }
+          $.ajax({
+              url: 'index.php?controller=khuyenmai&action=luu',
+              type: 'post',
+              data:{
+                makm:document.getElementById("luu").value,
+                mountain:mt,
+                kids:kid,
+                touring:tr,
+                road:rd
+              },
+              success: function(response){
+                alert("Cập nhật thành công.");
+                location.reload();
+              }
+          });
+    });
+
+  })
+
+</script>
+</html>
+

@@ -1,46 +1,35 @@
-<?php 
-   session_start();
-   ob_start(); 
-?>
-
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head> -->
   <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product</title>
-    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css" />
-    <link rel="stylesheet" href="/Web2/public/components/fonts.css" />
-    <link rel="stylesheet" href="/Web2/public/style.css" />
-    <link rel="stylesheet" href="/Web2/public/components/menu/menu.css" />
-    <link rel="stylesheet" href="/Web2/public/components/login/login.css" />
-    <link rel="stylesheet" href="/Web2/public/components/popup/popUp.css" />
-    <link rel="stylesheet" href="/Web2/public/components/pageInfoProduct.css" />
-    <link rel="stylesheet" href="/Web2/public/components/search.css">
-    <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
-    <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
-
-    <script type="module" defer src="/Web2/public/script.js"></script>
-    <script type="module" defer src="/Web2/public/components/login/login.js"></script>
-    <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
-    <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
-  </head>
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/fonts.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/style.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/menu/menu.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/login/login.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/popup/popUp.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/pageInfoProduct.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/search.css">
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/responsive/responsive.css" />
+    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/product/product.css" />
+    <script type="module" defer src="/DoAnWeb/Web2/public/script.js"></script>
+    <script type="module" defer src="/DoAnWeb/Web2/public/components/login/login.js"></script>
+    <script type="module" defer src="/DoAnWeb/Web2/public/components/menu/menu.js"></script>
+    <script type="module" defer src="/DoAnWeb/Web2/public/components/slider/slider.js"></script>
+  <!-- </head> -->
   <body style="margin: 0 auto;">
     <div class="header">
         <!-- =========== START: HEADER TOP =========== -->
+  
         <div class="header__container">
           <div class="header__top">
             <div class="grid wide header__top--container">
               <div class="header__top-item--left">
                 <div class="header__top-item user-welcome">
                   <p>Xin chào,</p>
-                  <p> <?php
-                    
-                    if (isset($_SESSION['username'])) {
-                        echo $_SESSION['username'];
-                    }
-                    
-                    ?></p>
+                  <p></p>
                 </div>
               </div>
               <div class="header__top-item--right">
@@ -226,6 +215,7 @@
       </div>-->
 </div>
         </div>
+        <div id="check"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
           
@@ -379,7 +369,27 @@
 
           function quantityup() {
                   document.getElementById('quantity').value++;
-          }    
+          }
+
+          $(document).on('click', '#addtocart',function(){
+            console.log(document.getElementById('quantity').value);
+            // Gửi dữ liệu đến tệp PHP bằng Ajax
+            $.ajax({
+                url: 'index.php?controller=cart&action=store',
+                type: 'post',
+                data:{
+                  soluong: document.getElementById('quantity').value,
+                  id:document.getElementById('addtocart').value.split("#")
+                }, // Gửi dữ liệu từ bảng HTML
+                success: function(response){
+                  alert("Thêm thành công");
+                  $('#sohangtronggio').html(response); // Hiển thị kết quả từ tệp PHP
+                  document.getElementById("product-detail_model").style.display = "none";
+                }
+            });
+          });
+        
+        
         </script>
     
 </body>
