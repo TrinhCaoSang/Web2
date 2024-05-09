@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var linkClient = document.getElementById('link_client');
   var linkReceipt = document.getElementById('link_receipt');
   var linkbill = document.getElementById('link_bill');
-
+  // var linkbill = document.getElementById('link_bill');
   var staff = document.getElementById('staff');
 
   linkAuthorization.addEventListener('click', function (event) {

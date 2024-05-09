@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product</title>
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/fonts.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/style.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/menu/menu.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/login/login.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/popup/popUp.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/pageInfoProduct.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/search.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/responsive/responsive.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/product/product.css" />
-    <script type="module" defer src="/DoAnWeb/Web2/public/script.js"></script>
-    <script type="module" defer src="/DoAnWeb/Web2/public/components/login/login.js"></script>
-    <script type="module" defer src="/DoAnWeb/Web2/public/components/menu/menu.js"></script>
-    <script type="module" defer src="/DoAnWeb/Web2/public/components/slider/slider.js"></script>
+    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css" />
+    <link rel="stylesheet" href="/Web2/public/components/fonts.css" />
+    <link rel="stylesheet" href="/Web2/public/style.css" />
+    <link rel="stylesheet" href="/Web2/public/components/menu/menu.css" />
+    <link rel="stylesheet" href="/Web2/public/components/login/login.css" />
+    <link rel="stylesheet" href="/Web2/public/components/popup/popUp.css" />
+    <link rel="stylesheet" href="/Web2/public/components/pageInfoProduct.css" />
+    <link rel="stylesheet" href="/Web2/public/components/search.css">
+    <link rel="stylesheet" href="/Web2/public/components/responsive/responsive.css" />
+    <link rel="stylesheet" href="/Web2/public/components/product/product.css" />
+    <script type="module" defer src="/Web2/public/script.js"></script>
+    <script type="module" defer src="/Web2/public/components/login/login.js"></script>
+    <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
+    <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
   <!-- </head> -->
   <body style="margin: 0 auto;">
     <div class="header">
