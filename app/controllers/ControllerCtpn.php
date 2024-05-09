@@ -177,6 +177,7 @@ public function updateCTPN(){
   }
 }
 
+
 // public function deleteCTPN(){
 //   $id = $_GET['id'];
 //   $MaHang = $_GET['MaHang'];
@@ -233,7 +234,6 @@ public function editCTPN(){
         <form action="" class="receipt__form" id="form_ctpn">
         <div class="form-group">
           <label for="form__receiptId">Mã phiếu nhập:</label>
-          
           <input type="text" id="form__receipt" name="receipt" value="'.$item['MaPN'].'" disabled>
           
         </div>

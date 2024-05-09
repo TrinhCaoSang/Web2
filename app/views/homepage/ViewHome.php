@@ -1,4 +1,24 @@
+<?php
+  session_start();
+  ob_start();
 
+  // Kiểm tra trạng thái đăng nhập
+  if (isset($_SESSION['username'])) {
+    
+    $loggedIn = true;
+
+    // Kiểm tra loại tài khoản
+    if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'staff') {
+      $userType = 'staff';
+    } else {
+      $userType = 'customer';
+    }
+  } else {
+    // Người dùng chưa đăng nhập
+    $loggedIn = false;
+    $userType = null;
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +37,6 @@
     <link rel="stylesheet" href="/WEB2/public/components/responsive/responsive.css" />
     <link rel="stylesheet" href="/WEB2/public/components/product/product.css" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="module" defer src="/WEB2/public/components/login/login.js"></script> 
     <script type="module" defer src="/Web2/public/script.js"></script>
@@ -25,8 +44,8 @@
   
   </head>
   <body>
-    <!-- =========== START: HEADER =========== -->
     
+    <!-- =========== START: HEADER =========== -->
     <div class="header">
       <!-- =========== START: HEADER TOP =========== -->
 
@@ -35,8 +54,16 @@
           <div class="grid wide header__top--container">
             <div class="header__top-item--left">
               <div class="header__top-item user-welcome">
-              <p>Xin chào,</p>
-              <p><?php echo isset($_SESSION['username']) ? $_SESSION['username'] : ''; ?></p>
+                <p>Xin chào,</p>
+                <p>
+                    <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?>
+                </p>
               </div>
             </div>
             <div class="header__top-item--right">
@@ -58,7 +85,7 @@
             </div>
           </div>
         </div>
-  
+    
         <!-- =========== END: HEADER TOP =========== -->
   
         <!-- =========== START: HEADER BOTTOM =========== -->
@@ -81,35 +108,40 @@
               </li>
               <li>
                 <a href="index.php?controller=product&action=index&type=kids">KIDS</a>
+
               </li>
             </ul>
           </div>
   
           <div class="header__bottom--extention">
-            <div class="header__bottom--extention-item header__bottom--extention-user">
-              <i class="fa-solid fa-user" ></i>
-              <ul class="header__bottom--user__list">
-                <li class="adminManager__item" style="display: none">
-                  <button class="adminManager">
-                    <i class="fa-solid fa-hammer"></i>
-                    <p>Quản lý</p>
-                  </button>
-                </li>
-                <li>
-                  <button class="logout">
-                    <i class="fa-solid fa-door-open"></i>
-                    <p>Đăng xuất</p>
-                  </button>
-                </li>
-              </ul>
-            </div>
-  
-            <a href="cart.php">
-              <div class="header__bottom--extention-item header__bottom--extention-cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <p>0</p>
-              </div>
-            </a>
+                <div class="header__bottom--extention-item header__bottom--extention-user">
+                   <i class="fa-solid fa-user"></i>
+                    <ul class="header__bottom--user__list">
+                        <!-- <li class="adminManager__item">
+                            <button class="adminManager">
+                                <i class="fa-solid fa-hammer"></i>
+                                <p>Quản lý</p>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="logout">
+                                <i class="fa-solid fa-door-open"></i>
+                                <p>Đăng xuất</p>
+                            </button>
+                        </li> -->
+                    </ul>
+                </div>
+            
+                
+           
+
+                <a href="index.php?controller=cart&action=index">
+                  <div class="header__bottom--extention-item header__bottom--extention-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p>0</p>
+                  </div>
+                </a>
+
             
           </div>
           <div class="header__bottom--hide-menu">
@@ -117,12 +149,11 @@
           </div>
         </div>
       </div>
+
       <div class="header__slider">
         <video src="/WEB2/public/database/images/sliderVideos/RBHFFG Marquee Summer 2021.mp4" muted></video>
         <video src="/WEB2/public/database/images/sliderVideos/NF24 US Video Marquee_1080p.mp4" muted></video>
         <video src="/WEB2/public/database/images/sliderVideos/Fuel EX_ Ace of All Trails.mp4" muted></video>
-        
-
         <ul class="dots">
           <li class="active"></li>
           <li></li>
@@ -198,7 +229,6 @@
     <div class="info_container">
       <div class="product">
         <div class="left">
-
           <div class="image"><img src="/Web2/public/database/images/productImgs/mountain-3.jpg" alt=""></div>
         </div>
         <div class="right">
@@ -220,7 +250,6 @@
       </div>
       <div class="product reverse">
         <div class="left">
-
           <div class="image"><img src="/Web2/public/database/images/productImgs/road.webp" alt=""></div>
         </div>
         <div class="right">
@@ -241,7 +270,6 @@
       </div>
       <div class="product">
         <div class="left">
-
           <div class="image"><img src="/Web2/public/database/images/productImgs/touring.webp" alt=""></div>
         </div>
         <div class="right">
@@ -263,7 +291,6 @@
       </div>
       <div class="product reverse">
         <div class="left">
-
           <div class="image"><img src="/Web2/public/database/images/productImgs/kid.webp" alt=""></div>
         </div>
         <div class="right">
@@ -289,6 +316,7 @@
       <div class="section section--4 grid wide">
         <h1>Thể thao là cuộc sống, chúng tôi sẽ nâng cao cuộc sống của bạn bằng xe đạp!</h1>
         <button>ĐĂNG KÝ MUA NGAY HÔM NAY!</button>
+
       </div>
     </div>
     <div class="footer-container">
@@ -389,7 +417,6 @@
           <div class="register__info">
   
             <h1>Tạo tài khoản</h1>
-  
             <form id="register-form">
               <div class="register__info--input register__info--input__full-name">
                 <label for="registerName">Tên đầy đủ</label>
@@ -412,8 +439,7 @@
                   <button class="hideEyeRegister hide">
                     <i class="fa-solid fa-eye-slash"></i>
                   </button>
-                 </div>
-               
+                 </div>            
               </div>
               <div id="Pass_reg--error" class="error-message"></div>
 
@@ -441,16 +467,13 @@
                
               </div>
               <div id="Address_reg--error" class="error-message"></div>
-
               <p class="policy">
                 Bằng việc đã đăng ký, bạn đã đồng ý với <b>Trek</b> về 
                 <a href="">Điều khoản dịch vụ</a> và 
                 <a href="">Chính sách bảo mật</a>
               </p>
-  
               <button type="submit" class="register__info--submit">Đăng ký</button>
             </form>
-  
             <div class="signin" style="display: none">
                 <p>Bạn đã có tài khoản?</p>
                 <button>Đăng nhập</button>
@@ -467,15 +490,13 @@
         <div class="login">
           <div class="login__info">
             <h1>Đăng nhập</h1>
-  
-            <form id="login-form">
+            <form action="" id="login-form" method="post">
               <div class="login__info--input login__info--input__full-email">
                 <label for="loginName">Tên đăng nhập</label>
                 <input type="Name" name="Namelogin" class="login__info--input-name" id="loginName" placeholder="Nhập tên đăng nhập" />
                 <p></p>
               </div>
               <div id="Name_log--error" class="error-message"></div>
-
               <div class="login__info--input login__info--input__full-password">
                 <label for="loginPassword">Mật khẩu</label>
   
@@ -485,7 +506,6 @@
                   id="loginPassword"
                   name="PasswordLogin"
                   placeholder="Nhập mật khẩu của bạn"/>
-  
                   <button class="showEyeLogin">
                     <i class="fa-solid fa-eye"></i>
                   </button>
@@ -496,13 +516,10 @@
                 <p></p>
               </div>
               <div id="Pass_log--error" class="error-message"></div>
-
               <div class="forgot__password">
                 <a href="#">Bạn quên mật khẩu?</a>
               </div>
-  
               <button type="submit" class="login__info--submit">Đăng nhập</button>
-  
               <button class="login__info--create__other mb10px">
                 <svg
                   stroke="currentColor"
@@ -603,9 +620,9 @@
           </div>
         </div>
       </div>
-
       <script>
-    const loginForm = document.getElementById('login-form');
+
+const loginForm = document.getElementById('login-form');
 
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -654,26 +671,38 @@ loginForm.addEventListener('submit', (event) => {
       });
     } else {
       isLoggedIn = false;
-      document.querySelector('.user__wrapper').style.display = 'flex';
-      swal("Đăng nhập thất bại", data.message, "error");
+      document.querySelector('.user__wrapper').style.display = 'none';
+      swal("Đăng nhập thất bại", data.message, "error")
+            .then((value) => {
+                                // Xóa thông tin đăng nhập và chuyển hướng về trang chủ
+                 window.location.href = "index.php?controller=home&action=index";
+                });
+
     }
   },
   error: function(xhr, status, error) {
     console.error('Error:', error);
-    isLoggedIn = false;
-    document.querySelector('.user__wrapper').style.display = 'flex';
-    if(xhr.responseText) {
-      swal("Oops!", xhr.responseText, "error");
-    } else {
-      swal("Oops!", "Đã có lỗi xảy ra, vui lòng thử lại sau.", "error");
-    }
+    
+    // if(xhr.responseText) {
+    //   swal("Oops!", xhr.responseText, "error");
+    // } else {
+    //   swal("Oops!", "Đã có lỗi xảy ra, vui lòng thử lại sau.", "error");
+    // }
   }
 });
 
     }
 });
+function isValidPhone(phone) {
+    var phoneRegex = /^0[0-9]{9}$/;
+    return phoneRegex.test(phone);
+}
+function isValidPassword(password) {
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+}
 
-    document.getElementById('register-form').addEventListener('submit', function(event) {
+document.getElementById('register-form').addEventListener('submit', function(event) {
     event.preventDefault();
     var isValid = true;
     var Name_reg = document.getElementById('registerName').value.trim();
@@ -708,9 +737,18 @@ loginForm.addEventListener('submit', (event) => {
         passError.textContent = '*Mật khẩu không được để trống!';
         passError.style.display = 'block';
         isValid = false;
+    } else if (!isValidPassword(Pass_reg)) {
+        passError.textContent = '*Mật khẩu phải gồm ít nhất 8 kí tự, bao gồm chữ cái viết thường, chữ cái viết hoa, số và một ký tự đặc biệt!';
+        passError.style.display = 'block';
+        isValid = false;
     }
+
     if (Phone_reg === '') {
         phoneError.textContent = '*Chưa nhập số điện thoại!';
+        phoneError.style.display = 'block';
+        isValid = false;
+    } else if (!isValidPhone(Phone_reg)) {
+        phoneError.textContent = '*Số điện thoại không hợp lệ!';
         phoneError.style.display = 'block';
         isValid = false;
     }
@@ -758,9 +796,7 @@ loginForm.addEventListener('submit', (event) => {
         });
     }
 });
-
-  
- document.getElementById('loginName').addEventListener('input', function() {
+document.getElementById('loginName').addEventListener('input', function() {
     var Name_logVal = this.value.trim();
     if (Name_logVal !== '') {
         document.getElementById('Name_log--error').style.display = 'none';
@@ -824,6 +860,116 @@ document.getElementById('registeraddress').addEventListener('input', function() 
     }
 });
 
+// =========================== start: IF LOGGEDIN ===========================
+const userBtn = document.querySelector('.header__bottom--extention-user');
+const userList = document.querySelector('.header__bottom--user__list');
+// Sử dụng AJAX để kiểm tra trạng thái đăng nhập
+$.ajax({
+    type: "POST",
+    url: "index.php?controller=home&action=checkLoginStatus",
+    dataType: "json",
+    success: function(data) {
+        if (data.loggedIn) {
+          document.querySelector('.user__wrapper').style.display = 'none';
+          var userType = data.user_type;
+          console.log('userType:', userType);
+           // Hiển thị tùy chọn dựa trên loại tài khoản
+            if (userType === 'staff') {
+                // Hiển thị "Quản lý" và "Đăng xuất"
+                userList.innerHTML = `
+                    <li class="adminManager__item">
+                    <a href="index.php?controller=sanpham&action=index"> <button class="adminManager">
+                            <i class="fa-solid fa-hammer"></i>
+                            <p>Quản lý</p>
+                        </button></a>
+                    </li>
+                    <li>
+                        <button class="logout">
+                            <i class="fa-solid fa-door-open"></i>
+                            <p>Đăng xuất</p>
+                        </button>
+                    </li>
+                    `;
+            } else {
+                // Chỉ hiển thị "Đăng xuất"
+                userList.innerHTML = `
+                    <li>
+                        <button class="logout">
+                            <i class="fa-solid fa-door-open"></i>
+                            <p>Đăng xuất</p>
+                        </button>
+                    </li>
+                `;
+            }
+
+
+            // Thêm sự kiện click vào biểu tượng người dùng
+            userBtn.addEventListener('click', () => {
+                userList.style.display = userList.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Xử lý sự kiện đăng xuất
+            const logoutBtn = document.querySelector('.logout');
+            logoutBtn.addEventListener('click', () => {
+                $.ajax({
+                    type: "POST",
+                    url: "index.php?controller=home&action=logout",
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.success) {
+                            // Hiển thị thông báo đăng xuất thành công
+                            swal("Thành công!", "Bạn đã đăng xuất thành công.", "success")
+                            .then((value) => {
+                                // Xóa thông tin đăng nhập và chuyển hướng về trang chủ
+                                window.location.href = "index.php?controller=home&action=index";
+                            });
+                        } else {
+                            swal("Oops!", data.message, "error");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        swal("Oops!", "Đã có lỗi xảy ra, vui lòng thử lại sau.", "error");
+                    }
+                });
+            });
+          }
+        // } else {
+        //     // Hiển thị form đăng nhập/đăng ký
+        //     document.querySelector('.user__wrapper').style.display = 'flex';
+        // }
+    },
+    error: function(xhr, status, error) {
+        console.error('Error:', error);
+        swal("Oops!", "Đã có lỗi xảy ra, vui lòng thử lại sau.", "error");
+    }
+});
+// =========================== end: IF LOGGEDIN ===========================
+
+
+//// ============================click: Cart =============================
+var isLoggedIn = <?php echo $loggedIn ? 'true' : 'false'; ?>;
+var userType = '<?php echo $userType; ?>';
+
+if (isLoggedIn) {
+  // Ẩn phần tử khi đã đăng nhập
+  document.querySelector('.section--4-container').style.display = 'none';
+} else {
+  // Hiển thị phần tử khi chưa đăng nhập hoặc đã đăng xuất
+  document.querySelector('.section--4-container').style.display = 'block';
+}
+const cartLink = document.querySelector('a[href="index.php?controller=cart&action=index"]');
+
+cartLink.addEventListener('click', (event) => {
+  if (isLoggedIn) {
+    
+    return true;
+  } else {
+    // Nếu chưa đăng nhập, hiển thị thông báo và ngăn không cho chuyển hướng
+    swal("Thông báo", "Vui lòng đăng nhập để truy cập vào giỏ hàng.", "warning");
+    event.preventDefault(); // Ngăn không cho chuyển hướng
+  }
+});
 
       </script>
     </body>

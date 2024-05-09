@@ -11,6 +11,7 @@
     <!-- <script src="/Web2/app/views/admin/show_ViewPN.js"></script> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
   <body>
@@ -38,14 +39,14 @@
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Product">
+            <a href="index.php?controller=sanpham&action=index" id="link_Product">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Promotions">
+            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>
@@ -158,8 +159,8 @@
                 <td ><?php echo $i; ?></td>
                 <td ><?php echo $row['MaPN'] ;?></td>
                 <!-- <td class="text__align--left"><?php echo $row['MaNCC']; ?></td> -->
-
                 <td class="text__align--left"><?php echo number_format($row['ThanhTienPN'], 0, '', '.')." VND";?></td>                
+
                 <td class="text__align--left"><?php echo $row['NgayNhapFormatted']; ?></td>
                 
                 
@@ -248,10 +249,6 @@ document.getElementById('form__receipt').addEventListener('input', function() {
  function Del(name){
    return confirm("Bạn có chắc muốn xóa mã phiếu nhập: "+ name + " ?");
  }
-
-
-
- 
 function getCurrentDate() {
     var currentDate = new Date();
     var day = currentDate.getDate();
@@ -260,7 +257,6 @@ function getCurrentDate() {
     var formattedDate = year + '-' + month + '-' + day;
     return formattedDate;
 }
-
 
 </script>
 </body>

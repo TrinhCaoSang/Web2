@@ -15,7 +15,6 @@ class ControllerKhachhang{
             $this->client->connect();
             $this->list_client=$this->client->getAllData();
         }
-
     protected function view(array $data=[],$dataID){
         // foreach($data as $key=>$value){
         //     $$key=$value;
@@ -47,7 +46,6 @@ class ControllerKhachhang{
             }
         }
     }    
-    
     public function save() {
         if (isset($_POST['save'])) {
             $customerFname = $_POST['customerFname'];

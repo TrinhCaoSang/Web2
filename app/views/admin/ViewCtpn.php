@@ -39,14 +39,14 @@
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Product">
+            <a href="index.php?controller=sanpham&action=index" id="link_Product">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Promotions">
+            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>
@@ -207,7 +207,7 @@
                     $model = new ModelCtpn();
                     $conn = $model->connect();
                     $sql = "SELECT * FROM chitietphieunhap";
-                    // $sql = "SELECT * FROM chitietphieunhap ORDER BY MaPN ASC";
+                     $sql = "SELECT * FROM chitietphieunhap ORDER BY MaPN ASC";
                     $result = $model->execute($sql);
                     
                     if ($model->num_rows() > 0) {
@@ -254,6 +254,7 @@
 
 
   $('.customer__form--add').on('click', function(event) {
+
     event.preventDefault(); 
     
     var maPN = $('#form__receipt').val();
@@ -417,10 +418,6 @@ function btnUPDATE(event) {
         }
     });
   }
-
-      
-
- 
 
 
       </script>

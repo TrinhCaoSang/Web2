@@ -1,8 +1,7 @@
-
-
 $(document).ready(function() {
     let maNCC = $('#form__receipt--MANCC');
     let maHang = $('#form__receipt--MaSP');
+
     var selectedLoaiSP = $('#form__receipt--LoaiSP');
 
     updateNCCName(maNCC.val());
@@ -47,6 +46,7 @@ function updateTenSP(selectedValue) {
         data: { MaHang: selectedValue },
         success: function(selectedValue) {
             $('#form__receipt--TenSP').val(selectedValue);
+
         },
         error: function(xhr, status, error) {
             console.error('Error:', error);
@@ -124,4 +124,3 @@ function calculateTotal() {
     var total = quantity * price;
     $('#form__receipt--tong').val(total);
 }
-

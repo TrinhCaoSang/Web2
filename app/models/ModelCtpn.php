@@ -46,6 +46,7 @@
         }
         return $data;
     }
+
     
     public function getCTPN($MaCTPN){
         $sql = "SELECT * FROM chitietphieunhap WHERE MaCTPN = '$MaCTPN'";
@@ -56,6 +57,7 @@
           return false;
         }
       }
+
     public function getAllData(){
         $sql="SELECT * FROM chitietphieunhap";
         $this->execute($sql);
@@ -165,6 +167,16 @@
         return $data;
     }
     
+
+    // public function getListMaPN() {
+    //     $sql = "SELECT MaPN FROM phieunhap";
+    //     $this->execute($sql);
+    //     $data = [];
+    //     while ($row = $this->getData()){
+    //         $data[] = $row['MaPN'];
+    //     }
+    //     return $data;
+    // }
     
     
     public function getMathangInfo($MaHang){
@@ -211,8 +223,6 @@
     }
     
     
-    
-
     public function getDataForTable(){
         $sql = "SELECT MaPN, MaNCC, ThanhTienPN, NgayNhap FROM phieunhap";
         $this->execute($sql);
@@ -252,9 +262,6 @@
         }
         return $data;
     }
-    
-    
-    
     public function deleteCTPN($MaPN, $MaHang){
         // Xóa bản ghi từ bảng chitietphieunhap dựa trên MaPN và MaHang
         $sqlDeleteChitiet = "DELETE FROM chitietphieunhap WHERE MaPN = '$MaPN' AND MaHang = '$MaHang' LIMIT 1";
@@ -268,6 +275,7 @@
         $data = $this->getData();
         return $data;
     }
+
     //////////////////////////////////////////////////////////////////
     public function getCTPNByMaCTPN($MaCTPN){
         $sql = "SELECT * FROM chitietphieunhap WHERE MaCTPN = '$MaCTPN'";
@@ -297,12 +305,7 @@
     // public function UpdateCTPN($MaPN, $MaNCC,$TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN){
     //     $sql="UPDATE chitietphieunhap SET MaPN='$MaPN', MaNCC='$MaNCC', TenNCC='$TenNCC', MaHang='$MaHang', TenHang='$TenHang', DonGiaPN='$DonGiaPN', SoLuong='$SoLuong',  ThanhTienCTPN=$ThanhTienCTPN WHERE MaCTPN = ?";
     //     return $this->execute($sql);
-    // }
-    
-    
-    
-    
-    
+    // } 
     public function getCTPNByMaPNMaHang($MaPN, $MaHang){
         $sql = "SELECT * FROM chitietphieunhap WHERE MaPN = '$MaPN' AND MaHang = '$MaHang'";
         $result = $this->execute($sql);
@@ -312,8 +315,5 @@
           return false;
         }
       }
-      
-
-    
    }
 ?>

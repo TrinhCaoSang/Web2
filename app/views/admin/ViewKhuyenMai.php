@@ -35,14 +35,14 @@
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="linkProduct">
+            <a href="index.php?controller=sanpham&action=index" id="linkProduct">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="linkPromotions">
+            <a href="index.php?controller=khuyenmai&action=index" id="linkPromotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>

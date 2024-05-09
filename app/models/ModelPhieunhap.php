@@ -56,7 +56,6 @@
         }
         return $data;
     }
-    
     public function num_rows(){
         if($this->result){
             $num=mysqli_num_rows($this->result);
@@ -254,7 +253,5 @@
         return $this->execute($sql);
     }
 
-    
-    
    }
 ?>

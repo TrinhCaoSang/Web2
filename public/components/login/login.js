@@ -12,7 +12,7 @@ const openFormRegister = () => {
   }
 };
 userBtn.addEventListener('click', e => {
-  checkLoggedIn();
+  // checkLoggedIn();
   openFormRegister();
 });
 
@@ -80,65 +80,47 @@ const btnCloseGlobal = document.querySelector('.user__wrapper .form__close--glob
 btnCloseGlobal.addEventListener('click', e => {
   hideFormRegLogin();
 });
-// =========================== start: IF LOGGEDIN ===========================
-const welcomeUser = document.querySelector('.user-welcome');
-const userName = welcomeUser.querySelector('p:last-child');
-const userList = document.querySelector('.header__bottom--user__list');
-const section4 = document.querySelector('.section--4-container');
-
-const checkLoggedIn = () => {
-  const userLogin = JSON.parse(localStorage.getItem('User'));
-  const userListOnLowDevice = document.querySelector('.hide__menu--user__list');
-  const userNameOnLowDevice = document.querySelector(
-    '.hide__menu--list__extention .header__bottom--extention-user span'
-  );
-
-  if (userLogin) {
-    isLoggedIn = true;
-    userName.innerText = userLogin.name;
-    userNameOnLowDevice.innerText = userLogin.name;
-    welcomeUser.classList.add('active');
-
-    userIconHideMenu.removeEventListener('click', openFormRegister);
-    userBtn.removeEventListener('click', openFormRegister);
-
-    userBtn.addEventListener('mouseover', e => {
-      userList.style.display = 'block';
-    });
-
-    userBtn.addEventListener('mouseout', e => {
-      userList.style.display = 'none';
-    });
-
-    section4.style.display = 'none';
-
-    
-    // Kiểm tra quyền truy cập User nếu là admin thì hiển thị btn Quản lý
-    if (userLogin.isAdmin) {
-      document.querySelectorAll('.adminManager__item').forEach(item => (item.style.display = 'block'));
-    }
-  } else {
-    userList.style.display = 'none';
-    userIconHideMenu.addEventListener('click', e => {
-      hideMenu.classList.remove('active');
-    });
-  }
-};
-checkLoggedIn();
-// =========================== end: IF LOGGEDIN ===========================
 // =========================== start: LOGOUT LOGIC ===========================
-const logoutBtn = document.querySelector('.logout');
-const logoutLowDeviceBtn = document.querySelector('.hide__menu--list__type.logout__item');
 
-const logoutHandler = () => {
-  localStorage.removeItem('User');
-  alert('Đăng xuất thành công!');
-  location.reload();
-};
-
-logoutLowDeviceBtn.addEventListener('click', logoutHandler);
-
-logoutBtn.addEventListener('click', logoutHandler);
 // =========================== end: LOGOUT LOGIC ===========================
 
- 
+
+
+// ========================== Show / Hide: Password ============================
+// Đối với form đăng nhập
+var loginShowEyeBtn = document.querySelector('.showEyeLogin');
+var loginHideEyeBtn = document.querySelector('.hideEyeLogin');
+var loginPasswordInput = document.querySelector('#loginPassword'); // thay đổi #loginPassword thành id thật của trường mật khẩu cho form đăng nhập của bạn
+
+loginShowEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    loginPasswordInput.type = 'text';
+    loginShowEyeBtn.style.display = 'none';
+    loginHideEyeBtn.style.display = 'block';
+});
+
+loginHideEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    loginPasswordInput.type = 'password';
+    loginHideEyeBtn.style.display = 'none';
+    loginShowEyeBtn.style.display = 'block';
+});
+
+// Đối với form đăng ký
+var registerShowEyeBtn = document.querySelector('.showEyeRegister');
+var registerHideEyeBtn = document.querySelector('.hideEyeRegister');
+var registerPasswordInput = document.querySelector('#registerPassword'); // thay đổi #registerPassword thành id thật của trường mật khẩu cho form đăng ký của bạn
+
+registerShowEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    registerPasswordInput.type = 'text';
+    registerShowEyeBtn.style.display = 'none';
+    registerHideEyeBtn.style.display = 'block';
+});
+
+registerHideEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    registerPasswordInput.type = 'password';
+    registerHideEyeBtn.style.display = 'none';
+    registerShowEyeBtn.style.display = 'block';
+});

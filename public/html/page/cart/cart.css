@@ -132,7 +132,7 @@ header .navbar .navbar-menu li a {
 }
 
 footer {
-    position: fixed;
+    
     width: 100%;
     padding: 40px;
     display: flex;
@@ -140,9 +140,6 @@ footer {
     align-items: center;
     justify-content: flex-end;
     gap: 20px;
-    left: 0;
-    bottom: 0;
-    
 }
 
 footer .footerButton {
@@ -160,9 +157,10 @@ footer button {
     border-radius: 7px;
     border-left: 1px solid #4f4f4f;
     cursor: pointer;
+
 }
 
-footer button:nth-child(3) {
+/* footer button:nth-child(3) {
     background-color: #b5b5b5;
     cursor: not-allowed;
 }
@@ -174,7 +172,7 @@ footer button:nth-child(2) {
 
 footer button:hover {
     background-color: #b5b5b5;
-}
+} */
 
 .searchValue {
     width: 80%;

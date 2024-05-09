@@ -66,7 +66,6 @@ class ModelSanpham {
         $data = [];
         while ($datas = $this->getData()){
             $data[] = $datas;
-
         }
         return $data;
     }
@@ -80,6 +79,7 @@ class ModelSanpham {
         }
         return $num;
     }
+
     public function getTenSP($MaHang){
         $sql = "SELECT TenHang FROM mathang WHERE MaHang ='$MaHang'";
         $this->execute($sql);
@@ -101,6 +101,7 @@ class ModelSanpham {
        $data = 0;
    }
    return $data;
+
 }
 
 public function getAllMathang(){
@@ -179,14 +180,5 @@ public function addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuo
     $result_sanpham = $stmt->execute();
     return $result_sanpham;
 }
-
-
-
-
-
-
-
-
-
 }
 ?>

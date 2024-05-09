@@ -33,6 +33,7 @@
 
     public function index(){
       $this->list_coupon = $this->coupon->getAllData();
+
       $list_ncc = $this->coupon->getAllNCC();
       $list_loaisp = $this->coupon->getAllLoaiSP();
 
@@ -167,8 +168,10 @@ public function deletePN(){
 }
 
 
+
 public function getDataForTable(){
   $data = $this->coupon->getDataForTable();
+
 
   // Định dạng lại ngày theo định dạng 'd/m/Y'
   foreach ($data as &$row) {
@@ -184,12 +187,6 @@ public function getDataByMaPN($id) {
   header('Content-Type: application/json');
   echo json_encode($data);
 }
-
-
-
-
-
-
 
   }
 ?>

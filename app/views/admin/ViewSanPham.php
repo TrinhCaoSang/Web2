@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    ob_start();
+?>
 <head>
     <title>Trek - Quản lý cửa hàng</title>
     <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
@@ -5,11 +9,11 @@
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
     <script src="/Web2/app/views/admin/showView_Sanpham.js"></script>
     
 </head>
 <body>
+
 <div class="container">
       
       <div class="admin__taskbar">
@@ -36,7 +40,7 @@
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Product">
+            <a href="index.php?controller=sanpham&action=index" id="link_Product">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
@@ -108,7 +112,15 @@
           </div>
         </div>
         <div class="admin__content--header__user">
-          <p><i class="fa-solid fa-user-shield"></i>Nguyễn Văn A</p>
+          <p><i class="fa-solid fa-user-shield"></i>
+          <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?>
+        </p>
         </div>
       </div>
       <div class="admin__content">
@@ -161,24 +173,14 @@
               </div>
               <div id="ImageSp-error" class="error-message"></div>
 
-
-
-                
-      
               </form>
               <div class="button__container--receipt">
                 <button type="button" class="customer__form--add1" id="add-btn1">Thêm</button>
-                <button type="button" class="customer__form--add2" id="add-btn2">Reset</button>
-               
+                <button type="button" class="customer__form--add2" id="add-btn2">Reset</button>            
               </div>
-
-
-              
-
-
-
                   <table id="table_product">
                     <thead>
+
                         <tr>
                         <th class="table--top">Loại</th>
                         <th class="table--top">Mã SP</th>
@@ -189,6 +191,7 @@
                         <th class="table--top">Sửa</th>
                         <th class="table--top">Xóa</th>
                         </tr>
+
                         </thead>
                         <tr>
                           <tbody>
@@ -277,8 +280,9 @@
                       
                       
                         </div>
-                  </div>
+
                 </div>
+            </div>
           </div>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
           <script>
@@ -434,18 +438,8 @@ document.getElementById('file-upload').addEventListener('input', function() {
             document.getElementById('ImageSp-error').style.display = 'block';
         }
 });
-
-
-
-
-
-
-
-
-
-
-
           </script>
         </div>
+
         </div>
 </body>

@@ -1,6 +1,11 @@
-<!-- <!DOCTYPE html>
+<?php 
+   session_start();
+   ob_start(); 
+?>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head> -->
+  <head>
   <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product</title>
@@ -19,19 +24,23 @@
     <script type="module" defer src="/Web2/public/components/login/login.js"></script>
     <script type="module" defer src="/Web2/public/components/menu/menu.js"></script>
     <script type="module" defer src="/Web2/public/components/slider/slider.js"></script>
-  <!-- </head> -->
-
+  </head>
   <body style="margin: 0 auto;">
     <div class="header">
         <!-- =========== START: HEADER TOP =========== -->
-  
         <div class="header__container">
           <div class="header__top">
             <div class="grid wide header__top--container">
               <div class="header__top-item--left">
                 <div class="header__top-item user-welcome">
                   <p>Xin chào,</p>
-                  <p></p>
+                  <p> <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?></p>
                 </div>
               </div>
               <div class="header__top-item--right">
@@ -94,10 +103,20 @@
                 </ul>
               </div>
     
-              <a href="cart.php">
+              <a href="index.php?controller=cart">
                 <div class="header__bottom--extention-item header__bottom--extention-cart">
                   <i class="fa-solid fa-cart-shopping"></i>
-                  <p>0</p>
+                  <div id="sohangtronggio">
+                    <p ><?php
+                      if (!isset($_SESSION['order_count'])) {
+                        echo 0;
+                      }
+                      else{
+                        echo $_SESSION['order_count'];
+                      }
+                    
+                    ?></p>
+                  </div>
                 </div>
               </a>
               
@@ -360,9 +379,7 @@
 
           function quantityup() {
                   document.getElementById('quantity').value++;
-          }
-        
-        
+          }    
         </script>
     
 </body>

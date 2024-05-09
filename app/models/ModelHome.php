@@ -1,6 +1,7 @@
 <?php
      class ModelHome{
         private $hostname='localhost';
+
     private $username='root';
     private $pass='';
     private $dbname='dbshop';
@@ -22,6 +23,7 @@
         }
         return $this->conn;
     }
+
         //Phương thức lấy dữ liệu
         public function getData(){
             if($this->result){
@@ -31,10 +33,12 @@
             }
             return $data;
         }
+
         public function execute($sql){
             $this->result=$this->conn->query($sql);
             return $this->result;
         }
+
         
         //Phương thức lấy toàn bộ dữ liệu
         public function getAllData($type){
@@ -49,6 +53,7 @@
                     $data[]=$datas;
                 }
             }
+
             return $data;
         }
         public function getDataID($id){
@@ -72,6 +77,7 @@
                     $data[]=$datas;
                 }
             }
+
             return $data;
         }
         //Phương thức đếm số bản ghi
@@ -84,7 +90,6 @@
             }
             return $num;
         }
-       
 
         public function addKhachhang($TenKh, $gioitinh, $Sdt, $DiaChiKh, $ngaydangky) {
             $sql = "INSERT INTO khachhang(TenKh, gioitinh, Sdt, DiaChiKh, ngaydangky) 
@@ -143,5 +148,6 @@
         }
         
         
+
     }
 ?>

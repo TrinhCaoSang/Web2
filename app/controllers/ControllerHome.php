@@ -1,10 +1,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 <?php
     class ControllerHome{
         private $HomeModel;
         private $listProduct;
-        
         public function __construct()
         {
             $this->loadModel('Home');
@@ -12,13 +10,11 @@
             $this->HomeModel->connect();
         }
         
-    
+
         protected function loadModel($modelPath){
             return require ("./app/models/ModelHome.php");
-    
         }
-        public function index(){
-            
+        public function index(){  
             return include("./app/views/homepage/ViewHome.php");
         }
         
@@ -41,6 +37,10 @@
         
                 if ($makh) {
                     if ($this->HomeModel->addLoginCustomer($makh, $Password, 1, 1, $ngaydangky)) {
+                        session_start();
+                        $_SESSION['user_id'] = $makh;
+                        $_SESSION['user_type'] = 'customer';
+                        $_SESSION['username'] = $TenKh;
                         ob_clean();
 
                         header('Content-Type: application/json');
@@ -83,7 +83,7 @@
                     }
                     ob_clean();
                     header('Content-Type: application/json');
-                    echo json_encode(array('success' => true, 'redirect' => 'index.php?controller=home&action=index'));
+                    echo json_encode(array('success' => true, 'redirect' => 'index.php?controller=home&action=index', 'user_type' => $_SESSION['user_type'], 'user_name' => $_SESSION['username']));
                     exit;
                 } else {
                     // Thông tin đăng nhập không hợp lệ
@@ -97,13 +97,39 @@
             }
         }
         
+        public function checkLoginStatus() {
+            session_start();
+            if (isset($_SESSION['user_id'])) {
+                
+                ob_clean();
+                echo json_encode(array('loggedIn' => true, 'user_type' => $_SESSION['user_type'], 'user_name' => $_SESSION['username']));
+            } else {
+                // Người dùng chưa đăng nhập
+                ob_clean();
+                echo json_encode(array('loggedIn' => false));
+            }
+            exit();
+        }
+    
         
+        public function logout() {
+            session_start();
+            // Xóa thông tin đăng nhập khỏi session
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_type']);
+            unset($_SESSION['username']);
+            session_destroy();
         
-        
-        
+            // Trả về kết quả JSON
+            ob_clean();
+            header('Content-Type: application/json');
+            echo json_encode(array('success' => true, 'message' => 'Đăng xuất thành công'));
+            exit;
+        }
                  protected function view(array $data = []) {
             return include("./app/views/homepage/ViewHome.php");
         }
         
+
     }
 ?>

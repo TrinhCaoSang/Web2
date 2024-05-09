@@ -462,3 +462,31 @@
       opacity: 0;
     }
 }
+
+/* login and drop down menu*/
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.header__bottom--user__list {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 120px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+}
+
+.header__bottom--user__list li {
+  padding: 10px;
+  text-align: left;
+}
+
+.header__bottom--user__list li:hover {
+  background-color: #f1f1f1;
+}
+
+.show {
+  display: block;
+}
