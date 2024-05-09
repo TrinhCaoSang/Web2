@@ -3,12 +3,17 @@
 
         private $productModel;
         private $listProduct;
+        private $listCTKM;
+        private $listKM;
 
         public function __construct()
         {
             $this->loadModel('Product');
             $this->productModel=new ModelProduct;
             $this->productModel->connect();
+            $this->listCTKM=$this->productModel->getAllDataCTKM();
+            $this->listKM=$this->productModel->getAllDataKM();
+
         }
         
         protected function view(){
@@ -26,6 +31,39 @@
 
         function stylenum($num) {
             return number_format($num)." VNĐ";
+        }
+
+        public function getMaKM($mathang){
+            foreach($this->listCTKM as $km){
+                if($mathang['MaLoai']==$km['MaLoai']){
+                    return $km;
+                }
+            }
+            return null;
+        }
+
+        public function giaKhuyenMai($mathang){
+            $dieukien=0;
+            $phantramgg=0;
+            $giasaukhiKM=$mathang['DonGia'];
+            $km=$this->getMaKM($mathang);
+            if($km!=null){
+                if($mathang['MaLoai']==$km['MaLoai']){
+                    foreach($this->listKM as $dskm){
+                        if($dskm['MaKM']==$km['MaKM']){
+                            if($dskm['PhanTramGG']>$phantramgg){
+                                $dieukien=$dskm['dieukien'];
+                                $phantramgg=$dskm['PhanTramGG'];
+                            }    
+                        }
+                    }
+                }
+            }
+            if($mathang['DonGia']>=$dieukien){
+                $giasaukhiKM=(100-$phantramgg)*$mathang['DonGia']/100;
+            }
+            
+            return $giasaukhiKM;
         }
 
         public function search(){
@@ -135,7 +173,10 @@
                     </div>
                     <div id="mota-product"><p>'
                         .$data[$count]['TenHang'] . '<br>' 
-                        .'Price: ' . $this->stylenum($data[$count]['DonGia']) . '</p>
+                        .'Price: ' . $this->stylenum($this->giaKhuyenMai($data[$count])) . '<br>'
+                        .'Original Price: <s>'.$this->stylenum($data[$count]['DonGia']) . '</s><br>'
+                        . '</p>
+                        
                     </div>
                     </div><div class="divproduct"></div>
                 </div>';
@@ -154,7 +195,9 @@
                     </div>
                     <div id="mota-product"><p>'
                         .$data[$i]['TenHang'] . '<br>' 
-                        .'Price: ' . $this->stylenum($data[$i]['DonGia']) . '</p>
+                        .'Price: '.$this->stylenum($this->giaKhuyenMai($data[$i])) . '<br>'
+                        .'Original Price: <s>'.$this->stylenum($data[$i]['DonGia']) . '</s><br>'
+                        .'</p>
                     </div>
                 </div>
                 <div id="'.$data[++$i]["MaHang"].'" class="divproduct">
@@ -167,9 +210,11 @@
                     </div>
                     <div id="mota-product"><p>'
                         .$data[$i]['TenHang'] . '<br>' 
-                        .'Price: ' . $this->stylenum($data[$i]['DonGia']) . '</p>
+                        .'Price: ' . $this->stylenum($this->giaKhuyenMai($data[$i])) . '<br>'
+                        .'Original Price: <s>'.$this->stylenum($data[$i]['DonGia']) . '</s><br>'
+                        .'</p>
                     </div>
-                </div>
+                </div>  
                 </div>
                 ';
             }
@@ -229,7 +274,7 @@
                             </div>
                             <div class="overlay-body-right">
                                 <h1 class="name" id="name">'.$item['TenHang'].'</h1>
-                                <span id="overlay-price">Price: '.$this->stylenum($item['DonGia']).'</span>
+                                <span id="overlay-price">Price: '.$this->stylenum($this->giaKhuyenMai($item)).'</span>
                                 <div class="quantityBtn">
                                     <h3>Số lượng</h3>
                                     <button id="decrement" onclick=quantitydown()>-</button>
@@ -237,7 +282,7 @@
                                     <button id="increment" onclick=quantityup()>+</button>
                                 </div>
                                 <div class="overlay-right-btn">
-                                    <button id="addtocart" value="'.$item['MaHang'].'">
+                                    <button id="addtocart" value="'.$item['MaHang'].'#'.$this->getMaKM($item)['MaKM'].'">
                                     <i class="fa-solid fa-cart-plus"></i>
                                     <p>
                                     Thêm vào giỏ hàng

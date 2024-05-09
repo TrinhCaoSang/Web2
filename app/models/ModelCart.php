@@ -85,9 +85,9 @@
             VALUES('$mahd','$makh','$ngayxuat','$tongtien','$tinhtrang')";
             return $this->execute($sql);
         }
-        public function InsertDataCTHD($mahd,$mahang,$dongiacthd,$soluong,$thanhtiencthd){
-            $sql="INSERT INTO cthd(MaHD,MaHang,DonGiaCTHD,SoLuong,ThanhTienCTHD) 
-            VALUES('$mahd','$mahang','$dongiacthd','$soluong','$thanhtiencthd')";
+        public function InsertDataCTHD($mahd,$mahang,$dongiacthd,$soluong,$thanhtiencthd,$makm){
+            $sql="INSERT INTO cthd(MaHD,MaHang,MaKM,DonGiaCTHD,SoLuong,ThanhTienCTHD) 
+            VALUES('$mahd','$mahang','$makm','$dongiacthd','$soluong','$thanhtiencthd')";
             return $this->execute($sql);
         }
 
