@@ -161,11 +161,137 @@
                 <input type="date" id="fromDate">
                 <label for="toDate">Đến ngày:</label>
                 <input type="date" id="toDate">
-                <button class="statistics__form--btn">Lọc</button>
+                <button>Lọc</button>
               </form>
             </div>
           </div>
 
+          <!-- Trang Thống kê  -->
+          <div class="admin-statistics" id="statistics">
+            <div class="tools">
+              <div class="filter">
+                <h1 class="statistics__title">Thống kê</h1>
+              </div>
+            </div>
+            <!-- doanh thu bán chạy -->
+            <div id="container_product">
+              <h3 class="title_content">Doanh thu sản phẩm bán chạy</h3>
+              <div class="statistics_control">
+                <div class="control_top" id="top">
+                  <label>Top</label>
+                  <select>
+                    <option value="3" selected>3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+                <div class="control_date" id="dateFrom">
+                  <label>Từ ngày</label>
+                  <input type="date" />
+                </div>
+                <div class="control_date" id="dateTo">
+                  <label>Đến ngày</label>
+                  <input type="date" />
+                </div>
+                  <button type="button">Lọc</button>
+              </div>
+              
+              <div class="table__wrapper">
+                <table id="content-product">
+                  <thead class="menu">
+                    <tr>
+                      <th class="table--top">Mã SP</th>
+                      <th class="table--top">Tên Sản Phẩm</th>
+                      <th class="table--top">Loại</th>
+                      <th class="table--top">Số lượng</th>
+                      <th class="table--top">Doanh thu</th>
+                    </tr>
+                  </thead>
+                  <tbody class="content" id="content">
+                    <tr>
+                      <th>kid01</th>
+                      <th>xe thể thao trẻ em</th>
+                      <th>kid</th>
+                      <th>100</th>
+                      <th>100000000000</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- doanh thu loại -->
+            <div id="container_product">
+              <h3 class="title_content" style="margin-top: 50px;">Doanh thu loại sản phẩm</h3>
+              <div class="statistics_control">
+                <div class="control_date" id="dateFrom">
+                  <label>Từ ngày</label>
+                  <input type="date" />
+                </div>
+                <div class="control_date" id="dateTo">
+                  <label>Đến ngày</label>
+                  <input type="date" />
+                </div>
+                <button>Lọc</button>
+              </div>
+              
+            </div>
+            <div id="container_type-product">
+              <div class="container_type-product_content">
+                <h2 style="margin-bottom: 5px;">MOUNTAIN</h2>
+                <h3 class="price">30000000</h3>
+                <h3>Số lượng: <span class="quantity">10</span></h3>
+                <div class="show_content-statistics">Xem chi tiết</div>
+              </div>
+
+              <div class="container_type-product_content">
+                <h2 style="margin-bottom: 5px;">TOURING</h2>
+                <h3 class="price">30000000</h3>
+                <h3>Số lượng: <span class="quantity">10</span></h3>
+                <div class="show_content-statistics">Xem chi tiết</div>
+              </div>
+
+              <div class="container_type-product_content">
+                <h2 style="margin-bottom: 5px;">ROAD</h2>
+                <h3 class="price">30000000</h3>
+                <h3>Số lượng: <span class="quantity">10</span></h3>
+                <div class="show_content-statistics">Xem chi tiết</div>
+              </div>
+
+              <div class="container_type-product_content">
+                <h2 style="margin-bottom: 5px;">KID</h2>
+                <h3 class="price">30000000</h3>
+                <h3>Số lượng: <span class="quantity">10</span></h3>
+                <div class="show_content-statistics">Xem chi tiết</div>
+              </div>
+            </div>
+          </div>
+          <div class="statistics--model" id="model--statistics" style="display: none;">
+            <div class="statistics_content--model">
+              <button class="close" onclick="close_statistics()">×</button>
+              <div class="table__wrapper">
+                <table id="content-product">
+                  <thead class="menu">
+                    <tr>
+                      <th class="table--top">Mã SP</th>
+                      <th class="table--top">Tên Sản Phẩm</th>
+                      <th class="table--top">Số lượng</th>
+                      <th class="table--top">Doanh thu</th>
+                    </tr>
+                  </thead>
+                  <tbody class="content" id="content">
+                    <tr>
+                      <th>kid01</th>
+                      <th>xe thể thao trẻ em</th>
+                      <th>100</th>
+                      <th>100000000000</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- end -->
 
           <!-- Sản phẩm -->
           <!-- <div class="admin__content" id="manageProduct"> -->

@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trek - Quản lý cửa hàng</title>
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/fonts.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/style.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/HomeAdmin/HomeAdmin.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/AdminProduct/AdminProduct.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/ManageUserList/ManageUserList.css" />
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/AdminProduct/adminProduct.css" />
+    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/Web2/public/style.css">
+    <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
+    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
+    <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
+    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
+    
     <!-- <script defer src="/DoAnWeb/Web2/public/components/HomeAdmin/HomeAdmin.js"></script> -->
 </head>
 <body>

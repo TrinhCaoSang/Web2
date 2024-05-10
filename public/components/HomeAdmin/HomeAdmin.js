@@ -18,6 +18,19 @@ function close_bill() {
 function show_bill() {
   document.getElementById("model--bill").style.display = "flex";
 }
+var showContentElements = document.querySelectorAll('.show_content-statistics');
+showContentElements.forEach(function(element) {
+  element.addEventListener('click', function() {
+      // Đoạn mã bạn muốn thực thi khi phần tử được nhấp chuột vào ở đây
+      document.getElementById("model--statistics").style.display = "flex";
+  });
+});
+function show_statistics(){
+  document.getElementById("model--statistics").style.display = "flex";
+}
+function close_statistics() {
+  document.getElementById("model--statistics").style.display = "none";
+}
 
 
 //Trang danh sách nhóm quyền
@@ -33,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var linkClient = document.getElementById('link_client');
   var linkReceipt = document.getElementById('link_receipt');
   var linkbill = document.getElementById('link_bill');
-  // var linkbill = document.getElementById('link_bill');
+  var linkStatistics = document.getElementById('link_statistics');
   var staff = document.getElementById('staff');
 
   linkAuthorization.addEventListener('click', function (event) {
@@ -48,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     linkClient.classList.add('block-click');
     linkReceipt.classList.add('block-click');
     linkbill.classList.add('block-click');
+    linkStatistics.classList.add('block-click');
   })
   exitAuthorization.addEventListener('click', function (event) {
     event.preventDefault();//Chặn hành động của thẻ 
@@ -60,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     linkClient.classList.remove('block-click');
     linkReceipt.classList.remove('block-click');
     linkbill.classList.remove('block-click');
+    linkStatistics.classList.remove('block-click');
   })
 
 })
@@ -226,6 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var linkClient = document.getElementById('link_client');
   var linkReceipt = document.getElementById('link_receipt');
   var linkbill = document.getElementById('link_bill');
+  var linkStatistics = document.getElementById('link_statistics');
 
   var statisticsContent = document.getElementById('statisticsContent');
   var promotionsContent = document.getElementById('promotionsContent');
@@ -234,6 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var client = document.getElementById('client');
   var receipt = document.getElementById('receipt');
   var bill = document.getElementById('bill');
+  var Statistics = document.getElementById('statistics');
 
   statisticsContent.style.display = 'block';
   promotionsContent.style.display = 'none';
@@ -242,6 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
   client.style.display = 'none';
   receipt.style.display = 'none';
   bill.style.display = 'none';
+  Statistics.style.display = 'none';
   linkHome.classList.add('selected'); // Thêm lớp cho liên kết "Trang chủ"
 
 
@@ -255,6 +273,8 @@ document.addEventListener("DOMContentLoaded", function () {
     client.style.display = 'none';
     receipt.style.display = 'none';
     bill.style.display = 'none';
+    Statistics.style.display = 'none';
+    linkStatistics.classList.remove('selected');
     linkHome.classList.add('selected'); // Thêm lớp cho liên kết "Trang chủ"
     linkPromotions.classList.remove('selected');
     linkProduct.classList.remove('selected');
@@ -275,6 +295,8 @@ document.addEventListener("DOMContentLoaded", function () {
     receipt.style.display = 'none';
     bill.style.display = 'none';
 
+    Statistics.style.display = 'none';
+    linkStatistics.classList.remove('selected');
     linkHome.classList.remove('selected');
     linkPromotions.classList.remove('selected');
     linkProduct.classList.add('selected');
@@ -294,7 +316,9 @@ document.addEventListener("DOMContentLoaded", function () {
     client.style.display = 'none';
     receipt.style.display = 'none';
     bill.style.display = 'none';
+    Statistics.style.display = 'none';
 
+    linkStatistics.classList.remove('selected');
     linkHome.classList.remove('selected');
     linkPromotions.classList.add('selected');
     linkProduct.classList.remove('selected');
@@ -312,7 +336,9 @@ document.addEventListener("DOMContentLoaded", function () {
     client.style.display = 'none';
     receipt.style.display = 'none';
     bill.style.display = 'none';
+    Statistics.style.display = 'none';
 
+    linkStatistics.classList.remove('selected');
     linkHome.classList.remove('selected');
     linkPromotions.classList.remove('selected');
     linkProduct.classList.remove('selected');
@@ -331,7 +357,9 @@ document.addEventListener("DOMContentLoaded", function () {
     client.style.display = 'block';
     receipt.style.display = 'none';
     bill.style.display = 'none';
+    Statistics.style.display = 'none';
 
+    linkStatistics.classList.remove('selected');
     linkHome.classList.remove('selected');
     linkPromotions.classList.remove('selected');
     linkProduct.classList.remove('selected');
@@ -350,7 +378,9 @@ document.addEventListener("DOMContentLoaded", function () {
     client.style.display = 'none';
     receipt.style.display = 'block';
     bill.style.display = 'none';
+    Statistics.style.display = 'none';
 
+    linkStatistics.classList.remove('selected');
     linkHome.classList.remove('selected');
     linkPromotions.classList.remove('selected');
     linkProduct.classList.remove('selected');
@@ -369,7 +399,9 @@ document.addEventListener("DOMContentLoaded", function () {
     client.style.display = 'none';
     receipt.style.display = 'none';
     bill.style.display = 'block';
-
+    Statistics.style.display = 'none';
+    
+    linkStatistics.classList.remove('selected');
     linkHome.classList.remove('selected');
     linkPromotions.classList.remove('selected');
     linkProduct.classList.remove('selected');
@@ -378,7 +410,30 @@ document.addEventListener("DOMContentLoaded", function () {
     linkReceipt.classList.remove('selected');
     linkbill.classList.add('selected');
   })
+
+  linkStatistics.addEventListener('click', function (event) {
+    event.preventDefault();
+    statisticsContent.style.display = 'none';
+    promotionsContent.style.display = 'none';
+    manageProduct.style.display = 'none';
+    staff.style.display = 'none';
+    client.style.display = 'none';
+    receipt.style.display = 'none';
+    bill.style.display = 'none';
+    Statistics.style.display = 'block';
+    
+    linkStatistics.classList.add('selected');
+    linkHome.classList.remove('selected');
+    linkPromotions.classList.remove('selected');
+    linkProduct.classList.remove('selected');
+    linkStaff.classList.remove('selected');
+    linkClient.classList.remove('selected');
+    linkReceipt.classList.remove('selected');
+    linkbill.classList.remove('selected');
 });
+
+})
+
 
 
 

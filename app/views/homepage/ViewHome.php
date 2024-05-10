@@ -24,9 +24,6 @@ session_start();
   <body>
     <!-- =========== START: HEADER =========== -->
     <div>
-      <script>
-        console.log()
-      </script>
     </div>
     <div class="header">
       <!-- =========== START: HEADER TOP =========== -->
