@@ -1,7 +1,7 @@
 $(document).ready(function() {
     let maNCC = $('#form__receipt--MANCC');
     let maHang = $('#form__receipt--MaSP');
-    let loaiSPSelect = $('#form__receipt--LoaiSP');
+
     var selectedLoaiSP = $('#form__receipt--LoaiSP');
 
     updateNCCName(maNCC.val());
@@ -44,8 +44,9 @@ function updateTenSP(selectedValue) {
         url: 'index.php?controller=ctpn&action=getTenSP',
         method: 'POST',
         data: { MaHang: selectedValue },
-        success: function(data) {
-            $('#form__receipt--TenSP').val(data);
+        success: function(selectedValue) {
+            $('#form__receipt--TenSP').val(selectedValue);
+
         },
         error: function(xhr, status, error) {
             console.error('Error:', error);
@@ -76,7 +77,7 @@ function updateLoaiSPByNCC(selectedValue) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         data: 'MaNCC=' + selectedValue,
-        dataType: 'json', // Chỉ định kiểu dữ liệu trả về là JSON
+        dataType: 'json', 
         success: function(data) {
             var loaiSPSelect = $('#form__receipt--LoaiSP');
             loaiSPSelect.empty();
@@ -100,10 +101,10 @@ function updateMaSPByLoaiSP(selectedValue) {
         method: 'POST',
         data: { MaLoai: selectedValue },
         dataType: 'json', 
-        success: function(data) {
+        success: function(selectedValue) {
             var maSPSelect = $('#form__receipt--MaSP');
             maSPSelect.empty();
-            $.each(data, function(index, maSP) {
+            $.each(selectedValue, function(index, maSP) {
                 maSPSelect.append($('<option>', {
                     value: maSP,
                     text: maSP
@@ -122,13 +123,4 @@ function calculateTotal() {
     var price = parseFloat($('#form__receipt--Price').val());
     var total = quantity * price;
     $('#form__receipt--tong').val(total);
-}
-// Hàm để lấy ngày hiện tại
-function getCurrentDate() {
-    var currentDate = new Date();
-    var day = currentDate.getDate();
-    var month = currentDate.getMonth() + 1;
-    var year = currentDate.getFullYear();
-    var formattedDate = year + '-' + month + '-' + day;
-    return formattedDate;
 }

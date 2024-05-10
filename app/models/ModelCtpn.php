@@ -47,6 +47,17 @@
         return $data;
     }
 
+    
+    public function getCTPN($MaCTPN){
+        $sql = "SELECT * FROM chitietphieunhap WHERE MaCTPN = '$MaCTPN'";
+        $result = $this->execute($sql);
+        if($this->num_rows() > 0){
+          return $this->getData();
+        } else {
+          return false;
+        }
+      }
+
     public function getAllData(){
         $sql="SELECT * FROM chitietphieunhap";
         $this->execute($sql);
@@ -156,6 +167,7 @@
         return $data;
     }
     
+
     // public function getListMaPN() {
     //     $sql = "SELECT MaPN FROM phieunhap";
     //     $this->execute($sql);
@@ -197,7 +209,7 @@
         return $data;
     }    
     public function addPhieuNhap($maPN, $NgayNhap, $thanhTien) {
-        $sql = "INSERT INTO phieunhap(MaPN,MaNCC,NgayNhap,ThanhTienPN) 
+        $sql = "INSERT INTO phieunhap(MaPN,NgayNhap,ThanhTienPN) 
                 VALUES ('$maPN', '$NgayNhap', '$thanhTien')";
         $result_phieunhap = $this->execute($sql);
         return $result_phieunhap;
@@ -211,8 +223,6 @@
     }
     
     
-    
-
     public function getDataForTable(){
         $sql = "SELECT MaPN, MaNCC, ThanhTienPN, NgayNhap FROM phieunhap";
         $this->execute($sql);
@@ -252,8 +262,6 @@
         }
         return $data;
     }
-
-    
     public function deleteCTPN($MaPN, $MaHang){
         // Xóa bản ghi từ bảng chitietphieunhap dựa trên MaPN và MaHang
         $sqlDeleteChitiet = "DELETE FROM chitietphieunhap WHERE MaPN = '$MaPN' AND MaHang = '$MaHang' LIMIT 1";
@@ -267,20 +275,45 @@
         $data = $this->getData();
         return $data;
     }
-    
-    public function UpdateData($MaPN, $MaNCC,$TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN){
-        $sql="UPDATE chitietphieunhap SET MaPN='$MaPN',MaNCC='$MaNCC',TenNCC='$TenNCC',MaHang='$MaHang',TenHang='$TenHang',DonGiaPN='$DonGiaPN', SoLuong='$SoLuong',  ThanhTienCTPN=$ThanhTienCTPN
-        WHERE MaPN='$MaPN'";
+
+    //////////////////////////////////////////////////////////////////
+    public function getCTPNByMaCTPN($MaCTPN){
+        $sql = "SELECT * FROM chitietphieunhap WHERE MaCTPN = '$MaCTPN'";
+        $this->execute($sql);
+        if($this->num_rows() > 0){
+          return $this->getData();
+        } else {
+          return false;
+        }
+      }
+      
+      public function updateCTPNByMaCTPN($MaCTPN, $MaPN, $MaNCC, $TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN){
+        $sql = "UPDATE chitietphieunhap 
+                SET MaPN = '$MaPN', 
+                    MaNCC = '$MaNCC',
+                    TenNCC = '$TenNCC', 
+                    MaHang = '$MaHang',
+                    TenHang = '$TenHang',
+                    DonGiaPN = '$DonGiaPN',
+                    SoLuong = '$SoLuong',
+                    ThanhTienCTPN = '$ThanhTienCTPN'
+                WHERE MaCTPN = '$MaCTPN'";
         return $this->execute($sql);
-    }
+      }
+      //////////////////////////////////////////////////////////////////////
     
+    // public function UpdateCTPN($MaPN, $MaNCC,$TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN){
+    //     $sql="UPDATE chitietphieunhap SET MaPN='$MaPN', MaNCC='$MaNCC', TenNCC='$TenNCC', MaHang='$MaHang', TenHang='$TenHang', DonGiaPN='$DonGiaPN', SoLuong='$SoLuong',  ThanhTienCTPN=$ThanhTienCTPN WHERE MaCTPN = ?";
+    //     return $this->execute($sql);
+    // } 
     public function getCTPNByMaPNMaHang($MaPN, $MaHang){
         $sql = "SELECT * FROM chitietphieunhap WHERE MaPN = '$MaPN' AND MaHang = '$MaHang'";
         $result = $this->execute($sql);
-        $data = $this->getData();
-        return $data;
-    }
-    
-    
+        if($this->num_rows() > 0){
+          return $this->getData();
+        } else {
+          return false;
+        }
+      }
    }
 ?>

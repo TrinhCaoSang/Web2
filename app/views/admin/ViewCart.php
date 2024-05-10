@@ -1,15 +1,36 @@
+<?php
+  session_start();
+  ob_start();
+
+  // kiểm tra trạng thái đăng nhập
+  if (isset($_SESSION['username'])) {
+    
+    $loggedIn = true;
+
+    // kiểm tra loại tài khoản
+    if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'staff') {
+      $userType = 'staff';
+    } else {
+      $userType = 'customer';
+    }
+  } else {
+    // người dùng chưa đăng nhập
+    $loggedIn = false;
+    $userType = null;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/fonts.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/html/page/cart/cart.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/menu/menu.css">
-    <link rel="stylesheet" href="/DoAnWeb/Web2/public/components/login/login.css">
-    <!-- <link rel="stylesheet" href="/Web2/public/html/page/cart/reponsive.css"> -->
-    <title>Document</title>
+    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/Web2/public/html/page/cart/cart.css">
+    <link rel="stylesheet" href="/Web2/public/components/menu/menu.css">
+    <link rel="stylesheet" href="/Web2/public/components/login/login.css">
+    <!-- <link rel="stylesheet" href="//Web2/public/html/page/cart/reponsive.css"> -->
+    <title>Giỏ Hàng</title>
 </head>
 <body>
 <header>
@@ -18,7 +39,15 @@
             <div class="header__top-item--left">
               <div class="header__top-item user-welcome active">
                 <p>Xin chào,</p>
-                <p></p>
+                <p>
+                <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?>
+                </p>
               </div>
             </div>
           </div>

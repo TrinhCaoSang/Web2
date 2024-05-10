@@ -39,14 +39,14 @@
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Product">
+            <a href="index.php?controller=sanpham&action=index" id="link_Product">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Promotions">
+            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="form-group">
                   <label for="form__receipt--NCC">Mã nhà cung cấp:</label>
-                  <select id="form__receipt--MANCC" name="receipt--LoaiSP">
+                  <select id="form__receipt--MANCC" name="receipt--MANCC">
                   <?php foreach($list_ncc as $ncc): ?>
                          <option value="<?= $ncc['MaNCC'] ?>"><?= $ncc['MaNCC'] ?></option>
                          <?php endforeach; 
@@ -207,7 +207,7 @@
                     $model = new ModelCtpn();
                     $conn = $model->connect();
                     $sql = "SELECT * FROM chitietphieunhap";
-                    $sql = "SELECT * FROM chitietphieunhap ORDER BY MaPN ASC";
+                     $sql = "SELECT * FROM chitietphieunhap ORDER BY MaPN ASC";
                     $result = $model->execute($sql);
                     
                     if ($model->num_rows() > 0) {
@@ -242,16 +242,19 @@
           </div>
         </div>
       </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
       <script>
-        //  function Delete(name){
-        //      return confirm("Bạn có chắc muốn xóa chi tiết phiếu nhập: "+ name + " ?");
-        //  }
-        // document.getElementById('add-btn4').addEventListener('click', function() {
-        //        window.location.href = 'index.php?controller=phieunhap&action=index';
-        //  });
+          function Delete(name){
+              return confirm("Bạn có chắc muốn xóa chi tiết phiếu nhập: "+ name + " ?");
+          }
+          document.getElementById('add-btn4').addEventListener('click', function() {
+               window.location.href = 'index.php?controller=phieunhap&action=index';
+          });
 
 
-        $('.customer__form--add').on('click', function(event) {
+  $('.customer__form--add').on('click', function(event) {
+
     event.preventDefault(); 
     
     var maPN = $('#form__receipt').val();
@@ -260,7 +263,6 @@
     var TenHang = $('#form__receipt--TenSP').val();
     var donGiaPN = $('#form__receipt--Price').val();
     var tenNCC = $('#form__receipt--NAMENCC').val();
-    var ngayNhap = getCurrentDate(); 
     var soLuong = $('#form__receipt--soluong').val();
     var thanhTien = $('#form__receipt--tong').val();
 
@@ -334,139 +336,88 @@ $(document).on("click" ,".btn-edit", function(){
     var data_ctpn = $(this).attr("id");
     edit_CTPN(data_ctpn);
   });
-function edit_CTPN(ctpn){
+  function edit_CTPN(ctpn){
     $.ajax({
-      url: "index.php?controller=ctpn&action=editCTPN",
-      method: 'POST',
-      data: {
-         ctpn: ctpn
-      },
-      success:function(data){
-      $("#form_ctpn").html(data);
-
-
-      var maNCC = $('#form__receipt--MANCC').val();
-      var maHang = $('#form__receipt--MaSP').val();
-      // let loaiSPSelect = $('#form__receipt--LoaiSP');
-      var selectedLoaiSP = $('#form__receipt--LoaiSP').val();
-
-      updateNCCName(maNCC);
-      updateTenSP(maHang);
-      updateGiaSP(maHang);
-      updateLoaiSPByNCC(maNCC);
-      updateMaSPByLoaiSP(selectedLoaiSP);
-
-      ('#form__receipt--MANCC').on('change', function() {
-        updateNCCName($(this).val());
-        updateLoaiSPByNCC($(this).val());
-      });
-      $('#form__receipt--MaSP').on('change', function() {
-          updateTenSP($(this).val());
-          updateGiaSP($(this).val());
-      });
-      $('#form__receipt--LoaiSP').on('change', function() {
-          var loaiSPSelect = $(this).val();
-          updateMaSPByLoaiSP(loaiSPSelect);
-      });
-      function updateNCCName(selectedValue) {
-    $.ajax({
-        url: 'index.php?controller=ctpn&action=getNCCName',
+        url: "index.php?controller=ctpn&action=editCTPN",
         method: 'POST',
-        data: { MaNCC: selectedValue },
-        success: function(data) {
-            $('#form__receipt--NAMENCC').val(data);
+        data: {
+            ctpn: ctpn
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
+        success:function(data){
+            $("#form_ctpn").html(data);
+            $('#add-btn').removeClass('customer__form--add').addClass('customer__form--update').attr('id', 'update-btn');
+            $('#update-btn').text('Cập nhật');
+            $('#update-btn').off('click').on('click', btnUPDATE);
+        },
+        error: function(xhr,status,error){
+            console.error("Error: ", error);
         }
     });
 }
-/////////////////////////////////////////////////////////////////
-function updateTenSP(selectedValue) {
+
+
+function btnUPDATE(event) {
+         event.preventDefault();
+
+          
+          var MaPN = $('#form__receipt').val();
+          var MaNCC = $('#form__receipt--MANCC').val();
+          var MaHang = $('#form__receipt--MaSP').val();
+          var TenHang = $('#form__receipt--TenSP').val();
+          var DonGiaPN = $('#form__receipt--Price').val();
+          var TenNCC = $('#form__receipt--NAMENCC').val();
+          var SoLuong = $('#form__receipt--soluong').val();
+          var ThanhTienCTPN = $('#form__receipt--tong').val();
+
+
+          if (SoLuong.trim() === '') {
+              $('#soLuong-error').text('*Bạn chưa nhập số lượng');
+              $('#soLuong-error').css('display', 'block');
+              return;
+          }
+          if (parseInt(SoLuong) === 0) {
+              $('#soLuong-error').text('*Số lượng phải lớn hơn 0 !');
+              $('#soLuong-error').css('display', 'block');
+              return;
+          }
+          if (parseInt(SoLuong) < 0) {
+              $('#soLuong-error').text('*Số lượng không được âm !');
+              $('#soLuong-error').css('display', 'block');
+              return;
+          }
+    
+          alert('Đã cập nhật phiếu nhập thành công!');
+          setTimeout(function(){
+              window.location.reload();
+          }, 500);
+
+
     $.ajax({
-        url: 'index.php?controller=ctpn&action=getTenSP',
+        url: 'index.php?controller=ctpn&action=updateCTPN',
         method: 'POST',
-        data: { MaHang: selectedValue },
-        success: function(data) {
-            $('#form__receipt--TenSP').val(data);
+        data: {
+            receipt: MaPN,
+            'receipt--NCC': MaNCC,
+            'receipt--NAMENCC': TenNCC,
+            'receipt--MASP': MaHang,
+            'receipt--TenHang': TenHang,
+            'receipt--price': DonGiaPN,
+            'receipt--soluong': SoLuong,
+            'receipt--tong': ThanhTienCTPN
         },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
+        success: function(data){
+              console.log(data); 
+              if(data && data.success){
+                  alert(data.message);
+              } else {
+                  alert("Có lỗi xảy ra khi cập nhật dữ liệu: " + data.message); 
+              }
+          },
+        error: function(xhr, status, error){
+            console.error(error);
         }
-    });
-}
-/////////////////////////////////////////////////////////////////
-function updateGiaSP(selectedValue) {
-    $.ajax({
-      url: 'index.php?controller=ctpn&action=getGiaSP',
-      method: 'POST',
-      data: { MaHang: selectedValue },
-      success: function(data) {
-        $('#form__receipt--Price').val(data);
-      },
-      error: function(xhr, status, error) {
-        console.error('Error:', error);
-      }
     });
   }
-////////////////////////////////////////////////////////////////
-//cập nhật loại sản phẩm theo mã ncc
-function updateLoaiSPByNCC(selectedValue) {
-    $.ajax({
-        url: 'index.php?controller=ctpn&action=updateLoaiSPByNCC',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        data: 'MaNCC=' + selectedValue,
-        dataType: 'json', // Chỉ định kiểu dữ liệu trả về là JSON
-        success: function(data) {
-            var loaiSPSelect = $('#form__receipt--LoaiSP');
-            loaiSPSelect.empty();
-            $.each(data, function(index, loaiSP) {
-                loaiSPSelect.append($('<option>', {
-                    value: loaiSP.MaLoai,
-                    text: loaiSP.TenLoai
-                }));
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
-    });
-}
-/////////////////////////////////////////////
-//Cập nhật mã sản phẩm theo loại
-function updateMaSPByLoaiSP(selectedValue) {
-    $.ajax({
-        url: 'index.php?controller=ctpn&action=getMaSPByLoaiSP',
-        method: 'POST',
-        data: { MaLoai: selectedValue },
-        dataType: 'json', 
-        success: function(data) {
-            var maSPSelect = $('#form__receipt--MaSP');
-            maSPSelect.empty();
-            $.each(data, function(index, maSP) {
-                maSPSelect.append($('<option>', {
-                    value: maSP,
-                    text: maSP
-                }));
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
-    });
-}
-      },
-      error: function(xhr,status,error){
-                console.error("Error: " , error);
-              }
-
-    });
-}
-
- 
 
 
       </script>

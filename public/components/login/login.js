@@ -11,9 +11,8 @@ const openFormRegister = () => {
     overlay.classList.add('active__overlay');
   }
 };
-
 userBtn.addEventListener('click', e => {
-  checkLoggedIn();
+  // checkLoggedIn();
   openFormRegister();
 });
 
@@ -22,7 +21,6 @@ const section4Btn = document.querySelector('.section--4 button');
 section4Btn.addEventListener('click', e => {
   openFormRegister();
 });
-
 // ============================= End: SHOW FORM REG/LOG
 
 // ============================= Start: Switch mode reg/log
@@ -54,7 +52,6 @@ registerAgain.addEventListener('click', e => {
   userWrapper.classList.add('register__active');
   userWrapper.classList.remove('login__active');
 });
-
 // Open form reg/login on low device by hide menu
 const userIconHideMenu = document.querySelector('.hide__menu--list__extention .header__bottom--extention-user');
 const hideMenu = document.querySelector('.hide__menu');
@@ -62,9 +59,7 @@ const hideMenu = document.querySelector('.hide__menu');
 userIconHideMenu.addEventListener('click', e => {
   openFormRegister();
 });
-
 // ============================= end: Switch mode reg/log
-
 // ============================= Start: HIDE FORM
 const hideFormRegLogin = () => {
   userWrapper.style.animation = `fade 0.5s ease-in`;
@@ -76,7 +71,6 @@ const hideFormRegLogin = () => {
     userWrapper.style.animation = `bottomUp 1s ease-in-out`;
   }, 450);
 };
-
 overlay.addEventListener('click', e => {
   hideFormRegLogin();
 });
@@ -86,39 +80,47 @@ const btnCloseGlobal = document.querySelector('.user__wrapper .form__close--glob
 btnCloseGlobal.addEventListener('click', e => {
   hideFormRegLogin();
 });
-// ============================= End: HIDE FORM
+// =========================== start: LOGOUT LOGIC ===========================
+
+// =========================== end: LOGOUT LOGIC ===========================
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    if (isLoggedIn) {
-        var userBox = document.querySelector(".user-box");
-        userBox.textContent = userName;
-            userBox.classList.add("dropdown-toggle");
 
-         userBox.addEventListener("click", function() {
-          var userDropdown = document.querySelector(".header__bottom--user__list");
-          userDropdown.classList.toggle("show");
-            });
-        }
+// ========================== Show / Hide: Password ============================
+// Đối với form đăng nhập
+var loginShowEyeBtn = document.querySelector('.showEyeLogin');
+var loginHideEyeBtn = document.querySelector('.hideEyeLogin');
+var loginPasswordInput = document.querySelector('#loginPassword'); // thay đổi #loginPassword thành id thật của trường mật khẩu cho form đăng nhập của bạn
 
-    var logoutBtn = document.querySelector(".logout");
-    logoutBtn.addEventListener("click", function() {
-        $.ajax({
-            url: 'index.php?controller=dkdn&action=logout',
-            type: 'POST',
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                        window.location.href = './views/homepage/ViewHome.php';
-                    } else {
-                        alert(response.error);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
+loginShowEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    loginPasswordInput.type = 'text';
+    loginShowEyeBtn.style.display = 'none';
+    loginHideEyeBtn.style.display = 'block';
+});
 
+loginHideEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    loginPasswordInput.type = 'password';
+    loginHideEyeBtn.style.display = 'none';
+    loginShowEyeBtn.style.display = 'block';
+});
 
+// Đối với form đăng ký
+var registerShowEyeBtn = document.querySelector('.showEyeRegister');
+var registerHideEyeBtn = document.querySelector('.hideEyeRegister');
+var registerPasswordInput = document.querySelector('#registerPassword'); // thay đổi #registerPassword thành id thật của trường mật khẩu cho form đăng ký của bạn
+
+registerShowEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    registerPasswordInput.type = 'text';
+    registerShowEyeBtn.style.display = 'none';
+    registerHideEyeBtn.style.display = 'block';
+});
+
+registerHideEyeBtn.addEventListener('click', function(e) {
+    e.preventDefault(); 
+    registerPasswordInput.type = 'password';
+    registerHideEyeBtn.style.display = 'none';
+    registerShowEyeBtn.style.display = 'block';
+});

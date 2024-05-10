@@ -33,9 +33,9 @@
 
     public function index(){
       $this->list_coupon = $this->coupon->getAllData();
-      $list_ncc = $this->coupon->getAllNcc();
-      $list_loaisp = $this->coupon->getAllLoaisp();
 
+      $list_ncc = $this->coupon->getAllNCC();
+      $list_loaisp = $this->coupon->getAllLoaiSP();
 
       return $this->view([
           'list_coupon' => $this->list_coupon,
@@ -147,26 +147,21 @@ public function editPN(){
   $this->view($this->list_coupon,$dataID);
   
 }
-
-
- 
-   public function save(){
-    if(isset($_POST['save'])){
-        //Lấy dữ liệu từ View
-        $Mahang=$_POST['productId'];
-        $Maloai=$_POST['type_Id'];
-        $Hinhanh=$_POST['product_imgs'];
-        $Tenhang=$_POST['productName'];
-        $Dongia=$_POST['product_price'];
-        $Soluong=$_POST['quantity'];
-        if($this->coupon->UpdateData($Mahang,$Maloai,$Hinhanh,$Tenhang,$Dongia,$Soluong)){
-            echo '<script>changeURL()</script>';
-            $this->index();
-        }
-    }
+public function save(){
+  if(isset($_POST['save'])){
+      //Lấy dữ liệu từ View
+      $MaPN=$_POST['receipt'];
+      $MaNCC=$_POST['receipt--NCC'];
+      $NgayNhap=$_POST['dayStart'];
+      
+      $ThanhTienPN=$_POST['receipt--tong'];
+      if($this->coupon->UpdateDataPN($MaPN,$MaNCC,$NgayNhap,$ThanhTienPN)){
+          echo '<script>changeURL()</script>';
+          $this->index();
+      }
+  }
 }
-public function delete(){
-
+public function deletePN(){
   $id = $_GET['id'];
   $this->coupon->deletePN($id);
   header('Location: index.php?controller=phieunhap');
@@ -176,6 +171,7 @@ public function delete(){
 
 public function getDataForTable(){
   $data = $this->coupon->getDataForTable();
+
 
   // Định dạng lại ngày theo định dạng 'd/m/Y'
   foreach ($data as &$row) {
@@ -190,17 +186,6 @@ public function getDataByMaPN($id) {
   $data = $this->coupon->getDataByMaPN($id);
   header('Content-Type: application/json');
   echo json_encode($data);
-}
-
-
-public function getChiTietPhieuNhap() {
-  if(isset($_GET['MaPN'])) {
-      $maPN = $_GET['MaPN'];
-      $data = $this->coupon->getChiTietPhieuNhap($maPN);
-      // foreach($data as &$row){
-      //      $row['MaPN'] = 
-      // }
-  }
 }
 
   }

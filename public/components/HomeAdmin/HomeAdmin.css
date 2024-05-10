@@ -16,22 +16,569 @@ body {
     width: 100vw;
   }
    */
-/* Start: Task */
-.admin__taskbar {
-  width: 280px;
-  height: 100vh;
-  background-color: #fff;
-  padding: 30px 20px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  transition: all 0.5s;
+  /* Start: Task */
+  .admin__taskbar {
+    width: 280px;
+    height: 100vh;
+    background-color: #fff;
+    padding: 30px 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transition: all 0.5s;
+  }
+  
+  .hide .admin__taskbar {
+    width: 64px !important;
+  }
+  
+  .hide .admin__taskbar .admin__taskbar--body__item a p,
+  .hide .admin__taskbar .admin__taskbar--header__content h1,
+  .hide .admin__taskbar .admin__taskbar--footer button p {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .hide .admin__taskbar .admin__taskbar--body__item.active {
+    padding: 0;
+    width: 30px;
+  }
+  
+  .hide .admin__taskbar .admin__taskbar--body__item i {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .hide .admin__content--header {
+    left: 64px;
+  }
+  
+  .hide .admin__content {
+    position: relative;
+    left: 64px;
+    width: calc(100vw - 80px);
+  }
+  
+  .admin__taskbar--header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    transition: all 0.5s;
+  }
+  
+  .admin__taskbar--header__img {
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+    border-radius: 100%;
+    margin-right: 20px;
+    overflow: hidden;
+  }
+  
+  .admin__taskbar--header__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .admin__taskbar--header__content {
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
+  
+  .admin__taskbar--header__content div {
+    width: 100%;
+    height: 80px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .admin__taskbar--header__content div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .admin__taskbar--header__status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .admin__taskbar--header__content h1 {
+    font-size: 25px;
+    text-align: center;
+  }
+  
+  .admin__taskbar--header__status span {
+    display: inline-block;
+    height: 15px;
+    width: 25px;
+    border-radius: 25px;
+    margin-right: 5px;
+    background-color: rgb(81, 249, 81);
+    position: relative;
+  }
+  
+  .admin__taskbar--header__status span::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    background-color: #333;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .hr {
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    margin: 25px 0;
+  }
+  
+  .admin__taskbar--body__list {
+    list-style-type: none;
+    color: #fff;
+    font-size: 18px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .admin__taskbar--body__item {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 50px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    transition: all 0.5s;
+  }
+  
+  .admin__taskbar--body__item.active {
+    background: #eee;
+    border-radius: 20px;
+    padding: 0 10px;
+  }
+  
+  .active a {
+    cursor: default;
+  }
+  
+  .active a::after {
+    width: 0 !important;
+  }
+  
+  .active a {
+    transform: translate(0) !important;
+  }
+  
+  .admin__taskbar--body__item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .admin__taskbar--body__item a::after {
+    position: absolute;
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0%;
+    transition: all 0.5s;
+    background-color: #333;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .admin__taskbar--body__item a:hover {
+    transform: translateX(6px);
+  }
+  
+  .admin__taskbar--body__item a:hover::after {
+    width: 100%;
+  }
+  
+  .admin__taskbar--body__item i {
+    margin-right: 10px;
+  }
+  
+  .admin__task--footer {
+    font-size: 20px;
+    width: calc(100% - 60px);
+    margin: 0 30px;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    height: 50px;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-shadow: rgb(154, 154, 154) 0px 3px 0px 0px;
+    border-radius: 5px;
+  }
+  
+  .admin__taskbar--footer {
+    width: 100%;
+  }
+  
+  .admin__taskbar--footer button {
+    height: 50px;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: #333;
+    font-size: 18px;
+    text-align: start;
+    color: #db504a;
+    cursor: pointer;
+    position: relative;
+    font-weight: 600;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .admin__taskbar--footer button::after {
+    position: absolute;
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0%;
+    transition: all 0.5s;
+    background-color: #db504a;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .admin__taskbar--footer button:hover {
+    transform: translateX(5px);
+  }
+  
+  .admin__taskbar--footer button:hover::after {
+    width: 100%;
+  }
+  
+  .admin__taskbar--footer button i {
+    margin-right: 10px;
+  }
+  /* End: Task */
+  
+  /* Start: Content */
+  .admin__content {
+    position: relative;
+    width: calc(100% - 280px);
+    height: 100vh;
+    left: 280px;
+    top: 64px;
+    /* background-color: #eee; */
+    transition: all 0.5s;
+  }
+  
+  .admin__content--header {
+    position: fixed;
+    top: 0;
+    left: 280px;
+    right: 0;
+    background-color: #fff;
+    height: 64px;
+    color: #fff;
+    padding: 0 20px;
+    z-index: 10;
+    display: flex;
+    transition: all 0.5s;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .admin__content--header::before {
+    position: absolute;
+    content: '';
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    bottom: 0px;
+    right: 0px;
+    box-shadow: 10px 12px 0 #eee;
+  }
+  
+  .admin__content--header::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -40px;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: -20px -20px 0 #fff;
+  }
+  
+  .admin__content--header__cate {
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+    cursor: pointer;
+  }
+  
+  .admin__content--header__cate i {
+    margin-right: 15px;
+  }
+  
+  .admin__content--header__user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .admin__content--header__user span {
+    color: #333;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .admin__content--header__user p {
+    background-color: #eee;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  .admin__content--header__user p i {
+    margin-right: 10px;
+  }
+  
+  .admin__content--header h1 {
+    text-align: center;
+    line-height: 64px;
+    position: relative;
+  }
+  
+  .admin__content--header__search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    width: auto;
+    height: auto;
+    padding: 5px 0;
+    border-radius: 10px;
+    position: relative;
+    background-color: #eee;
+  }
+  
+  .admin__content--header__search h1 {
+    font-size: 18px;
+    color: #fff;
+  }
+  
+  .admin__content--header__search input {
+    width: 500px;
+    outline: none;
+    border: none;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 40px 0 10px;
+    font-size: 16px;
+    background-color: #eee;
+  }
+  
+  .admin__content--header__search div {
+    border: none;
+    background-color: #eee;
+    color: #333;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    position: absolute;
+    right: 0px;
+  }
+  /* WRITE NEW CODE HERE!!! */
+
+  /* Discount */
+  .admin__content--body__content{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* border:1 px solid black; */
+  }
+  .admin__content--discount__content{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  /*.discount__content--top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 10%;
+    margin-top: 80px;
+  } */
+  .discount__title{
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #333;
+    color:white;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 10%;
+    /*border: 1px solid red; */
+  }
+  
+  .discount__form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-container {
+    width: 250px; 
+    height: 150px;
+    border: 1px solid #ccc;
+    position: relative; 
+    overflow: hidden; 
+    display: flex; 
+    margin-top: 10px;
+    margin-left: 160px;
+    justify-content: center;
+    align-items: center;
+}
+.file-input-label {
+  opacity: 0;
 }
 
-.hide .admin__taskbar {
-  width: 64px !important;
+.image-container img {
+    width: 100%; /* Chiều rộng của hình ảnh sẽ là 100% của container */
+    height: auto; /* Chiều cao tự động điều chỉnh để không bị méo */
+    position: absolute; /* Đặt vị trí của hình ảnh là tuyệt đối */
+    top: 50%; /* Canh từ trên xuống dưới */
+    left: 50%; /* Canh từ trái sang phải */
+    transform: translate(-50%, -50%); /* Dịch chuyển hình ảnh về trung tâm */
+    max-width: 100%; /* Chiều rộng tối đa là 100% của khung */
+    max-height: 100%; /* Chiều cao tối đa là 100% của khung */
 }
+
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    
+  
+  }
+  
+  .form-group label {
+    min-height: 20px; /* Đặt giá trị min-height cho label */
+    display: inline-block; /* Đảm bảo label không bị chiếm toàn bộ chiều rộng */
+    vertical-align: top; 
+    margin-right: 10px;
+    font-weight: bold;
+    width: 150px;
+  }
+  
+  .form-group input {
+    padding: 5px;
+    width: 250px;
+  }
+  
+  
+  #imagePreview {
+    display: none;
+    max-width: 100%;
+    max-height: 50px;
+    margin-top: 10px;
+}
+
+  .discount__form--add{
+    width: 70px;
+    height: 30px;
+    font-size: 16px; 
+    margin: 5px;
+    background-color: #d5231d;
+    border-radius: 5px;
+
+    color: white;
+  }
+  .discount__form--change {
+    width: 80px;
+    height: 30px;
+    font-size: 16px; 
+    margin: 5px;
+    background-color: #0ee836;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .text__align--left {
+    text-align: left;
+  }
+  
+  .table--top {
+    background-color: #333;
+    color:white;
+  }
+    /* end discount */
+
 
 .hide .admin__taskbar .admin__taskbar--body__item a p,
 .hide .admin__taskbar .admin__taskbar--header__content h1,
@@ -548,8 +1095,6 @@ body {
 .button__container {
   display: flex;
   justify-content: center;
-  text-align: center;
-  padding-bottom: 10px;
   margin-top: 10px;
 }
 
@@ -581,14 +1126,14 @@ body {
 table {
   border-collapse: collapse;
   width: 100%;
+  
 }
 
-th,
-td {
-  border: 1px solid #ddd;
+th, td {
+  border: 1px solid #3333;
   padding: 8px;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 th {
@@ -600,7 +1145,7 @@ tr:hover {
 }
 
 .text__align--left {
-  text-align: left;
+  text-align: center;
 }
 
 .table--top {
@@ -808,6 +1353,7 @@ tr:hover {
   margin: 5px;
   text-align: center;
 }
+
 
 table {
   border-collapse: collapse;
@@ -1054,8 +1600,22 @@ tr:hover {
   color: black;
   cursor: pointer;
 }
+.product-image-container {
+ 
+  position: relative; /* Thiết lập vị trí tương đối */
+  z-index: 1; 
+}
 
-.bill--model--ctpn .close:hover {
+.product-image {
+  width: 100px; 
+  /* height: 100px;  */
+  object-fit: cover; 
+  overflow: hidden;
+}
+.product-name-column{
+  width: 200px;
+}
+.bill--model--ctpn .close:hover{
   color: red;
 }
 
@@ -1063,12 +1623,61 @@ tr:hover {
 /* Receipt */
 .button__container--receipt {
   display: flex;
-
   margin-top: 10px;
   padding-bottom: 10px;
-
   justify-content: center;
+}
+  
 
+#update-btn{
+  width: 80px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+}
+#add-btn{
+  width: 70px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+
+}
+#add-btn2 {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  min-width: 100px; 
+  background-color: #006266;
+  color: white;
+}
+.change{
+  cursor: pointer;
+}
+#add-btn1{
+  width: 70px;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+#add-btn3 {
+  width: 70px;
+  background-color: rgb(222, 18, 18);
+  color: white;
+}
+#add-btn4{
+  width: 80px;
+  background-color: rgb(222, 18, 18);
+  color: white;
+  border-radius: 10px;
+
+}
+.customer__form--update{
+  width: 100px;
+  background-color: green;
+  color: white;
+  height: 30px;
+  font-size: 16px; 
+  margin: 5px;
 }
 
 #add-btn {
@@ -1385,6 +1994,33 @@ color: orange;
   top: 0;
   bottom: 0;
 }
+.customer__form--add{
+  width: 70px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+
+  
+}
+.customer__form--change{
+  background-color: #006266;
+  width: 70px;
+  color: white;
+  border-radius: 10px;
+
+}
+.customer__form--remove{
+  width: 70px;
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+
+}
+th:nth-child(3),
+th:nth-child(6) {
+  box-sizing: border-box;
+  width: calc(100% + 40px); /* Thiết lập độ rộng của cột Tên khách hàng và Địa chỉ */
+}
 
 .customer__content--top {
   /* border: 1px solid black; */
@@ -1418,7 +2054,6 @@ color: orange;
   align-items: center;
   justify-content: center;
 }
-
 .customer__form--add,
 .customer__form--add1,
 .customer__form--add2,
@@ -1426,11 +2061,14 @@ color: orange;
 .customer__form--add4,
 .customer__form--change,
 .customer__form--remove,
-.customer__form--search {
+.customer__form--update,
+.customer__form--search
+{
   width: 70px;
   height: 30px;
   font-size: 16px;
   margin: 5px;
+  cursor: pointer;
 }
 
 /* End customer */
@@ -1721,33 +2359,29 @@ body.modal-open {
 }
 
 /* End: Content */
-
-
-.selected {
-  background-color: rgba(128, 128, 128, 0.285);
-  color: black;
-  border-radius: 15px;
-}
-
+  .selected{
+    background-color: rgba(128, 128, 128, 0.285);
+    color: black;
+    border-radius: 15px;
+  }
 .error-message {
+    text-align: left;
+    margin-left: 475px;
+    width: 50%;
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+.error-message-soLuong{
   text-align: left;
-  margin-left: 475px;
-  width: 50%;
-  display: none;
-  color: red;
-  font-size: 14px;
+    margin-left: 475px;
+    width: 50%;
+    display: none;
+    color: red;
+    font-size: 14px;
 }
 
-.error-message-soLuong {
-  text-align: left;
-  margin-left: 475px;
-  width: 50%;
-  display: none;
-  color: red;
-  font-size: 14px;
-}
-
-.btn-edit {
+.btn-edit{
   text-align: center;
   background-color: #006266;
   color: white;
@@ -1760,7 +2394,8 @@ body.modal-open {
   width: 100%;
 }
 
-.btn-delete {
+
+.btn-delete{
   background-color: #EA2027;
   color: white;
   outline: none;
@@ -1771,8 +2406,7 @@ body.modal-open {
   padding: 10px 15px;
   width: 100%;
 }
-
-.btn-info {
+.btn-info{
   background-color: #47d712;
   color: white;
   outline: none;

@@ -253,7 +253,5 @@
         return $this->execute($sql);
     }
 
-    
-    
    }
 ?>

@@ -14,13 +14,13 @@ const reseizeAndLoadEvent = ['resize', 'load'];
 
 let headerSlideHeight;
 
-reseizeAndLoadEvent.forEach(event => {
-  window.addEventListener(event, e => {
-    const windowHeight = window.innerHeight;
-    headerSlideHeight = windowHeight - (headerTopHeight + headerBottomHeight);
-    document.documentElement.style.setProperty('--header-slider-height', `${headerSlideHeight}px`);
-  });
-});
+// reseizeAndLoadEvent.forEach(event => {
+//   window.addEventListener(event, e => {
+//     const windowHeight = window.innerHeight;
+//     headerSlideHeight = windowHeight - (headerTopHeight + headerBottomHeight);
+//     document.documentElement.style.setProperty('--header-slider-height', `${headerSlideHeight}px`);
+//   });
+// });
 
 
 const scrollEvents = ['scroll', 'reload'];

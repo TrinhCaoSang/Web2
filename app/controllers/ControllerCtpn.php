@@ -127,7 +127,7 @@ public function addCTPN(){
       $MaNCC = $_POST['receipt--NCC'];
       $TenNCC = $_POST['receipt--NAMENCC'];
       $maHang = $_POST['receipt--MASP'];
-      $TenHang = $_POST['receipt--LoaiSP'];
+      $TenHang = $_POST['receipt--TenHang'];
       $donGiaPN = $_POST['receipt--price'];
       $soLuong = $_POST['receipt--soluong'];
       $thanhTien = $_POST['receipt--tong'];
@@ -153,24 +153,31 @@ public function editPN(){
   $this->view($this->list_ctpn,$dataID);
   
 }
-public function save(){
-  if(isset($_POST['save'])){
-      //Lấy dữ liệu từ View
-      $MaPN=$_POST['receipt'];
-      $MaNCC=$_POST['receipt--NCC'];
-      $TenNCC = $_POST['receipt--NAMENCC'];
-      $MaHang = $_POST['receipt--MASP'];
-      $TenHang = $_POST['receipt--TenHang'];
-      $DonGiaPN = $_POST['receipt--price'];
-      $SoLuong = $_POST['receipt--soluong'];
-      $ThanhTienCTPN = $_POST['receipt--tong'];
+public function updateCTPN(){
+  if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $MaCTPN = $_POST['MaCTPN'];
+    $MaPN = $_POST['receipt'];
+    $MaNCC = $_POST['receipt--MANCC'];
+    $TenNCC = $_POST['receipt--NAMENCC'];
+    $MaHang = $_POST['receipt--MASP'];
+    $TenHang = $_POST['receipt--TenHang'];
+    $DonGiaPN = $_POST['receipt--price'];
+    $SoLuong = $_POST['receipt--soluong'];
+    $ThanhTienCTPN = $_POST['receipt--tong'];
 
-      if($this->CTPN->UpdateData($MaPN, $MaNCC, $TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN)){
-          echo '<script>changeURL()</script>';
-          $this->index();
-      }
+    $result_ctpn = $this->CTPN->updateCTPNByMaCTPN($MaCTPN, $MaPN, $MaNCC, $TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN);
+    
+    if($result_ctpn){
+      $response = ['success' => true, 'message' => 'Chi tiết phiếu nhập đã được cập nhật thành công'];
+    } else {
+      $response = ['success' => false, 'message' => 'Có lỗi xảy ra khi cập nhật chi tiết phiếu nhập'];
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
   }
 }
+
+
 // public function deleteCTPN(){
 //   $id = $_GET['id'];
 //   $MaHang = $_GET['MaHang'];
@@ -218,8 +225,6 @@ public function editCTPN(){
 
     $list_ncc = $this->CTPN->getAllNcc();
     $list_loaisp = $this->CTPN->getAllLoaisp();
-    
-    
     $this->list_ctpn=$this->CTPN->getAllData();
     $list_maHang = $this->CTPN->getAllMathang();
      
@@ -229,8 +234,6 @@ public function editCTPN(){
         <form action="" class="receipt__form" id="form_ctpn">
         <div class="form-group">
           <label for="form__receiptId">Mã phiếu nhập:</label>
-          
-          
           <input type="text" id="form__receipt" name="receipt" value="'.$item['MaPN'].'" disabled>
           
         </div>
@@ -252,7 +255,6 @@ public function editCTPN(){
           <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
           <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" onchange="updateMaSPByLoaiSP(this.value)">';
           foreach($list_loaisp as $loaisp):
-            // if($loaisp['MaLoai']==$item['MaNCC']){ 
            $output .=' <option value="'. $loaisp['MaLoai'].'" > '. $loaisp['TenLoai'] .'</option>';
            endforeach; 
           $output .='</select>

@@ -190,7 +190,7 @@ body{
   justify-content: center;
   align-items: center;
   font-size: 14px;
-  display: none;
+  display: flex;
 }
 
 .user-welcome.active {
@@ -626,4 +626,3 @@ body{
   padding: 20px;
   gap: 20px;
 }
-

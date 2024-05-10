@@ -13,7 +13,10 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
-    <script src="/Web2/app/views/admin/show_ViewPN.js"></script>
+    <!-- <script src="/Web2/app/views/admin/show_ViewPN.js"></script> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
   <body>
@@ -41,14 +44,14 @@
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Product">
+            <a href="index.php?controller=sanpham&action=index" id="link_Product">
               <i class="fa-solid fa-bicycle"></i>
               <p>Sản phẩm</p>
             </a>
           </li>
 
           <li class="admin__taskbar--body__item">
-            <a href="" id="link_Promotions">
+            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
               <i class="fa-solid fa-percent"></i>
               <p>Khuyến mãi</p>
             </a>
@@ -125,7 +128,7 @@
                   <label for="form__receiptId">Mã phiếu nhập:</label>
                   <input type="text" id="form__receipt" name="receipt" >
                 </div>
-                <div id="maPN-error" class="error-message"></div>
+                <div id="maKh-error" class="error-message"></div>
               </form>
               <div class="button__container--receipt">
                 <button type="button" class="customer__form--add1" id="add-btn1">Thêm</button>
@@ -161,8 +164,8 @@
                 <td ><?php echo $i; ?></td>
                 <td ><?php echo $row['MaPN'] ;?></td>
                 <!-- <td class="text__align--left"><?php echo $row['MaNCC']; ?></td> -->
+                <td class="text__align--left"><?php echo number_format($row['ThanhTienPN'], 0, '', '.')." VND";?></td>                
 
-                <td class="text__align--left"><?php echo $row['ThanhTienPN'] . '.VND';?></td>
                 <td class="text__align--left"><?php echo $row['NgayNhapFormatted']; ?></td>
                 
                 
@@ -212,10 +215,11 @@
         
         return;
     }
-    alert('Đã thêm phiếu nhập mới thành công!');
+    swal("Good job!", "Thêm phiếu nhập thành công!", "success");
     setTimeout(function(){
         window.location.reload();
-    }, 500);
+        swal.close();
+    }, 5000);
     fetch('index.php?controller=phieunhap&action=addPhieuNhap', {
         method: 'POST',
         headers: {
@@ -250,18 +254,6 @@ document.getElementById('form__receipt').addEventListener('input', function() {
  function Del(name){
    return confirm("Bạn có chắc muốn xóa mã phiếu nhập: "+ name + " ?");
  }
-
-
-
- function changeURL() {
-            var newUrl = "http://localhost/Web2/index.php?controller=phieunhap&action=insert"; // Đường dẫn URL mới
-            window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
-        }
-
-        function changeURL2(){
-          var newUrl = "http://localhost/Web2/index.php?controller=phieunhap&action=save"; // Đường dẫn URL mới
-          window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
-        }
 function getCurrentDate() {
     var currentDate = new Date();
     var day = currentDate.getDate();
@@ -270,7 +262,6 @@ function getCurrentDate() {
     var formattedDate = year + '-' + month + '-' + day;
     return formattedDate;
 }
-
 
 </script>
 </body>

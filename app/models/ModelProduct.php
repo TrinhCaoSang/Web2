@@ -1,3 +1,4 @@
+
 <?php
     class ModelProduct{
         private $hostname='localhost';
