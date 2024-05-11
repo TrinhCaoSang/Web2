@@ -4,87 +4,92 @@
 ?>
 <head>
     <title>Trek - Quản lý cửa hàng</title>
+    <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
+    <link rel="stylesheet" href="/Web2/public/components/fonts.css">
+    <link rel="stylesheet" href="/Web2/public/style.css">
     <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/Web2/app/views/admin/showView_Sanpham.js"></script>
-    
+    <script src="/Web2/app/views/admin/admin.js"></script>
 </head>
 <body>
 
 <div class="container">
-      
-      <div class="admin__taskbar">
+<div class="admin__taskbar">
         <div class="admin__taskbar--header">
           <div class="admin__taskbar--header__content">
-            <div>
+            <div id="toHomeUser" onclick="toUser();">
               <img
                 src="public/database/images/logo/trek_logo_shield.png"
                 alt=""
               />
             </div>
-
             <h1>AdminHub</h1>
           </div>
         </div>
         <div class="hr"></div>
         <ul class="admin__taskbar--body__list">
 
-          <li class="admin__taskbar--body__item ">
-            <a href="" id="link_Home">
-              <i class="fa-solid fa-house-chimney"></i>
-              <p>Trang chủ</p>
+            <li class="admin__taskbar--body__item ">
+            <a href="index.php?controller=homeadmin&action=index" id="link_Home">
+                <i class="fa-solid fa-house-chimney"></i>
+                <p>Trang chủ</p>
             </a>
-          </li>
+            </li>
 
-          <li class="admin__taskbar--body__item">
+            <li class="admin__taskbar--body__item">
             <a href="index.php?controller=sanpham&action=index" id="link_Product">
-              <i class="fa-solid fa-bicycle"></i>
-              <p>Sản phẩm</p>
+                <i class="fa-solid fa-bicycle"></i>
+                <p>Sản phẩm</p>
             </a>
-          </li>
+            </li>
 
-          <li class="admin__taskbar--body__item">
+            <li class="admin__taskbar--body__item">
             <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
-              <i class="fa-solid fa-percent"></i>
-              <p>Khuyến mãi</p>
+                <i class="fa-solid fa-percent"></i>
+                <p>Khuyến mãi</p>
             </a>
-          </li>
+            </li>
 
-          <li class="admin__taskbar--body__item">
+            <li class="admin__taskbar--body__item">
             <a href="" id="link_staff">
-              <i class="fa-solid fa-user"></i>
-              <p>Nhân viên</p>
+                <i class="fa-solid fa-user"></i>
+                <p>Nhân viên</p>
             </a>
-          </li>
+            </li>
 
-          <li class="admin__taskbar--body__item ">
-            <a href="" id="link_bill">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <p>Đơn hàng</p>
+            <li class="admin__taskbar--body__item ">
+            <a href="index.php?controller=order&action=index" id="link_bill">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p>Đơn hàng</p>
             </a>
-          </li>
+            </li>
 
 
-          <li class="admin__taskbar--body__item">
+            <li class="admin__taskbar--body__item">
             <a href="index.php?controller=khachhang&action=index" id="link_client">
-              <i class="fa-solid fa-handshake"></i>
-              <p>Khách hàng</p>
+                <i class="fa-solid fa-handshake"></i>
+                <p>Khách hàng</p>
             </a>
-          </li>
+            </li>
 
-          <li class="admin__taskbar--body__item">
+            <li class="admin__taskbar--body__item">
             <a href="index.php?controller=phieunhap&action=index" id="link_receipt">
-              <i class="fa-solid fa-chart-column"></i>
-              <p>Phiếu nhập</p>
+                <i class="fas fa-receipt"></i>
+                <p>Phiếu nhập</p>
             </a>
-          </li>
-
+            </li>
+            <li class="admin__taskbar--body__item">
+            <a href="index.php?controller=thongke&action=index" id="link_statistics">
+                <i class="fa fa-line-chart"></i>
+                <p>Thống kê</p>
+            </a>
+            </li>
         </ul>
-
-        <div class="hr"></div>
+<hr>
 
         <div class="admin__taskbar--footer">
           <button>
@@ -94,23 +99,16 @@
         </div>
       </div>
       <div class="admin__content--header">
-        <div class="admin__content--header__cate">
-          <i class="fa-solid fa-bars"></i>
-          <p>Danh mục</p>
-        </div>
         <form action="">
-        <div class="admin__content--header__search">
-          <input type="search" id="search-input" autocomplete="off" id="content_search-basic">
+        <!-- <div class="admin__content--header__search">
           <button type="button" id="btnSubmit">
                     <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           <div>
-          <div id="container_search">
-              </div>
           </form>
             
           </div>
-        </div>
+        </div> -->
         <div class="admin__content--header__user">
           <p><i class="fa-solid fa-user-shield"></i>
           <?php
@@ -132,48 +130,50 @@
                <div class="admin-product" id="manageProduct">
                 <div class = "product_content--top">
                 <h1 class="receipt__title">QUẢN LÝ SẢN PHẨM</h1>
-                <form action="" class="receipt__form">
-                <div class="form-group">
-                  <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
-                  <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" >
-                  <?php foreach($list_loaisp as $loaisp): ?>
-                    <option value="<?= $loaisp['MaLoai']?>" > <?= $loaisp['TenLoai'] ?></option>
-                    <?php endforeach; ?>
-                  </select> 
-                </div>
-                <div id="LoaiSp-error" class="error-message"></div>
+                <form action="" class="receipt__form" method="post">
+                <div  class="receipt__form">
+                  <div class="form-group">
+                    <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
+                    <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" >
+                    <?php foreach($list_loaisp as $loaisp): ?>
+                      <option value="<?= $loaisp['MaLoai']?>" > <?= $loaisp['TenLoai'] ?></option>
+                      <?php endforeach; ?>
+                    </select> 
+                  </div>
+                  <div id="LoaiSp-error" class="error-message"></div>
 
-                <div class="form-group">
-                  <label for="form__receipt-MaSP">Mã sản phẩm:</label>
-                 
-                  <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" >
+                  <div class="form-group">
+                    <label for="form__receipt-MaSP">Mã sản phẩm:</label>
+                  
+                    <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" >
 
-                </div>
-                <div id="MaSP-error" class="error-message"></div>
+                  </div>
+                  <div id="MaSP-error" class="error-message"></div>
 
-                <div class="form-group">
-                  <label for="form__receipt--TenSP">Tên sản phẩm:</label>
-                  <input type="text" id="form__receipt--TenSP" name="receipt--TenHang" >
-                </div>
-                <div id="TenSp-error" class="error-message"></div>
+                  <div class="form-group">
+                    <label for="form__receipt--TenSP">Tên sản phẩm:</label>
+                    <input type="text" id="form__receipt--TenSP" name="receipt--TenHang" >
+                  </div>
+                  <div id="TenSp-error" class="error-message"></div>
 
-                <div class="form-group">
-                  <label for="form__receipt--Price">Giá:</label>
-                  <input type="text" id="form__receipt--Price" name="receipt--price" >
-                </div>
-                <div id="GiaSp-error" class="error-message"></div>
+                  <div class="form-group">
+                    <label for="form__receipt--Price">Giá:</label>
+                    <input type="text" id="form__receipt--Price" name="receipt--price" >
+                  </div>
+                  <div id="GiaSp-error" class="error-message"></div>
 
-                
-                <div class="image-container">
-                  <label for="file-upload" class="custom-file-upload">
-                      <span>Chọn hình ảnh</span>
-                  </label>
-                  <input id="file-upload" type="file" style="display: none;" onchange="previewImage(event)">
-                  <img id="selected-image" src="#" alt="Preview Image" style="display: none;">
-              </div>
-              <div id="ImageSp-error" class="error-message"></div>
-
-              </form>
+                  <div class="form-group">
+                  <label for="form__receipt--img" class="form__receipt--img">Chọn hình ảnh:</label>
+                    <div class="image-container">
+                      <label for="file-upload" class="custom-file-upload">
+                        <!-- <span>Chọn hình ảnh</span> -->
+                      </label>
+                      <img id="selected-image" src="#" alt="Preview Image" style="display: none;">
+                    </div>
+                    <div id="ImageSp-error" class="error-message"></div>
+                  </div>
+                  <input id="file-upload" type="file"  onchange="previewImage(event)">
+                </form>
               <div class="button__container--receipt">
                 <button type="button" class="customer__form--add1" id="add-btn1">Thêm</button>
                 <button type="button" class="customer__form--add2" id="add-btn2">Reset</button>            

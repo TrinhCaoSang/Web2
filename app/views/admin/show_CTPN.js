@@ -71,13 +71,13 @@ function updateGiaSP(selectedValue) {
 //cập nhật loại sản phẩm theo mã ncc
 function updateLoaiSPByNCC(selectedValue) {
     $.ajax({
-        url: 'index.php?controller=ctpn&action=updateLoaiSPByNCC',
-        method: 'POST',
+        url: "index.php?controller=ctpn&action=updateLoaiSPByNCC",
+        method: "POST",
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
-        data: 'MaNCC=' + selectedValue,
-        dataType: 'json', 
+        data: {MaNCC : selectedValue},
+        dataType: "json",
         success: function(data) {
             var loaiSPSelect = $('#form__receipt--LoaiSP');
             loaiSPSelect.empty();
@@ -89,7 +89,7 @@ function updateLoaiSPByNCC(selectedValue) {
             });
         },
         error: function(xhr, status, error) {
-            console.error('Error:', error);
+            console.error("Error:", error);
         }
     });
 }

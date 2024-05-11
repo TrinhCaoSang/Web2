@@ -99,16 +99,16 @@
                 <a href="index.php?controller=product&action=index&type=all">ALL</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=mountain">MOUNTAIN</a>
+                <a href="index.php?controller=product&action=index&type=mt">MOUNTAIN</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=road">ROAD</a>
+                <a href="index.php?controller=product&action=index&type=rd">ROAD</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=touring">TOURING</a>
+                <a href="index.php?controller=product&action=index&type=tr">TOURING</a>
               </li>
               <li>
-                <a href="index.php?controller=product&action=index&type=kids">KIDS</a>
+                <a href="index.php?controller=product&action=index&type=kid">KIDS</a>
 
               </li>
             </ul>
@@ -660,7 +660,7 @@ loginForm.addEventListener('submit', (event) => {
   url: "index.php?controller=home&action=login",
   data: {
     Namelogin: username,
-    PasswordLogin: password
+    PasswordLogin: password,
   },
   dataType: "json",
   success: function(data) {

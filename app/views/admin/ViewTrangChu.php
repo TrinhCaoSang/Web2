@@ -13,83 +13,85 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
-
+    <script src="/Web2/app/views/admin/admin.js"></script>
 </head>
 
 <body>
   <div class="container">
-
-    <div class="admin__taskbar">
-      <div class="admin__taskbar--header">
-        <div class="admin__taskbar--header__content">
-          <div>
-            <img src="public/database/images/logo/trek_logo_shield.png" alt="" />
+  <div class="admin__taskbar">
+        <div class="admin__taskbar--header">
+          <div class="admin__taskbar--header__content">
+            <div id="toHomeUser" onclick="toUser();">
+              <img
+                src="public/database/images/logo/trek_logo_shield.png"
+                alt=""
+              />
+            </div>
+            <h1>AdminHub</h1>
           </div>
-
-          <h1>AdminHub</h1>
         </div>
-      </div>
-      <div class="hr"></div>
-      <ul class="admin__taskbar--body__list">
+        <div class="hr"></div>
+        <ul class="admin__taskbar--body__list">
 
-        <li class="admin__taskbar--body__item ">
-          <a href="" id="link_Home">
-            <i class="fa-solid fa-house-chimney"></i>
-            <p>Trang chủ</p>
-          </a>
-        </li>
+            <li class="admin__taskbar--body__item ">
+            <a href="index.php?controller=homeadmin&action=index" id="link_Home">
+                <i class="fa-solid fa-house-chimney"></i>
+                <p>Trang chủ</p>
+            </a>
+            </li>
 
-        <li class="admin__taskbar--body__item">
-          <a href="" id="link_Product">
-            <i class="fa-solid fa-bicycle"></i>
-            <p>Sản phẩm</p>
-          </a>
-        </li>
+            <li class="admin__taskbar--body__item">
+            <a href="index.php?controller=sanpham&action=index" id="link_Product">
+                <i class="fa-solid fa-bicycle"></i>
+                <p>Sản phẩm</p>
+            </a>
+            </li>
 
-        <li class="admin__taskbar--body__item">
-          <a href="" id="link_Promotions">
-            <i class="fa-solid fa-percent"></i>
-            <p>Khuyến mãi</p>
-          </a>
-        </li>
+            <li class="admin__taskbar--body__item">
+            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
+                <i class="fa-solid fa-percent"></i>
+                <p>Khuyến mãi</p>
+            </a>
+            </li>
 
-        <li class="admin__taskbar--body__item">
-          <a href="" id="link_staff">
-            <i class="fa-solid fa-user"></i>
-            <p>Nhân viên</p>
-          </a>
-        </li>
+            <li class="admin__taskbar--body__item">
+            <a href="" id="link_staff">
+                <i class="fa-solid fa-user"></i>
+                <p>Nhân viên</p>
+            </a>
+            </li>
 
-        <li class="admin__taskbar--body__item ">
-          <a href="" id="link_bill">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <p>Đơn hàng</p>
-          </a>
-        </li>
+            <li class="admin__taskbar--body__item ">
+            <a href="index.php?controller=order&action=index" id="link_bill">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p>Đơn hàng</p>
+            </a>
+            </li>
 
 
-        <li class="admin__taskbar--body__item">
-          <a href="" id="link_client">
-            <i class="fa-solid fa-handshake"></i>
-            <p>Khách hàng</p>
-          </a>
-        </li>
+            <li class="admin__taskbar--body__item">
+            <a href="index.php?controller=khachhang&action=index" id="link_client">
+                <i class="fa-solid fa-handshake"></i>
+                <p>Khách hàng</p>
+            </a>
+            </li>
 
-        <li class="admin__taskbar--body__item">
-          <a href="" id="link_receipt">
-            <i class="fas fa-receipt"></i>
-            <p>Phiếu nhập</p>
-          </a>
-        </li>
-        <li class="admin__taskbar--body__item">
-          <a href="" id="link_statistics">
-            <i class="fa fa-line-chart"></i>
-            <p>Thống kê</p>
-          </a>
-        </li>
-      </ul>
+            <li class="admin__taskbar--body__item">
+            <a href="index.php?controller=phieunhap&action=index" id="link_receipt">
+                <i class="fas fa-receipt"></i>
+                <p>Phiếu nhập</p>
+            </a>
+            </li>
+            <li class="admin__taskbar--body__item">
+            <a href="index.php?controller=thongke&action=index" id="link_statistics">
+                <i class="fa fa-line-chart"></i>
+                <p>Thống kê</p>
+            </a>
+            </li>
+        </ul>
 
-      <div class="hr"></div>
+        <!-- <div class="hr"></div> -->
+<hr>
 
       <div class="admin__taskbar--footer">
         <button>

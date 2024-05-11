@@ -215,7 +215,7 @@
 ?>
 <script>
          function changeURL(){
-          var newUrl = "http://localhost/DoAnWeb/Web2/index.php?controller=khuyenmai&action=index"; // Đường dẫn URL mới
+          var newUrl = "http://localhost/Web2/index.php?controller=khuyenmai&action=index"; // Đường dẫn URL mới
           window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
         }
 </script>

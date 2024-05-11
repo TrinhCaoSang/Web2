@@ -66,16 +66,16 @@
                   <a href="index.php?controller=product&action=index&type=all">ALL</a>
                 </li>
                 <li>
-                  <a href="index.php?controller=product&action=index&type=mountain">MOUNTAIN</a>
+                  <a href="index.php?controller=product&action=index&type=mt">MOUNTAIN</a>
                 </li>
                 <li>
-                  <a href="index.php?controller=product&action=index&type=road">ROAD</a>
+                  <a href="index.php?controller=product&action=index&type=rd">ROAD</a>
                 </li>
                 <li>
-                  <a href="index.php?controller=product&action=index&type=touring">TOURING</a>
+                  <a href="index.php?controller=product&action=index&type=tr">TOURING</a>
                 </li>
                 <li>
-                  <a href="index.php?controller=product&action=index&type=kids">KIDS</a>
+                  <a href="index.php?controller=product&action=index&type=kid">KIDS</a>
                 </li>
               </ul>
             </div>
@@ -137,6 +137,7 @@
   
             <tbody class="cart-info" id="cart-info">
                 <?php
+                print_r($products);
                     foreach($products as $product){
                 ?>
                <tr>
@@ -230,11 +231,11 @@
             <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
           </div>
           <div class="hide__menu--list__types">
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ALL</a></div>
+            <!-- <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ALL</a></div>
             <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">MOUNTAIN</a></div>
             <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ROAD</a></div>
             <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">TOURING</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">KIDS</a></div>
+            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">KIDS</a></div> -->
           </div>
         </div>
       </div>

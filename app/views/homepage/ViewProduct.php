@@ -138,9 +138,9 @@
                     </div >
                     <div style="margin-top:10px;">
                         <h3>Giá từ</h3>
-                        <input type="number" id="giatu" style="padding-left:5px;" placeholder="VNĐ" >
+                        <input type="text" id="giatu" style="padding-left:5px;" placeholder="VNĐ" >
                         <h3>Đến</h3>
-                        <input type="number" id="giaden" style="padding-left:5px;" placeholder="VNĐ"> <br>
+                        <input type="text" id="giaden" style="padding-left:5px;" placeholder="VNĐ"> <br>
                     </div>
                     <h3  style="margin-top:10px;">Thể loại</h3>
                     <div id="all">
@@ -219,7 +219,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
           
-
+          function number_format(number) {
+              return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          }
           function show_search(content) {
             $.ajax({
               url : "index.php?controller=product&action=search",
@@ -278,8 +280,14 @@
             search = $(this).val();
             fetch_data2(search,price_to,price_form,select_type);
           })
-          $(document).on("keyup","#giatu",function(){
-            price_to = parseInt($(this).val())
+          $(document).on("input","#giatu",function(){
+            price_to = $(this).val().replace(/,/g, '');
+            // price_to = parseInt($(this).val());
+            if(price_to =="") {
+              price_to = 0;
+            }else{
+              $(this).val(number_format(parseInt(price_to)));
+            }
             if(!isNaN(price_to)){
               fetch_data2(search,price_to,price_form,select_type);
             }else{
@@ -289,7 +297,12 @@
           })
           
           $(document).on("keyup","#giaden",function(){
-            price_form = parseInt($(this).val());
+            price_form = $(this).val().replace(/,/g, '');
+            if(price_form ==""){
+            price_form = Number.MAX_SAFE_INTEGER;
+            }else{
+              $(this).val(number_format(parseInt(price_form)));
+            }  
             if(!isNaN(price_form) && price_form >= price_to){
               fetch_data2(search,price_to,price_form,select_type);
             }else{

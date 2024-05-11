@@ -172,7 +172,7 @@
     }
     
     public function addPhieuNhapToCTPN($maPN, $MaNCC, $TenNCC, $maHang, $TenHang, $donGiaPN, $soLuong, $thanhTien) {
-        $sql = "INSERT INTO chitietphieunhap(MaPN, MaNCC, TenNCC, MaHang, TenHang, DonGiaPN, SoLuong, ThanhTienCTPN) 
+        $sql = "INSERT INTO ctpn(MaPN, MaNCC, TenNCC, MaHang, TenHang, DonGiaPN, SoLuong, ThanhTienCTPN) 
                 VALUES ('$maPN', '$MaNCC','$TenNCC', '$maHang','$TenHang', '$donGiaPN', '$soLuong', '$thanhTien')";
         $result_ctpn = $this->execute($sql);
         return $result_ctpn;
@@ -209,8 +209,8 @@
 
     }
 
-    public function getChiTietPhieuNhap($MaPN) {
-        $sql = "SELECT * FROM chitietphieunhap WHERE MaPN = '$MaPN'";
+    public function getctpn($MaPN) {
+        $sql = "SELECT * FROM ctpn WHERE MaPN = '$MaPN'";
         
         $this->execute($sql);
         $data = [];
@@ -222,8 +222,8 @@
 
     
     public function deletePN($id){
-        // Xóa tất cả các bản ghi liên quan từ bảng chitietphieunhap
-        $sqlDeleteChitiet = "DELETE FROM chitietphieunhap WHERE MaPN = '$id'";
+        // Xóa tất cả các bản ghi liên quan từ bảng ctpn
+        $sqlDeleteChitiet = "DELETE FROM ctpn WHERE MaPN = '$id'";
         $resultDeleteChitiet = $this->execute($sqlDeleteChitiet);
     
        

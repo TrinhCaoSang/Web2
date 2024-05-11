@@ -72,7 +72,7 @@
 
 
             <li class="admin__taskbar--body__item">
-            <a href="" id="link_client">
+            <a href="index.php?controller=khachhang&action=index" id="link_client">
                 <i class="fa-solid fa-handshake"></i>
                 <p>Khách hàng</p>
             </a>
@@ -91,8 +91,8 @@
             </a>
             </li>
         </ul>
-
-        <div class="hr"></div>
+  <hr>
+        <!-- <div class="hr"></div> -->
 
         <div class="admin__taskbar--footer">
           <button>
@@ -102,16 +102,6 @@
         </div>
       </div>
       <div class="admin__content--header">
-        <div class="admin__content--header__cate">
-          <i class="fa-solid fa-bars"></i>
-          <p>Danh mục</p>
-        </div>
-        <div class="admin__content--header__search">
-          <input type="text" placeholder="Nhập nội dung cần tìm kiếm" />
-          <div>
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-        </div>
         <div class="admin__content--header__user">
           <p><i class="fa-solid fa-user-shield"></i>Nguyễn Văn A</p>
         </div>
@@ -253,11 +243,10 @@
             </div>
           </div>
 
-          </div>
+        </div>
     </div>
   </div>
-    </div>
-    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
           function show_search_top(top,begin,end) {
             $.ajax({
@@ -523,6 +512,7 @@
             });
 
         </script>
+    </div>
     <!-- <script src="/Web2/public/components/HomeAdmin/HomeAdmin.js"></script> -->
 </body>
 </html>
