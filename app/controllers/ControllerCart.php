@@ -145,7 +145,7 @@
             }
             //Thông tin hóa đơn
             $mahd=$this->taoMaHD();
-            $makh="kh1";
+            $makh="29";
             $ngayxuat=date("Y-m-d");
             $tongtien=$_POST['tongtien'];
             $tinhtrang="dangchoxuly";
