@@ -110,6 +110,11 @@
           echo '<script>
           document.getElementById("tinhtrang").value = "'.$hoadon['TinhTrang'].'";
           </script>';
+          if($hoadon['TinhTrang']=='dagiao'){
+            echo '<script>
+                    document.getElementById("huy").style.display = "none";
+                  </script>';
+          }
         }
 
         public function suatinhtrang(){

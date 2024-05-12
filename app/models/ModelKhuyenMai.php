@@ -132,6 +132,11 @@
             return $this->execute($sql);
         }
 
+        public function XoaCTKM($makm){
+            $sql="DELETE FROM ctkm WHERE MaKM='$makm'";
+            return $this->execute($sql);
+        }
+
 
 
 

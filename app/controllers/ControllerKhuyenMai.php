@@ -37,11 +37,11 @@
                 $ngayketthuc=$_POST['dayEnd'];
                 $phantramGG=$_POST['percentageReduction'];
                 $dieukien=$_POST['costCondition'];
-                
                 if($this->khuyenmaiModel->InsertData($makm,$tenct,$ngaybatdau,$ngayketthuc,$phantramGG,$dieukien)){
                     //header('location:index.php?controller=khuyenmai&action=index');
                     echo "<script>alert('Thêm mới thành công');</script>";
-                    echo '<meta http-equiv="refresh" content="0;URL=\'index.php?controller=khuyenmai&action=index\'">'; // Chuyển hướng sau 0 giây
+                    // echo '<meta http-equiv="refresh" content="0;URL=\'index.php?controller=khuyenmai&action=index\'">'; // Chuyển hướng sau 0 giây
+                    header('location:index.php?controller=khuyenmai&action=index');
                 }
             }   
         }
@@ -82,10 +82,10 @@
 
         public static function checkTinhTrang($khuyenmai){
             $currentDate = date("Y-m-d");
-            if($khuyenmai['NgayBDKM']<$khuyenmai['NgayKTKM']&$currentDate<$khuyenmai['NgayKTKM']){
+            if($khuyenmai['NgayBDKM']<$khuyenmai['NgayKTKM'] && $currentDate<$khuyenmai['NgayKTKM']){
                 return 1;
             }
-            elseif($khuyenmai['NgayBDKM']<$khuyenmai['NgayKTKM']&$currentDate>$khuyenmai['NgayKTKM']){
+            elseif($khuyenmai['NgayBDKM']<$khuyenmai['NgayKTKM'] && $currentDate>$khuyenmai['NgayKTKM']){
                 return 0;
             }
             else{
@@ -97,6 +97,7 @@
             if(isset($_GET['id'])){
                 $this->id=$_GET['id'];
                 $i=0;
+                $this->khuyenmaiModel->XoaCTKM($this->id);
                 if($this->khuyenmaiModel->Delete($this->id)){
                     echo '<script>changeURL()</script>';
                     foreach($this->listKM as $value){

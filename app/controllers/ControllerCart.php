@@ -145,7 +145,7 @@
             }
             //Thông tin hóa đơn
             $mahd=$this->taoMaHD();
-            $makh="kh1";
+            $makh=$_SESSION['user_id'];
             $ngayxuat=date("Y-m-d");
             $tongtien=$_POST['tongtien'];
             $tinhtrang="dangchoxuly";
@@ -185,7 +185,7 @@
         }
 
         public function xoahoadon(){
-            $makh=$_POST['makh'];
+            $makh=$_SESSION['user_id'];
             $listhd=$this->modelCart->SearchDHCanXoa($makh);
             
             foreach($listhd as $hd){
@@ -203,7 +203,7 @@
                 $condition="dangchoxuly";
             }
             //Dùng SESSION để lấy mã khách hàng
-            $makh='kh1';
+            $makh=$_SESSION['user_id'];
             $hoadonList=$this->modelCart->getAllData($condition,$makh);
             if($hoadonList==null){
                 echo '<h3>Không có mặt hàng.</h3>';
