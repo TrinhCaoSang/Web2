@@ -118,8 +118,10 @@
               
 
               <?php
-                if($_SESSION['user_type'] == 'staff'){
+                if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'staff'){
                   echo '<script>document.getElementById("giohang").style.display = "none";</script>';
+                }else{
+                  echo '';
                 }
               ?>
               

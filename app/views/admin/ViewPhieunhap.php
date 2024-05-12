@@ -96,7 +96,7 @@
         <!-- <div class="hr"></div> -->
 
         <div class="admin__taskbar--footer">
-          <button>
+          <button class="logout">
             <i class="fa-solid fa-right-from-bracket"></i>
             <p>Đăng xuất</p>
           </button>
@@ -272,4 +272,23 @@ function getCurrentDate() {
 
 </script>
 </body>
+<script>
+  $(document).ready(function(){
+    $(document).on('click', '.logout',function(){
+      console.log("Trang chủ.");
+      $.ajax({
+          type: "POST",
+          url: "index.php?controller=home&action=logoutAdmin",
+          data:{},
+          success: function(data) {
+              alert("Đăng xuất thành công.");
+              window.location.href = "index.php?controller=home&action=index";
+          },
+          error: function(xhr, status, error) {
+              alert("Lỗi");
+          }
+      });
+      });
+  })
+</script>
 </html>
