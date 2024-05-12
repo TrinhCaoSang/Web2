@@ -5,6 +5,7 @@ const overlay = document.querySelector('.overlay');
 const userWrapper = document.querySelector('.user__wrapper');
 
 const openFormRegister = () => {
+  console.log("open");
   if (!isLoggedIn) {
     userWrapper.classList.add('user__active');
     userWrapper.classList.add('register__active');
@@ -69,7 +70,7 @@ const hideFormRegLogin = () => {
     userWrapper.classList.remove('register__active');
     userWrapper.classList.remove('login__active');
     userWrapper.style.animation = `bottomUp 1s ease-in-out`;
-  }, 450);
+  }, 0);
 };
 overlay.addEventListener('click', e => {
   hideFormRegLogin();

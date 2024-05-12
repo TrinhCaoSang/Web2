@@ -355,7 +355,8 @@ input[type=number] {
     padding-left: 10px;
     width: 75%;
     height: 50px;
-    padding-top: 25px;
+    padding-top: 10px;
+    
 }
 
 #container_search .search_img{
