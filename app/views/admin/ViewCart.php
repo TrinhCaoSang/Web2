@@ -58,7 +58,7 @@
   
           <div class="header__bottom">
             <div class="header__bottom--logo">
-              <a href="index.php">TREK</a>
+              <a href="index.php?controller=home&action=index">TREK</a>
             </div>
             <div class="header__bottom--list">
               <ul>

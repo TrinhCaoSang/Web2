@@ -170,8 +170,8 @@
                       </label>
                       <img id="selected-image" src="#" alt="Preview Image" style="display: none;">
                     </div>
-                    <div id="ImageSp-error" class="error-message"></div>
                   </div>
+                  <div id="ImageSp-error" class="error-message"></div>
                   <input id="file-upload" type="file"  onchange="previewImage(event)">
                 </form>
               <div class="button__container--receipt">
@@ -365,30 +365,30 @@
 
 
           
-          alert('Đã thêm sản phẩm mới thành công!');
           setTimeout(function(){
-              window.location.reload();
+            window.location.reload();
           }, 500);
           fetch('index.php?controller=sanpham&action=addSanpham', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + ImageSP + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + ImageSP + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
           })
           .then(response => response.json())
           .then(data => {        
-              if (data.success) {
-                  alert(data.message);
-                  
-              } else {
-                  alert(data.message);
-              }
+            if (data.success) {
+              alert(data.message);
+              
+            } else {
+              alert(data.message);
+            }
           })
           .catch(error => {
-              console.error('Error:', error);
+            console.error('Error:', error);
           });
-
+          alert('Đã thêm sản phẩm mới thành công!');
+          
 });
 document.getElementById('form__receipt--LoaiSP').addEventListener('input', function() {
     var LoaispVal = this.value;

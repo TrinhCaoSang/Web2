@@ -107,6 +107,24 @@ class ModelThongKe{
         return $data;
     }
 
+    public function getLoai(){
+        
+        $sql="SELECT  *
+        FROM loaihang lh
+        ORDER BY lh.MaLoai";
+
+        $this->execute($sql);
+        if($this->num_rows()==0){
+            $data=0;
+        }
+        else{
+            while($datas=$this->getData()){
+                $data[]=$datas;
+            }
+        }
+        return $data;
+    }
+
 
     public function getProduct_Type_Content($dateBegin,$dateEnd,$id){
         
