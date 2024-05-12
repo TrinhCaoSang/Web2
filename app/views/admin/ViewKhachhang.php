@@ -54,7 +54,7 @@
             </li>
 
             <li class="admin__taskbar--body__item">
-            <a href="" id="link_staff">
+            <a href="index.php?controller=nhanvien&action=index" id="link_staff">
                 <i class="fa-solid fa-user"></i>
                 <p>Nhân viên</p>
             </a>

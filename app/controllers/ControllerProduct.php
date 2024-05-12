@@ -172,12 +172,10 @@
                         </div>
                     </div>
                     <div id="mota-product"><p>'
-                        .$data[$count]['TenHang'] . '<br>' 
-                        .'Price: ' . $this->stylenum($this->giaKhuyenMai($data[$count])) . '<br>'
-                        .'Original Price: <s>'.$this->stylenum($data[$count]['DonGia']) . '</s><br>'
-                        . '</p>
-                        
-                    </div>
+                        .$data[$i]['TenHang'] . '</p>' 
+                        .'<p>Original Price: <span class="price_padding"><s>'.$this->stylenum($data[$i]['DonGia']) . '</s></span></p>'
+                        .'<p>Price: <span class="price_padding_2">' . $this->stylenum($this->giaKhuyenMai($data[$i])) . '</span></p>'.
+                    '</div>
                     </div><div class="divproduct"></div>
                 </div>';
             }
@@ -194,11 +192,10 @@
                         </div>
                     </div>
                     <div id="mota-product"><p>'
-                        .$data[$i]['TenHang'] . '<br>' 
-                        .'Price: '.$this->stylenum($this->giaKhuyenMai($data[$i])) . '<br>'
-                        .'Original Price: <s>'.$this->stylenum($data[$i]['DonGia']) . '</s><br>'
-                        .'</p>
-                    </div>
+                        .$data[$i]['TenHang'] . '</p>' 
+                        .'<p>Original Price: <span class="price_padding"><s>'.$this->stylenum($data[$i]['DonGia']) . '</s></span></p>'
+                        .'<p>Price: <span class="price_padding_2">' . $this->stylenum($this->giaKhuyenMai($data[$i])) . '</span></p>'.
+                    '</div>
                 </div>
                 <div id="'.$data[++$i]["MaHang"].'" class="divproduct">
                     <div id="img-product">
@@ -209,11 +206,10 @@
                         </div>
                     </div>
                     <div id="mota-product"><p>'
-                        .$data[$i]['TenHang'] . '<br>' 
-                        .'Price: ' . $this->stylenum($this->giaKhuyenMai($data[$i])) . '<br>'
-                        .'Original Price: <s>'.$this->stylenum($data[$i]['DonGia']) . '</s><br>'
-                        .'</p>
-                    </div>
+                        .$data[$i]['TenHang'] . '</p>' 
+                        .'<p>Original Price: <span class="price_padding"><s>'.$this->stylenum($data[$i]['DonGia']) . '</s></span></p>'
+                        .'<p>Price: <span class="price_padding_2">' . $this->stylenum($this->giaKhuyenMai($data[$i])) . '</span></p>'.
+                    '</div>
                 </div>  
                 </div>
                 ';
@@ -274,8 +270,9 @@
                             </div>
                             <div class="overlay-body-right">
                                 <h1 class="name" id="name">'.$item['TenHang'].'</h1>
-                                <span id="overlay-price">Price: '.$this->stylenum($this->giaKhuyenMai($item)).'</span>
-                                <div class="quantityBtn">
+                                <span id="overlay-price2" style="color: grey;text-decoration: line-through;">'.$this->stylenum($item["DonGia"]).'</span>
+                                <span id="overlay-price" style="color: red;">Price: '.$this->stylenum($this->giaKhuyenMai($item)).'</span>'.
+                                '<div class="quantityBtn">
                                     <h3>Số lượng</h3>
                                     <button id="decrement" onclick=quantitydown()>-</button>
                                     <input id="quantity" value=1></input>

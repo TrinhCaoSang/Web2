@@ -64,7 +64,7 @@
             <h1 class="bill__title">Thông tin khách hàng</h1>
             <button class="close" onclick="close_bill()">×</button>
             <p>
-              <strong>Tên khách hàng: </strong>'.$khachhang['HoKh'].' '.$khachhang['TenKh'] .'
+              <strong>Tên khách hàng: </strong>'.$khachhang['TenKh'] .'
             </p>
             <p>
               <strong>Địa chỉ: </strong>'.$khachhang['DiaChiKh'].'

@@ -240,7 +240,7 @@
       </div>
       <!-- <script type="module" src="/public/database/products.js"></script>
       <script type="module" src="/public/components/menu/menu.js"></script> -->
-      <script src="\DoAnWeb\Web2\app\views\admin\cart.js"></script>
+      <script src="\Web2\app\views\admin\cart.js"></script>
 </body>
 
 

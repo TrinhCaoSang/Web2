@@ -4,7 +4,6 @@
 </body>
 </html>
 <?php
-
 session_start();
 if(isset($_REQUEST['controller'])){
     $controllerName=ucfirst((strtolower('Controller'.$_REQUEST['controller'])??'khuyenmai'));
