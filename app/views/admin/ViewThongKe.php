@@ -85,7 +85,7 @@
             </a>
             </li>
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=thongke&action=index" id="link_statistics">
+            <a href="index.php?controller=thongke&action=index" id="link_statistics" style="border-radius: 10px;">
                 <i class="fa fa-line-chart"></i>
                 <p>Thống kê</p>
             </a>
@@ -95,7 +95,7 @@
         <!-- <div class="hr"></div> -->
 
         <div class="admin__taskbar--footer">
-          <button>
+          <button class="logout">
             <i class="fa-solid fa-right-from-bracket"></i>
             <p>Đăng xuất</p>
           </button>
@@ -246,6 +246,14 @@
         </div>
     </div>
   </div>
+  <?php
+              if($_GET['controller']=='thongke'){
+                echo '<script>var a = document.getElementById("link_statistics");
+                a.style.backgroundColor = "lightgray";</script>';
+              }
+
+          ?>
+
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
           function show_search_top(top,begin,end) {
@@ -514,5 +522,24 @@
         </script>
     </div>
     <!-- <script src="/Web2/public/components/HomeAdmin/HomeAdmin.js"></script> -->
+    <script>
+  $(document).ready(function(){
+    $(document).on('click', '.logout',function(){
+      console.log("Trang chủ.");
+      $.ajax({
+          type: "POST",
+          url: "index.php?controller=home&action=logoutAdmin",
+          data:{},
+          success: function(data) {
+              alert("Đăng xuất thành công.");
+              window.location.href = "index.php?controller=home&action=index";
+          },
+          error: function(xhr, status, error) {
+              alert("Lỗi");
+          }
+      });
+      });
+  })
+</script>
 </body>
 </html>

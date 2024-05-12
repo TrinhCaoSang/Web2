@@ -111,7 +111,7 @@
           <table id="order_status_table">
             <thead>
               <tr>
-                <th id="cart"><a href="index.php?controller=cart&action=index">Giỏ hàng</a></th>
+                <th id="cart">Giỏ hàng</th>
                 <th id="dangchoxuly" >Đang chờ xử lý</th> 
                 <th id="dalienlac" >Đã liên lạc</th>
                 <th id="dagiao" >Đã giao</th>
@@ -270,7 +270,15 @@
       });
     
       $('#dangchoxuly').click(function(){
-          // Gửi dữ liệu đến tệp PHP bằng Ajax
+          var a = document.getElementById("dangchoxuly");
+          a.style.backgroundColor = "#45a049";
+          var b = document.getElementById("dalienlac");
+          b.style.backgroundColor = "#504c8b";
+          var c = document.getElementById("dagiao");
+          c.style.backgroundColor = "#504c8b";
+          var d = document.getElementById("cart");
+          d.style.backgroundColor = "#504c8b";
+
           $.ajax({
               url: 'index.php?controller=cart&action=showTinhTrang',
               type: 'post',
@@ -285,6 +293,15 @@
       });
 
       $('#dalienlac').click(function(){
+        var a = document.getElementById("dangchoxuly");
+        a.style.backgroundColor = "#504c8b";
+        var b = document.getElementById("dalienlac");
+        b.style.backgroundColor = "#45a049";
+        var c = document.getElementById("dagiao");
+        c.style.backgroundColor = "#504c8b";
+        var d = document.getElementById("cart");
+        d.style.backgroundColor = "#504c8b";
+
           // Gửi dữ liệu đến tệp PHP bằng Ajax
           $.ajax({
               url: 'index.php?controller=cart&action=showTinhTrang',
@@ -300,6 +317,14 @@
       });
 
       $('#dagiao').click(function(){
+        var a = document.getElementById("dangchoxuly");
+        a.style.backgroundColor = "#504c8b";
+        var b = document.getElementById("dalienlac");
+        b.style.backgroundColor = "#504c8b";
+        var c = document.getElementById("dagiao");
+        c.style.backgroundColor = "#45a049";
+        var d = document.getElementById("cart");
+        d.style.backgroundColor = "#504c8b";
           // Gửi dữ liệu đến tệp PHP bằng Ajax
           $.ajax({
               url: 'index.php?controller=cart&action=showTinhTrang',
@@ -357,6 +382,18 @@
                 $('.cart-info_container').html(response);
               }
           });
+      });
+
+      $(document).on('click', '#cart',function(){
+        var a = document.getElementById("dangchoxuly");
+        a.style.backgroundColor = "#504c8b";
+        var b = document.getElementById("dalienlac");
+        b.style.backgroundColor = "#504c8b";
+        var c = document.getElementById("dagiao");
+        c.style.backgroundColor = "#504c8b";
+        var d = document.getElementById("cart");
+        d.style.backgroundColor = "#45a049";  
+        window.location.href = "index.php?controller=cart&action=index";
       });
 
       

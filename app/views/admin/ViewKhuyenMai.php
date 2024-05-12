@@ -42,7 +42,7 @@
             </li>
 
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
+            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions" style="border-radius: 10px;">
                 <i class="fa-solid fa-percent"></i>
                 <p>Khuyến mãi</p>
             </a>
@@ -87,7 +87,7 @@
         <!-- <div class="hr"></div> -->
 <hr>
         <div class="admin__taskbar--footer">
-          <button>
+          <button class="logout">
             <i class="fa-solid fa-right-from-bracket"></i>
             <p>Đăng xuất</p>
           </button>
@@ -230,6 +230,13 @@
                     </table>
                     </div>
                     </div>
+                    <?php
+                      if($_GET['controller']=='khuyenmai'){
+                        echo '<script>var a = document.getElementById("link_Promotions");
+                        a.style.backgroundColor = "lightgray";</script>';
+                      }
+
+                    ?>
                     
                 <div class="bill--model--ctpn" id="model--bill" style="display: none;">
                   <div class="bill_content--model--ctpn" style="height: 30vh;">
@@ -327,7 +334,25 @@
                 location.reload();
               }
           });
+
     });
+
+    $(document).on('click', '.logout',function(){
+      console.log("Trang chủ.");
+      $.ajax({
+          type: "POST",
+          url: "index.php?controller=home&action=logoutAdmin",
+          data:{},
+          success: function(data) {
+              alert("Đăng xuất thành công.");
+              window.location.href = "index.php?controller=home&action=index";
+          },
+          error: function(xhr, status, error) {
+              alert("Lỗi");
+          }
+      });
+      });
+
 
   })
 

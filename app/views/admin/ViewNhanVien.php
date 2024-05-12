@@ -55,7 +55,7 @@
             </li>
 
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=nhanvien&action=index" id="link_staff">
+            <a href="index.php?controller=nhanvien&action=index" id="link_staff" style="border-radius: 10px;">
                 <i class="fa-solid fa-user"></i>
                 <p>Nhân viên</p>
             </a>
@@ -91,7 +91,7 @@
         </ul>
 
       <div class="admin__taskbar--footer">
-        <button>
+        <button class="logout">
           <i class="fa-solid fa-right-from-bracket"></i>
           <p>Đăng xuất</p>
         </button>
@@ -144,7 +144,6 @@
                     <option value="" disabled selected hidden>Chọn giới tính</option>
                     <option value="male">Nam</option>
                     <option value="female">Nữ</option>
-                    <option value="other">Khác</option>
                   </select>
                 </div>
                 <div id="gioitinh-error" class="error-message"></div>
@@ -168,16 +167,10 @@
                   <input type="text" id="form__employeeAddress" name="employeeAddress">
                 </div>
                 <div id="DiachiNV-error" class="error-message"></div>
-                <div class="form-group">
-                  <label for="form__employeeKeysearch">Từ Khóa tìm kiếm:</label>
-                  <input type="text" id="form__employeeKeysearch" name="employeeKeysearch">
-                </div>
-
                 <div class="button__container employee__btn">
                 <input type="submit" name="add_nhanvien" class="employee__form--add" onclick="return validateForm()" value="Thêm">
-                <input type ="submit" value = "Tìm kiếm" class="employee__form--search">
-                <input type="submit" class="employee__form--authority" id="link_authorization" value="Quản lý phân quyền">
-                <input type="submit" value="Khóa tài khoản" class="employee__form--lockAcc">
+              
+                
               </div>
               </form>
               ';
@@ -226,14 +219,11 @@
                   <input type="text" id="form__employeeAddress" name="employeeAddress" value="<?php echo $dataID['DiaChiNV']; ?>">
                 </div>
                 <div id="DiachiNV-error" class="error-message"></div>
-                <div class="form-group">
-                  <label for="form__employeeKeysearch">Từ Khóa tìm kiếm:</label>
-                  <input type="text" id="form__employeeKeysearch" name="employeeKeysearch">
-                </div>
 
 
                 <div class="button__container employee__btn">
                 <input type="submit"  class="employee__form--add" name="save" value="Lưu"  onclick="changeURL2()">
+                <button style="width:70px;height:30px;margin:5px"><a href="index.php?controller=nhanvien&action=index">Thoát</a></button>
                 <!-- <input type ="submit" value = "Tìm kiếm" class="employee__form--search">
                 <input type="submit" class="employee__form--authority" id="link_authorization" value="Quản lý phân quyền">
                 <input type="submit" value="Khóa tài khoản" class="employee__form--lockAcc"> -->
@@ -241,7 +231,7 @@
               </form>
               
               <?php
-                     }
+                  }
                 ?>
               
             </div>
@@ -264,9 +254,9 @@
               </tr>
               </thead>
               <?php
-                          $i=1;
-                          foreach($this->list_staff as $value){
-                ?>
+                $i=1;
+                foreach($this->list_staff as $value){
+              ?>
               <tbody>
               <tr>
                 <td class="text__align--left" ><?php echo $value['MaNV'] ;?></td>
@@ -288,138 +278,15 @@
               </tbody>
             </table>
           </div>
-           <!--Phân quyền-->
-           <div class="admin__content--authority__content" id="authorization">
-            <div class="authority__content--top">
-              <div class="authority__title">
-                <h2>Quản lý phân quyền</h2>
-                <div class="authority__textName">
-                  <label style="margin-right: 15px;" for="name_authority">Tên chức vụ:</label>
-                  <input type="text" id="name_authority" name="authority"
-                    style="width: 50%; height: 30px; padding: 5px;"></input>
-                </div>
-              </div>
-              <table>
-                <thead>
-                  <tr class="authority-headTable">
-                    <th class="authority-stt">STT</th>
-                    <th class="authority-name">Tên</th>
-                    <th class="authority-editBtn">Sửa</th>
-                    <th class="authority-deleteBtn">Xóa</th>
-                  </tr>
-                </thead>
-                <tbody id="authority_list">
-                  <tr>
-                    <td class="authority-sttData">0</td>
-                    <td class="authority-nameData">admin</td>
-                    <td>
-                      <i id="authority_change" class="fa-regular fa-pen-to-square authority-editBtnData"></i>
-                    </td>
-                    <td>
-                      <i id="authority_remove" class="fa-solid fa-xmark authority-deleteBtnData" style="color: #f31616;"></i>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="authority__list--Btn">
-                <button class="authority__Btn--add" id="authority_add">Thêm</button>
-                <button class="authority__Btn--exit" id="authority_exit">Thoát</button>
-              </div>
-
-              <!--CheckBox-->
-              <div id="authority__modal--content" class="authority__modal--content">
-                <div class="authority__modal--checkBox">
-                  <div class="checkBox__top">
-                    <h2>Tùy Chỉnh</h2>
-                  </div>
-                  <div class="checkBox__content">
-                    <form action="" class="checkBox__content--form">
-                      <div class="checkBox__content--name">
-                        <p id="checkBox-nameLabel">Tên</p>
-                      </div>
-                      <div class="checkBox__content--list">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Xem</th>
-                              <th>Thêm</th>
-                              <th>Sửa</th>
-                              <th>Xóa</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th>Quản lý phân quyền</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                            <tr>
-                              <th>Quản lý phiếu nhập</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                            <tr>
-                              <th>Quản lý sản phẩm</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                            <tr>
-                              <th>Quản lý khuyến mãi</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                            <tr>
-                              <th>Quản lý nhân viên</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                            <tr>
-                              <th>Quản lý đơn hàng</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                            <tr>
-                              <th>Quản lý khách hàng</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                            <tr>
-                              <th>Quản lý tài khoản</th>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                              <td><label><input type="checkbox"></label></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="checkBox__Btn">
-                    <button class="checkBox__Btn--save">Lưu</button>
-                    <button class="checkBox__Btn--exit">Thoát</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--End-->
         </div>
+        <?php
+          if($_GET['controller']=='nhanvien'){
+            echo '<script>var a = document.getElementById("link_staff");
+            a.style.backgroundColor = "lightgray";</script>';
+          }
+
+        ?>
+        
         <script>
           function changeURL() {
             var newUrl = "http://localhost/Web2/index.php?controller=nhanvien&action=insert"; 
@@ -526,3 +393,24 @@ function getCurrentDate() {
     return formattedDate;
 }
         </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $(document).on('click', '.logout',function(){
+      console.log("Trang chủ.");
+      $.ajax({
+          type: "POST",
+          url: "index.php?controller=home&action=logoutAdmin",
+          data:{},
+          success: function(data) {
+              alert("Đăng xuất thành công.");
+              window.location.href = "index.php?controller=home&action=index";
+          },
+          error: function(xhr, status, error) {
+              alert("Lỗi");
+          }
+      });
+      });
+  })
+</script>

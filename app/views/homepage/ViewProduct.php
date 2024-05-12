@@ -98,8 +98,8 @@
                   </li>
                 </ul>
               </div>
-    
-              <a href="index.php?controller=cart">
+              
+              <a href="index.php?controller=cart" id="giohang">
                 <div class="header__bottom--extention-item header__bottom--extention-cart">
                   <i class="fa-solid fa-cart-shopping"></i>
                   <div id="sohangtronggio">
@@ -115,6 +115,15 @@
                   </div>
                 </div>
               </a>
+              
+
+              <?php
+                if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'staff'){
+                  echo '<script>document.getElementById("giohang").style.display = "none";</script>';
+                }else{
+                  echo '';
+                }
+              ?>
               
             </div>
     
@@ -405,14 +414,12 @@
                   id:document.getElementById('addtocart').value.split("#")
                 }, // Gửi dữ liệu từ bảng HTML
                 success: function(response){
-                  alert("Thêm thành công");
+                  
                   $('#sohangtronggio').html(response); // Hiển thị kết quả từ tệp PHP
                   document.getElementById("product-detail_model").style.display = "none";
                 }
             });
           });
-        
-        
         </script>
     
 </body>

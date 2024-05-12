@@ -100,7 +100,6 @@
         public function checkLoginStatus() {
             session_start();
             if (isset($_SESSION['user_id'])) {
-                
                 ob_clean();
                 echo json_encode(array('loggedIn' => true, 'user_type' => $_SESSION['user_type'], 'user_name' => $_SESSION['username']));
             } else {
@@ -126,7 +125,19 @@
             echo json_encode(array('success' => true, 'message' => 'Đăng xuất thành công'));
             exit;
         }
-                 protected function view(array $data = []) {
+
+        public function logoutAdmin() {
+            session_start();
+            // Xóa thông tin đăng nhập khỏi session
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_type']);
+            unset($_SESSION['username']);
+            session_destroy();
+           
+        }
+
+
+        protected function view(array $data = []) {
             return include("./app/views/homepage/ViewHome.php");
         }
         

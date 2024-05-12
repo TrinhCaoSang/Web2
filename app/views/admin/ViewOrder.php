@@ -60,7 +60,7 @@
             </li>
 
             <li class="admin__taskbar--body__item ">
-            <a href="index.php?controller=order&action=index" id="link_bill">
+            <a href="index.php?controller=order&action=index" id="link_bill" style="border-radius: 10px;">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <p>Đơn hàng</p>
             </a>
@@ -91,7 +91,7 @@
         <!-- <div class="hr"></div> -->
 
         <div class="admin__taskbar--footer">
-          <button>
+          <button class="logout">
             <i class="fa-solid fa-right-from-bracket"></i>
             <p>Đăng xuất</p>
           </button>
@@ -245,6 +245,13 @@
         </div>
       </div>
 </div>
+<?php
+              if($_GET['controller']=='order'){
+                echo '<script>var a = document.getElementById("link_bill");
+                a.style.backgroundColor = "lightgray";</script>';
+              }
+
+          ?>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
@@ -330,6 +337,22 @@
     $(document).on('click', '#reset',function(){
       location.reload();
     });
+
+    $(document).on('click', '.logout',function(){
+      console.log("Trang chủ.");
+      $.ajax({
+          type: "POST",
+          url: "index.php?controller=home&action=logoutAdmin",
+          data:{},
+          success: function(data) {
+              alert("Đăng xuất thành công.");
+              window.location.href = "index.php?controller=home&action=index";
+          },
+          error: function(xhr, status, error) {
+              alert("Lỗi");
+          }
+      });
+      });
 
   })
 </script>
