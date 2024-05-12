@@ -41,7 +41,7 @@
             </li>
 
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=sanpham&action=index" id="link_Product">
+            <a href="index.php?controller=sanpham&action=index" id="link_Product" style="border-radius: 10px;">
                 <i class="fa-solid fa-bicycle"></i>
                 <p>Sản phẩm</p>
             </a>
@@ -284,6 +284,13 @@
                 </div>
             </div>
           </div>
+          <?php
+              if($_GET['controller']=='sanpham'){
+                echo '<script>var a = document.getElementById("link_Product");
+                a.style.backgroundColor = "lightgray";</script>';
+              }
+
+          ?>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
           <script>
           function Delete(name){

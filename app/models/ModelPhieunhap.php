@@ -50,9 +50,13 @@
     public function getAllData(){
         $sql="SELECT * FROM phieunhap";
         $this->execute($sql);
-        $data = [];
-        while ($datas = $this->getData()){
-            $data[]=$datas;
+        if($this->num_rows()==0){
+            $data=0;
+        }
+        else{
+            while($datas=$this->getData()){
+                $data[]=$datas;
+            }
         }
         return $data;
     }

@@ -41,6 +41,10 @@
         }
 
         public function store(){
+            if($_SESSION['user_type'] == 'staff'){
+                echo '<script>alert("Nhân viên không được phép đặt hàng.");</script>';
+            }
+            else{
             $phantramgg=0;
             $productId=$_POST['id'][0] ?? null;
             $makm=$_POST['id'][1];
@@ -74,11 +78,9 @@
             foreach($products as $pd){
                 $_SESSION['order_count']+=$pd['qty'];
             }
-            // print_r($product['qty']);
             echo '<p >'.$_SESSION['order_count'].'</p>';
-            // echo $_SESSION['cart'];
-            // print_r($_SESSION['cart']); 
-            // header('location:index.php?controller=cart');
+            echo '<script>alert("Thêm thành công");</script>';
+        }
         }
         public function delete(){
             $productId=$_GET['id']??null;

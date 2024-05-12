@@ -80,7 +80,7 @@
             </li>
 
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=phieunhap&action=index" id="link_receipt">
+            <a href="index.php?controller=phieunhap&action=index" id="link_receipt" style="border-radius: 10px;">
                 <i class="fas fa-receipt"></i>
                 <p>Phiếu nhập</p>
             </a>
@@ -142,6 +142,8 @@
                 <th class="table--top">Ngày nhập</th>
                 
                 <th class="table--top">Xóa</th>
+                <!-- <th class="table--top">Thêm chi tiết</th> -->
+                
               </tr>
               </thead>
               <tbody>
@@ -169,6 +171,9 @@
                 <td>
                   <a onclick="return Del('<?php echo $row['MaPN']; ?>')" href="index.php?controller=phieunhap&action=deletePN&id=<?php echo $row['MaPN'];?>"><button class="btn btn-delete">Xóa</button></a>
                 </td>
+                <!-- <td>
+                    <a href="index.php?controller=ctpn&action=index&id=<?php echo $row['MaPN'];?>">Thêm chi tiết</a>
+                </td> -->
               </tr>
               <?php 
                 $i++;
@@ -182,7 +187,13 @@
         </div>
       </div>
 </div>
+<?php
+              if($_GET['controller']=='phieunhap'){
+                echo '<script>var a = document.getElementById("link_receipt");
+                a.style.backgroundColor = "lightgray";</script>';
+              }
 
+          ?>
 
 
 

@@ -85,7 +85,7 @@
             </a>
             </li>
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=thongke&action=index" id="link_statistics">
+            <a href="index.php?controller=thongke&action=index" id="link_statistics" style="border-radius: 10px;">
                 <i class="fa fa-line-chart"></i>
                 <p>Thống kê</p>
             </a>
@@ -246,6 +246,14 @@
         </div>
     </div>
   </div>
+  <?php
+              if($_GET['controller']=='thongke'){
+                echo '<script>var a = document.getElementById("link_statistics");
+                a.style.backgroundColor = "lightgray";</script>';
+              }
+
+          ?>
+
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
           function show_search_top(top,begin,end) {

@@ -60,7 +60,7 @@
             </li>
 
             <li class="admin__taskbar--body__item ">
-            <a href="index.php?controller=order&action=index" id="link_bill">
+            <a href="index.php?controller=order&action=index" id="link_bill" style="border-radius: 10px;">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <p>Đơn hàng</p>
             </a>
@@ -237,6 +237,13 @@
         </div>
       </div>
 </div>
+<?php
+              if($_GET['controller']=='order'){
+                echo '<script>var a = document.getElementById("link_bill");
+                a.style.backgroundColor = "lightgray";</script>';
+              }
+
+          ?>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>

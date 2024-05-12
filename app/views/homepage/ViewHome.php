@@ -136,12 +136,32 @@
                 
            
 
-                <a href="index.php?controller=cart&action=index">
-                  <div class="header__bottom--extention-item header__bottom--extention-cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <p>0</p>
+                <a href="index.php?controller=cart" id="giohang">
+                <div class="header__bottom--extention-item header__bottom--extention-cart">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <div id="sohangtronggio">
+                    <p ><?php
+                      if (!isset($_SESSION['order_count'])) {
+                        echo 0;
+                      }
+                      else{
+                        echo $_SESSION['order_count'];
+                      }
+                    
+                    ?></p>
                   </div>
-                </a>
+                </div>
+              </a>
+              
+
+              <?php
+                if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'staff'){
+                  echo '<script>document.getElementById("giohang").style.display = "none";</script>';
+                }
+                else{
+                  echo '';
+                }
+              ?>
 
             
           </div>
@@ -580,44 +600,6 @@
             <h1>Rất vui khi được bạn biết đến!</h1>
             <p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
             <button>Đăng ký</button>
-          </div>
-        </div>
-      </div>
-      <div class="hide__menu">
-        <button class="hide__menu--close">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <h1>TREK</h1>
-        <div class="hide__menu--list__extention">
-          <div class="header__bottom--extention-item header__bottom--extention-user">
-            <i class="fa-solid fa-user"></i>
-            <span>Tài khoản</span>
-            <i class="header__bottom--extention__icon header__bottom--extention__icon--right fa-solid fa-arrow-right"></i>
-            <i class="header__bottom--extention__icon header__bottom--extention__icon--down fa-solid fa-caret-down"></i>
-            <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
-          </div>
-          <div class="hide__menu--user__list">
-            <div class="hide__menu--list__type adminManager__item" style="display: none"><button>Quản lý</button></div>
-            <div class="hide__menu--list__type logout__item"><button>Đăng xuất</button></div>
-          </div>
-          <a href="/public/html/page/cart/cart.html" class="header__bottom--extention-item header__bottom--extention-cart">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Giỏ hàng</span>
-            <i class="header__bottom--extention__icon fa-solid fa-arrow-right"></i>
-          </a>
-  
-          <div class="header__bottom--extention-item header__bottom--extention-cate">
-            <i class="fa-solid fa-table-columns"></i>
-            <span>Danh mục</span>
-            <i class="header__bottom--extention__icon header__bottom--extention__icon--down fa-solid fa-caret-down"></i>
-            <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
-          </div>
-          <div class="hide__menu--list__types">
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ALL</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">MOUNTAIN</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ROAD</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">TOURING</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">KIDS</a></div>
           </div>
         </div>
       </div>

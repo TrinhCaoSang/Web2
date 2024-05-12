@@ -69,7 +69,7 @@
 
 
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=khachhang&action=index" id="link_client">
+            <a href="index.php?controller=khachhang&action=index" id="link_client" style="border-radius: 10px;">
                 <i class="fa-solid fa-handshake"></i>
                 <p>Khách hàng</p>
             </a>
@@ -261,7 +261,13 @@
       </div>
   </div>
   </div>
+  <?php
+              if($_GET['controller']=='khachhang'){
+                echo '<script>var a = document.getElementById("link_client");
+                a.style.backgroundColor = "lightgray";</script>';
+              }
 
+          ?>
   <script>
     function changeURL() {
             var newUrl = "http://localhost/Web2/index.php?controller=khachhang&action=insert"; 

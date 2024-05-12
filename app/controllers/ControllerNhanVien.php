@@ -13,9 +13,9 @@
 
         }
         protected function view(array $data=[],$dataID){
-            // foreach($data as $key=>$value){
-            //     $$key=$value;
-            // }
+            foreach($data as $key=>$value){
+                $$key=$value;
+            }
             return include("./app/views/admin/ViewNhanvien.php");
         }
         protected function loadModel($modelPath){

@@ -42,7 +42,7 @@
             </li>
 
             <li class="admin__taskbar--body__item">
-            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions">
+            <a href="index.php?controller=khuyenmai&action=index" id="link_Promotions" style="border-radius: 10px;">
                 <i class="fa-solid fa-percent"></i>
                 <p>Khuyến mãi</p>
             </a>
@@ -222,6 +222,13 @@
                     </table>
                     </div>
                     </div>
+                    <?php
+                      if($_GET['controller']=='khuyenmai'){
+                        echo '<script>var a = document.getElementById("link_Promotions");
+                        a.style.backgroundColor = "lightgray";</script>';
+                      }
+
+                    ?>
                     
                 <div class="bill--model--ctpn" id="model--bill" style="display: none;">
                   <div class="bill_content--model--ctpn" style="height: 30vh;">

@@ -124,7 +124,7 @@ public function addPhieuNhap(){
   if($_SERVER['REQUEST_METHOD'] === 'POST') {
       $maPN = $_POST['receipt'];
       
-      $NgayNhap = $_POST['ngayNhap'];
+      $NgayNhap = $_POST['ngayNhap']; 
       $thanhTien = 0; 
           $result = $this->coupon->addPhieuNhap($maPN, $NgayNhap, $thanhTien);
           if($result) {
