@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  // session_start();
   ob_start();
 
   // kiểm tra trạng thái đăng nhập
@@ -352,9 +352,7 @@
           $.ajax({
               url: 'index.php?controller=cart&action=xoahoadon',
               type: 'post',
-              data:{
-                makh:'kh1'
-              },
+              data:{},
               success: function(response){
                 $('.cart-info_container').html(response);
               }

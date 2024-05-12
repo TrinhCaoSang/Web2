@@ -29,7 +29,14 @@
               <div class="header__top-item--left">
                 <div class="header__top-item user-welcome">
                   <p>Xin chào,</p>
-                  <p></p>
+                  <p>
+                    <?php
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?>
+                  </p>
                 </div>
               </div>
               <div class="header__top-item--right">
@@ -163,6 +170,9 @@
         </div>
         <div id="container_content">
         </div>
+
+
+        
         <div id="product-detail_model">
         <!-- <div class="overlay-container">
           <div class="overlay-container-top">
