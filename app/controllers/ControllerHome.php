@@ -71,7 +71,7 @@
                 $user = $this->HomeModel->login($username, $password);
                 if ($user) {
                     // Đăng nhập thành công, tạo phiên đăng nhập
-                    session_start();
+                    // session_start();
                     if (isset($user['MaKH'])) {
                         $_SESSION['user_id'] = $user['MaKH'];
                         $_SESSION['user_type'] = 'customer';
@@ -98,7 +98,7 @@
         }
         
         public function checkLoginStatus() {
-            session_start();
+            // session_start();
             if (isset($_SESSION['user_id'])) {
                 ob_clean();
                 echo json_encode(array('loggedIn' => true, 'user_type' => $_SESSION['user_type'], 'user_name' => $_SESSION['username']));
@@ -112,7 +112,7 @@
     
         
         public function logout() {
-            session_start();
+            // session_start();
             // Xóa thông tin đăng nhập khỏi session
             unset($_SESSION['user_id']);
             unset($_SESSION['user_type']);
@@ -127,7 +127,7 @@
         }
 
         public function logoutAdmin() {
-            session_start();
+            // session_start();
             // Xóa thông tin đăng nhập khỏi session
             unset($_SESSION['user_id']);
             unset($_SESSION['user_type']);

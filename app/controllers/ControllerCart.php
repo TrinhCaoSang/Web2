@@ -41,7 +41,9 @@
         }
 
         public function store(){
-            if($_SESSION['user_type'] == 'staff'){
+            if(!isset($_SESSION['username'])){
+                echo '<script>alert("Bạn chưa đăng nhập.");</script>';
+            }elseif($_SESSION['user_type'] == 'staff'){
                 echo '<script>alert("Nhân viên không được phép đặt hàng.");</script>';
             }
             else{
@@ -118,21 +120,7 @@
             }
             return "HD".$ket_qua.rand(0, 10000);
         }
-        // public function changTongTien(){
-        //     $makm=$_POST['makm'];
-        //     if($makm=='none'){
-        //         $makm=0;
-        //     }
-        //     $tongtien=$_POST['tongtien'];
-        //     $listKM=$this->modelKhuyenMai->getAllData();
-        //     foreach($listKM as $km){
-        //         if($km['MaKM']==$makm){
-        //             // print_r($km['PhanTramGG']);
-        //             $tongtien=$tongtien*(100-$km['PhanTramGG'])/100;
-        //         }
-        //     }
-        //     echo number_format($tongtien) . ' VNĐ';;
-        // }
+
         public function insert(){
             $selectedProducts = $_POST['products'];
             $listProducts=array();

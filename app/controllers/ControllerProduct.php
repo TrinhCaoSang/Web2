@@ -172,9 +172,9 @@
                         </div>
                     </div>
                     <div id="mota-product"><p>'
-                        .$data[$i]['TenHang'] . '</p>' 
-                        .'<p>Original Price: <span class="price_padding"><s>'.$this->stylenum($data[$i]['DonGia']) . '</s></span></p>'
-                        .'<p>Price: <span class="price_padding_2">' . $this->stylenum($this->giaKhuyenMai($data[$i])) . '</span></p>'.
+                        .$data[$count]['TenHang'] . '</p>' 
+                        .'<p>Original Price: <span class="price_padding"><s>'.$this->stylenum($data[$count]['DonGia']) . '</s></span></p>'
+                        .'<p>Price: <span class="price_padding_2">' . $this->stylenum($this->giaKhuyenMai($data[$count])) . '</span></p>'.
                     '</div>
                     </div><div class="divproduct"></div>
                 </div>';
