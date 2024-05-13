@@ -41,7 +41,7 @@
         
         //Phương thức lấy toàn bộ dữ liệu
         public function getAllData(){
-            $sql="SELECT * FROM mathang";
+            $sql="SELECT * FROM mathang order by DonGia desc";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -110,7 +110,7 @@
         }
 
         public function getAllDataType($type){
-            $sql="SELECT * FROM mathang WHERE MaLoai = '$type'";
+            $sql="SELECT * FROM mathang WHERE MaLoai = '$type' order by DonGia desc";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -124,7 +124,7 @@
         }
 
         public function getProductType($type){
-            $sql="SELECT tenhang FROM mathang WHERE MaLoai = '$type'";
+            $sql="SELECT tenhang FROM mathang WHERE MaLoai = '$type' order by DonGia desc";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -160,7 +160,7 @@
         }
         //Pagination
         public function pagination($start,$limit){
-            $sql="SELECT * FROM mathang ORDER BY MaHang DESC LIMIT $start,$limit";
+            $sql="SELECT * FROM mathang ORDER BY DonGia DESC LIMIT $start,$limit";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -174,7 +174,7 @@
         }
 
         public function pagination2($type,$start,$limit){
-            $sql="SELECT * FROM mathang WHERE MaLoai = '$type' ORDER BY MaHang DESC LIMIT $start,$limit";
+            $sql="SELECT * FROM mathang WHERE MaLoai = '$type' ORDER BY DonGia DESC LIMIT $start,$limit";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -187,7 +187,7 @@
             return $data;
         }
         public function pagination3($product_name,$start,$limit){
-            $sql="SELECT * FROM mathang WHERE TenHang LIKE '%$product_name%' ORDER BY MaHang DESC LIMIT $start,$limit";
+            $sql="SELECT * FROM mathang WHERE TenHang LIKE '%$product_name%' ORDER BY DonGia DESC LIMIT $start,$limit";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;
@@ -212,7 +212,7 @@
                 INNER JOIN ctkm ctkm2 ON km2.MaKM = ctkm2.MaKM
                 WHERE ctkm2.MaLoai = mh.MaLoai
 			)AND
-            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form )";
+            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form ) ORDER BY DonGia desc";
             if($typecb != "MaLoai" && $typecb != "all"){
                 $sql .= " AND mh.MaLoai = '$typecb'";
             }
@@ -241,7 +241,7 @@
                 INNER JOIN ctkm ctkm2 ON km2.MaKM = ctkm2.MaKM
                 WHERE ctkm2.MaLoai = mh.MaLoai
 			)AND
-            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form )";
+            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form ) ORDER BY DonGia desc";
             if($typecb != "MaLoai" && $typecb != "all"){
                 $sql .= " AND mh.MaLoai = '$typecb'";
             }
@@ -258,7 +258,7 @@
             return $data;
         }
         public function basic_search($product_name){
-            $sql ="SELECT * FROM mathang WHERE TenHang LIKE '%$product_name%' ORDER BY MaHang DESC";
+            $sql ="SELECT * FROM mathang WHERE TenHang LIKE '%$product_name%' ORDER BY DonGia DESC";
             $this->execute($sql);
             if($this->num_rows()==0){
                 $data=0;

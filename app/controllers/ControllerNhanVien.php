@@ -35,17 +35,26 @@
                 $ChucVu = $_POST['employeePosition'] === 'admin' ? 1 : 0;
                 $Luong = $_POST['employeeSalary'];
                 $ngaydangky = date('Y-m-d');
+                $PassWord = $_POST['employeePassword'];
         
                 if ($this->staff->addNhanvien($TenNV, $gioitinh, $DiaChiNV, $ChucVu, $Luong, $ngaydangky)) {
-                    echo "<script>alert('Thêm mới nhân viên thành công!');</script>";
-                    header('Location: index.php?controller=nhanvien&action=index');
-                    exit();
+                    $MaNV = $this->staff->getLastInsertedMaNV();
+                    if ($this->staff->addPasswordToLoginStaff($MaNV, $PassWord)) {
+                        echo "<script>alert('Thêm mới nhân viên thành công!');</script>";
+                        header('Location: index.php?controller=nhanvien&action=index');
+                        exit();
+                    } else {
+                        echo "<script>alert('Thêm mật khẩu nhân viên thất bại!');</script>";
+                        return $this->index();
+                    }
                 } else {
                     echo "<script>alert('Thêm mới nhân viên thất bại!');</script>";
                     return $this->index();
                 }
             }
-        }    
+        }
+        
+        
 
 
         public function delete() {

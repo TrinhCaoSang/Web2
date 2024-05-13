@@ -178,18 +178,12 @@ public function updateCTPN(){
 }
 
 
-// public function deleteCTPN(){
-//   $id = $_GET['id'];
-//   $MaHang = $_GET['MaHang'];
-//   $this->CTPN->deleteCTPN($id, $MaHang);
-//   header('Location: index.php?controller=ctpn');
-// }
 public function deleteCTPN(){
-      $MaPN = $_GET['MaPN'];
-      $MaHang = $_GET['MaHang'];
-      $this->CTPN->deleteCTPN($MaPN, $MaHang);
-      header('Location: index.php?controller=ctpn');
-  }
+  $MaPN = $_GET['MaPN'];
+  $MaHang = $_GET['MaHang'];
+  $this->CTPN->deleteCTPN($MaPN, $MaHang);
+  header('Location: index.php?controller=ctpn');
+}
 
 
 

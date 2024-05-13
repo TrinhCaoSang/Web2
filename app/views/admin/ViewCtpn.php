@@ -203,7 +203,7 @@
                     <th class="table--top" style="width: 150px;">Đơn Giá</th>
                     <th class="table--top">Số lượng</th>
                     <th class="table--top" style="width: 150px;">Tổng</th>
-                    <th class="table--top">Sửa</th>
+                    <!-- <th class="table--top">Sửa</th> -->
                     <th class="table--top">Xóa</th>
                   </tr>
                   </thead>
@@ -226,12 +226,10 @@
                     <td class="text__align--left"><?php echo $row['TenNCC'] ?></td>
                     <td class="text__align--left"><?php echo $row['MaHang'] ?></td>
                     <td class="text__align--left"><?php echo $row['TenHang'] ?></td>
-                    <td class="text__align--left"><?php echo number_format($row['DonGiaPN']) . ' VND';?></td>
+                    <td class="text__align--left"><?php echo number_format($row['DonGiaPN'], 0, '', '.') . ' VND';?></td>
                     <td class="text__align--left"><?php echo number_format($row['SoLuong']) ?></td>
-                    <td class="text__align--left"><?php echo number_format($row['ThanhTienCTPN']) .' VND';?></td>
-                    <td >
-                            <button type="button" class="btn btn-edit" id="<?php echo $row['MaPN']; ?>-<?php echo $row['MaHang']; ?>">Sửa</button>
-                    </td>
+                    <td class="text__align--left"><?php echo number_format($row['ThanhTienCTPN'], 0, '', '.')." VND";?></td>
+                   
                     <td >
                       <a onclick="return Delete('<?php echo $row['MaPN']; ?>')" href="index.php?controller=ctpn&action=deleteCTPN&MaPN=<?php echo $row['MaPN'];?>&MaHang=<?php echo $row['MaHang'];?>"><button class="btn btn-delete">Xóa</button></a>
                    </td>

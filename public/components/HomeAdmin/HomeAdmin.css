@@ -93,7 +93,13 @@ body {
     position: relative;
     width: 100%;
   }
-  
+  .dashboard-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
   .admin__taskbar--header__content div {
     width: 100%;
     height: 80px;
@@ -149,14 +155,13 @@ body {
     margin: 25px 0;
   }
   
-  .admin__taskbar--body__list {
-    list-style-type: none;
-    color: #fff;
-    font-size: 18px;
-    width: 100%;
-    margin-top: 20px;
+ 
+  @media (max-width: 768px){
+    .dashboard-section {
+      flex-direction: column;
+      align-items: center;
   }
-  
+  }
   .admin__taskbar--body__item {
     height: 50px;
     width: 100%;
@@ -533,10 +538,10 @@ body {
     margin: 5px;
     background-color: #d5231d;
     border-radius: 5px;
-
+    cursor: pointer;
     color: white;
   }
-  .discount__form--change {
+  .discount__form--change,.product_form--change {
     width: 80px;
     height: 30px;
     font-size: 16px; 
@@ -544,6 +549,7 @@ body {
     background-color: #0ee836;
     color: white;
     border-radius: 5px;
+    cursor: pointer;
   }
   
   table {
@@ -996,8 +1002,25 @@ body {
   flex-wrap: wrap;
 
 }
+.statistics__title {
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  background-color: #333;
+  color: white;
+  display: flex;
+  width: 100%;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 
-.discount__title {
+
+}
+.discount__title{
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
   font-size: 30px;
@@ -1101,22 +1124,25 @@ body {
   margin-top: 10px;
 }
 
-.discount__form--add {
-  width: 70px;
+.discount__form--add,.product__form--remove {
+  width: 80px;
   height: 30px;
   font-size: 16px;
   margin: 5px;
   background-color: #d5231d;
   color: white;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.discount__form--change {
+.discount__form--change,.employee__form--add {
   width: 70px;
   height: 30px;
   font-size: 16px;
   margin: 5px;
   background-color: #0ee836;
   color: white;
+  border-radius: 5px;
 }
 
 table {
@@ -1177,12 +1203,12 @@ tr:hover {
   background-color: black;
 }
 
-.statistics__title {
+/* .statistics__title {
   color: #333;
   text-transform: uppercase;
   font-size: 30px;
   font-weight: bold;
-}
+} */
 
 .statistics__content--body__content {
   display: flex;
@@ -1190,6 +1216,15 @@ tr:hover {
   justify-content: space-between;
   padding: 30px 30px 0px 30px;
   width: 100%;
+  border: 5px solid #333;
+}
+.statistics__content--body__box {
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.statistics__content--body__box:hover {
+  transform: scale(1.1);
 }
 
 .statistics__content--body__box {
@@ -1203,6 +1238,7 @@ tr:hover {
   border-radius: 9px;
   background-color: white;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  border: 3px solid #333;
   /* border: 2px solid blue; */
 }
 
@@ -1375,6 +1411,7 @@ tr:hover {
 
 .text__align--left {
   text-align: center;
+  font-weight: 600;
 }
 
 .table--top {
@@ -1696,13 +1733,25 @@ tr:hover {
   border-radius: 10px;
 
 }
-.customer__form--update{
-  width: 100px;
+.customer__form--update,.staff__form--change{
+  width: 70px;
   background-color: green;
   color: white;
   height: 30px;
   font-size: 16px; 
   margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.staff__form--remove{
+  width: 70px;
+  background-color: red;
+  color: white;
+  height: 30px;
+  font-size: 16px; 
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #add-btn {

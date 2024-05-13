@@ -108,6 +108,13 @@ public function getAllLoaiSP(){
     return $data;
  }
 
+public function save($MaHang, $MaLoai, $TenHang, $DonGia){
+    $sql = "update mathang 
+    set MaLoai = '$MaLoai', TenHang='$TenHang' , DonGia=$DonGia 
+    where MaHang = '$MaHang'";
+    return $this->execute($sql);
+}
+
 
 // public function getImageByMaHang($MaHang){
 //     $sql = "SELECT Hinhanh FROM mathang WHERE MaHang ='$MaHang'"; 
@@ -140,7 +147,7 @@ public function addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuo
     
     // $sql = "INSERT INTO mathang(MaHang, MaLoai, Hinhanh, TenHang, DonGia, SoLuong) VALUES (?, ?, ?, ?, ?, ?)";
     $sql = "INSERT INTO mathang(MaHang, MaLoai,Hinhanh, TenHang, DonGia, SoLuong)
-    VALUES('$MaHang','$MaLoai','$Hinhanh' ,'$TenHang', $DonGia, $SoLuong)";
+    VALUES('$MaHang','$MaLoai','$Hinhanh','$TenHang', $DonGia, $SoLuong)";
     // $stmt = $this->conn->prepare($sql);
     // $stmt->bind_param("ssbsdi", $MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong);
     $result_sanpham = $this->execute($sql);

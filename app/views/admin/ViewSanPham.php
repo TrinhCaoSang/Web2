@@ -130,53 +130,56 @@
                <div class="admin-product" id="manageProduct">
                 <div class = "product_content--top">
                 <h1 class="receipt__title">QUẢN LÝ SẢN PHẨM</h1>
-                <form action="" class="receipt__form" method="post">
-                <div  class="receipt__form">
-                  <div class="form-group">
-                    <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
-                    <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" >
-                    <?php foreach($list_loaisp as $loaisp): ?>
-                      <option value="<?= $loaisp['MaLoai']?>" > <?= $loaisp['TenLoai'] ?></option>
-                      <?php endforeach; ?>
-                    </select> 
-                  </div>
-                  <div id="LoaiSp-error" class="error-message"></div>
-
-                  <div class="form-group">
-                    <label for="form__receipt-MaSP">Mã sản phẩm:</label>
-                  
-                    <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" >
-
-                  </div>
-                  <div id="MaSP-error" class="error-message"></div>
-
-                  <div class="form-group">
-                    <label for="form__receipt--TenSP">Tên sản phẩm:</label>
-                    <input type="text" id="form__receipt--TenSP" name="receipt--TenHang" >
-                  </div>
-                  <div id="TenSp-error" class="error-message"></div>
-
-                  <div class="form-group">
-                    <label for="form__receipt--Price">Giá:</label>
-                    <input type="text" id="form__receipt--Price" name="receipt--price" >
-                  </div>
-                  <div id="GiaSp-error" class="error-message"></div>
-
-                  <div class="form-group">
-                  <label for="form__receipt--img" class="form__receipt--img">Chọn hình ảnh:</label>
-                    <div class="image-container">
-                      <label for="file-upload" class="custom-file-upload">
-                        <!-- <span>Chọn hình ảnh</span> -->
-                      </label>
-                      <img id="selected-image" src="#" alt="Preview Image" style="display: none;">
+                <div id="container_tt">
+                  <form action="" class="receipt__form" method="post">
+                  <div  class="receipt__form">
+                    <div class="form-group">
+                      <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
+                      <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" >
+                      <?php foreach($list_loaisp as $loaisp): ?>
+                        <option value="<?= $loaisp['MaLoai']?>" > <?= $loaisp['TenLoai'] ?></option>
+                        <?php endforeach; ?>
+                      </select> 
                     </div>
-                  </div>
-                  <div id="ImageSp-error" class="error-message"></div>
-                  <input id="file-upload" type="file"  onchange="previewImage(event)">
-                </form>
+                    <div id="LoaiSp-error" class="error-message"></div>
+
+                    <div class="form-group">
+                      <label for="form__receipt-MaSP">Mã sản phẩm:</label>
+                    
+                      <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" >
+
+                    </div>
+                    <div id="MaSP-error" class="error-message"></div>
+
+                    <div class="form-group">
+                      <label for="form__receipt--TenSP">Tên sản phẩm:</label>
+                      <input type="text" id="form__receipt--TenSP" name="receipt--TenHang" >
+                    </div>
+                    <div id="TenSp-error" class="error-message"></div>
+
+                    <div class="form-group">
+                      <label for="form__receipt--Price">Giá:</label>
+                      <input type="text" id="form__receipt--Price" name="receipt--price" >
+                    </div>
+                    <div id="GiaSp-error" class="error-message"></div>
+
+                    <div class="form-group">
+                    <label for="form__receipt--img" class="form__receipt--img">Chọn hình ảnh:</label>
+                      <div class="image-container">
+                        <label for="file-upload" class="custom-file-upload">
+                          <!-- <span>Chọn hình ảnh</span> -->
+                        </label>
+                        <img id="selected-image" src="#" alt="Preview Image" style="display: none;">
+                      </div>
+                    </div>
+                    <div id="ImageSp-error" class="error-message"></div>
+                    <input id="file-upload" type="file"  onchange="previewImage(event)">
+                  </form>
+                      </div>
+                </div>
               <div class="button__container--receipt">
                 <button type="button" class="customer__form--add1" id="add-btn1">Thêm</button>
-                <button type="button" class="customer__form--add2" id="add-btn2">Reset</button>            
+                <button type="button" class="customer__form--add2" id="add-btn2" disabled>Lưu</button>            
               </div>
                   <table id="table_product">
                     <thead>
@@ -235,7 +238,7 @@
                            <td><?php echo number_format($row['DonGia'], 0, '', '.')." VND";?></td>
                            <td><?php echo $row['SoLuong'] ;?></td>
                            <td>
-                               <a href=""><button type="submit" class="discount__form--change" id="change">Sửa</button></a>
+                               <button class="discount__form--change" class="change" id="<?php echo $row['MaHang'];?>">Sửa</button>
         
                            </td>
                            <td >
@@ -293,6 +296,60 @@
           ?>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
           <script>
+              function save() {
+                var id = document.getElementById("form__receipt--MaSP").value;
+                var loai = document.getElementById("form__receipt--LoaiSP").value;
+                var ten = document.getElementById("form__receipt--TenSP").value;
+                var gia = document.getElementById("form__receipt--Price").value;
+                $.ajax({
+                  url : "index.php?controller=sanpham&action=save",
+                  method: "POST",
+                  data: {
+                    id: id,
+                    loai: loai,
+                    ten: ten,
+                    gia: gia,
+                  },
+                  success: function(data){
+                    alert("Sửa thành công");
+                    
+                    window.location.href = "index.php?controller=sanpham&action=index";
+                    // $("#container_tt").html(data);
+                    // document.getElementById("product-detail_model").style.display = "flex";
+                  },
+                  error: function(xhr,status,error){
+                    console.error("Error: " , error);
+                  }
+                });
+              }
+              $(document).on("click","#add-btn2", function(){
+                  $(this).disabled = true;
+                  save();
+                })
+              function show_detail(id) {
+                $.ajax({
+                  url : "index.php?controller=sanpham&action=detail",
+                  method: "POST",
+                  data: {
+                    id: id
+                  },
+                  success: function(data){
+                    $("#container_tt").html(data);
+                    document.getElementById("add-btn2").disabled = false;
+                    // document.getElementById("product-detail_model").style.display = "flex";
+                  },
+                  error: function(xhr,status,error){
+                    console.error("Error: " , error);
+                  }
+                });
+          }
+                  $(document).on("click",".discount__form--change", function(){
+                    var id = $(this).attr("id");
+                    show_detail(id);
+                  })
+
+          </script>
+          <script>
           function Delete(name){
              return confirm("Bạn có chắc muốn xóa sản phẩm này : "+ name + " ?");
          }
@@ -315,7 +372,7 @@
 
             function handlePaginationClick() {
                 $('.pagination a').off('click').on('click', function(e) {
-                    e.preventDefault();
+                    // e.preventDefault();
                     var pageUrl = $(this).attr('href');
 
                     $.ajax({
@@ -340,16 +397,44 @@
       
       let img = document.getElementById('selected-image');
       let imagePath = img.getAttribute('src');
-      var inputFile = document.getElementById('file-upload');
-      var fileName = inputFile.files[0].name;
-      let btnDownload = document.getElementById('add-btn1');
+      // var inputFile = document.getElementById('file-upload');
+      //================TEST===========
       
-          event.preventDefault(); 
+      //===============================
+      //==============BLOB=============
+      // function dataURItoBlob(dataURI) {
+      //   // convert base64 to raw binary data held in a string
+      //   // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+      //   var byteString = atob(dataURI.split(',')[1]);
+
+      //   // separate out the mime component
+      //   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+      //   // write the bytes of the string to an ArrayBuffer
+      //   var ab = new ArrayBuffer(byteString.length);
+      //   var ia = new Uint8Array(ab);
+      //   for (var i = 0; i < byteString.length; i++) {
+      //       ia[i] = byteString.charCodeAt(i);
+      //   }
+
+      //   // write the ArrayBuffer to a blob, and you're done
+      //   var bb = new Blob([ab]);
+      //   return bb;
+      // }
+
+
+      //================================
+      // var fileName = inputFile.files[0].name;
+      // let btnDownload = document.getElementById('add-btn1');
+      // console.log(imagePath);
+      
+          // event.preventDefault(); 
           var Loaisp = document.getElementById('form__receipt--LoaiSP').value;
           var Masp = document.getElementById('form__receipt--MaSP').value;
           var TenSp = document.getElementById('form__receipt--TenSP').value;
           var GiaSP = document.getElementById('form__receipt--Price').value;
           var ImageSP = document.getElementById('file-upload').value;
+
 
 
           if (Loaisp.trim() === '') {
@@ -383,15 +468,15 @@
           // downloadLink.click();
 
           
-          setTimeout(function(){
-            window.location.reload();
-          }, 500);
+          
+          window.location.reload();
+          // console.log(imagePath);
           fetch('index.php?controller=sanpham&action=addSanpham', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + ImageSP + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
+            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + imagePath + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
           })
           .then(response => response.json())
           .then(data => {        
@@ -405,6 +490,7 @@
           .catch(error => {
             console.error('Error:', error);
           });
+          // window.location.href = 'index.php?controller=sanpham&action=index';
           alert('Đã thêm sản phẩm mới thành công!');
           
 });

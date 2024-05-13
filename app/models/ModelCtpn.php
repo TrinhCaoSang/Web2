@@ -219,8 +219,14 @@
         $sql = "INSERT INTO ctpn(MaPN, MaNCC, TenNCC, MaHang, TenHang, DonGiaPN, SoLuong, ThanhTienCTPN) 
                 VALUES ('$maPN', '$MaNCC','$TenNCC', '$maHang','$TenHang', '$donGiaPN', '$soLuong', '$thanhTien')";
         $result_ctpn = $this->execute($sql);
+    
+        // Cập nhật số lượng sản phẩm trong bảng mathang
+        $sql_update_soluong = "UPDATE mathang SET SoLuong = SoLuong + $soLuong WHERE MaHang = '$maHang'";
+        $this->execute($sql_update_soluong);
+    
         return $result_ctpn;
     }
+    
     
     
     public function getDataForTable(){
@@ -263,11 +269,23 @@
         return $data;
     }
     public function deleteCTPN($MaPN, $MaHang){
-        // Xóa bản ghi từ bảng ctpn dựa trên MaPN và MaHang
+        // Lấy thông tin về số lượng sản phẩm từ bảng ctpn
+        $sql_get_soLuong = "SELECT SoLuong FROM ctpn WHERE MaPN = '$MaPN' AND MaHang = '$MaHang' LIMIT 1";
+        $this->execute($sql_get_soLuong);
+        $row = $this->getData();
+        $soLuongCTPN = $row['SoLuong'];
+    
+        // Xóa bản ghi từ bảng ctpn
         $sqlDeleteChitiet = "DELETE FROM ctpn WHERE MaPN = '$MaPN' AND MaHang = '$MaHang' LIMIT 1";
         $resultDeleteChitiet = $this->execute($sqlDeleteChitiet);
+    
+        // Cập nhật số lượng sản phẩm trong bảng mathang
+        $sql_update_soluong = "UPDATE mathang SET SoLuong = SoLuong - $soLuongCTPN WHERE MaHang = '$MaHang'";
+        $this->execute($sql_update_soluong);
+    
         return $resultDeleteChitiet;
     }
+    
     
     public function getDataByMaPN($id) {
         $sql = "SELECT MaPN, MaNCC, ThanhTienPN FROM phieunhap WHERE MaPN = '$id'";

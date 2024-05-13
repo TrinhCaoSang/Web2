@@ -138,6 +138,14 @@
                 </div>
                 <div id="TenNV-error" class="error-message"></div>
 
+
+                <div class="form-group">
+                  <label for="form__employeePassword">Tạo mật khẩu: </label>
+                  <input type="text" id="form__employeePassword" name="employeePassword">
+                </div>
+                <div id="PasswordNV-error" class="error-message"></div>
+
+
                 <div class="form-group">
                   <label for="form__employeeGender">Giới tính:</label>
                   <select id="form__employeeGender" name="employeeGender">
@@ -297,18 +305,26 @@
           var newUrl = "http://localhost/Web2/index.php?controller=nhanvien&action=save"; // Đường dẫn URL mới
           window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
         }
+        
         function validateForm() {
           var isValid = true;
           // var maKh = document.getElementById('form__customerId').value.trim();
-          var tenKh = document.getElementById('form__employeeFname').value.trim();
+          var tenNV = document.getElementById('form__employeeFname').value.trim();
+          var MKNV = document.getElementById('form__employeePassword').value.trim();
+
           var gioitinh = document.getElementById('form__employeeGender').value.trim();
           var chucvu =document.getElementById('form__employeePosition').value.trim();
           var DiaChi = document.getElementById('form__employeeAddress').value.trim();
           var Luong = document.getElementById('form__employeeSalary').value.trim();
 
-          if (tenKh === '') {
+          if (tenNV === '') {
               document.getElementById('TenNV-error').textContent = '*Chưa nhập tên nhân viên!';
               document.getElementById('TenNV-error').style.display = 'block';
+              isValid = false;
+          }
+          if (MKNV === '') {
+              document.getElementById('PasswordNV-error').textContent = '*Chưa tạo mật khẩu cho nhân viên!';
+              document.getElementById('PasswordNV-error').style.display = 'block';
               isValid = false;
           }
           if (Luong === '') {
@@ -340,17 +356,26 @@
 
 
     document.getElementById('form__employeeFname').addEventListener('input', function() {
-    var tenKhValue = this.value.trim();
-    if (tenKhValue !== '') {
+    var tenNVValue = this.value.trim();
+    if (tenNVValue !== '') {
         document.getElementById('TenNV-error').style.display = 'none';
     } else {
         document.getElementById('TenNV-error').textContent = '*Chưa nhập tên nhân viên!';
         document.getElementById('TenNV-error').style.display = 'block';
     }
 });
+document.getElementById('form__employeePassword').addEventListener('input', function() {
+    var MkNVValue = this.value.trim();
+    if (MkNVValue !== '') {
+        document.getElementById('PasswordNV-error').style.display = 'none';
+    } else {
+        document.getElementById('PasswordNV-error').textContent = '*Chưa tạo mật khẩu nhân viên!';
+        document.getElementById('PasswordNV-error').style.display = 'block';
+    }
+});
 document.getElementById('form__employeeSalary').addEventListener('input', function() {
-    var tenKhValue = this.value.trim();
-    if (tenKhValue !== '') {
+    var tenNVValue = this.value.trim();
+    if (tenNVValue !== '') {
         document.getElementById('Luong-error').style.display = 'none';
     } else {
         document.getElementById('Luong-error').textContent = '*Chưa nhập lương nhân viên!';

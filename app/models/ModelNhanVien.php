@@ -82,6 +82,18 @@ class ModelNhanvien{
         $stmt->close();
         return $result;
     }
+    public function getLastInsertedMaNV() {
+        return mysqli_insert_id($this->conn);
+    }
+    
+    public function addPasswordToLoginStaff($MaNV, $Password) {
+        $sql = "INSERT INTO login_staff (MaNV, PassWord) VALUES (?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ss", $MaNV, $Password);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
     public function deleteNhanvien($id) {
         $sql = "DELETE FROM nhanvien WHERE MaNV = ?";
         $stmt = $this->conn->prepare($sql);

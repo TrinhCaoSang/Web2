@@ -127,13 +127,8 @@
 
         public function UpdateMatHang($mathang){
             $mahang=$mathang['MaHang'];
-            $maloai=$mathang['MaLoai'];
-            $hinhanh=$mathang['Hinhanh'];
-            $tenhang=$mathang['TenHang'];
-            $dongia=$mathang['DonGia'];
             $soluong=$mathang['SoLuong'];
-            $sql="UPDATE mathang SET MaHang='$mahang',MaLoai='$maloai',Hinhanh='$hinhanh',
-            TenHang='$tenhang',DonGia='$dongia',SoLuong='$soluong' 
+            $sql="UPDATE mathang SET SoLuong='$soluong' 
             WHERE MaHang='$mahang'";
             return $this->execute($sql);
         }
