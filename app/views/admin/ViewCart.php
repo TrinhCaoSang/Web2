@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="/Web2/public/html/page/cart/cart.css">
     <link rel="stylesheet" href="/Web2/public/components/menu/menu.css">
     <link rel="stylesheet" href="/Web2/public/components/login/login.css">
+    <!-- <script type="module" defer src="/WEB2/public/components/login/login.js"></script>  -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="//Web2/public/html/page/cart/reponsive.css"> -->
     <title>Giỏ Hàng</title>
 </head>
@@ -84,7 +87,7 @@
               <div class="header__bottom--extention-item header__bottom--extention-user">
                 <i class="fa-solid fa-user"></i>
                 <ul class="header__bottom--user__list">
-                  <li class="adminManager__item" style="display: block">
+                  <!-- <li class="adminManager__item" style="display: block">
                     <button class="adminManager">
                       <i class="fa-solid fa-hammer"></i>
                       <p>Quản lý</p>
@@ -95,7 +98,7 @@
                       <i class="fa-solid fa-door-open"></i>
                       <p>Đăng xuất</p>
                     </button>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
@@ -398,6 +401,94 @@
 
       
   });
+
+
+  // =========================== start: IF LOGGEDIN ===========================
+const userBtn = document.querySelector('.header__bottom--extention-user');
+const userList = document.querySelector('.header__bottom--user__list');
+// Sử dụng AJAX để kiểm tra trạng thái đăng nhập
+$.ajax({
+    type: "POST",
+    url: "index.php?controller=home&action=checkLoginStatus",
+    dataType: "json",
+    success: function(data) {
+        if (data.loggedIn) {
+          // document.querySelector('.user__wrapper').style.display = 'none';
+          var userType = data.user_type;
+          console.log('userType:', userType);
+           // Hiển thị tùy chọn dựa trên loại tài khoản
+            if (userType === 'staff') {
+                // Hiển thị "Quản lý" và "Đăng xuất"
+                userList.innerHTML = `
+                    <li class="adminManager__item">
+                    <a href="index.php?controller=sanpham&action=index"> <button class="adminManager">
+                            <i class="fa-solid fa-hammer"></i>
+                            <p>Quản lý</p>
+                        </button></a>
+                    </li>
+                    <li>
+                        <button class="logout">
+                            <i class="fa-solid fa-door-open"></i>
+                            <p>Đăng xuất</p>
+                        </button>
+                    </li>
+                    `;
+            } else {
+                // Chỉ hiển thị "Đăng xuất"
+                userList.innerHTML = `
+                    <li>
+                        <button class="logout">
+                            <i class="fa-solid fa-door-open"></i>
+                            <p>Đăng xuất</p>
+                        </button>
+                    </li>
+                `;
+            }
+
+
+            // Thêm sự kiện click vào biểu tượng người dùng
+            userBtn.addEventListener('click', () => {
+                userList.style.display = userList.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Xử lý sự kiện đăng xuất
+            const logoutBtn = document.querySelector('.logout');
+            logoutBtn.addEventListener('click', () => {
+                $.ajax({
+                    type: "POST",
+                    url: "index.php?controller=home&action=logout",
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.success) {
+                            // Hiển thị thông báo đăng xuất thành công
+                            swal("Thành công!", "Bạn đã đăng xuất thành công.", "success")
+                            .then((value) => {
+                                // Xóa thông tin đăng nhập và chuyển hướng về trang chủ
+                                window.location.href = "index.php?controller=home&action=index";
+                            });
+                        } else {
+                            swal("Oops!", data.message, "error");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        swal("Oops!", "Đã có lỗi xảy ra, vui lòng thử lại sau.", "error");
+                    }
+                });
+            });
+          }
+        // } else {
+        //     // Hiển thị form đăng nhập/đăng ký
+        //     document.querySelector('.user__wrapper').style.display = 'flex';
+        // }
+    },
+    error: function(xhr, status, error) {
+        console.error('Error:', error);
+        swal("Oops!", "Đã có lỗi xảy ra, vui lòng thử lại sau.", "error");
+    }
+});
+// =========================== end: IF LOGGEDIN ===========================
+
 
 </script>
 

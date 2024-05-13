@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="/Web2/app/views/admin/showView_Sanpham.js"></script>
     <script src="/Web2/app/views/admin/admin.js"></script>
 </head>
@@ -311,9 +313,11 @@
                     gia: gia,
                   },
                   success: function(data){
-                    alert("Sửa thành công");
+                    swal("Good job!", "Sửa thông tin thành công! ", "success").then(function() {
+                      window.location.href = "index.php?controller=sanpham&action=index";
+                    });
                     
-                    window.location.href = "index.php?controller=sanpham&action=index";
+                    
                     // $("#container_tt").html(data);
                     // document.getElementById("product-detail_model").style.display = "flex";
                   },
@@ -367,31 +371,33 @@
         document.getElementById('selected-image').onclick = function() {
             document.getElementById('file-upload').click();
         };
+        /////////////////////////////////////////////////////////
         $(document).ready(function() {
-            handlePaginationClick();
+    handlePaginationClick();
+});
 
-            function handlePaginationClick() {
-                $('.pagination a').off('click').on('click', function(e) {
-                    // e.preventDefault();
-                    var pageUrl = $(this).attr('href');
+function handlePaginationClick() {
+    $(document).on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var pageUrl = $(this).attr('href');
 
-                    $.ajax({
-                        url: pageUrl,
-                        type: 'GET',
-                        success: function(response) {
-                            var newTable = $(response).find('#table_product').html();
-                            $('#table_product').empty().html(newTable);
-                            var newPagination = $(response).find('.pagination').html();
-                            $('.pagination').empty().html(newPagination);
-                            handlePaginationClick();
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                });
+        $.ajax({
+            url: pageUrl,
+            type: 'GET',
+            success: function(response) {
+                var newTable = $(response).find('#table_product').html();
+                $('#table_product').empty().html(newTable);
+
+                var newPagination = $(response).find('.pagination').html();
+                $('.pagination').empty().html(newPagination);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
             }
         });
+    });
+}
+
        
     document.querySelector('.customer__form--add1').addEventListener('click', function(event) {
       

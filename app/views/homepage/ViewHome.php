@@ -684,7 +684,7 @@ loginForm.addEventListener('submit', (event) => {
     if (data.success) {
       isLoggedIn = true;
       document.querySelector('.user__wrapper').style.display = 'none';
-      swal("Đăng nhập thành công!", "Chuyển hướng đến trang chủ...", "success").then(function() {
+      swal("Đăng nhập thành công!", "Bắt đầu cuộc hành trình thôi nào!", "success").then(function() {
         window.location.href = data.redirect;
       });
     } else {
@@ -692,7 +692,7 @@ loginForm.addEventListener('submit', (event) => {
       document.querySelector('.user__wrapper').style.display = 'none';
       swal("Đăng nhập thất bại", data.message, "error")
             .then((value) => {
-                                // Xóa thông tin đăng nhập và chuyển hướng về trang chủ
+                                
                  window.location.href = "index.php?controller=home&action=index";
                 });
 
@@ -792,7 +792,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
             success: function(data) {
                 if (data.success) {
                     document.querySelector('.user__wrapper').style.display = 'none';
-                    swal("Good job!", "Đăng ký thành công! Hãy đăng nhập để tiếp tục", "success").then(function() {
+                    swal("Good job!", "Đăng ký thành công! ", "success").then(function() {
                         window.location.reload();
                     });
                 } else {
@@ -892,7 +892,7 @@ $.ajax({
                 // Hiển thị "Quản lý" và "Đăng xuất"
                 userList.innerHTML = `
                     <li class="adminManager__item">
-                    <a href="index.php?controller=sanpham&action=index"> <button class="adminManager">
+                    <a href="index.php?controller=homeadmin&action=index"> <button class="adminManager">
                             <i class="fa-solid fa-hammer"></i>
                             <p>Quản lý</p>
                         </button></a>

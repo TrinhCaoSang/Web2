@@ -64,15 +64,7 @@
             }
           }
           
-          public function getMaSPByLoaiSP() {
-            if(isset($_POST['MaLoai'])) {
-              $MaLoai = $_POST['MaLoai'];
-              $list_maHang = $this->product->getMaSPByLoaiSP($MaLoai); // Lấy danh sách mã sản phẩm theo loại sản phẩm
-              ob_get_clean();
-              echo json_encode($list_maHang);
-              exit();
-            }
-          }
+          
 
 
           public function detail(){
@@ -81,7 +73,7 @@
             $product = $this->product->getDataID($id);
             $list_loaisp = $this->product->getAllLoaisp();
             // print_r($product);
-            $output .= '<form action="" class="receipt__form" method="post">
+            $output .= '<form action="" class="receipt__form" method="post" enctype="multipart/form-data">
                   <div  class="receipt__form">
                     <div class="form-group">
                       <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
@@ -101,7 +93,7 @@
                     <div class="form-group">
                       <label for="form__receipt-MaSP">Mã sản phẩm:</label>
                     
-                      <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" value="'.$product["MaHang"].'">
+                      <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" value="'.$product["MaHang"].'" disabled>
 
                     </div>
                     <div id="MaSP-error" class="error-message"></div>
@@ -142,35 +134,8 @@
             $this->view($this->list_product,$dataID);
             
           }
-          public function getTenSP() {
-  
-            if(isset($_POST['MaHang'])) {
-              
-                $MaHang = $_POST['MaHang'];
-                $TenHang = $this->product->getTenSP($MaHang);
-                
-                ob_clean();  
-                
-                echo $TenHang['TenHang'];
-                
-                exit();
-                
-            }
-          }
-          public function getGiaSP() {
-  
-            if(isset($_POST['MaHang'])) {
-              
-                $MaHang = $_POST['MaHang'];
-          
-                $DonGia = $this->product->getGiaSP($MaHang);
-                
-                ob_clean();    
-                
-                echo $DonGia['DonGia'];
-                exit();
-            }
-          }
+         
+         
         public function deleteProduct(){
           
           $MaHang = $_GET['MaHang'];

@@ -10,10 +10,11 @@
         public function __construct()
         {
             require('app\models\ModelProduct.php');
+            require('app\models\ModelHome.php');
             require('app\models\ModelKhuyenMai.php');
             require('app\models\ModelCart.php'); 
             require('app\controllers\ControllerKhuyenMai.php');
-
+            require ("./app/controllers/ControllerHome.php");
             $this->modelProduct=new ModelProduct;
             $this->modelProduct->connect();
             

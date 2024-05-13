@@ -1,3 +1,7 @@
+<?php 
+    // session_start();
+    ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +107,13 @@
       </div>
       <div class="admin__content--header">
         <div class="admin__content--header__user">
-          <p><i class="fa-solid fa-user-shield"></i>Nguyễn Văn A</p>
+          <p><i class="fa-solid fa-user-shield"></i> <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?></p>
         </div>
       </div>
       <div class="admin__content">

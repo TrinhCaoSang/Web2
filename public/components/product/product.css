@@ -421,7 +421,7 @@ input[type=number] {
 #img-product img{
     width: 80%;
     height: 100%;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); */
 }
 #mota-product p{
     font-weight: bold;
@@ -447,18 +447,26 @@ input[type=number] {
     /* height: 25%; */
 }
 
-#datmua{
+#datmua {
     width: 84.5%;
     height: 10%;
     color: whitesmoke;
-    
     position: absolute;
     text-align: center;
     z-index: 1;
-    bottom: 0;
+    bottom: -2px; 
     left: 0;
     cursor: pointer;
+    margin-bottom: 30px;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-in-out;
 }
+
+#datmua:hover {
+    transform: translateY(-2px); /* Vị trí cuối cách vị trí đầu 10px */
+}
+
+
 #datmua h3{
     margin-top: 5px;
 }
@@ -473,10 +481,15 @@ input[type=number] {
 }
 
 #content .divproduct:hover h3 {
-    opacity: 1; 
+    /* margin-bottom: 15px; */
+    opacity: 2; 
+    height: 40px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
     transform: translateY(0); 
     display: block;
-    background-color: rgba(0, 0, 0, 0.633);
+    background-color: #333;
     background-size: 100% 100%; 
     background-position: top; 
  
@@ -484,7 +497,7 @@ input[type=number] {
 
 .divproduct #mota-product{
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 1s ease;
 }
 .divproduct #mota-product:hover{
     color: rgba(255, 0, 0, 0.727);
