@@ -38,34 +38,42 @@ class ModelSanpham {
         return $data;
     }
      //Phương thức lấy dữ liệu cần sửa
-     public function getDataID($id){
-        $sql="SELECT * FROM mathang WHERE MaHang='$id'";
+    //  public function getDataID($id){
+    //     $sql="SELECT * FROM mathang WHERE MaHang='$id'";
+    //     $this->execute($sql);
+    //     if($this->num_rows()!=0){
+    //         $data=mysqli_fetch_array($this->result);
+    //     }else{
+    //         $data=0;
+    //     }
+    //     return $data;
+    // }
+    public function getDataID($id) {
+        $sql = "SELECT * FROM mathang WHERE MaHang = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+        } else {
+            $data = 0;
+        }
+        $stmt->close();
+        return $data;
+    }
+    
+    
+    public function getAllData(){
+        $sql = "SELECT * FROM mathang";        
         $this->execute($sql);
-        if($this->num_rows()!=0){
-            $data=mysqli_fetch_array($this->result);
-        }else{
+        if($this->num_rows()==0){
             $data=0;
         }
-        return $data;
-    }
-
-    public function getAllData(){
-        $sql = "SELECT * FROM mathang";
-        $this->execute($sql);
-        $data = [];
-        while ($datas = $this->getData()){
-            $data[]=$datas;
-        }
-        return $data;
-    }
-    
-    
-    public function getTenLoai(){
-        $sql = "SELECT * FROM loaihang";
-        $this->execute($sql);
-        $data = [];
-        while ($datas = $this->getData()){
-            $data[] = $datas;
+        else{
+            while($datas=$this->getData()){
+                $data[]=$datas;
+            }
         }
         return $data;
     }
@@ -80,30 +88,7 @@ class ModelSanpham {
         return $num;
     }
 
-    public function getTenSP($MaHang){
-        $sql = "SELECT TenHang FROM mathang WHERE MaHang ='$MaHang'";
-        $this->execute($sql);
-        if($this->num_rows() != 0){
-           $data = mysqli_fetch_array($this->result);
-       } 
-       else {
-           $data = 0;
-       }
-       return $data;
-   }
-   public function getGiaSP($MaHang){
-    $sql = "SELECT DonGia FROM mathang WHERE MaHang ='$MaHang'";
-    $this->execute($sql);
-    if($this->num_rows() != 0){
-       $data = mysqli_fetch_array($this->result);
-   } 
-   else {
-       $data = 0;
-   }
-   return $data;
-
-}
-
+   
 public function getAllMathang(){
     $sql = "SELECT MaHang, TenHang, DonGia FROM mathang";
     $this->execute($sql);
@@ -122,37 +107,19 @@ public function getAllLoaiSP(){
     }
     return $data;
  }
-public function getMathangInfo($MaHang){
-    $sql = "SELECT TenHang, DonGia FROM mathang WHERE MaHang='$MaHang'";
-    $this->execute($sql);
-    if($this->num_rows() != 0){
-        $data = mysqli_fetch_array($this->result);
-    } 
-    else {
-        $data = 0;
-    }
-    return $data;
-}
-public function getMaSPByLoaiSP($MaLoai){
-    $sql = "SELECT mh.* FROM mathang mh JOIN loaihang lh ON mh.MaLoai = lh.MaLoai Where lh.MaLoai = '$MaLoai'  ";
-    $this->execute($sql);
-    $data = [];
-    while ($row = $this->getData()){
-        $data[]=$row['MaHang']; // Chỉ lấy giá trị của cột MaHang
-    }
-    return $data;
-}    
-public function getImageByMaHang($MaHang){
-    $sql = "SELECT Hinhanh FROM mathang WHERE MaHang ='$MaHang'"; 
-    $this->execute($sql);
-    if($this->num_rows() != 0){
-        $data = mysqli_fetch_array($this->result);
-    } 
-    else {
-        $data = 0;
-    }
-    return base64_encode($data['Hinhanh']);
-}
+
+
+// public function getImageByMaHang($MaHang){
+//     $sql = "SELECT Hinhanh FROM mathang WHERE MaHang ='$MaHang'"; 
+//     $this->execute($sql);
+//     if($this->num_rows() != 0){
+//         $data = mysqli_fetch_array($this->result);
+//     } 
+//     else {
+//         $data = 0;
+//     }
+//     return base64_encode($data['Hinhanh']);
+// }
 public function getTotalProducts() {
     $sql = "SELECT COUNT(*) as total FROM mathang";
     $this->execute($sql);
@@ -160,25 +127,55 @@ public function getTotalProducts() {
     return $row['total'];
 }
 public function deleteProduct($MaHang){
-    $sqlDeleteProduct = "DELETE FROM mathang WHERE MaHang = '$MaHang'";
-    $resultDeleteChitiet = $this->execute($sqlDeleteProduct);
-    return $resultDeleteChitiet;
+    $sqlDeleteProduct = "DELETE FROM mathang WHERE MaHang = ?";
+    $stmt = $this->conn->prepare($sqlDeleteProduct);
+    $stmt->bind_param("s", $MaHang);
+    $result = $stmt->execute();
+    $stmt->close();
+    return $result;
 }
 
-// public function addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong) {
-//     $sql = "INSERT INTO mathang(MaHang,MaLoai,Hinhanh,TenHang,DonGia,SoLuong) 
-//             VALUES ('$MaHang', '$MaLoai', '$Hinhanh', '$TenHang', '$DonGia', '$SoLuong')";
-//     $stmt = $this->conn->prepare($sql);
-    
-//     $result_sanpham = $stmt->execute();
-//     return $result_sanpham;
-// }
+
 public function addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong) {
-    $imgData = base64_encode($Hinhanh);
-    $stmt = $this->conn->prepare("INSERT INTO mathang(MaHang, MaLoai, Hinhanh, TenHang, DonGia, SoLuong) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssbid", $MaHang, $MaLoai, $imgData, $TenHang, $DonGia, $SoLuong);
+    $sql = "INSERT INTO mathang(MaHang, MaLoai, Hinhanh, TenHang, DonGia, SoLuong) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("ssbsdi", $MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong);
     $result_sanpham = $stmt->execute();
     return $result_sanpham;
 }
+
+
+
+public function getMathangInfo($MaHang) {
+    $sql = "SELECT * FROM mathang WHERE MaHang = '$MaHang'";
+    $this->execute($sql);
+    if($this->num_rows() != 0) {
+        return $this->getData();
+    } else {
+        return false;
+    }
+}
+
+public function UpdateSanpham($MaLoai, $Hinhanh, $TenHang, $DonGia) {
+    $sql = "UPDATE mathang 
+            SET 
+            MaLoai = ?, 
+            Hinhanh = ?,
+            TenHang = ?,
+            DonGia = ?,
+            WHERE MaHang = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("sbsd", $MaLoai, $Hinhanh, $TenHang, $DonGia);
+    $result = $stmt->execute();
+    $stmt->close();
+    return $result;
+}
+// public function addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong) {
+//     $imgData = base64_encode($Hinhanh);
+//     $stmt = $this->conn->prepare("INSERT INTO mathang(MaHang, MaLoai, Hinhanh, TenHang, DonGia, SoLuong) VALUES (?, ?, ?, ?, ?, ?)");
+//     $stmt->bind_param("sssbid", $MaHang, $MaLoai, $imgData, $TenHang, $DonGia, $SoLuong);
+//     $result_sanpham = $stmt->execute();
+//     return $result_sanpham;
+// }
 }
 ?>

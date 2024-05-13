@@ -99,8 +99,16 @@
         </div>
       </div>
       <div class="admin__content--header">
-        <div class="admin__content--header__user">
-          <p><i class="fa-solid fa-user-shield"></i>Nguyễn Văn A</p>
+      <div class="admin__content--header__user">
+          <p><i class="fa-solid fa-user-shield"></i>
+          <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?>
+        </p>
         </div>
       </div>
       <div class="admin__content">
@@ -134,7 +142,7 @@
                                   <option value="" disabled selected hidden></option>
                                   <option value="male">Nam</option>
                                   <option value="female">Nữ</option>
-                                  <option value="other">Khác</option>
+                                  
                               </select>
                           </div>
                           <div id="GioiTinh-error" class="error-message"></div>
@@ -180,7 +188,7 @@
                             <select id="form__customerGender" name="customerGender">
                                 <option value="male" <?php echo $dataID['gioitinh'] == 1 ? 'selected' : ''; ?>>Nam</option>
                                 <option value="female" <?php echo $dataID['gioitinh'] == 0 ? 'selected' : ''; ?>>Nữ</option>
-                                <option value="other" <?php echo $dataID['gioitinh'] == 2 ? 'selected' : ''; ?>>Khác</option>
+                                
                             </select>
                         </div>
                         <div id="GioiTinh-error" class="error-message"></div>

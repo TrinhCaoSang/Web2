@@ -98,10 +98,7 @@
       </div>
     </div>
     <div class="admin__content--header">
-      <div class="admin__content--header__cate">
-        <i class="fa-solid fa-bars"></i>
-        <p>Danh mục</p>
-      </div>
+      
       <!-- <div class="admin__content--header__search">
         <input type="text" placeholder="Nhập nội dung cần tìm kiếm" />
         <div>
@@ -109,8 +106,16 @@
         </div>
       </div> -->
       <div class="admin__content--header__user">
-        <p><i class="fa-solid fa-user-shield"></i>Nguyễn Văn A</p>
-      </div>
+          <p><i class="fa-solid fa-user-shield"></i>
+          <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?>
+        </p>
+        </div>
     </div>
     <div class="admin__content">
       <div class="admin__content--body">

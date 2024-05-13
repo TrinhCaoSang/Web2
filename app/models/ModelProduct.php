@@ -146,11 +146,20 @@
         }
 
         public function pagination4($product,$price_to,$price_form,$typecb,$start,$limit){
-            $product = "%" . $product . "%";
-            $sql="SELECT * FROM mathang 
-            WHERE  TenHang LIKE '$product' AND ( DonGia BETWEEN $price_to AND $price_form )";
+            $sql="SELECT *
+            FROM mathang mh
+            LEFT JOIN ctkm ON mh.MaLoai = ctkm.MaLoai 
+            LEFT JOIN khuyenmai km ON ctkm.MaKM = km.MaKM 
+            WHERE  mh.TenHang LIKE '%$product%'
+            AND (km.NgayKTKM > CURRENT_DATE()) && km.PhanTramGG = (
+                SELECT MAX(km2.PhanTramGG) 
+                FROM khuyenmai km2
+                INNER JOIN ctkm ctkm2 ON km2.MaKM = ctkm2.MaKM
+                WHERE ctkm2.MaLoai = mh.MaLoai
+			)AND
+            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form )";
             if($typecb != "MaLoai" && $typecb != "all"){
-                $sql .= " AND MaLoai = '$typecb'";
+                $sql .= " AND mh.MaLoai = '$typecb'";
             }
             $sql .= " ORDER BY MaHang DESC LIMIT $start,$limit";
             $this->execute($sql);
@@ -164,12 +173,22 @@
             }
             return $data;
         }
+
         public function advanced_search($product,$price_to,$price_form,$typecb){
-            $product = "%" . $product . "%";
-            $sql="SELECT * FROM mathang 
-            WHERE  TenHang LIKE '$product' AND ( DonGia BETWEEN $price_to AND $price_form )";
+            $sql="SELECT *
+            FROM mathang mh
+            LEFT JOIN ctkm ON mh.MaLoai = ctkm.MaLoai 
+            LEFT JOIN khuyenmai km ON ctkm.MaKM = km.MaKM 
+            WHERE  mh.TenHang LIKE '%$product%'
+            AND (km.NgayKTKM > CURRENT_DATE()) && km.PhanTramGG = (
+                SELECT MAX(km2.PhanTramGG) 
+                FROM khuyenmai km2
+                INNER JOIN ctkm ctkm2 ON km2.MaKM = ctkm2.MaKM
+                WHERE ctkm2.MaLoai = mh.MaLoai
+			)AND
+            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form )";
             if($typecb != "MaLoai" && $typecb != "all"){
-                $sql .= " AND MaLoai = '$typecb'";
+                $sql .= " AND mh.MaLoai = '$typecb'";
             }
             $sql .= " ORDER BY MaHang";
             $this->execute($sql);

@@ -94,8 +94,16 @@
         </div>
       </div>
       <div class="admin__content--header">
-        <div class="admin__content--header__user">
-          <p><i class="fa-solid fa-user-shield"></i>Nguyễn Văn A</p>
+      <div class="admin__content--header__user">
+          <p><i class="fa-solid fa-user-shield"></i>
+          <?php
+                    
+                    if (isset($_SESSION['username'])) {
+                        echo $_SESSION['username'];
+                    }
+                    
+                    ?>
+        </p>
         </div>
       </div>
       <div class="admin__content">
@@ -181,7 +189,7 @@
                         <th class="table--top">Mã khuyến mãi</th>
                         <th class="table--top">Chương trình</th>
                         <th class="table--top">Phần trăm KM</th>
-                        <th class="table--top">Điều kiện</th>
+                        <th class="table--top">Điều kiện (&ge;x)</th>
                         <th class="table--top">Ngày băt đầu</th>
                         <th class="table--top">Ngày kết thúc</th>
                         <th class="table--top">Tình trạng</th>
@@ -197,7 +205,7 @@
                           <th><?php echo $value['MaKM'];?></th>
                           <th class="text__align--left"><?php echo $value['TenCT'];?></th>
                           <th><?php echo $value['PhanTramGG'];?></th>
-                          <th><?php echo $value['dieukien'];?></th>
+                          <th><?php echo number_format($value['dieukien']) . " VNĐ";?></th>
                           <th><?php echo $value['NgayBDKM'];?></th>
                           <th><?php echo $value['NgayKTKM'];?></th>
                           <th class="text__align--left"><?php if(ControllerKhuyenMai::checkTinhTrang($value)==1){
@@ -211,7 +219,7 @@
                             <div class="button__container">
                               <a onclick="return confirm('Bạn có chắc chắn muốn sửa không?')" href="index.php?controller=khuyenmai&action=edit&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Sửa</button></a>
                               <!-- <button class="discount__form--add">Sửa</button> -->
-                              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="index.php?controller=khuyenmai&action=delete&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change">Xóa</button></a>
+                              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="index.php?controller=khuyenmai&action=delete&id=<?php echo $value['MaKM'];?>"><button class="discount__form--change" style="background-color: orange;">Xóa</button></a>
                             </div>
                           </th>
                           <th class="text__align--left" id="xemchitiet" value-data="<?php echo $value['MaKM']   ?>" style="text-decoration: underline;color: rgb(115, 198, 0);" onclick="show_bill()">Xem chi tiết</th>

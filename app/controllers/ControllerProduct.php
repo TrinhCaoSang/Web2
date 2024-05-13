@@ -8,6 +8,7 @@
 
         public function __construct()
         {
+            require ("./app/controllers/ControllerKhuyenMai.php");
             $this->loadModel('Product');
             $this->productModel=new ModelProduct;
             $this->productModel->connect();
@@ -51,7 +52,7 @@
                 if($mathang['MaLoai']==$km['MaLoai']){
                     foreach($this->listKM as $dskm){
                         if($dskm['MaKM']==$km['MaKM']){
-                            if($dskm['PhanTramGG']>$phantramgg){
+                            if($dskm['PhanTramGG']>$phantramgg && ControllerKhuyenMai::checkTinhTrang($dskm) == 1){
                                 $dieukien=$dskm['dieukien'];
                                 $phantramgg=$dskm['PhanTramGG'];
                             }    
@@ -80,7 +81,8 @@
                     </div>
                     <div class="container_content-search">
                         <h3>'.$data["TenHang"].'</h3>
-                        <h4>'.$this->stylenum($data["DonGia"]).'</h4>
+                        <h4 style="text-decoration: line-through;color:grey;">'.$this->stylenum($data["DonGia"]).'</h4>
+                        <h4>'.$this->stylenum($this->giaKhuyenMai($data)) .'</h4>
                     </div></div>';
                 }
                 echo $output;
@@ -150,9 +152,17 @@
                 if($type == 'all'){
                     $data = $this->productModel->pagination($start,$limit);
                     $listProduct = $this->productModel->getAllData();
+                    if($data == 0){
+                        echo '<h1>Không tồn tại sản phẩm</h1>';
+                        return null;
+                    }
                 }else{
                     $data = $this->productModel->pagination2($type,$start,$limit);
                     $listProduct = $this->productModel->getAllDataType($type);
+                    if($data == 0){
+                        echo '<h1>Không tồn tại sản phẩm</h1>';
+                        return null;
+                    }
                 }
             }
             $count = count($data);

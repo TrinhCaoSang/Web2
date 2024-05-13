@@ -1464,6 +1464,35 @@ tr:hover {
   transition: 0.4s;
   border-radius: 999px;
 }
+.bill_content--model--ctpn #luu{
+  border: none;
+  height: 30px;
+  min-width: 70px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 5px;
+    font-weight: 600;
+    color: #333;
+    background-color: rgb(69, 220, 69);
+    margin-left: 40%;
+   margin-bottom: 10px;
+} 
+
+.bill_content--model--ctpn #huy{
+  border: none;
+  height: 30px;
+    min-width: 70px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 5px 10px;
+  font-weight: 600;
+  color: #333;
+    background-color: orange;
+}
 
 .bill_content--model--ctpn .printbtn {
   position: absolute;
@@ -1474,7 +1503,7 @@ tr:hover {
   height: 40px;
   border: 2px solid #000;
   line-height: 30px;
-  top: 53%;
+  top: 62%;
   right: 40px;
   cursor: pointer;
 }

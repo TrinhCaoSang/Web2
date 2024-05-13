@@ -5,6 +5,7 @@ const overlay = document.querySelector('.overlay');
 const userWrapper = document.querySelector('.user__wrapper');
 
 const openFormRegister = () => {
+  console.log("open");
   if (!isLoggedIn) {
     userWrapper.classList.add('user__active');
     userWrapper.classList.add('register__active');
