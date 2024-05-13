@@ -1,3 +1,5 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <?php
     class ControllerCart{
 
@@ -42,9 +44,9 @@
 
         public function store(){
             if(!isset($_SESSION['username'])){
-                echo '<script>alert("Bạn chưa đăng nhập.");</script>';
+                echo '<script>swal("Thông báo", "Bạn chưa đăng nhập.", "warning");</script>';
             }elseif($_SESSION['user_type'] == 'staff'){
-                echo '<script>alert("Nhân viên không được phép đặt hàng.");</script>';
+                echo '<script>swal("Thông báo", "Nhân viên không được phép đặt hàng.", "warning");</script>';
             }
             else{
             $phantramgg=0;
@@ -81,7 +83,7 @@
                 $_SESSION['order_count']+=$pd['qty'];
             }
             echo '<p >'.$_SESSION['order_count'].'</p>';
-            echo '<script>alert("Thêm thành công");</script>';
+            echo '<script>swal("Thông báo", "Thêm thành công", "success");</script>';
         }
         }
         public function delete(){
