@@ -46,7 +46,6 @@
   <body>
     
     <!-- =========== START: HEADER =========== -->
-
     <div class="header">
       <!-- =========== START: HEADER TOP =========== -->
 
@@ -136,7 +135,7 @@
                 
            
 
-                <a href="index.php?controller=cart" id="giohang">
+                <a href="index.php?controller=cart&action=index" id="giohang">
                 <div class="header__bottom--extention-item header__bottom--extention-cart">
                   <i class="fa-solid fa-cart-shopping"></i>
                   <div id="sohangtronggio">
@@ -152,19 +151,17 @@
                   </div>
                 </div>
               </a>
-              
-
-              <?php
-                if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'staff'){
-                  echo '<script>document.getElementById("giohang").style.display = "none";</script>';
-                }
-                else{
-                  echo '';
-                }
-              ?>
 
             
           </div>
+          <?php
+              if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'staff'){
+                echo '<script>document.getElementById("giohang").style.display = "none";</script>';
+              }
+              else{
+                // echo '<script>document.getElementById("giohang").style.display = "none";</script>';
+              }
+            ?>
           <div class="header__bottom--hide-menu">
             <i class="fa-solid fa-bars"></i>
           </div>
@@ -603,6 +600,44 @@
           </div>
         </div>
       </div>
+      <div class="hide__menu">
+        <button class="hide__menu--close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h1>TREK</h1>
+        <div class="hide__menu--list__extention">
+          <div class="header__bottom--extention-item header__bottom--extention-user">
+            <i class="fa-solid fa-user"></i>
+            <span>Tài khoản</span>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--right fa-solid fa-arrow-right"></i>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--down fa-solid fa-caret-down"></i>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
+          </div>
+          <div class="hide__menu--user__list">
+            <div class="hide__menu--list__type adminManager__item" style="display: none"><button>Quản lý</button></div>
+            <div class="hide__menu--list__type logout__item"><button>Đăng xuất</button></div>
+          </div>
+          <a href="/public/html/page/cart/cart.html" class="header__bottom--extention-item header__bottom--extention-cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Giỏ hàng</span>
+            <i class="header__bottom--extention__icon fa-solid fa-arrow-right"></i>
+          </a>
+  
+          <div class="header__bottom--extention-item header__bottom--extention-cate">
+            <i class="fa-solid fa-table-columns"></i>
+            <span>Danh mục</span>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--down fa-solid fa-caret-down"></i>
+            <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
+          </div>
+          <div class="hide__menu--list__types">
+            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ALL</a></div>
+            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">MOUNTAIN</a></div>
+            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ROAD</a></div>
+            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">TOURING</a></div>
+            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">KIDS</a></div>
+          </div>
+        </div>
+      </div>
       <script>
 
 const loginForm = document.getElementById('login-form');
@@ -637,12 +672,12 @@ loginForm.addEventListener('submit', (event) => {
     if (isValid) {
     let isLoggedIn = false;
 
-    $.ajax({
+  $.ajax({
   type: "POST",
   url: "index.php?controller=home&action=login",
   data: {
     Namelogin: username,
-    PasswordLogin: password,
+    PasswordLogin: password
   },
   dataType: "json",
   success: function(data) {
@@ -666,11 +701,7 @@ loginForm.addEventListener('submit', (event) => {
   error: function(xhr, status, error) {
     console.error('Error:', error);
     
-    // if(xhr.responseText) {
-    //   swal("Oops!", xhr.responseText, "error");
-    // } else {
-    //   swal("Oops!", "Đã có lỗi xảy ra, vui lòng thử lại sau.", "error");
-    // }
+    
   }
 });
 
@@ -945,7 +976,6 @@ const cartLink = document.querySelector('a[href="index.php?controller=cart&actio
 
 cartLink.addEventListener('click', (event) => {
   if (isLoggedIn) {
-    
     return true;
   } else {
     // Nếu chưa đăng nhập, hiển thị thông báo và ngăn không cho chuyển hướng
@@ -953,6 +983,8 @@ cartLink.addEventListener('click', (event) => {
     event.preventDefault(); // Ngăn không cho chuyển hướng
   }
 });
+
+
 
       </script>
     </body>

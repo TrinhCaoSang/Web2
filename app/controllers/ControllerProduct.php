@@ -8,6 +8,8 @@
 
         public function __construct()
         {
+            require ("./app/controllers/ControllerHome.php");
+
             require ("./app/controllers/ControllerKhuyenMai.php");
             $this->loadModel('Product');
             $this->productModel=new ModelProduct;
@@ -29,7 +31,6 @@
             //Lấy data từ model
             return $this->view();
         }
-
         function stylenum($num) {
             return number_format($num)." VNĐ";
         }

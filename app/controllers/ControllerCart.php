@@ -1,3 +1,5 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <?php
     class ControllerCart{
 
@@ -41,8 +43,10 @@
         }
 
         public function store(){
-            if($_SESSION['user_type'] == 'staff'){
-                echo '<script>alert("Nhân viên không được phép đặt hàng.");</script>';
+            if(!isset($_SESSION['username'])){
+                echo '<script>swal("Thông báo", "Bạn chưa đăng nhập.", "warning");</script>';
+            }elseif($_SESSION['user_type'] == 'staff'){
+                echo '<script>swal("Thông báo", "Nhân viên không được phép đặt hàng.", "warning");</script>';
             }
             else{
             $phantramgg=0;
@@ -79,7 +83,7 @@
                 $_SESSION['order_count']+=$pd['qty'];
             }
             echo '<p >'.$_SESSION['order_count'].'</p>';
-            echo '<script>alert("Thêm thành công");</script>';
+            echo '<script>swal("Thông báo", "Thêm thành công", "success");</script>';
         }
         }
         public function delete(){
@@ -118,21 +122,7 @@
             }
             return "HD".$ket_qua.rand(0, 10000);
         }
-        // public function changTongTien(){
-        //     $makm=$_POST['makm'];
-        //     if($makm=='none'){
-        //         $makm=0;
-        //     }
-        //     $tongtien=$_POST['tongtien'];
-        //     $listKM=$this->modelKhuyenMai->getAllData();
-        //     foreach($listKM as $km){
-        //         if($km['MaKM']==$makm){
-        //             // print_r($km['PhanTramGG']);
-        //             $tongtien=$tongtien*(100-$km['PhanTramGG'])/100;
-        //         }
-        //     }
-        //     echo number_format($tongtien) . ' VNĐ';;
-        // }
+
         public function insert(){
             $selectedProducts = $_POST['products'];
             $listProducts=array();

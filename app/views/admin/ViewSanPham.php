@@ -377,10 +377,10 @@
             document.getElementById('ImageSp-error').style.display = 'block';
             return;
           }
-          const downloadLink = document.createElement("a");
-          downloadLink.href = imagePath;
-          downloadLink.download = fileName;
-          downloadLink.click();
+          // const downloadLink = document.createElement("a");
+          // downloadLink.href = imagePath;
+          // downloadLink.download = fileName;
+          // downloadLink.click();
 
           
           setTimeout(function(){
@@ -391,7 +391,7 @@
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + imagePath + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
+            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + ImageSP + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
           })
           .then(response => response.json())
           .then(data => {        
