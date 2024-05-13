@@ -335,7 +335,15 @@
                 });
             }
         });
+       
     document.querySelector('.customer__form--add1').addEventListener('click', function(event) {
+      
+      let img = document.getElementById('selected-image');
+      let imagePath = img.getAttribute('src');
+      var inputFile = document.getElementById('file-upload');
+      var fileName = inputFile.files[0].name;
+      let btnDownload = document.getElementById('add-btn1');
+      
           event.preventDefault(); 
           var Loaisp = document.getElementById('form__receipt--LoaiSP').value;
           var Masp = document.getElementById('form__receipt--MaSP').value;
@@ -369,7 +377,10 @@
             document.getElementById('ImageSp-error').style.display = 'block';
             return;
           }
-
+          const downloadLink = document.createElement("a");
+          downloadLink.href = imagePath;
+          downloadLink.download = fileName;
+          downloadLink.click();
 
           
           setTimeout(function(){
@@ -380,7 +391,7 @@
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + ImageSP + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
+            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + imagePath + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
           })
           .then(response => response.json())
           .then(data => {        
@@ -397,6 +408,8 @@
           alert('Đã thêm sản phẩm mới thành công!');
           
 });
+
+
 document.getElementById('form__receipt--LoaiSP').addEventListener('input', function() {
     var LoaispVal = this.value;
     

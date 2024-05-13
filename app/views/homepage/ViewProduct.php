@@ -262,7 +262,15 @@
             if(content === '') return $("#container_search").html('');
             show_search(content);
           })
-          $(document).on("click","#btnSubmit", function(){
+          $(document).on("keypress","#content_search-basic",function(event){
+            if (event.which === 13) {
+              event.preventDefault();
+                var content = $(this).val(); // Lấy nội dung của phần tử
+                fetch_data(1, content); // Gọi hàm fetch_data với nội dung đã lấy
+                
+            }
+          })
+          $(document).on("click","#content_search-basic", function(){
             var content = $("#content_search-basic").val();
             fetch_data(1,content);
           })

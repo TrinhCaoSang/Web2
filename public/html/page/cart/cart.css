@@ -14,7 +14,40 @@ header {
     display: flex;
     flex-direction: column;
 }
+#btn_erase{
+    border: none;
+    height: 30px;
+    min-width: 70px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: 600;
+    color: #333;
+    background-color:red;
+    margin-right:10px;
+    margin-bottom: 10px;
+}
 
+#btn_erase a{
+    text-decoration: none;
+    color: white;
+}
+
+#btn_update{
+    border: none;
+    height: 30px;
+    min-width: 70px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: 600;
+    color: #333;
+    background-color:rgb(13, 126, 247);
+    margin-bottom: 10px;
+    color: white;
+}
 header .navbar {
     width: 100%;
     height: 80px;

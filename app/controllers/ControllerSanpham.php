@@ -124,8 +124,6 @@
             $MaLoai = $_POST['receipt--LoaiSP'];
             $Hinhanh = $_POST['file-upload'] ;
             $TenHang = $_POST['receipt--TenHang'];
-            // print_r($TenHang);
-            // return;
             $DonGia = $_POST['receipt--price'];
             $SoLuong = 0;
     

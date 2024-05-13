@@ -157,8 +157,8 @@
             </tbody>
           </table>
             <p align="left">  
-                <button><a href="index.php?controller=cart&action=destroy">Xóa tất cả</a></button>
-                <button>Cập nhật</button>
+                <button id="btn_erase"><a href="index.php?controller=cart&action=destroy">Xóa tất cả</a></button>
+                <button id="btn_update">Cập nhật</button>
             </p>
           </form>
 

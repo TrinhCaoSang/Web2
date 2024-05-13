@@ -137,10 +137,14 @@ public function deleteProduct($MaHang){
 
 
 public function addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong) {
-    $sql = "INSERT INTO mathang(MaHang, MaLoai, Hinhanh, TenHang, DonGia, SoLuong) VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bind_param("ssbsdi", $MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong);
-    $result_sanpham = $stmt->execute();
+    
+    // $sql = "INSERT INTO mathang(MaHang, MaLoai, Hinhanh, TenHang, DonGia, SoLuong) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO mathang(MaHang, MaLoai,Hinhanh, TenHang, DonGia, SoLuong)
+    VALUES('$MaHang','$MaLoai','$Hinhanh' ,'$TenHang', $DonGia, $SoLuong)";
+    // $stmt = $this->conn->prepare($sql);
+    // $stmt->bind_param("ssbsdi", $MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong);
+    $result_sanpham = $this->execute($sql);
+    // $stmt->close();
     return $result_sanpham;
 }
 
