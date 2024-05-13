@@ -212,7 +212,7 @@
                 INNER JOIN ctkm ctkm2 ON km2.MaKM = ctkm2.MaKM
                 WHERE ctkm2.MaLoai = mh.MaLoai
 			)AND
-            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form ) ORDER BY DonGia desc";
+            ( mh.DonGia*(100-km.PhanTramGG)/100 BETWEEN $price_to AND $price_form )";
             if($typecb != "MaLoai" && $typecb != "all"){
                 $sql .= " AND mh.MaLoai = '$typecb'";
             }
