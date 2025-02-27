@@ -13,7 +13,7 @@ if(isset($_REQUEST['controller'])){
     $controllerObject->$actionName();
 }
 else{
-    echo '<meta http-equiv="refresh" content="0;URL=\'index.php?controller=home\'">'; // Chuyển hướng sau 0 giây
+    echo '<meta http-equiv="refresh" content="0;URL=\'index.php?controller=home\'">';
 }
 
 ?>

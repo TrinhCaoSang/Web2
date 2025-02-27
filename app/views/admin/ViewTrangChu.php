@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
-    <script src="/Web2/app/views/admin/admin.js"></script>
+    <script src="/Web2/app/views/admin/Interface(JS)/admin.js"></script>
 </head>
 
 <body>
@@ -101,16 +101,6 @@
       </div>
     </div>
     <div class="admin__content--header">
-      <!-- <div class="admin__content--header__cate">
-        <i class="fa-solid fa-bars"></i>
-        <p>Danh mục</p>
-      </div> -->
-      <!-- <div class="admin__content--header__search">
-        <input type="text" placeholder="Nhập nội dung cần tìm kiếm" />
-        <div>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div> -->
       <div class="admin__content--header__user">
           <p><i class="fa-solid fa-user-shield"></i>
           <?php
@@ -174,7 +164,6 @@
                         echo number_format($donHangDXL[0]["total"]);
                   ?></p>
               </div>
-              <!-- Thêm thống kê nếu có-->
             </div>
         </div>
     </div>
@@ -188,7 +177,6 @@
           ?>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
     $(document).on('click', '.logout',function(){

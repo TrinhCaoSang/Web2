@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/Web2/app/views/admin/admin.js"></script>
+    <script src="/Web2/app/views/admin/Interface(JS)/admin.js"></script>
     
 </head>
 <body>
@@ -197,34 +197,6 @@
               
             </div>
             <div id="container_type-product">
-                <!--  
-              <div class="container_type-product_content">
-                <h2 style="margin-bottom: 5px;">MOUNTAIN</h2>
-                <h3 class="price">30000000</h3>
-                <h3>Số lượng: <span class="quantity">10</span></h3>
-                <div class="show_content-statistics">Xem chi tiết</div>
-              </div>
-
-              <div class="container_type-product_content">
-                <h2 style="margin-bottom: 5px;">TOURING</h2>
-                <h3 class="price">30000000</h3>
-                <h3>Số lượng: <span class="quantity">10</span></h3>
-                <div class="show_content-statistics">Xem chi tiết</div>
-              </div>
-
-              <div class="container_type-product_content">
-                <h2 style="margin-bottom: 5px;">ROAD</h2>
-                <h3 class="price">30000000</h3>
-                <h3>Số lượng: <span class="quantity">10</span></h3>
-                <div class="show_content-statistics">Xem chi tiết</div>
-              </div>
-
-              <div class="container_type-product_content">
-                <h2 style="margin-bottom: 5px;">KID</h2>
-                <h3 class="price">30000000</h3>
-                <h3>Số lượng: <span class="quantity">10</span></h3>
-                <div class="show_content-statistics">Xem chi tiết</div>
-              </div> -->
             </div>
           </div>
           <div class="statistics--model" id="model--statistics" style="display: none;">
@@ -277,7 +249,6 @@
               },
               success: function(data){
                 $("#content_top").html(data);
-                // document.getElementById("product-detail_model").style.display = "flex";
               },
               error: function(xhr,status,error){
                 console.error("Error: " , error);
@@ -391,7 +362,6 @@
               },
               success: function(data){
                 $("#content_type").html(data);
-                // document.getElementById("product-detail_model").style.display = "flex";
               },
               error: function(xhr,status,error){
                 console.error("Error: " , error);
@@ -405,7 +375,6 @@
             var DoanhThu = document.getElementById("total");
             show_title.forEach(function(element) {
                 element.addEventListener('click', function() {
-                    // Đoạn mã bạn muốn thực thi khi phần tử được nhấp chuột vào ở đây
                     var id = $(this).attr("id");
                     if(id == "MaHang"){
                         if(MaSP.classList.contains('fa-caret-down')){
@@ -531,7 +500,6 @@
 
         </script>
     </div>
-    <!-- <script src="/Web2/public/components/HomeAdmin/HomeAdmin.js"></script> -->
     <script>
   $(document).ready(function(){
     $(document).on('click', '.logout',function(){

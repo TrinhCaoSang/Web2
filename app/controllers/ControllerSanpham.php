@@ -23,7 +23,7 @@
             return require ("./app/models/ModelSanpham.php");
     
         }
-        public function index(){
+        public function index() {
           $list_loaisp = $this->product->getAllLoaisp();
           $list_maHang = $this->product->getAllMatHang();
          
@@ -32,23 +32,21 @@
           $totalRows = count($list_product); 
           $totalPages = ceil($totalRows / $soSanPhamTrenTrang); 
       
-          
-          $page = isset($_GET['page']) ? $_GET['page'] : 1;
+          $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+          $page = max(1, min($page, $totalPages)); // Đảm bảo $page không nhỏ hơn 1 và không lớn hơn tổng số trang
+      
           $start = ($page - 1) * $soSanPhamTrenTrang;
           $currentProducts = array_slice($list_product, $start, $soSanPhamTrenTrang);
-
-          if ($page > $totalPages) {
-            $page = $totalPages;
-          }
       
           return $this->view([
-            'list_product' => $currentProducts,
-            'list_loaisp' => $list_loaisp,
-            'list_maHang' => $list_maHang,
-            'totalPages' => $totalPages,
-            'currentPage' => $page
+              'list_product' => $currentProducts,
+              'list_loaisp' => $list_loaisp,
+              'list_maHang' => $list_maHang,
+              'totalPages' => $totalPages,
+              'currentPage' => $page, 
           ], 0);
       }
+      
       
         public function getAllMathang(){
             $list_mathang = $this->product->getAllMathang();
@@ -63,117 +61,150 @@
                 exit();
             }
           }
-          
-          
-
-
-          public function detail(){
-            $id=$_POST['id'];
-            $output = '';
+          public function detail() {
+            if (!isset($_POST['id'])) {
+                echo json_encode(["success" => false, "message" => "Thiếu ID sản phẩm!"]);
+                return;
+            }
+        
+            $id = $_POST['id'];
             $product = $this->product->getDataID($id);
             $list_loaisp = $this->product->getAllLoaisp();
-            // print_r($product);
-            $output .= '<form action="" class="receipt__form" method="post" enctype="multipart/form-data">
-                  <div  class="receipt__form">
-                    <div class="form-group">
-                      <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
-                      <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" >';
-                      foreach($list_loaisp as $loaisp){
-                        if($product["MaLoai"] == $loaisp['MaLoai']){
-                            $output .= '<option selected value="'. $loaisp['MaLoai'] .'" > '.$loaisp['TenLoai'] .'</option>';
-                        }else{
-                            $output .= '<option value="'. $loaisp['MaLoai'] .'" > '.$loaisp['TenLoai'] .'</option>';
-                        }
-                      };
-                      $output .='
-                      </select> 
-                    </div>
-                    <div id="LoaiSp-error" class="error-message"></div>
-
-                    <div class="form-group">
-                      <label for="form__receipt-MaSP">Mã sản phẩm:</label>
-                    
-                      <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" value="'.$product["MaHang"].'" disabled>
-
-                    </div>
-                    <div id="MaSP-error" class="error-message"></div>
-
-                    <div class="form-group">
-                      <label for="form__receipt--TenSP">Tên sản phẩm:</label>
-                      <input type="text" id="form__receipt--TenSP" name="receipt--TenHang" value="'.$product["TenHang"].'">
-                    </div>
-                    <div id="TenSp-error" class="error-message"></div>
-
-                    <div class="form-group">
-                      <label for="form__receipt--Price">Giá:</label>
-                      <input type="text" id="form__receipt--Price" name="receipt--price" value="'.$product["DonGia"].'">
-                    </div>
-                    <div id="GiaSp-error" class="error-message"></div>
-
-                    <div class="form-group">
-                    <label for="form__receipt--img" class="form__receipt--img">Chọn hình ảnh:</label>
-                      <div class="image-container">
-                        <label for="file-upload" class="custom-file-upload">
-                          <!-- <span>Chọn hình ảnh</span> -->
-                        </label>
-                        <img id="selected-image" src="data:image/jpeg;base64,'.base64_encode($product["Hinhanh"]).'" alt="Preview Image">
-                      </div>
-                    </div>
-                    <div id="ImageSp-error" class="error-message"></div>
-                    <input id="file-upload" type="file"  onchange="previewImage(event)">
-                  </form>';
-            echo $output;
-          }
-
-          public function edit_pro(){
-            if(isset($_GET['id'])){
-                $id=$_GET['id'];
-                $dataID=$this->product->getDataID($id);   
+        
+            if (!$product) {
+                echo json_encode(["success" => false, "message" => "Không tìm thấy sản phẩm!"]);
+                return;
             }
-            $this->list_product=$this->product->getAllData();
-            $this->view($this->list_product,$dataID);
-            
-          }
-         
-         
-        public function deleteProduct(){
-          
-          $MaHang = $_GET['MaHang'];
-          $this->product->deleteProduct($MaHang);
-          header('Location: index.php?controller=sanpham');
-      }
+        
+            $output = '<form id="update-form" class="receipt__form" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="form__receipt--MaSP" name="receipt--MaSP" value="' . htmlspecialchars($product["MaHang"]) . '">
+        
+                <div class="form-group">
+                    <label for="form__receipt--LoaiSP">Loại sản phẩm:</label>
+                    <select id="form__receipt--LoaiSP" name="receipt--LoaiSP">';
+            foreach ($list_loaisp as $loaisp) {
+                $selected = ($product["MaLoai"] == $loaisp['MaLoai']) ? 'selected' : '';
+                $output .= '<option ' . $selected . ' value="' . $loaisp['MaLoai'] . '">' . $loaisp['TenLoai'] . '</option>';
+            }
+            $output .= '</select> 
+                </div>
+        
+                <div class="form-group">
+                    <label for="form__receipt--TenSP">Tên sản phẩm:</label>
+                    <input type="text" id="form__receipt--TenSP" name="receipt--TenHang" value="' . htmlspecialchars($product["TenHang"]) . '">
+                </div>
+        
+                <div class="form-group">
+                    <label for="form__receipt--Price">Giá:</label>
+                    <input type="text" id="form__receipt--Price" name="receipt--price" value="' . htmlspecialchars($product["DonGia"]) . '">
+                </div>
+        
+                <div class="form-group">
+                    <label for="file-upload" class="form__receipt--img">Chọn hình ảnh:</label>
+                    <div class="image-container">
+                        <input type="file" id="file-upload" name="file-upload" accept="image/*" style="display: none;">
+                        <img id="selected-image" src="' . (!empty($product["Hinhanh"]) ? htmlspecialchars($product["Hinhanh"]) : 'uploads/default.jpg') . '" alt="Product Image" style="max-width: 200px; height: auto; cursor: pointer;">
+                    </div>
+                </div>
 
-      public function save(){
-        $MaHang = $_POST['id'];
-        $MaLoai = $_POST['loai'];
-        $TenHang = $_POST['ten'];
-        $DonGia = $_POST['gia'];
-        $result = $this->product->save($MaHang, $MaLoai, $TenHang, $DonGia);
-      }
-
-      public function addSanpham() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $MaHang = $_POST['receipt--MaSP'];
-            $MaLoai = $_POST['receipt--LoaiSP'];
-            $Hinhanh = addslashes(file_get_contents($_POST['file-upload'])) ;
-            $TenHang = $_POST['receipt--TenHang'];
-            $DonGia = $_POST['receipt--price'];
-            $SoLuong = 0;
-            // echo '<script>console.log('.$Hinhanh.')</script>';
-            // echo '<script>console.log("OK")</script>';
-    
-            $result = $this->product->addSanpham($MaHang, $MaLoai, $Hinhanh, $TenHang, $DonGia, $SoLuong);
-            if ($result) {
-                $response = ['success' => true, 'message' => 'Dữ liệu đã được thêm thành công'];
+        
+            </form>
+            <div class="button__container--receipt">
+                <button type="button" class="customer__form--add2" id="add-btn2" disabled>Lưu</button>            
+            </div>   
+';
+        
+            echo $output;
+        }
+        public function save() {
+            if (!isset($_POST['id'], $_POST['loai'], $_POST['ten'], $_POST['gia'])) {
+                echo json_encode(["success" => false, "message" => "Thiếu thông tin sản phẩm!"]);
+                return;
+            }
+        
+            $MaHang = $_POST['id'];
+            $MaLoai = $_POST['loai'];
+            $TenHang = $_POST['ten'];
+            $DonGia = $_POST['gia'];
+            $Hinhanh = null;
+        
+            // Kiểm tra nếu có file hình ảnh được upload
+            if (!empty($_FILES['file-upload']['name'])) {
+                $targetDir = "uploads/";  // Thư mục lưu ảnh
+                $fileName = basename($_FILES['file-upload']['name']);
+                $targetFilePath = $targetDir . $fileName;
+                $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        
+                // Các định dạng ảnh hợp lệ
+                $allowTypes = ['jpg', 'png', 'jpeg', 'gif', 'webp'];
+        
+                if (in_array(strtolower($fileType), $allowTypes)) {
+                    // Di chuyển file ảnh đã upload vào thư mục
+                    if (move_uploaded_file($_FILES['file-upload']['tmp_name'], $targetFilePath)) {
+                        $Hinhanh = $targetFilePath; // Lưu đường dẫn ảnh vào DB
+                    } else {
+                        echo json_encode(["success" => false, "message" => "Không thể upload hình ảnh!"]);
+                        return;
+                    }
+                } else {
+                    echo json_encode(["success" => false, "message" => "Chỉ chấp nhận các định dạng JPG, JPEG, PNG, GIF, WEBP!"]);
+                    return;
+                }
             } else {
-                $response = ['success' => false, 'message' => 'Có lỗi xảy ra khi thêm dữ liệu'];
+                // Nếu không có file mới, giữ nguyên hình ảnh cũ
+                $currentProduct = $this->product->getMathangInfo($MaHang);
+                if ($currentProduct) {
+                    $Hinhanh = $currentProduct['file-upload'];
+                }
+            }
+        
+            // Gọi phương thức cập nhật trong Model
+            $result = $this->product->save($MaHang, $MaLoai, $TenHang, $DonGia, $Hinhanh);
+        
+            if ($result) {
+                echo json_encode(["success" => true, "message" => "Sản phẩm đã được cập nhật thành công!"]);
+            } else {
+                echo json_encode(["success" => false, "message" => "Cập nhật sản phẩm thất bại!"]);
             }
         }
-        header('Content-Type: application/json');
-        echo json_encode($response);
-        header('Location: index.php?controller=sanpham&action=index');
+        
+        public function deleteProduct(){     
+          $MaHang = $_GET['MaHang'];
+          $this->product->deleteProduct($MaHang);
+          header('Location: index.php?controller=Sanpham');
+      }
+      public function addSanpham() {
+        header("Content-Type: application/javascript");
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            ob_clean();
+            $maLoai = $_POST['receiptLoaiSp'] ?? null;
+            $maHang = $_POST['receipt--MaSP'];
+            $tenHang = $_POST['receipt--TenHang'];
+            $donGia = $_POST['receipt--price'];
+            $soLuong = 0;
+    
+            // Xử lý ảnh
+            $targetDir = "uploads/";
+            $imagePath = "";
+            if (!empty($_FILES['file-upload']['name'])) {
+                $targetFile = $targetDir . basename($_FILES['file-upload']['name']);
+                if (move_uploaded_file($_FILES['file-upload']['tmp_name'], $targetFile)) {
+                    $imagePath = $targetFile;
+                }
+            }
+    
+            if ($this->product->addSanpham($maHang, $maLoai, $tenHang, $donGia, $soLuong, $imagePath)) {
+                echo json_encode(['success' => true, 'message' => 'Thêm sản phẩm thành công!']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Thêm sản phẩm thất bại.']);
+            }
+        }
+        exit();
     }
+    
     }
+    
+    
 ?>
 <script>
          function changeURL(){

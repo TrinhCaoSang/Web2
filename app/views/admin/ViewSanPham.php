@@ -1,7 +1,4 @@
-<?php 
-    // session_start();
-    ob_start();
-?>
+
 <head>
     <title>Trek - Quản lý cửa hàng</title>
     <link rel="stylesheet" href="/Web2/public/fontawesome-free-6.5.1-web/css/all.min.css">
@@ -10,15 +7,13 @@
     <link rel="stylesheet" href="/Web2/public/components/HomeAdmin/HomeAdmin.css">
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
-    <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/Web2/app/views/admin/Interface(JS)/product.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="/Web2/app/views/admin/showView_Sanpham.js"></script>
     <script src="/Web2/app/views/admin/admin.js"></script>
 </head>
 <body>
-
 <div class="container">
 <div class="admin__taskbar">
         <div class="admin__taskbar--header">
@@ -55,7 +50,6 @@
                 <p>Khuyến mãi</p>
             </a>
             </li>
-
             <li class="admin__taskbar--body__item">
             <a href="index.php?controller=nhanvien&action=index" id="link_staff">
                 <i class="fa-solid fa-user"></i>
@@ -69,8 +63,6 @@
                 <p>Đơn hàng</p>
             </a>
             </li>
-
-
             <li class="admin__taskbar--body__item">
             <a href="index.php?controller=khachhang&action=index" id="link_client">
                 <i class="fa-solid fa-handshake"></i>
@@ -99,26 +91,15 @@
             <p>Đăng xuất</p>
           </button>
         </div>
-      </div>
+    </div>
       <div class="admin__content--header">
         <form action="">
-        <!-- <div class="admin__content--header__search">
-          <button type="button" id="btnSubmit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-          <div>
-          </form>
-            
-          </div>
-        </div> -->
         <div class="admin__content--header__user">
           <p><i class="fa-solid fa-user-shield"></i>
-          <?php
-                    
+          <?php    
                     if (isset($_SESSION['username'])) {
                         echo $_SESSION['username'];
-                    }
-                    
+                    } 
                     ?>
         </p>
         </div>
@@ -126,9 +107,7 @@
       <div class="admin__content">
         <div class="admin__content--body">
           <div class="admin__content--body__content">
-            <!--  NEW CODE ! -->
-               <!-- Sản phẩm -->
-              
+               <!-- Sản phẩm -->  
                <div class="admin-product" id="manageProduct">
                 <div class = "product_content--top">
                 <h1 class="receipt__title">QUẢN LÝ SẢN PHẨM</h1>
@@ -137,7 +116,7 @@
                   <div  class="receipt__form">
                     <div class="form-group">
                       <label for="form__receipt--LoaiSP" >Loại sản phẩm:</label>
-                      <select id="form__receipt--LoaiSP" name="receipt--LoaiSP" >
+                      <select id="form__receipt--LoaiSP" name="receiptLoaiSp" >
                       <?php foreach($list_loaisp as $loaisp): ?>
                         <option value="<?= $loaisp['MaLoai']?>" > <?= $loaisp['TenLoai'] ?></option>
                         <?php endforeach; ?>
@@ -146,7 +125,7 @@
                     <div id="LoaiSp-error" class="error-message"></div>
 
                     <div class="form-group">
-                      <label for="form__receipt-MaSP">Mã sản phẩm:</label>
+                      <label for="form__receipt--MaSP">Mã sản phẩm:</label>
                     
                       <input type="text" id="form__receipt--MaSP" name="receipt--MaSP" >
 
@@ -166,126 +145,104 @@
                     <div id="GiaSp-error" class="error-message"></div>
 
                     <div class="form-group">
-                    <label for="form__receipt--img" class="form__receipt--img">Chọn hình ảnh:</label>
-                      <div class="image-container">
-                        <label for="file-upload" class="custom-file-upload">
-                          <!-- <span>Chọn hình ảnh</span> -->
-                        </label>
-                        <img id="selected-image" src="#" alt="Preview Image" style="display: none;">
-                      </div>
+                        <label for="file-upload" class="form__receipt--img">Chọn hình ảnh:</label>
+                        <div class="image-container">
+                            <input type="file" id="file-upload" name="file-upload" accept="image/*" style="display: none;">
+                            <img id="selected-image" src="uploads/default.jpg" alt="Chọn ảnh" style="max-width: 200px; height: auto; cursor: pointer; display: block;">
+                        </div>
                     </div>
+
+                
                     <div id="ImageSp-error" class="error-message"></div>
-                    <input id="file-upload" type="file"  onchange="previewImage(event)">
                   </form>
                       </div>
                 </div>
               <div class="button__container--receipt">
                 <button type="button" class="customer__form--add1" id="add-btn1">Thêm</button>
-                <button type="button" class="customer__form--add2" id="add-btn2" disabled>Lưu</button>            
               </div>
-                  <table id="table_product">
-                    <thead>
+              <table id="table_product">
+    <thead>
+        <tr>
+            <th class="table--top">Loại</th>
+            <th class="table--top">Mã SP</th>
+            <th class="table--top">Hình ảnh</th>
+            <th class="table--top">Tên Sản Phẩm</th>
+            <th class="table--top">Đơn giá</th>
+            <th class="table--top">Số lượng</th> 
+            <th class="table--top">Sửa</th>
+            <th class="table--top">Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        if (!empty($list_product)) {
+            foreach ($list_product as $row) { 
+              ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['MaLoai']); ?></td>
+                    <td><?php echo htmlspecialchars($row['MaHang']); ?></td>
+                    <td class="product-image-container">
+                        <img class="product-image" src="<?= !empty($row['Hinhanh']) ? htmlspecialchars($row['Hinhanh']) : 'uploads/default.jpg' ?>" 
+                            style="max-width: 100px; height: auto;">
+                    </td>
+                    <td class="product-name-column"><?php echo htmlspecialchars($row['TenHang']); ?></td>
+                    <td><?php echo number_format($row['DonGia'], 0, '', '.') . " VND"; ?></td>
+                    <td><?php echo htmlspecialchars($row['SoLuong']); ?></td>
+                    <td>
+                        <button class="discount__form--change edit-btn" id="<?php echo htmlspecialchars($row['MaHang']); ?>">Sửa</button>
+                    </td>
 
-                        <tr>
-                        <th class="table--top">Loại</th>
-                        <th class="table--top">Mã SP</th>
-                        <th class="table--top">Hình ảnh</th>
-                        <th class="table--top">Tên Sản Phẩm</th>
-                        <th class="table--top">Đơn giá</th>
-                        <th class="table--top">Số lượng</th> 
-                        <th class="table--top">Sửa</th>
-                        <th class="table--top">Xóa</th>
-                        </tr>
+                    <td>
+                      <button class="discount__form--add" onclick="Delete('<?php echo htmlspecialchars($row['TenHang']); ?>', 'index.php?controller=sanpham&action=deleteProduct&MaHang=<?php echo htmlspecialchars($row['MaHang']); ?>')">
+                          Xóa
+                      </button>
+                  </td>
 
-                        </thead>
-                        <tr>
-                          <tbody>
-                            <?php 
-                                
-                                  $model = new ModelSanpham();
-                                  $conn = $model->connect();
+                </tr>
+        <?php 
+            }
+        } else {
+            echo "<tr><td colspan='8'>Không có sản phẩm nào.</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+            <div class="pagination">
+                <?php 
+                $range = 1; 
+                $start = $currentPage - $range;
+                $end = $currentPage + $range;
 
-                                  
-                                  $page = isset($_GET['page']) ? $_GET['page'] : 1; 
-                                  $itemsPerPage = 5; 
-                                  $totalProducts = $this->product->getTotalProducts(); 
-                                  $maxPage = ceil($totalProducts / $itemsPerPage);
-                                  
-                                  $offset = ($page - 1) * $itemsPerPage;
-                                  
-                                  $sql = "SELECT mathang.*, loaihang.TenLoai 
-                                          FROM mathang 
-                                          LEFT JOIN loaihang ON mathang.MaLoai = loaihang.MaLoai 
-                                          LIMIT $itemsPerPage OFFSET $offset"; 
-                                  $result = $model->execute($sql);
-                                
-                                if ($model->num_rows() > 0) {
-                                  while($row = $model->getData() ){
-                            ?>
-                           <td><?php echo $row['TenLoai'] ;?></td>
-                           <td><?php echo $row['MaHang'] ;?></td>
-                           
-                           
-                           <td class="product-image-container">
-                           <?php
-                                $imageData = base64_encode($row['Hinhanh']);
-                                echo '<img class="product-image" src="data:image/jpeg;base64,'.$imageData.'" alt="Product Image">';
-                            ?>
-                           </td>
-                           
+                $start = max($start, 1);
+                $end = min($end, $totalPages);  
 
+                if ($currentPage > 1): ?>
+                    <li class="page-item">
+                        <a href="index.php?controller=sanpham&action=index&page=<?= $currentPage - 1 ?>" class="page-link1">
+                            <i class="fa-solid fa-circle-left"></i>
+                        </a>
+                    </li>
+                <?php endif;
 
+                if ($start > 1) echo "<li class='page-item'>...</li>";
 
-                           <td class="product-name-column"><?php echo $row['TenHang'] ;?></td>
-                           <td><?php echo number_format($row['DonGia'], 0, '', '.')." VND";?></td>
-                           <td><?php echo $row['SoLuong'] ;?></td>
-                           <td>
-                               <button class="discount__form--change" class="change" id="<?php echo $row['MaHang'];?>">Sửa</button>
-        
-                           </td>
-                           <td >
-                               <a href="index.php?controller=sanpham&action=deleteProduct&MaHang=<?php echo $row['MaHang'];?>" onclick="return Delete('<?php echo $row['MaHang']; ?>')"><button class="discount__form--add">Xóa</button></a>
-                           </td>
-                        </tr>
-                        <?php 
-                          }
-                          }
-                        ?>
-                        </tbody>
-                      </table>
-                         
+                for ($i = $start; $i <= $end; $i++): ?>
+                    <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
+                        <a href="index.php?controller=sanpham&action=index&page=<?= $i ?>" class="page-link"><?= $i ?></a>
+                    </li>
+                <?php endfor;
 
+                if ($end < $totalPages) echo "<li class='page-item'>...</li>";
 
-                      <div class="pagination">
-                          <?php 
-                          $range = 1; 
-                          $start = $page - $range;
-                          $end = $page + $range;
-
-                          $start = max($start, 1);
-                          $end = min($end, $maxPage);
-
-                          if ($page > 1): ?>
-                              <li class="page-item"><a href="index.php?controller=sanpham&action=index&page=<?= $page - 1 ?>" class="page-link1"><i class="fa-solid fa-circle-left"></i></a></li>
-                          <?php endif;
-
-                          if ($start > 1) echo "<li class='page-item'>...</li>";
-
-                          for ($i = $start; $i <= $end; $i++): ?>
-                              <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a href="index.php?controller=sanpham&action=index&page=<?= $i ?>" class="page-link"><?= $i ?></a></li>
-                          <?php endfor;
-
-                          if ($end < $maxPage) echo "<li class='page-item'>...</li>";
-
-                          if ($page < $maxPage): ?>
-                              <li class="page-item1"><a href="index.php?controller=sanpham&action=index&page=<?= $page + 1 ?>" class="page-link1"><i class="fa-solid fa-circle-right"></i></a></li>
-                          <?php endif; ?>
-                          </div>
-
-                      
-                      
+                if ($currentPage < $totalPages): ?>
+                    <li class="page-item1">
+                        <a href="index.php?controller=sanpham&action=index&page=<?= $currentPage + 1 ?>" class="page-link1">
+                            <i class="fa-solid fa-circle-right"></i>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </div>
                         </div>
-
                 </div>
             </div>
           </div>
@@ -294,284 +251,7 @@
                 echo '<script>var a = document.getElementById("link_Product");
                 a.style.backgroundColor = "lightgray";</script>';
               }
-
           ?>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-          <script>
-              function save() {
-                var id = document.getElementById("form__receipt--MaSP").value;
-                var loai = document.getElementById("form__receipt--LoaiSP").value;
-                var ten = document.getElementById("form__receipt--TenSP").value;
-                var gia = document.getElementById("form__receipt--Price").value;
-                $.ajax({
-                  url : "index.php?controller=sanpham&action=save",
-                  method: "POST",
-                  data: {
-                    id: id,
-                    loai: loai,
-                    ten: ten,
-                    gia: gia,
-                  },
-                  success: function(data){
-                    swal("Good job!", "Sửa thông tin thành công! ", "success").then(function() {
-                      window.location.href = "index.php?controller=sanpham&action=index";
-                    });
-                    
-                    
-                    // $("#container_tt").html(data);
-                    // document.getElementById("product-detail_model").style.display = "flex";
-                  },
-                  error: function(xhr,status,error){
-                    console.error("Error: " , error);
-                  }
-                });
-              }
-              $(document).on("click","#add-btn2", function(){
-                  $(this).disabled = true;
-                  save();
-                })
-              function show_detail(id) {
-                $.ajax({
-                  url : "index.php?controller=sanpham&action=detail",
-                  method: "POST",
-                  data: {
-                    id: id
-                  },
-                  success: function(data){
-                    $("#container_tt").html(data);
-                    document.getElementById("add-btn2").disabled = false;
-                    // document.getElementById("product-detail_model").style.display = "flex";
-                  },
-                  error: function(xhr,status,error){
-                    console.error("Error: " , error);
-                  }
-                });
-          }
-                  $(document).on("click",".discount__form--change", function(){
-                    var id = $(this).attr("id");
-                    show_detail(id);
-                  })
-
-          </script>
-          <script>
-          function Delete(name){
-             return confirm("Bạn có chắc muốn xóa sản phẩm này : "+ name + " ?");
-         }
-
-         function previewImage(event) {
-            var selectedImage = document.getElementById('selected-image');
-            selectedImage.style.display = 'inline-block'; 
-
-            var reader = new FileReader();
-            reader.onload = function(){
-                selectedImage.src = reader.result; 
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }     
-        document.getElementById('selected-image').onclick = function() {
-            document.getElementById('file-upload').click();
-        };
-        /////////////////////////////////////////////////////////
-        $(document).ready(function() {
-    handlePaginationClick();
-});
-
-function handlePaginationClick() {
-    $(document).on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        var pageUrl = $(this).attr('href');
-
-        $.ajax({
-            url: pageUrl,
-            type: 'GET',
-            success: function(response) {
-                var newTable = $(response).find('#table_product').html();
-                $('#table_product').empty().html(newTable);
-
-                var newPagination = $(response).find('.pagination').html();
-                $('.pagination').empty().html(newPagination);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    });
-}
-
-       
-    document.querySelector('.customer__form--add1').addEventListener('click', function(event) {
-      
-      let img = document.getElementById('selected-image');
-      let imagePath = img.getAttribute('src');
-      // var inputFile = document.getElementById('file-upload');
-      //================TEST===========
-      
-      //===============================
-      //==============BLOB=============
-      // function dataURItoBlob(dataURI) {
-      //   // convert base64 to raw binary data held in a string
-      //   // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-      //   var byteString = atob(dataURI.split(',')[1]);
-
-      //   // separate out the mime component
-      //   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-
-      //   // write the bytes of the string to an ArrayBuffer
-      //   var ab = new ArrayBuffer(byteString.length);
-      //   var ia = new Uint8Array(ab);
-      //   for (var i = 0; i < byteString.length; i++) {
-      //       ia[i] = byteString.charCodeAt(i);
-      //   }
-
-      //   // write the ArrayBuffer to a blob, and you're done
-      //   var bb = new Blob([ab]);
-      //   return bb;
-      // }
-
-
-      //================================
-      // var fileName = inputFile.files[0].name;
-      // let btnDownload = document.getElementById('add-btn1');
-      // console.log(imagePath);
-      
-          // event.preventDefault(); 
-          var Loaisp = document.getElementById('form__receipt--LoaiSP').value;
-          var Masp = document.getElementById('form__receipt--MaSP').value;
-          var TenSp = document.getElementById('form__receipt--TenSP').value;
-          var GiaSP = document.getElementById('form__receipt--Price').value;
-          var ImageSP = document.getElementById('file-upload').value;
-
-
-
-          if (Loaisp.trim() === '') {
-              document.getElementById('LoaiSp-error').textContent = '*Chưa nhập loại sản phẩm!';
-              document.getElementById('LoaiSp-error').style.display = 'block';
-              return;
-          }
-          if(Masp.trim() == ''){
-            document.getElementById('MaSP-error').textContent = '*Chưa nhập mã sản phẩm!';
-            document.getElementById('MaSP-error').style.display = 'block';
-            return;
-          }
-          if(TenSp.trim() == ''){
-            document.getElementById('TenSp-error').textContent = '*Chưa nhập tên sản phẩm!';
-            document.getElementById('TenSp-error').style.display = 'block';
-            return;
-          }
-          if(GiaSP.trim() == ''){
-            document.getElementById('GiaSp-error').textContent = '*Chưa nhập giá sản phẩm!';
-            document.getElementById('GiaSp-error').style.display = 'block';
-            return;
-          }
-          if(ImageSP.trim() == ''){
-            document.getElementById('ImageSp-error').textContent = '*Chưa chọn hình ảnh!';
-            document.getElementById('ImageSp-error').style.display = 'block';
-            return;
-          }
-          // const downloadLink = document.createElement("a");
-          // downloadLink.href = imagePath;
-          // downloadLink.download = fileName;
-          // downloadLink.click();
-
-          
-          
-          window.location.reload();
-          // console.log(imagePath);
-          fetch('index.php?controller=sanpham&action=addSanpham', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: 'receipt--MaSP=' + Masp + '&receipt--LoaiSP=' + Loaisp  + '&file-upload=' + imagePath + '&receipt--TenHang=' + TenSp + '&receipt--price=' + GiaSP 
-          })
-          .then(response => response.json())
-          .then(data => {        
-            if (data.success) {
-              alert(data.message);
-              
-            } else {
-              alert(data.message);
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-          // window.location.href = 'index.php?controller=sanpham&action=index';
-          alert('Đã thêm sản phẩm mới thành công!');
-          
-});
-
-
-document.getElementById('form__receipt--LoaiSP').addEventListener('input', function() {
-    var LoaispVal = this.value;
-    
-
-    if (LoaispVal.trim() !== '') {
-        document.getElementById('LoaiSp-error').style.display = 'none';
-    } else {
-        document.getElementById('LoaiSp-error').textContent = '*Chưa nhập loại sản phẩm!';
-        document.getElementById('LoaiSp-error').style.display = 'block';
-    }
-
-});
-document.getElementById('form__receipt--MaSP').addEventListener('input', function() {
-  var MaSpValue = this.value;
-  if (MaSpValue.trim() !== '') {
-            document.getElementById('MaSP-error').style.display = 'none';
-  } else {
-            document.getElementById('MaSP-error').textContent = '*Chưa nhập mã sản phẩm!';
-            document.getElementById('MaSP-error').style.display = 'block';
-        }
-});
-document.getElementById('form__receipt--TenSP').addEventListener('input', function() {
-  var tenSpValue = this.value;
-  if (tenSpValue.trim() !== '') {
-            document.getElementById('TenSp-error').style.display = 'none';
-  } else {
-            document.getElementById('TenSp-error').textContent = '*Chưa nhập tên sản phẩm!';
-            document.getElementById('TenSp-error').style.display = 'block';
-        }
-});
-document.getElementById('form__receipt--Price').addEventListener('input', function() {
-  var GiaSPVal = this.value;
-  if (GiaSPVal.trim() !== '') {
-            document.getElementById('GiaSp-error').style.display = 'none';
-  } else {
-            document.getElementById('GiaSp-error').textContent = '*Chưa nhập giá sản phẩm!';
-            document.getElementById('GiaSp-error').style.display = 'block';
-        }
-});
-document.getElementById('file-upload').addEventListener('input', function() {
-  var ImageSp = this.value;
-  if (ImageSp.trim() !== '') {
-            document.getElementById('ImageSp-error').style.display = 'none';
-  } else {
-            document.getElementById('ImageSp-error').textContent = '*Chưa chọn hình ảnh sản phẩm!';
-            document.getElementById('ImageSp-error').style.display = 'block';
-        }
-});
-          </script>
+        
         </div>
-
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $(document).on('click', '.logout',function(){
-      console.log("Trang chủ.");
-      $.ajax({
-          type: "POST",
-          url: "index.php?controller=home&action=logoutAdmin",
-          data:{},
-          success: function(data) {
-              alert("Đăng xuất thành công.");
-              window.location.href = "index.php?controller=home&action=index";
-          },
-          error: function(xhr, status, error) {
-              alert("Lỗi");
-          }
-      });
-      });
-  })
-</script>
 </body>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
+    <script src="/Web2/app/views/admin/Interface(JS)/entry_details.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     
@@ -209,15 +210,9 @@
                   </thead>
                   <tbody>
                   <?php 
-                    $model = new ModelCtpn();
-                    $conn = $model->connect();
-                    $sql = "SELECT * FROM ctpn";
-                     $sql = "SELECT * FROM ctpn ORDER BY MaPN ASC";
-                    $result = $model->execute($sql);
-                    
-                    if ($model->num_rows() > 0) {
-                        $i = 1;
-                      while($row = $model->getData()){
+                    if(!empty($list_ctpn)){
+                      $i = 1;
+                      foreach ($list_ctpn as $row) {    
                 ?>
                   <tr>
                      <td ><?php echo $i; ?></td>
@@ -238,6 +233,7 @@
                 $i++;
                  }
                 }
+                
               ?>
                   </tbody>
             </table>
@@ -245,185 +241,6 @@
           </div>
         </div>
       </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-      <script src="/Web2/app/views/admin/show_CTPN.js"></script>
-      <script>
-          function Delete(name){
-              return confirm("Bạn có chắc muốn xóa chi tiết phiếu nhập: "+ name + " ?");
-          }
-          document.getElementById('add-btn4').addEventListener('click', function() {
-               window.location.href = 'index.php?controller=phieunhap&action=index';
-          });
-
-
-  $('.customer__form--add').on('click', function(event) {
-
-    event.preventDefault(); 
-    
-    var maPN = $('#form__receipt').val();
-    var maNCC = $('#form__receipt--MANCC').val();
-    var maHang = $('#form__receipt--MaSP').val();
-    var TenHang = $('#form__receipt--TenSP').val();
-    var donGiaPN = $('#form__receipt--Price').val();
-    var tenNCC = $('#form__receipt--NAMENCC').val();
-    var soLuong = $('#form__receipt--soluong').val();
-    var thanhTien = $('#form__receipt--tong').val();
-
-    if (soLuong.trim() === '') {
-        $('#soLuong-error').text('*Bạn chưa nhập số lượng');
-        $('#soLuong-error').css('display', 'block');
-        return;
-    }
-    if (parseInt(soLuong) === 0) {
-        $('#soLuong-error').text('*Số lượng phải lớn hơn 0 !');
-        $('#soLuong-error').css('display', 'block');
-        return;
-    }
-    if (parseInt(soLuong) < 0) {
-        $('#soLuong-error').text('*Số lượng không được âm !');
-        $('#soLuong-error').css('display', 'block');
-        return;
-    }
-    
-    alert('Đã thêm phiếu nhập mới thành công!');
-    setTimeout(function(){
-        window.location.reload();
-    }, 500);
-
-    $.ajax({
-        url: 'index.php?controller=ctpn&action=addCTPN',
-        method: 'POST',
-        data: {
-            receipt: maPN,
-            'receipt--NCC': maNCC,
-            'receipt--NAMENCC': tenNCC,
-            'receipt--MASP': maHang,
-            'receipt--TenHang': TenHang,
-            'receipt--price': donGiaPN,
-            'receipt--soluong': soLuong,
-            'receipt--tong': thanhTien
-        },
-        success: function(data) {
-            if (data.success) {
-                alert(data.message);
-                updateSTT();
-            } else {
-                alert(data.message);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
-    });
-});
-
-$('#form__receipt--soluong').on('input', function() {
-    var soLuongValue = $(this).val();
-    if (soLuongValue.trim() !== '') {
-        if (parseInt(soLuongValue) === 0) {
-            $('#soLuong-error').text('*Số lượng phải lớn hơn 0!');
-            $('#soLuong-error').css('display', 'block');
-        } else if(parseInt(soLuongValue) < 0){
-            $('#soLuong-error').text('*Số lượng không được là số âm!');
-            $('#soLuong-error').css('display', 'block');
-        } else {
-            $('#soLuong-error').css('display', 'none');
-        }
-    } else {
-        $('#soLuong-error').text('*Bạn chưa nhập số lượng');
-        $('#soLuong-error').css('display', 'block');
-    }
-});
-
-$(document).on("click" ,".btn-edit", function(){
-    var data_ctpn = $(this).attr("id");
-    edit_CTPN(data_ctpn);
-  });
-  function edit_CTPN(ctpn){
-    $.ajax({
-        url: "index.php?controller=ctpn&action=editCTPN",
-        method: 'POST',
-        data: {
-            ctpn: ctpn
-        },
-        success:function(data){
-            $("#form_ctpn").html(data);
-            $('#add-btn').removeClass('customer__form--add').addClass('customer__form--update').attr('id', 'update-btn');
-            $('#update-btn').text('Cập nhật');
-            $('#update-btn').off('click').on('click', btnUPDATE);
-        },
-        error: function(xhr,status,error){
-            console.error("Error: ", error);
-        }
-    });
-}
-
-
-function btnUPDATE(event) {
-         event.preventDefault();
-
-          
-          var MaPN = $('#form__receipt').val();
-          var MaNCC = $('#form__receipt--MANCC').val();
-          var MaHang = $('#form__receipt--MaSP').val();
-          var TenHang = $('#form__receipt--TenSP').val();
-          var DonGiaPN = $('#form__receipt--Price').val();
-          var TenNCC = $('#form__receipt--NAMENCC').val();
-          var SoLuong = $('#form__receipt--soluong').val();
-          var ThanhTienCTPN = $('#form__receipt--tong').val();
-
-
-          if (SoLuong.trim() === '') {
-              $('#soLuong-error').text('*Bạn chưa nhập số lượng');
-              $('#soLuong-error').css('display', 'block');
-              return;
-          }
-          if (parseInt(SoLuong) === 0) {
-              $('#soLuong-error').text('*Số lượng phải lớn hơn 0 !');
-              $('#soLuong-error').css('display', 'block');
-              return;
-          }
-          if (parseInt(SoLuong) < 0) {
-              $('#soLuong-error').text('*Số lượng không được âm !');
-              $('#soLuong-error').css('display', 'block');
-              return;
-          }
-    
-          alert('Đã cập nhật phiếu nhập thành công!');
-          setTimeout(function(){
-              window.location.reload();
-          }, 500);
-
-
-    $.ajax({
-        url: 'index.php?controller=ctpn&action=updateCTPN',
-        method: 'POST',
-        data: {
-            receipt: MaPN,
-            'receipt--NCC': MaNCC,
-            'receipt--NAMENCC': TenNCC,
-            'receipt--MASP': MaHang,
-            'receipt--TenHang': TenHang,
-            'receipt--price': DonGiaPN,
-            'receipt--soluong': SoLuong,
-            'receipt--tong': ThanhTienCTPN
-        },
-        success: function(data){
-              console.log(data); 
-              if(data && data.success){
-                  alert(data.message);
-              } else {
-                  alert("Có lỗi xảy ra khi cập nhật dữ liệu: " + data.message); 
-              }
-          },
-        error: function(xhr, status, error){
-            console.error(error);
-        }
-    });
-  }
-
-
-      </script>
 </div>
 </body>
 </html>

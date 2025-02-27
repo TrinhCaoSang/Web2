@@ -13,7 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
-  <script defer src="/Web2/public/components\HomeAdmin\HomeAdmin.js"></script>
+  <script defer src="/Web2/public/components/HomeAdmin/HomeAdmin.js"></script>
 </head>
 <body>
   <div class="container">
@@ -99,12 +99,7 @@
     </div>
     <div class="admin__content--header">
       
-      <!-- <div class="admin__content--header__search">
-        <input type="text" placeholder="Nhập nội dung cần tìm kiếm" />
-        <div>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </div> -->
+      
       <div class="admin__content--header__user">
           <p><i class="fa-solid fa-user-shield"></i>
           <?php
@@ -119,9 +114,7 @@
     </div>
     <div class="admin__content">
       <div class="admin__content--body">
-        <!-- <div class="admin__content--body__top">
-              <div class="admin__content--body__filter"></div>
-            </div> -->
+        
         <div class="admin__content--body__content">
         <div class="admin__content--employee__content" id="staff">
             <div class="employee__content--top">
@@ -254,7 +247,6 @@
                 <th class="table--top">Chức vụ</th>
                 <th class="table--top">Lương</th>
                 <th class="table--top">Địa chỉ</th>
-                <!-- <th class="table--top">Trạng thái</th> -->
                 <th class="table--top">Ngày đăng ký</th>
 
                 <th class="table--top">Sửa</th>
@@ -419,7 +411,6 @@ function getCurrentDate() {
 }
         </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
     $(document).on('click', '.logout',function(){

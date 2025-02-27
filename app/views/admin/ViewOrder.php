@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
-    <script src="/Web2/app/views/admin/admin.js"></script>
-    <!-- <script defer src="/DoAnWeb/Web2/public/components/HomeAdmin/HomeAdmin.js"></script> -->
+    <script src="/Web2/app/views/admin/Interface(JS)/admin.js"></script>
 </head>
 <body>
 <div class="container">
@@ -253,7 +252,6 @@
 
           ?>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
   function close_bill() {
     document.getElementById("model--bill").style.display = "none";

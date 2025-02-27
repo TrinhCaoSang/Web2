@@ -16,9 +16,6 @@ class ControllerKhachhang{
             $this->list_client=$this->client->getAllData();
         }
     protected function view(array $data=[],$dataID){
-        // foreach($data as $key=>$value){
-        //     $$key=$value;
-        //     }
         return include("./app/views/admin/ViewKhachhang.php");
     }
 
@@ -47,26 +44,25 @@ class ControllerKhachhang{
         }
     }    
     public function save() {
+        header("Content-Type: application/javascript");
+
         if (isset($_POST['save'])) {
             $customerFname = $_POST['customerFname'];
             $customerGender = $_POST['customerGender'] === 'male' ? 1 : 0;
             $customerPhone = $_POST['customerPhone'];
             $customerAddress = $_POST['customerAddress'];
     
-            // Kiểm tra giá trị của $_POST['customerId']
             if (isset($_POST['customerId'])) {
                 $customerId = $_POST['customerId'];
                 echo "customerId: " . $customerId . "<br>";
             } else {
                 echo "customerId not set in POST<br>";
             }
-    
-            $dataID = $this->getDataID($customerId); // Lấy thông tin khách hàng từ cơ sở dữ liệu
-            if ($dataID) { // Kiểm tra xem có tìm thấy khách hàng không
+            $dataID = $this->getDataID($customerId); 
+            if ($dataID) { 
                 if ($this->client->UpdateKhachhang($customerId, $customerFname, $customerGender, $customerPhone, $customerAddress)) {
-                    // Thực hiện chuyển hướng sau khi cập nhật thành công
                     header('Location: index.php?controller=khachhang&action=index');
-                    exit(); // Kết thúc việc thực thi script
+                    exit(); 
                 } else {
                     echo "<script>alert('Sửa thất bại');</script>";
                     return $this->view($this->list_client, $dataID);

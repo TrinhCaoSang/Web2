@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/Web2/app/views/admin/admin.js"></script>
+    <script src="/Web2/app/views/admin/Interface(JS)/admin.js"></script>
 </head>
 <body>
 <div class="container">
@@ -113,9 +113,7 @@
       </div>
       <div class="admin__content">
         <div class="admin__content--body">
-          <!-- <div class="admin__content--body__top">
-            <div class="admin__content--body__filter"></div>
-          </div> -->
+          
           <div class="admin__content--body__content">
               <!--Khách hàng-->
             <div class="admin__content--customer__content" id="client">
@@ -283,24 +281,17 @@
         }
 
         function changeURL2(){
-          var newUrl = "http://localhost/Web2/index.php?controller=khachhang&action=save"; // Đường dẫn URL mới
-          window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
+          var newUrl = "http://localhost/Web2/index.php?controller=khachhang&action=save"; 
+          window.history.pushState("", "", newUrl); 
         }
 
 
     function validateForm() {
           var isValid = true;
-          // var maKh = document.getElementById('form__customerId').value.trim();
           var tenKh = document.getElementById('form__customerFname').value.trim();
           var gioitinh = document.getElementById('form__customerGender').value.trim();
           var Sdt = document.getElementById('form__customerPhone').value.trim();
           var DiaChi = document.getElementById('form__customerAddress').value.trim();
-
-          // if (maKh === '') {
-          //     document.getElementById('maKH-error').textContent = '*Chưa nhập mã khách hàng!';
-          //     document.getElementById('maKH-error').style.display = 'block';
-          //     isValid = false;
-          // }
 
           if (tenKh === '') {
               document.getElementById('TenKH-error').textContent = '*Chưa nhập tên khách hàng!';
@@ -328,16 +319,6 @@
 
           return isValid;
       }
-
-// document.getElementById('form__customerId').addEventListener('input', function() {
-//     var maKHValue = this.value.trim();
-//     if (maKHValue !== '') {
-//         document.getElementById('maKH-error').style.display = 'none';
-//     } else {
-//         document.getElementById('maKH-error').textContent = '*Chưa nhập mã khách hàng!';
-//         document.getElementById('maKH-error').style.display = 'block';
-//     }
-// });
 
 document.getElementById('form__customerFname').addEventListener('input', function() {
     var tenKhValue = this.value.trim();
@@ -393,7 +374,6 @@ function getCurrentDate() {
     </script>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
     $(document).on('click', '.logout',function(){

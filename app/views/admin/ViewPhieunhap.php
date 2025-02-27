@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
-    <!-- <script src="/Web2/app/views/admin/show_ViewPN.js"></script> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="/Web2/app/views/admin/admin.js"></script>
+    <script src="/Web2/app/views/admin/Interface(JS)/admin.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -93,7 +92,6 @@
             </li>
         </ul>
 <hr>
-        <!-- <div class="hr"></div> -->
 
         <div class="admin__taskbar--footer">
           <button class="logout">
@@ -118,7 +116,6 @@
       <div class="admin__content">
         <div class="admin__content--body">
           <div class="admin__content--body__content">
-            <!--Phiếu nhập-->
           <div class="admin__content--receipt__content" id="receipt">
             <div class="receipt__content--top">
               <h1 class="receipt__title">QUẢN LÝ PHIẾU NHẬP</h1>
@@ -131,7 +128,6 @@
                   <label for="form__receiptId">Mã phiếu nhập:</label>
                   <input type="text" id="form__receipt" name="receipt" >
                 </div>
-                <!-- <label id="maPN-error" style="color:red;font-size:10pt;"></label> -->
                 <div id="maPN-error" class="error-message"></div>
               </form>
               <div class="button__container--receipt">
@@ -169,7 +165,6 @@
               <tr>
                 <td ><?php echo $i; ?></td>
                 <td ><?php echo $row['MaPN'] ;?></td>
-                <!-- <td class="text__align--left"><?php echo $row['MaNCC']; ?></td> -->
                 <td class="text__align--left"><?php echo number_format($row['ThanhTienPN'], 0, '', '.')." VND";?></td>                
 
                 <td class="text__align--left"><?php echo $row['NgayNhapFormatted']; ?></td>
@@ -179,9 +174,7 @@
                 <td>
                   <a onclick="return Del('<?php echo $row['MaPN']; ?>')" href="index.php?controller=phieunhap&action=deletePN&id=<?php echo $row['MaPN'];?>"><button class="btn btn-delete">Xóa</button></a>
                 </td>
-                <!-- <td>
-                    <a href="index.php?controller=ctpn&action=index&id=<?php echo $row['MaPN'];?>">Thêm chi tiết</a>
-                </td> -->
+                
               </tr>
               <?php 
                 $i++;
@@ -210,10 +203,9 @@
     window.location.href = 'index.php?controller=ctpn&action=index';
 });
 
-  document.querySelector('.customer__form--add1').addEventListener('click', function(event) {
+document.querySelector('.customer__form--add1').addEventListener('click', function(event) {
     event.preventDefault(); 
     var maPN = document.getElementById('form__receipt').value;
-    
     var ngayNhap = getCurrentDate(); 
 
     var maPNPattern = /^[PN]{2}\d{2}$/; // Mẫu yêu cầu: 2 chữ cái và sau đó là 2 số
@@ -227,35 +219,38 @@
     if (!maPNPattern.test(maPN)) {
         document.getElementById('maPN-error').textContent = '*Mã Phiếu nhập không hợp lệ';
         document.getElementById('maPN-error').style.display = 'block';
-        
         return;
     }
+
     swal("Good job!", "Thêm phiếu nhập thành công!", "success");
+
     setTimeout(function(){
         window.location.reload();
         swal.close();
     }, 5000);
-    fetch('index.php?controller=phieunhap&action=addPhieuNhap', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+
+    $.ajax({
+        url: 'index.php?controller=phieunhap&action=addPhieuNhap',
+        type: 'POST',
+        data: {
+            receipt: maPN,
+            ngayNhap: ngayNhap
         },
-        body: 'receipt=' + maPN + '&ngayNhap=' + ngayNhap  
-    })
-    .then(response => response.json())
-    .then(data => {        
-        if (data.success) {
-            alert(data.message + '1');
-            
-        } else {
-            alert(data.message,"error");
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                alert(response.message + '1');
+            } else {
+                alert(response.message, "error");
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
     });
 
 });
+
 
 document.getElementById('form__receipt').addEventListener('input', function() {
     var maPNValue = this.value;

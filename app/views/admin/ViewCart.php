@@ -29,10 +29,9 @@
     <link rel="stylesheet" href="/Web2/public/html/page/cart/cart.css">
     <link rel="stylesheet" href="/Web2/public/components/menu/menu.css">
     <link rel="stylesheet" href="/Web2/public/components/login/login.css">
-    <!-- <script type="module" defer src="/WEB2/public/components/login/login.js"></script>  -->
+    <script src="/Web2/app/views/admin/Interface(JS)/cart.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- <link rel="stylesheet" href="//Web2/public/html/page/cart/reponsive.css"> -->
     <title>Giỏ Hàng</title>
 </head>
 <body>
@@ -56,7 +55,6 @@
           </div>
   
           <!-- =========== END: HEADER TOP =========== -->
-  
           <!-- =========== START: HEADER BOTTOM =========== -->
   
           <div class="header__bottom">
@@ -87,18 +85,6 @@
               <div class="header__bottom--extention-item header__bottom--extention-user">
                 <i class="fa-solid fa-user"></i>
                 <ul class="header__bottom--user__list">
-                  <!-- <li class="adminManager__item" style="display: block">
-                    <button class="adminManager">
-                      <i class="fa-solid fa-hammer"></i>
-                      <p>Quản lý</p>
-                    </button>
-                  </li>
-                  <li>
-                    <button class="logout">
-                      <i class="fa-solid fa-door-open"></i>
-                      <p>Đăng xuất</p>
-                    </button>
-                  </li> -->
                 </ul>
               </div>
             </div>
@@ -159,7 +145,7 @@
               ?>
             </tbody>
           </table>
-            <p align="left">  
+            <p>  
                 <button id="btn_erase"><a href="index.php?controller=cart&action=destroy">Xóa tất cả</a></button>
                 <button id="btn_update">Cập nhật</button>
             </p>
@@ -168,15 +154,6 @@
         </div>
       </div>
       <footer id="footer">
-
-        <!-- <div class="voucher">
-          <h3>Voucher</h3>
-          <select id='selectvoucher'>
-            <option value='none'>Chọn Voucher</option>
-          </select>
-          
-        </div> -->
-
         <div class="totalPrice" id="totalPriceContainer">
           <h3>Thanh toán</h3>
           <span id="totalPriceId">0 VND</span>
@@ -233,21 +210,14 @@
             <i class="header__bottom--extention__icon header__bottom--extention__icon--up fa-solid fa-caret-up"></i>
           </div>
           <div class="hide__menu--list__types">
-            <!-- <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ALL</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">MOUNTAIN</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">ROAD</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">TOURING</a></div>
-            <div class="hide__menu--list__type"><a href="/public/html/page/product/product.php">KIDS</a></div> -->
+            
           </div>
         </div>
       </div>
-      <!-- <script type="module" src="/public/database/products.js"></script>
-      <script type="module" src="/public/components/menu/menu.js"></script> -->
-      <script src="\Web2\app\views\admin\cart.js"></script>
+  
 </body>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
       // Khi trạng thái của checkbox thay đổi
@@ -477,10 +447,6 @@ $.ajax({
                 });
             });
           }
-        // } else {
-        //     // Hiển thị form đăng nhập/đăng ký
-        //     document.querySelector('.user__wrapper').style.display = 'flex';
-        // }
     },
     error: function(xhr, status, error) {
         console.error('Error:', error);

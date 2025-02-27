@@ -143,14 +143,6 @@
 /* End: Filter */
 
 /* Start: Content */
-.admin__content {
-  position: relative;
-  width: calc(100% - 40px);
-  left: 120px;
-  top: 64px;
-  /* background-color: #eee; */
-  transition: all 0.5s;
-}
 
 .admin__content--header {
   position: fixed;
@@ -169,28 +161,6 @@
   box-shadow: 3px 0px 2px 0px rgba(0, 0, 0, 0.3);
   justify-content: flex-end;
 }
-
-/* .admin__content--header::before {
-  position: absolute;
-  content: '';
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  bottom: 0px;
-  right: 0px;
-  box-shadow: 10px 12px 0 #eee;
-}
-
-.admin__content--header::after {
-  content: '';
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  bottom: -40px;
-  left: 0;
-  border-radius: 50%;
-  box-shadow: -20px -20px 0 #fff;
-} */
 
 .admin__content--header__cate {
   color: #333;

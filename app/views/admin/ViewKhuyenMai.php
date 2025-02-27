@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/AdminProduct.css">
     <link rel="stylesheet" href="/Web2/public/components/ManageUserList/ManageUserList.css" />
     <link rel="stylesheet" href="/Web2/public/components/AdminProduct/adminProduct.css" />
-    <script src="/Web2/app/views/admin/admin.js"></script>
+    <script src="/Web2/app/views/admin/Interface(JS)/admin.js"></script>
 <head>
 <div class="container">
 <div class="admin__taskbar">
@@ -266,7 +266,6 @@
      
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
   function close_bill() {
     document.getElementById("model--bill").style.display = "none";

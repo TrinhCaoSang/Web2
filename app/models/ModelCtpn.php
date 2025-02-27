@@ -47,17 +47,6 @@
         return $data;
     }
 
-    
-    // public function getCTPN($MaCTPN){
-    //     $sql = "SELECT * FROM ctpn WHERE MaCTPN = '$MaCTPN'";
-    //     $result = $this->execute($sql);
-    //     if($this->num_rows() > 0){
-    //       return $this->getData();
-    //     } else {
-    //       return false;
-    //     }
-    //   }
-
     public function getAllData(){
         $sql="SELECT * FROM ctpn";
         $this->execute($sql);
@@ -77,7 +66,6 @@
         return $num;
     }
 
-    
 
      public function getAllNCC(){
         $sql = "SELECT * FROM nhacungcap";
@@ -109,17 +97,6 @@
         return $data;
      }
 
-    //  public function getNCCName($MaNCC){
-    //     $sql = "SELECT TenNCC FROM nhacungcap WHERE MaNCC='$MaNCC'";
-    //     $this->execute($sql);
-    //     if($this->num_rows() != 0){
-    //         $data = mysqli_fetch_array($this->result);
-    //     } 
-    //     else {
-    //         $data = 0;
-    //     }
-    //     return $data;
-    // }
     public function getNCCName($MaNCC){
         $sql = "SELECT TenNCC FROM nhacungcap WHERE MaNCC='$MaNCC'";
         $this->execute($sql);
@@ -165,19 +142,7 @@
             $data[]=$row;
         }
         return $data;
-    }
-    
-
-    // public function getListMaPN() {
-    //     $sql = "SELECT MaPN FROM phieunhap";
-    //     $this->execute($sql);
-    //     $data = [];
-    //     while ($row = $this->getData()){
-    //         $data[] = $row['MaPN'];
-    //     }
-    //     return $data;
-    // }
-    
+    }    
     
     public function getMathangInfo($MaHang){
         $sql = "SELECT TenHang, DonGia FROM mathang WHERE MaHang='$MaHang'";
@@ -318,12 +283,6 @@
                 WHERE MaCTPN = '$MaCTPN'";
         return $this->execute($sql);
       }
-      //////////////////////////////////////////////////////////////////////
-    
-    // public function UpdateCTPN($MaPN, $MaNCC,$TenNCC, $MaHang, $TenHang, $DonGiaPN, $SoLuong, $ThanhTienCTPN){
-    //     $sql="UPDATE ctpn SET MaPN='$MaPN', MaNCC='$MaNCC', TenNCC='$TenNCC', MaHang='$MaHang', TenHang='$TenHang', DonGiaPN='$DonGiaPN', SoLuong='$SoLuong',  ThanhTienCTPN=$ThanhTienCTPN WHERE MaCTPN = ?";
-    //     return $this->execute($sql);
-    // } 
     public function getCTPNByMaPNMaHang($MaPN, $MaHang){
         $sql = "SELECT * FROM ctpn WHERE MaPN = '$MaPN' AND MaHang = '$MaHang'";
         $result = $this->execute($sql);

@@ -1,6 +1,3 @@
-
-
-// Set experience years
 const experienceYear = document.querySelector('#experienceYear');
 const currentYear = new Date().getFullYear();
 experienceYear.querySelector('span').innerText = `${currentYear - 1976}`;
@@ -13,14 +10,6 @@ const headerBottomHeight = 80;
 const reseizeAndLoadEvent = ['resize', 'load'];
 
 let headerSlideHeight;
-
-// reseizeAndLoadEvent.forEach(event => {
-//   window.addEventListener(event, e => {
-//     const windowHeight = window.innerHeight;
-//     headerSlideHeight = windowHeight - (headerTopHeight + headerBottomHeight);
-//     document.documentElement.style.setProperty('--header-slider-height', `${headerSlideHeight}px`);
-//   });
-// });
 
 
 const scrollEvents = ['scroll', 'reload'];

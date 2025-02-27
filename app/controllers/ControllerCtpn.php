@@ -1,9 +1,3 @@
-<script>
-         function changeURL(){
-          var newUrl = "http://localhost/Web2/index.php?controller=ctpn&action=index"; // Đường dẫn URL mới
-          window.history.pushState("", "", newUrl); // Thay đổi đường dẫn URL
-        }
-</script>
 <?php 
   class ControllerCtpn{
           private $CTPN;

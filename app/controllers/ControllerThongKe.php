@@ -124,6 +124,7 @@
             $order = $_POST["order"];
             $list_Product=$this->ThongKeModel->getProduct_Type_Title($dateBegin,$dateEnd,$id,$title,$order);
             if( $this->listProduct == null) return;
+            $list = '';
             foreach ($this->listProduct as $key) {
                 $list .=
                 '<tr>'

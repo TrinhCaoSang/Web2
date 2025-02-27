@@ -74,14 +74,6 @@
               <div class="header__top-item">
                 <a class="header__top-link" href="">Hệ thống cửa hàng</a>
               </div>
-              <!-- <span>|</span> -->
-              <!-- <div class="header__top-item-select">
-                Language:
-                <select name="" id="">
-                  <option value="opt1" selected class="opt">Vietnamese</option>
-                  <option value="opt2">English</option>
-                </select>
-              </div> -->
             </div>
           </div>
         </div>

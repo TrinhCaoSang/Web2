@@ -14,7 +14,6 @@
                 exit();
             }
             else{
-                //Khắc phục lỗi phông tiếng Việt
                 mysqli_set_charset($this->conn,'utf8');
             }
 

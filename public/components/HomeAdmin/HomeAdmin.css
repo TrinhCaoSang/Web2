@@ -27,8 +27,11 @@ body {
     top: 0;
     bottom: 0;
     transition: all 0.5s;
+    overflow: auto;
   }
-  
+  .admin__taskbar::-webkit-scrollbar {
+    display: none;
+}
   .hide .admin__taskbar {
     width: 64px !important;
   }
@@ -294,15 +297,7 @@ body {
   /* End: Task */
   
   /* Start: Content */
-  .admin__content {
-    position: relative;
-    width: calc(100% - 280px);
-    height: 100vh;
-    left: 280px;
-    top: 64px;
-    /* background-color: #eee; */
-    transition: all 0.5s;
-  }
+  
   
   .admin__content--header {
     position: fixed;
@@ -842,9 +837,9 @@ body {
 /* Start: Content */
 .admin__content {
   position: relative;
-  width: calc(100% - 280px);
+  width: calc(100% - 160px);
   height: 100vh;
-  left: 280px;
+  left: 120px;
   top: 64px;
   /* background-color: #eee; */
   transition: all 0.5s;
