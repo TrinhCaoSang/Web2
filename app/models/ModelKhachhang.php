@@ -84,7 +84,6 @@ class ModelKhachhang{
     public function addKhachhang($TenKh, $gioitinh, $Sdt, $DiaChiKh, $ngaydangky) {
         $sql = "INSERT INTO khachhang(TenKh, gioitinh, Sdt, DiaChiKh, ngaydangky) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        // Sửa chuỗi định nghĩa kiểu dữ liệu để phản ánh số lượng và kiểu dữ liệu của các tham số
         $stmt->bind_param("sisss", $TenKh, $gioitinh, $Sdt, $DiaChiKh, $ngaydangky);
         $result = $stmt->execute();
         $stmt->close();
@@ -114,14 +113,7 @@ public function deleteKhachhang($id) {
     return $result;
 }
 
-// public function UpdateKhachhang($MaKH,$TenKh, $gioitinh, $Sdt, $DiaChiKh) {
-//     $sql = "UPDATE khachhang SET MaKH = '$MaKH',TenKh = '$TenKh', gioitinh = ' $gioitinh', Sdt = '$Sdt', DiaChiKh = '$DiaChiKh' WHERE MaKH = ' $MaKH'";
-//     // $stmt = $this->conn->prepare($sql);
-//     // $stmt->bind_param("sisss", $TenKh, $gioitinh, $Sdt, $DiaChiKh, $MaKH);
-//     // $result = $stmt->execute();
-//     // $stmt->close();
-//     return $this->execute( $sql);
-// }
+
 public function UpdateKhachhang($customerId, $customerFname, $customerGender, $customerPhone, $customerAddress) {
     $sql = "UPDATE khachhang 
             SET TenKh = ?,

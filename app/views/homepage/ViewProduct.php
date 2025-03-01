@@ -39,10 +39,7 @@
     <link rel="stylesheet" href="/WEB2/public/components/product/product.css" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- <script type="module" defer src="/WEB2/public/components/login/login.js"></script>  -->
-    <!-- <script type="module" defer src="/Web2/public/script.js"></script> -->
-    <!-- <script type="module" defer src="/Web2/public/components/slider/slider.js"></script> -->
-  
+    
   <!-- </head> -->
   <body style="margin: 0 auto;">
     <div class="header">
@@ -159,16 +156,7 @@
         </div>
         </div><div class="container">
         <div class="leftmenu">
-            <!-- <form>
-                <h2>Lọc đơn giản</h2>
-                <div id="locdongian">
-                    <h3>Nhập khoảng giá</h3>
-                    <input type="text" id="giatu">
-                    <h3>đến</h3>
-                    <input type="text" id="giaden"> <br>
-                    <input type="submit" id="chon" value="Chọn">
-                </div>
-            </form> -->
+            
             <br>
             <form id="container-loc" style="margin-top:-25px;">
                 <h2>Lọc nâng cao</h2>
@@ -208,55 +196,7 @@
 
         
         <div id="product-detail_model">
-        <!-- <div class="overlay-container">
-          <div class="overlay-container-top">
-              <div class="overlay-container-title">
-                  <div class="overlay-prev" id="close-toggler">
-                      <i class="fa-solid fa-arrow-left-long"></i>
-                      Trở về
-                  </div>
-              </div>
-              <div class="overlay-container-btn">
-                  
-                  <a href="../cart/cart.html">
-
-                      <i class="fa-solid fa-cart-shopping"></i>
-                  </a>
-              </div>
-          </div>
-          <div class="overlay-body">
-              <div class="overlay-body-left">
-                  <img src="" alt="" class="#overlay-img" id="imgdetail">
-              </div>
-
-              <div class="overlay-body-right">
-                  <h1 class="name" id="name"></h1>
-                  <p>
-                      This is the best selling series is impressive on rapid urban commutes or taking a detour on a
-                      rural
-                      lane:
-                      the powerful Upstreets5's wide range of available configurations enable riders to create their
-                      their
-                      own Trek bike adventures
-                  </p>
-                  <span id="overlay-price">Price:</span>
-                  <div class="quantityBtn">
-                      <h3>Số lượng</h3>
-                      <button id="decrement">-</button>
-                      <label id="quantity">1</label>
-                      <button id="increment">+</button>
-                  </div>
-                  <div class="overlay-right-btn">
-                      <button id="overlay-add-cart">
-                          <i class="fa-solid fa-cart-plus"></i>
-                          <p>
-                              Thêm vào giỏ hàng
-                          </p>
-                      </button>
-                  </div>
-              </div>
-          </div> 
-      </div>-->
+      
 </div>
         </div>
         <div id="check"></div>
@@ -450,7 +390,6 @@
               },
               success: function(data){
                 $("#container_search").html(data);
-                // document.getElementById("product-detail_model").style.display = "flex";
               },
               error: function(xhr,status,error){
                 console.error("Error: " , error);

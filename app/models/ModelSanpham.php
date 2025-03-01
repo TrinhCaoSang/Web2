@@ -101,7 +101,7 @@ public function getAllLoaiSP(){
                     DonGia = ?
                 WHERE MaHang = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ssdi", $MaLoai, $TenHang, $DonGia, $MaHang);
+        $stmt->bind_param("ssds", $MaLoai, $TenHang, $DonGia, $MaHang);
     }
 
     $result = $stmt->execute();

@@ -13,7 +13,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
-  <script defer src="/Web2/public/components/HomeAdmin/HomeAdmin.js"></script>
 </head>
 <body>
   <div class="container">

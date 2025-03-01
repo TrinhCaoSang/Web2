@@ -78,7 +78,7 @@
                     $output .= 
                     '<div id="'.$data["MaHang"].'" class="div_search">
                     <div class="search_img">
-                        <img src="data:image/jpeg;base64,'.base64_encode($data["Hinhanh"]).'">
+                        <img src="'.$data['Hinhanh'].'">
                     </div>
                     <div class="container_content-search">
                         <h3>'.$data["TenHang"].'</h3>
@@ -177,7 +177,7 @@
                 <div id="'.$data[$count]["MaHang"].'" class="divproduct">
                     <div id="img-product">
                         <i class="fa-solid fa-cart-plus"></i>
-                        <img src="data:image/jpeg;base64,'.base64_encode($data[$count]["Hinhanh"]).'">
+                        <img src="'.$data[$count]['Hinhanh'].'">
                         <div id="datmua">
                             <h3>Mua ngay</h3>
                         </div>
@@ -197,7 +197,7 @@
                 <div id="'.$data[$i]["MaHang"].'" class="divproduct">
                     <div id="img-product">
                         <i class="fa-solid fa-cart-plus"></i>
-                        <img src="data:image/jpeg;base64,'.base64_encode($data[$i]["Hinhanh"]).'">
+                        <img src="'.$data[$i]['Hinhanh'].'">
                         <div id="datmua">
                             <h3>Mua ngay</h3>
                         </div>
@@ -211,7 +211,7 @@
                 <div id="'.$data[++$i]["MaHang"].'" class="divproduct">
                     <div id="img-product">
                         <i class="fa-solid fa-cart-plus"></i>
-                        <img src="data:image/jpeg;base64,'.base64_encode($data[$i]['Hinhanh']).'">
+                        <img src="'.$data[$i]['Hinhanh'].'">
                         <div id="datmua">
                             <h3>Mua ngay</h3>
                         </div>
@@ -277,7 +277,7 @@
                         </div>
                         <div class="overlay-body">
                             <div class="overlay-body-left">
-                                <img class="#overlay-img" id="imgdetail" src="data:image/jpeg;base64,'.base64_encode($item["Hinhanh"]).'">
+                                <img class="#overlay-img" id="imgdetail" src="'.$item["Hinhanh"].'">
                             </div>
                             <div class="overlay-body-right">
                                 <h1 class="name" id="name">'.$item['TenHang'].'</h1>

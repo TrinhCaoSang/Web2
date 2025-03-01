@@ -18,7 +18,6 @@ $(document).on("click", ".discount__form--change", function () {
             $("#add-btn1").hide();
             $("#add-btn2").prop("disabled", false).show();
 
-            // Thêm sự kiện để mở hộp chọn file khi nhấn vào ảnh
             $("#selected-image").on("click", function () {
                 $("#file-upload").click();
             });
@@ -40,9 +39,8 @@ $(document).on("click", ".discount__form--change", function () {
     });
 });
 
-// Khi nhấn "Lưu", gọi hàm save() để cập nhật sản phẩm
 $(document).on("click", "#add-btn2", function () {
-    $(this).prop("disabled", true); // Tạm thời vô hiệu hóa nút để tránh nhấn nhiều lần
+    $(this).prop("disabled", true); 
     save();
 });
 

@@ -117,6 +117,7 @@
             echo $output;
         }
         public function save() {
+            header("Content-Type: application/javascript");
             if (!isset($_POST['id'], $_POST['loai'], $_POST['ten'], $_POST['gia'])) {
                 echo json_encode(["success" => false, "message" => "Thiếu thông tin sản phẩm!"]);
                 return;
@@ -128,20 +129,17 @@
             $DonGia = $_POST['gia'];
             $Hinhanh = null;
         
-            // Kiểm tra nếu có file hình ảnh được upload
             if (!empty($_FILES['file-upload']['name'])) {
-                $targetDir = "uploads/";  // Thư mục lưu ảnh
+                $targetDir = "uploads/";  
                 $fileName = basename($_FILES['file-upload']['name']);
                 $targetFilePath = $targetDir . $fileName;
                 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
         
-                // Các định dạng ảnh hợp lệ
                 $allowTypes = ['jpg', 'png', 'jpeg', 'gif', 'webp'];
         
                 if (in_array(strtolower($fileType), $allowTypes)) {
-                    // Di chuyển file ảnh đã upload vào thư mục
                     if (move_uploaded_file($_FILES['file-upload']['tmp_name'], $targetFilePath)) {
-                        $Hinhanh = $targetFilePath; // Lưu đường dẫn ảnh vào DB
+                        $Hinhanh = $targetFilePath; 
                     } else {
                         echo json_encode(["success" => false, "message" => "Không thể upload hình ảnh!"]);
                         return;
@@ -151,14 +149,12 @@
                     return;
                 }
             } else {
-                // Nếu không có file mới, giữ nguyên hình ảnh cũ
                 $currentProduct = $this->product->getMathangInfo($MaHang);
                 if ($currentProduct) {
                     $Hinhanh = $currentProduct['file-upload'];
                 }
             }
         
-            // Gọi phương thức cập nhật trong Model
             $result = $this->product->save($MaHang, $MaLoai, $TenHang, $DonGia, $Hinhanh);
         
             if ($result) {
